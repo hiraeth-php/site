@@ -1,0 +1,94 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Routing' %}
+
+{% block content %}
+    {% markdown %}
+        Hiraeth's bootstrap uses [chariot](https://github.com/awesomite/chariot) for routing.  Chariot is an extremely feature rich router that provides advanced features out of the box including:
+
+        - Reverse routing
+        - Custom pattern definition
+        - Bi-Directional parameter transformations
+
+        ## Adding a Route
+
+        Routes are broken down into groups.  Each group is represented by a configuration collection in the `config/routing` directory.  Each collection is capable of defining a prefix, routes, and custom patterns.  Routes can be added to the `routes` map, a tab separated values list defining the route, target, and methods for which the route applies:
+
+        ```toml
+        [routing]
+
+            ;
+        	; Route definitions in this group.  Add tab separate lines
+            ; for each route in the format:
+        	;
+        	; {route}	{target}	{methods}
+        	;
+
+            routes = map(application.route) {
+                /    ViewHome    ["GET"]
+            }
+        ```
+
+        If you need to match all possible methods, you can use `["*"]` as the methods value.
+
+        Although the example above implies the use of actions (single action controllers) for the target, it is possible to specify a specific method on a controller class if you prefer to group your actions into controllers (but why would you?):
+
+        ```toml
+        routes = map(application.route) {
+            /    Home::view    ["GET"]
+        }
+        ```
+
+        ## Prefixes
+
+        If you need to move all your routes under a specific path, you can use `prefix` to define the base path for all the routes in the collection.  In the following example we use `BASE_PATH` environment variable, defaulting to `/` if the variable is not set.
+
+        ```toml
+        [routing]
+
+            prefix = env(BASE_PATH, /)
+        ```
+
+        ## Parameters
+
+        For complete parameter documentation, be sure to check out [the chariot README](https://github.com/awesomite/chariot).  Basic parameters can be added to a route by encapsulating them in double curly brackets:
+
+        ```toml
+        routes = map(application.route) {
+            /articles/{{ '{{ slug }}' }}    ViewArticle    ["GET"]
+        }
+        ```
+
+        Parameters will be passed to the corresponding variables on the target method.
+
+        ```php
+        class ViewArticle extends AbstractAction
+        {
+            public function __invoke($slug)
+            {
+                //
+                // For /articles/1-test-article
+                //
+                // $slug == '1-test-article'
+                //
+            }
+        }
+        ```
+
+        You can use multiple simple parameters, however, keep in mind that things may not parse as you expect.  For example a route such as `/articles/{{ '{{ id }}-{{ title }}' }}` cannot differentiate what belongs to `id` and what belongs to `title` in a URL such as `/articles/1-this-is-a-test`.
+
+        ## Patterns
+
+        To match parameters more precisely, you can use patterns to constrain the match:
+
+        ```toml
+        routes = map(application.route) {
+            /articles/{{ '{{ id :uint }}-{{ title }}' }}    ViewArticle    ["GET"]
+        }
+        ```
+
+        Given the above, the `id` will now be constrained to matching the `uint` pattern, which is basically anything that looks like an unsigned integer.  The `title` now contains whatever the remainder is after the first dash.
+
+
+    {% endmarkdown %}
+{% endblock %}

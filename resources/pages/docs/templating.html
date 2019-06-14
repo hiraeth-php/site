@@ -1,0 +1,34 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Templating' %}
+
+{% block content %}
+    {% markdown %}
+        ## Register Template Paths
+
+        In the file `config/packages/templates.jin` you can modify template paths accordingly:
+
+        ```toml
+        [templates]
+
+        	paths = {
+        		"pages": "resources/pages",
+        		"layouts": "resources/layouts"
+        	}
+        ```
+
+        The key is used as an alias when loading the template so that `@pages/home.html` would be expanced to `resources/pages/home.html`.  You can add as many aliases as you need, and other package can add them in their configurations by including their own `[templates]` section.
+
+
+        ## Caching
+
+        ```{% verbatim %}
+        {% cache 'namespace' {ttl: 60} %}
+            //
+            // Some important work
+            //
+        {% endcache %}
+        {% endverbatim %}```
+
+    {% endmarkdown %}
+{% endblock %}

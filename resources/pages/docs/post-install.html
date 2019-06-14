@@ -1,0 +1,29 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Post-Install Setup' %}
+
+{% block content %}
+    {% markdown %}
+        Below you will find the most common post-installation tasks.  Not all of these may be required depending on how you're using Hiraeth, but they're good to know how to do if need be anyway.
+
+        ## Ensure Storage is Writable
+
+        Ensure that storage and all child directories are writable by your web server and/or the accounts you will be executing the application as.  On Linux systems, we strongly suggest the use of ACLs which might look something like this:
+
+        ```bash
+        setfacl -R -dm u:www-data:rwx storage
+        setfacl -R -m u:www-data:rwx storage
+        chmod -R g+w storage
+        ```
+
+        ## Set Up environment
+
+        Copy the `.env.example` to `.env`.
+
+        ```bash
+        cp .env.example .env
+        ```
+
+        > NOTE: Until your `.env` file is copied, your application will be running in debugging mode.  Once you do, the default value for `DEBUG` will be set to `false`.  If you want to re-enable debugging mode see the docs on [error handling](/docs/error-handling).
+    {% endmarkdown %}
+{% endblock %}

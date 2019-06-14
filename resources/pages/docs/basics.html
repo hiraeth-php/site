@@ -1,0 +1,70 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'The Basics' %}
+
+{% block content %}
+    {% markdown %}
+        The Hiraeth application instance provides a handlful of methods that allow you to perform the most basic functions in the context of your application by proxying them to the appropriate services.  In most contexts, you can get the application instance via type-hinted dependency injection:
+
+        ```php
+        public function __construct(Hiraeth\Application $app)
+        {
+            $this->app = $app;
+        }
+        ```
+
+        > NOTE: You should avoid injecting the application directly into domain services so that they don't become tightly coupled to the framework.  Instead, use [delegates](/docs/delegates) and [providers](/docs/providers) to integrate components into the framework.
+
+        ## Detecting Debugging Mode
+
+        While Hiraeth uses a simple environment flag (`DEBUG`) to determine if the application is in debugging mode the default depends first and foremost on whether or not the environment file even exists.  If no environment file is present, Hiraeth is in debug mode by default.  If an environment file is present, Hiraeth is not in debug mode unless it is otherwise specified in the environment.  To abstract this logic as well as any future additional changes in how Hiraeth handles debug mode by default, it is strongly suggested that you use the `isDebugging()` method, rather than looking directly for the requisite environment information:
+
+        ```php
+        $app->isDebugging()
+        ```
+
+        ## Getting the Application Key
+
+        Hiraeth uses the `defuse/php-encrypt` package to generate and load keys as well as perform other cryptographic operations.  The application has a central key which packages can rely on for basic encryption, although users are encouraged to create their own keys for specific purposes.
+
+        To get the application key which will be an instance of `Defuse\Crypto\Key`, simply run:
+
+        ```php
+        $app->getKey()
+        ```
+
+        If the key does not exist, it will be generated.  The key is located at `storage/key`
+
+        > NOTE: Be careful not to delete this once generated or you will be unable to decrypt previously encrypted information.  This may not be a problem things like cookies, but could be for more important data.
+
+        ## Detecting Command Line Interface
+
+        Although it is good practice to provide distinct entry-points and runtime handling for web requests vs. command line execution, it is often the case that you may wish to configure some services to operate differently depending on whether or not they are being run from the CLI.  This can be done at the [delegate](/docs/delegate) or [providre](/docs/provider) level by using the `isCLI()` method which will return `TRUE` if Hiraeth is being run from a CLI:
+
+        ```php
+        $app->isCLI()
+        ```
+
+        ## Runtime ID
+
+        When your application initializes, Hiraeth will create an md5 hash of a unique ID for that application instance.  This hash should be generally unique although may not be cryptograhpically secure.  It is used most commonly in logging operations such that multiple application instances writing to the same log can be differentiated from one another.  If for whatever reason you need to know this ID or find some other general use for it, you can get it simply:
+
+        ```php
+        $app->getId()
+        ```
+
+        ## Release Information
+
+        You can get information about the Hiraeth release, or modify this information for your own applications using the `getRelease()` method.  The release information is located in `local/.release` file and, by default contains a `NAME` and `CODE`.  Hiraeth does not use release information internally and it should not be relied upon for Hiraeth integration packages, however, can be used by end-user applications to identify their releases and modify runtime configuration thereof.
+
+        ```php
+        $app->getRelease('NAME')
+        ```
+
+        If you do not provide a key, all release information will be returned as an array:
+
+        ```php
+        $app->getRelease()
+        ```
+    {% endmarkdown %}
+{% endblock %}

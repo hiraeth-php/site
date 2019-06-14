@@ -1,0 +1,77 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Responders' %}
+
+{% block content %}
+    {% markdown %}
+        Responders take the return result of an [action](/docs/actions) and convert it to a PSR-7 response object.  By separating concerns, the logic to convert a domain response into a responder can be isolated and registered in a modular fashion in order to support a wide variety of possible return values.  By default the `hiraeth/routing` package provides the following:
+
+        | Responder                | Description
+        |--------------------------|------------------------------------------------
+        | NativeResponder          | Handles a returned PSR-7 Response object, makes no modifications
+        | JsonResponder            | Handles a returned array, stdClass, or JsonSerializable, converts to JSON
+        | FileResponder            | Handles a returned SplFileINfo object, discerns content type via extension
+        | StringResponder          | Handles a returned string, discerns content type based on content
+
+        Which responder is used to convert the action is determined by the `match()` method implemented by the responder and is parter of the `Hiraeth\Routing\ResponderInterface`.  The `match()` method takes the `Hiraeth\Routing\Resolver`, on which you can use `getResult()` to get the return value from the action.  Below is an example from the `Hiraeth\Routing\NativeResponder` which returned `TRUE` if the result is an instance of a PSR-7 `Psr\Http\Message\ResponseInterface`:
+
+        ```php
+        public function match(Resolver $resolver): bool
+        {
+            return $resolver->getResult() instanceof Response;
+        }
+        ```
+
+        The first registered responder which returns `TRUE` from its `match()` method on the returned result will then be executed via `__invoke()` to convert the result into a response.  In the above example, since our result is already a response object, we simply perform the following:
+
+        ```php
+        public function __invoke(Resolver $resolver): Response
+        {
+            return $resolver->getResult();
+        }
+        ```
+
+        Compare the above to our `StringResponder` which converts a string to a `Response` object, inferring the content type using the `finfo` functions built in to PHP:
+
+        ```php
+        public function __invoke(Resolver $resolver): Response
+        {
+            $finfo     = finfo_open();
+            $result    = $resolver->getResult();
+            $response  = $resolver->getResponse();
+            $stream    = $this->streamFactory->createStream($result);
+            $mime_type = finfo_buffer($finfo, $result, FILEINFO_MIME_TYPE);
+
+            finfo_close($finfo);
+
+            return $response
+                ->withStatus(200)
+                ->withBody($stream)
+                ->withHeader('Content-Type', $mime_type)
+            ;
+        }
+        ```
+
+        ## Registering Responders
+
+        Responders can be registered by creating a new file in `config/responders`, e.g. `config/responders/acme.jin` with a `[responder]` section and specifying the `class` of the responder:
+
+        ```toml
+        [responder]
+
+            class = Acme\Responder\CustomResponder
+        ```
+
+        Responders are matched in the order of their specified `priority` in the config.  The first to match will be executed, so if you have a responder that handles the same type of response as another, make sure the responder with the more specific matching criteria has a lower value.
+
+        ```toml
+            priority = 10
+        ```
+
+        If you need to disable a particular conflicting responder for some reason you can set the `disabled` option to `TRUE`:
+
+        ```toml
+            disabled = true
+        ```
+    {% endmarkdown %}
+{% endblock %}

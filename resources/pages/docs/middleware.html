@@ -1,0 +1,139 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Middleware' %}
+
+{% block content %}
+    {% markdown %}
+        Hiraeth's bootstrap middleware component is [middleland](https://github.com/oscarotero/middleland).  Any PSR-15 compatible middleware implementing `Psr\Http\Server\MiddlewareInterface` should work, and a handful of middleware are installed/provided in bootstrap, namely:
+
+        - client-ip
+        - encrypt-cookies
+        - firewall
+
+        ## Creating a Middleware
+
+        Middleware needs to implement the `Psr\Http\Server\MiddlewareInterface`
+
+        ```php
+        namespace Acme\Middleware;
+
+        use Psr\Http\Message\ResponseInterface as Response;
+        use Psr\Http\Message\ServerRequestInterface as Request;
+
+        use Psr\Http\Server\MiddlewareInterface as Middleware;
+        use Psr\Http\Server\RequestHandlerInterface as Handler;
+
+        class Foo implements Middleware
+        {
+            public function process(Request $request, Handler $handler): Response
+            {
+                //
+                // Modify request or return response early.
+                //
+
+                $response = $handler->handle($request);
+
+                //
+                // Modify the response
+                //
+
+                return $response;
+            }
+        }
+        ```
+
+        ### Dependency Injection
+
+        Middleware classes will be constructed via Hiraeth's dependency injector and will therefore be automatically and recursively injected with simple dependencies and dependencies for which there are already delegates/providers registered.
+
+
+        ```php
+        public function __construct(Acme\Foo\Service $service)
+        {
+            $this->service = $service;
+        }
+        ```
+
+
+        If your middleware has complex dependencies or additional configuration options, you may want to write a [delegate](/docs/delegates) or [provider](/docs/providers) to handle its construction and/or configuration.
+
+
+        ## Registering Middleware
+
+        Middleware can be registered by adding a new configuration file in `config/middleware` folder.  The only required property is the class name.  In this example, we'll create `config/middleware/foo.jin`:
+
+        ```toml
+        [middleware]
+            ;
+            ; The middleware class to register
+            ;
+
+            class = Acme\Middleware\Foo
+        ```
+
+        ## Priorities
+
+        Since middlewares are registered in separate configuration files, they should have an explicit priority set if they need to occur at a specific point in the stack.:
+
+        ```toml
+        [middleware]
+            ;
+            ; Where in the stack should this be run? Lower priority is first in,
+            ; last out.
+            ;
+
+            priority = 22
+
+            ;
+            ; The middleware class to register
+            ;
+
+            class = Acme\Middleware\Foo
+        ```
+
+        > NOTE: The default priority is **50** and the maximum used by official packages is **100** (the router).
+
+        If you are releasing a package that integrates with Hiraeth, it is suggested you use the following reference to determine an appropriate priority for your middleware.  End-users can use this as a reference to get an idea where they may wish to place their own middleware with respect to others.
+
+
+        | Priority | Description
+        |----------|---------------------------
+        | 0 - 10   | Error / exception handling middleware, request normalization, session handling.
+        | 11 - 20  | Reserved for end-users.
+        | 21 - 30  | Early returners like redirectors, IP based firewalls, etc.
+        | 41 - 50  | Reserved for end-users.
+        | 51 - 60  | Authentication, content security, etc.
+        | 61 - 70  | Reserved for end-users.
+        | 71 - 80  | Content modifiers, compression, etc.
+        | 81 - 90  | Reserved for end-users.
+        | 91 - 99  | Content response handlers
+
+
+        ## Disabling Middleware
+
+        If you need to disable a middleware quickly, then the easiest way is simply to add a `disabled` property to the configuration and set the value to `TRUE`.
+
+        ```toml
+        [middleware]
+
+            ;
+            ; Whether or not this middleware is disabled
+            ;
+
+            disabled = true
+
+            ;
+            ; Where in the stack should this be run? Lower priority is first in,
+            ; last out.
+            ;
+
+            priority = 22
+
+            ;
+            ; The middleware class to register
+            ;
+
+            class = Acme\Middleware\Foo
+        ```
+    {% endmarkdown %}
+{% endblock %}

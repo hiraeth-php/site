@@ -1,0 +1,54 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Web Requests' %}
+
+{% block content %}
+    {% markdown %}
+        Hiraeth uses a combination of PSR-7 / PSR-15 compatible components for handling web requests.  The official PSR-7 library used by Hiraeth's bootstrap is Zend's [diactoros](https://github.com/zendframework/zend-diactoros).
+
+        Without going into complete detail, we'll cover some of the basics here, however, to understand the full scope of PSR-7 requests you should look at the [documentation](https://www.php-fig.org/psr/psr-7/), in particular, the `ServerRequestInterface`.
+
+        ## Obtaining a Request
+
+        Depending on the context the server request can be obtained in different ways.  Since these objects are immutable by default, the request you obtain may be modified by the original.
+
+        In the case of middleware's for example, the request is passed as the first argument, however, it may have been modified by previous middlewares.  See [the PSR-15 documentation](https://www.php-fig.org/psr/psr-15/) for more details, in particular, the `MiddlewareInterface`.
+
+        For classes that extend `Hiraeth\Actions\AbstractAction` (part of the `hireath/actions` package), you can access the `request` property on the object instance:
+
+        ```php
+        class ViewHome extends AbstractAction
+        {
+            public function __invoke()
+            {
+                if ($this->request->getMethod() == 'POST') {
+                    return 'Hello Postman!';
+                }
+
+                return 'Hello World!';
+            }
+        }
+        ```
+
+        ## Basic Usage
+
+        Get the URI for the request.  Additional details like the domain, path, etc, are available on the URI object.
+
+        ```php
+        $request->getUri()
+        ```
+
+        Get the HTTP method used to make the request.
+
+        ```php
+        $request->getMethod()
+        ```
+
+        Get query parameters:
+
+        ```php
+        $request->getQueryParams()
+        ```
+
+    {% endmarkdown %}
+{% endblock %}

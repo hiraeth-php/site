@@ -1,0 +1,31 @@
+[logger]
+
+	;
+	;
+	;
+
+	disabled = false
+
+	;
+	;
+	;
+
+	level = env(LOGGING, Psr\Log\LogLevel::WARNING)
+
+	;
+	;
+	;
+
+	class = Monolog\Handler\RotatingFileHandler
+
+	;
+	;
+	;
+
+	filename = storage/logs/app.log
+
+	;
+	;
+	;
+
+	maxFiles  = 5

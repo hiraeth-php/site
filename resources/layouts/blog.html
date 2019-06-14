@@ -1,0 +1,23 @@
+{% extends '@layouts/master.html' %}
+
+{% block primary %}
+    <main>
+        <header>
+            <h1>{{ title }}</h1>
+        </header>
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
+        <section>
+            <script src="https://utteranc.es/client.js"
+                repo="hiraeth-php/site"
+                issue-term="pathname"
+                label="comment"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </section>
+    </main>
+{% endblock %}

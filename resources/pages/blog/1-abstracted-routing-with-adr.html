@@ -1,0 +1,181 @@
+{% extends '@layouts/blog.html' %}
+
+{% set title = 'Abstracted Routing with Action Domain Responder' %}
+
+{% block content %}
+    {% markdown %}
+        A little over a year ago I was introduced to Paul M. Jone's (PMJ) Action Domain Responder (ADR) pattern.  While the pattern struck me as solving a number of problems I found inherent to traditional MVC approaches, I was finding it extremely difficult to stick to the clear separation of concerns dictated by the pattern.
+
+        Old habits die hard and the pattern as I had seen it demonstrated just wasn't enough to keep me from returning to those habits.  I'm a big proponent of using technical solutions to make doing something the wrong way more difficult than doing it the right way.  To be more specific, although the pattern is almost always demonstrated as simply returning a payload from a domain and passing it to the responder to render a response, not a single example I'd seen truly separated the action from the responder.
+
+        A simple example of what a traditional implementation of this might look like appears as the following:
+
+        ```php
+        class ViewArticle
+        {
+            public function __construct(ArticleService $domain, ViewArticleResponder $responder)
+            {
+                $this->domain    = $domain;
+                $this->responder = $responder;
+            }
+
+            public function __invoke($id)
+            {
+                $article = $this->domain->find($id);
+
+                return $this->responder->respond($request, $article);
+            }
+        }
+        ```
+
+        Depending on the value of `$article` our responder might respond differently.  For example, if `$article` is `NULL`, indicating that the article was not found, we may return a `Response` object with a `404` status.  Given an `Article` entity, it would perhaps load and render a template and return a `200` response with the appropriate HTML content.
+
+        For simple examples, this is pretty straightforward.  Although we still inject the responder into the action, the responder remains wholly responsible for converting the domain payload into a response.  But as I began looking to use this pattern in more advanced areas, I started running into questions.
+
+        What if the client was requesting a `application/json` representation of an entity?  Do I make my responder handle both and examine the request?  Do I inject a responder factory which makes an appropriate responder based on the request?  Do I route to different actions with different responders based on the requested content type?
+
+        These are all possible ways to solve the problem but each provides its own set of pitfalls from bloated responders, to remixing responsibilities, to needing a pretty advanced routing system which handles content type negotiation.
+
+        Something didn't feel right.
+
+        ## Accidentally Discovering a Solution
+
+        When I began working towards a 2.0 release of Hiraeth, I decided very early on that I wanted to abstract away most of my router interfaces due to my historical struggle finding and keeping routing solutions around.  Most routers essentially all work the same way:
+
+        1. Register routes
+        2. Pass a URL/Method
+        3. Profit
+
+        What profit can look like varies.  In the event of a match, Fastroute, for example, will return whatever you passed when the route was registered with `addRoute()`.  Chariot (my preferred router of choice at the moment), however, returns an instance of `Awesomite\Chariot\InternalRouteInterface`.
+
+        Abstracting each of these routers to a common `RouterInterface` that would receive the url / method to return a match (or not) was quite simple.  What was not immediately obvious was how to abstract the things they returned.  All I wanted was a callable to execute, and maybe the occasional list of parameters.
+
+        ### Dynamic Adapters to the Rescue
+
+        An adapter is something which converts a unique type of input to some sort of consistent output.  That's all it does.  Due to their relative simplicity and minimal scope, adapters are cheap, i.e. can be written both easily and quickly.  So, all I needed was a simple interface that would convert the myriad of possible returns from concrete router implementations to the more generic thing I was actually interested in: a callable.
+
+        ```php
+        namespace Hiraeth\Routing;
+
+        interface AdapterInterface
+        {
+        	public function __invoke(Resolver $resolver): callable;
+
+        	public function match(Resolver $resolver): bool;
+        }
+        ```
+
+        Using this interface, our generic `Resolver` could take in the returned match of specific routers and cycle through a list of registered adapters which would be capable of:
+
+        - Signifying whether or not they knew how to convert the returned result to a callable by returning `TRUE` when `match()` is called.
+        - Convert the returned result to a callable once it had been determined they could.
+
+        The chariot adapter, for example, matches in the event the target is an instance of the aforementioned class:
+
+        ```php
+        public function match(Resolver $resolver): bool
+        {
+            return $resolver->getTarget() instanceof Awesomite\Chariot\InternalRouteInterface;
+        }
+        ```
+
+        If the resolver's call to `match()` returns `TRUE`, then and only then does the `__invoke()` method get called to actually do the conversion:
+
+        ```php
+        public function __invoke(Resolver $resolver): callable
+        {
+            $route   = $resolver->getTarget();
+            $handler = $this->signal->resolve($route->getHandler());
+
+            $resolver->setParameters($route->getParams());
+
+            return $handler;
+        }
+        ```
+
+        ## What's Good for the Goose
+
+        Ironically, the above is not particularly useful within a given application.  It's moreso designed to allow for routers (and therefore their adapters) to be easily plugged into the overall framework. More importantly, however, it made me realize quite quickly that the same pattern could be used on the way out as was being used on the way in.
+
+        In the same way the resolver is handed a "target" which the various adapters it calls can inspect and signal suitability for conversion to a callable, the resolver is handed the "result" from said callable.  It only then needs to call a list of responders in precisely the same way such that they can inspect and signal their suitability for converting that result to a `Response`.
+
+        ```php
+        namespace Hiraeth\Routing;
+
+        interface ResponderInterface
+        {
+        	public function __invoke(Resolver $resolver): Psr\Http\Message\ResponseInterface;
+
+        	public function match(Resolver $resolver): bool;
+        }
+        ```
+
+        Since its possible to get the original request from the `Resolver`, the `match()` method is fully capable of determining whether or not the responder is capable of the appropriate conversion required.  It can inspect not only the result, but the original request:
+
+        ```php
+        public function match(Resolver $resolver): bool
+        {
+            $request = $resolver->getRequest();
+            $result  = $resolver->getResult();
+            $accept  = $request->getHeaderLine('Accept-Type');
+
+            if (!$result instanceof \Article) {
+                return FALSE;
+            }
+
+            if ($this->negotiator->getBest($accept) != 'text/html') {
+                return FALSE;
+            }
+
+            return TRUE;
+        }
+        ```
+
+        > NOTE: You can still have another responder that generates a 404 response if the result (i.e. the `$article`) is `NULL`.
+
+        From here, your `__invoke()` method can load the appropriate template, render it with the article, and return a suitable response:
+
+        ```php
+        public function __invoke(Resolver $resolver): Psr\Http\Message\ResponseInterface
+        {
+            $result   = $resolver->getResult();
+            $response = $resolver->getResponse();
+            $template = $this->twig->load('@pages/articles/view.html');
+            $stream   = $this->streamFactory->createStream();
+
+            $stream->write($template->render([
+                'article' => $result
+            ]));
+
+            return $response->withBody($stream)->withStatus(200)->withHeader(
+                'Content-Type', 'text/html; charset=utf-8'
+            );
+        }
+        ```
+
+        Once the responder is in place, we can reduce our action:
+
+        ```php
+        class ViewArticle
+        {
+            public function __construct(ArticleService $domain)
+            {
+                $this->domain = $domain;
+            }
+
+            public function __invoke($id)
+            {
+                return $this->domain->find($id);
+            }
+        }
+        ```
+
+        ## Conclusion
+
+        By abstracting our routing, the value of applying an adapter pattern to our responder stack was revealed to reduce some of the original perceived problems of what was originally exemplified in PMJs example of ADR.  Through this we have ensured:
+
+        1. Responders' scope remains small, one responder handles `text/html` for a given result, another `application/json`.
+        2. Responders no longer interact with the action at all, enforcing (technically) the separate responsibilities.
+        3. We don't need to get tricky with routing or duplicate actions just for separate responders.
+    {% endmarkdown %}
+{% endblock %}

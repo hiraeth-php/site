@@ -1,0 +1,122 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Actions' %}
+
+{% block content %}
+    {% markdown %}
+        Hiraeth recommends single-action controllers, better known simply as "Actions," as opposed to multi-action controllers (large classes that handle requests at multiple endpoints).  The simplest way to create an action is to extend the `AbstractAction` class (an alias for `Hiraeth\Actions\AbstractAction`):
+
+        ```php
+        class ViewArticle extends AbstractAction
+        {
+            public function __invoke($id)
+            {
+                ...
+            }
+        }
+        ```
+
+        The `AbstractAction` class provides a handful of helper methods for the most commonly performed tasks.
+
+        ### Dependency Injection
+
+        Actions will be constructed via Hiraeth's dependency injector and will therefore be automatically and recursively injected with simple dependencies and dependencies for which there are already delegates/providers registered.
+
+
+        ```php
+        public function __construct(Acme\Blog\Articles $articles)
+        {
+            $this->articles = $articles;
+        }
+        ```
+
+        Additionally, the `__invoke()` method will be injected with type-hinted dependencies, so it is possible (although not recommended) to add dependencies at the point of execution (as opposed to construction).
+
+        ```php
+        public function __invoke($id, Acme\Blog\Articles $articles)
+        {
+            ...
+        }
+        ```
+
+        > NOTE: Actions are essentially constructed and executed in the same instance, so there is no benefit with respect to lazy loading by moving dependencies from the constructor to the `__invoke()` method.
+
+
+        ## Get Request Values
+
+        You can easily check for the existing of various request values and get the value with the `has()` and `get()` methods.  These will check for and return the named value in the following order:
+
+        - Attributes
+        - Uploaded Files
+        - Body Paramters (POST, PUT, etc)
+        - Query Parameters (GET)
+
+        To check if a value exists in any of these collections use the `has()` method:
+
+        ```php
+        if ($this->has('source')) {
+            ...
+        }
+        ```
+
+        You can get the value using `get()`:
+
+        ```php
+        $source = $this->get('source');
+        ```
+
+        If the value does not exist and no default is provided, `NULL` will be returned.  However, you can specify an alternative default as the second parameter:
+
+        ```php
+        $source = $this->get('source', 'unknown');
+        ```
+
+        ### Inferred Data Types
+
+        If your default is a specific data type, then the value from the parameter will be casted as that type.  So for example, if you're requesting a `page` parameter and pass a default of `1` the a URL where `?page=2` will return `(int) 2`:
+
+        ```php
+        $page = $this->get('page', 1);
+        ```
+
+        ## Return a Response
+
+        You can return a PSR-7 response object using the `response()` helper method.  The only required argument is the HTTP status:
+
+        ```php
+        return $this->response(404);
+        ```
+
+        You can optionally add content your response using this method:
+
+        ```php
+        return $this->response(200, 'Hello World!')
+        ```
+
+        Or headers:
+
+        ```php
+        return $this->response(301, NULL, [
+            'Location' => 'https://example.com'
+        ]);
+        ```
+
+        ## Additional Return Helpers
+
+        In addition to `response()`, the `AbstractAction` class will also be provided with implementations of `Hiraeth\Routing\UrlGeneratorInterface` and `Hiraeth\Templates\TemplateManagerInterface` if there are concrete implementations registered in the dependency injector.
+
+        This will allow you to use the `redirect()` and `template()` helper to return redirect responses and templates for rendering.
+
+        Compose a redirect response given the provided base URL and query parameters:
+
+        ```php
+        return $this->redirect('https://example.com', [], 301);
+        ```
+
+        Compose a template with the provided file and data:
+
+        ```php
+        return $this->template('@pages/articles/view.html', get_defined_vars());
+        ```
+    {% endmarkdown %}
+{% endblock %}

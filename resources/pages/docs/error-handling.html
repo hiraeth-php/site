@@ -1,0 +1,43 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Error Handling' %}
+
+{% block content %}
+    {% markdown %}
+        ## Debugging Mode
+
+        To put the application in debugging mode, modify the `.env` file and make sure the following is set:
+
+        ```toml
+        DEBUG = true
+        ```
+
+        ## Production Mode
+
+        When the application is not in debugging mode, the production handler will exit with a 500 status (HTTP) or the exception/error code (CLI) and output will be suppressed.  You can enable logging in the `.env` file to have errors outputted to the configured loggers:
+
+        ```toml
+        LOGGING = true
+        ```
+
+        ## Sentry Support
+
+        You can install the `hiraeth/sentry` package to enable support for sentry:
+
+        ```bash
+        composer require hiraeth/sentry
+        ```
+
+        Once installed, you will need to register the handler in any environment that should use it.  In the `.env` file, add the following information:
+
+        ```toml
+        HANDLERS = [
+        	"SlashTrace\Sentry\SentryHandler"
+        ]
+
+        [SENTRY]
+
+        	DSN = <your sentry dsn>
+        ```
+    {% endmarkdown %}
+{% endblock %}

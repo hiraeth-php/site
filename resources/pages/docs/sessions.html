@@ -1,0 +1,58 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Sessions' %}
+
+{% block content %}
+    {% markdown %}
+        Sessions in bootstrap use the [php-cache session handler](https://github.com/php-cache/session-handler) and are therefore stored in [caching](/docs/caching).  By and large, use of the cache directly should be limited only to a few advanced functions and sessions should operate just as normal PHP sessions.  While it is possible, therefore, to work with the `$_SESSION` superglobal directly, it is still recommended that you use the `Hiraeth\Session\ManagerInterface` to work with the session.
+
+        ## Session Cache
+
+        The session cache is registered in `config/packages/stash-session`.
+
+        ```TOML
+        [caching]
+
+        	pools = {
+        		"session": "caches/session/file"
+        	}
+        ```
+
+        To change the session cache, create a new cache driver configuration in `config/caches/session` folder and simply change the value of the `session` pool to reference that collection.  Information on available cache options can be found in the [caching documentation](/docs/caching).
+
+        ## Extending Session Lifetime at Runtime
+
+        A common feature on websites is to allow users to optionally have the website "remember them" at login.  This works generally by extending the session lifetime on the cookie.  Since we rely on cache expiration for session garbage cleanup, the way to implement this is to increase the time on the session cache item.
+
+        ```
+        use DateTime;
+        use Hiraeth\Session\ManagerInterface as Session;
+        use Hiraeth\Caching\PoolManagerInterface as Cache;
+
+        class Login extends AbstractAction
+        {
+            public function __construct(Session $session, Cache $cache)
+            {
+                $this->session = $session;
+                $this->cache   = $cache;
+            }
+
+            public function __invoke()
+            {
+                if ($this->get('keep', FALSE)) {
+                    $pool = $this->cache->get('session');
+                    $item = $pool->getItem($this->session->getid());
+                    $time = DateTime::createFromFormat('U', time() + (60 * 60 * 24 * 7));
+
+                    $item->expiresAt($time);
+                    $this->cache->saveItem($item);
+                }
+
+                //
+                // Do Login Things
+                //
+            }
+        }
+        ```
+    {% endmarkdown %}
+{% endblock %}

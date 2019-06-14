@@ -1,0 +1,27 @@
+[middleware]
+
+	;
+	; Whether or not the middleware is disabled
+	;
+
+	disabled = false
+
+	;
+	; The priority for the middleware
+	;
+
+	priority = 5
+
+	;
+	; The middleware class
+	;
+
+	class = Ellipse\Cookies\EncryptCookiesMiddleware
+
+	;
+	; A list of cookie names to not encrypt
+	;
+
+	bypass = [
+
+	]

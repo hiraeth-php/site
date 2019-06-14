@@ -1,0 +1,108 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Dependency Injection' %}
+
+{% block content %}
+    {% markdown %}
+        The Hiraeth application instance implements PSR-11's `ContainerInterface` and proxies dependency injection on behalf of `Hiraeth\Broker`.  Hiraeth will attempt to construct any object you request with the `get()` regardless of any additional configuration.  Simple dependencies may not require delegates as they don't have any non-object dependencies.
+
+        ```php
+        $app->get(Acme\Foo\Bar::class)
+        ```
+
+        In the event your class or one of the objects it depends on requires more complex construction, you can create a [delegate](/docs/delegates) and register it with the application to tell it how to construct the dependency.  Delegates implement the `Hiraeth\Delegate` interface which has two methods:
+
+        - `getClass()` &mdash; returns the class name for which the delegate is responsible for constructing
+        - `__invoke()` &mdash; handles the construction of the class and returns the instance
+
+        A contrived example:
+
+        ```php
+        namespace Acme\Foo;
+
+        use Hiraeth;
+
+        class BarDelegate implements Hiraeth\Delegate
+        {
+            static public function getClass(): string
+            {
+                return Bar::class
+            }
+
+            public function __invoke(Hiraeth\Application $app): object
+            {
+                return new Bar($app->getConfig('packages/bar', 'setting', NULL));
+            }
+        }
+        ```
+
+        > NOTE: The `__invoke()` method receives the application instance which can be used to get configuration or environment information as well as to construct subsequent dependencies via the injector.
+
+        The delegate can be registered in any config file under the `[application]` section:
+
+        ```toml
+        [application]
+
+            delegates = [
+                "Acme\Foo\BarDelegate"
+            ]
+        ```
+
+        > NOTE: You should avoid using the application instance as a service locator.  While it is acceptable to use `$app->get()` in the context of a delegate to request additional dependencies, you should use typehinted injection in domain level services as shown below.
+
+        ## Typehinting
+
+        When the depenency injector is use to create an object, it will attempt to create that object's dependencies using the typehints provided in its `__construct()` method.  Since those objects are then being constructed by the dependency injector, this operation acts recurisvely until all requisite object dependencies have been constructed.
+
+        ```php
+        class MyService
+        {
+            public function __construct(Acme\Foo\Bar $bar)
+            {
+                $this->bar = $bar;
+            }
+
+            ...
+        }
+        ```
+
+        While it is completely possible to typehint concrete class names, in many cases it is better to typehint an interface instead of a concrete class.  To tell the dependency injector which concrete class should be provided for an interface, you can add an `aliases` object to the `[application]` section of any config, or append to an exisitng one:
+
+        ```toml
+        [application]
+
+            aliases = {
+                "Psr\Acme\SomeInterface": "Acme\Foo\Bar"
+            }
+        ```
+
+        Now we can typehint interfaces instaed:
+
+        ```php
+        public function __construct(Psr\Acme\SomeInterface $something)
+        {
+            $this->something = $something;
+        }
+        ```
+
+        You can also use `aliases` to alias concrete classes under another name.  This will use PHP's built in `class_alias()` function to create an alias for the class.  Sometimes it is better to create an alias that "mimics" an interface and typhint that than it is to typhint the concrete class.  For example, if in the example above `Psr\Acme\SomeInterface` is not a real interface, we could reverse the key / value and achieve the same result:
+
+        ```toml
+        [application]
+
+            aliases = {
+                "Acme\Foo\Bar": "Psr\Acme\SomeInterface"
+            }
+        ```
+
+        Although this is not recommended in production code, it can be useful for prototyping wherein a concrete class represents the only available interface at the time, but an interface will be added later for abstraction.
+
+        ## Checking Interface / Alias Availability
+
+        You can use PSR-11's `has()` method to determine if there is a concrete class that fulfills a given interface (or mock interface via alias):
+
+        ```php
+        $app->has(Psr\Acme\SomeInterface::class)
+        ```
+    {% endmarkdown %}
+{% endblock %}

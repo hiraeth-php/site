@@ -1,0 +1,57 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Files and Directories' %}
+
+{% block content %}
+    {% markdown %}
+        The `hiraeth/app` package provides the following default directories for your application:
+
+        | Directory      | Description
+        |----------------|------------------------------
+        | bin            | Contains PHP scripts designed to be executed via CLI, e.g. `php bin/server`
+        | config         | Contains all Hiraeth configuration information
+        | local          | Contains end-user PHP source code: classes, interfaces, traits, etc
+        | public         | Contains web-accessible files/directories (the "document root" for your server)
+        | resources      | Contains end-user templates and layouts, suggested path also for css/js source
+        | storage        | Contains application writable files and folders (user uploads, logs, cache)
+        | vendor         | Contains vendor PHP source code: classes, interface, traits, etc
+
+        The containing directory of these directories is the "application root" and all file and directory related methods on the application instance are relative to this root directory.
+
+        ## Checking for a File or Directory
+
+        You can check if a file exists using the `hasFile()` method.  For example, to see if there is a `.env` file in the application root, you can do:
+
+        ```php
+        $app->hasFile('.env')
+        ```
+
+        Similarly, you can check for directories using `hasDirectory()`.  See if a cache directory exists:
+
+        ```php
+        $app->hasDirectory('storage/cache')
+        ```
+
+        ## Getting File or Directory Information
+
+        To get an `SplFileInfo` object for a file or directory use the `getFile()` and `getDirectory()` methods with the application root relative path:
+
+        ```php
+        $app->getFile('composer.json')
+        ```
+
+        You can then use the `SplFileInfo` object to get more information about the file or directory.  For example, to get the real absolute path to the public storage directory:
+
+        ```php
+        $app->getDirectory('storage/public')->getRealPath()
+        ```
+
+        ## Creating a File or Directory
+
+        In many cases you may want to create a file or directory if it does not exist.  This is frequently the case, for example, if you're using `getDirectory()` to get sub-directories for storing various assets.  Adding, `TRUE` as the second argument to either `getFile()` or `getDirectory()` will attempt to create the file or directory if it does not exist.
+
+        ```php
+        $app->getFile('storage/sync.lock', TRUE)->openFile('w')->fwrite('1')
+        ```
+    {% endmarkdown %}
+{% endblock %}

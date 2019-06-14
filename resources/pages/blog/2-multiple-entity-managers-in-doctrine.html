@@ -1,0 +1,222 @@
+{% extends '@layouts/blog.html' %}
+
+{% set title = 'Multiple Entity Managers in Doctrine' %}
+
+{% block content %}
+    {% markdown %}
+        I love doctrine.  Well... kinda.  I think doctrine is by far the best ORM available for PHP at the moment.  This isn't to say I don't have criticisms.  One of those criticisms recently came to a head while implementing support for doctrine for the 2.0 release of Hiraeth (still in beta).  For those Symfony users out there, this may not seem like much of a problem, as Symfony has already done this work.  Although I couldn't determine how they did it, I was able to come up with my own solution while looking around.
+
+        Let's start from the beginning.
+
+        Doctrine provides two levels of "registries" for dealing with multiple connections and entity managers.  Since I wanted to provide separate packages for DBAL and ORM so people can choose what best suits their needs, I went about implementing these my own way.  To avoid too many gritty details, let's look at the basic configuration.
+
+        The DBAL configuration (`config/packages/dbal.jin`) provides a simple list of connection aliases mapped to a config relative connection configuration:
+
+        ```toml
+        [dbal]
+
+        	connections = {
+        		"default": "dbal/default"
+        	}
+
+        ```
+
+        From there, the connection configuration (`config/dba/default.jin`) looks something like this:
+
+        ```toml
+        [connection]
+        	driver   = env(DATABASES_DEFAULT_TYPE)
+        	user     = env(DATABASES_DEFAULT_USER)
+        	password = env(DATABASES_DEFAULT_PASS)
+            host     = env(DATABASES_DEFAULT_HOST)
+            port     = env(DATABASES_DEFAULT_PORT)
+        	dbname   = env(DATABASES_DEFAULT_NAME)
+        ```
+
+        Simple enough.
+
+        To add a new connection, we would simply create a new connection configuration with different environment variables at a new location, and add it to our DBAL config:
+
+        ```toml
+        [dbal]
+
+        	connections = {
+        		"default": "dbal/default",
+                "blog": "dbal/blog"
+        	}
+        ```
+
+        Entity manager configuration follows a similar pattern.  The doctrine configuration (`config/packages/doctrine.jin`) provides a list of managers whose keys are aliases and whose values are manager configurations:
+
+        ```toml
+        [doctrine]
+
+        	managers = {
+        		"default": "doctrine/default"
+        	}
+        ```
+
+        Here we can specify various related providers like which connection and cache to use as well as paths to our entities (currently only supporting annotations as Doctrine got rid of YAML support and XML... no thanks) and proxy info:
+
+        ```toml
+        [manager]
+        	connection = default
+        	cache      = default
+        	paths      = [
+        		"local/entities"
+        	]
+
+        	[&.proxy]
+        		namespace = Proxies\Default
+        		directory = storage/proxies/default
+        ```
+
+        Similarly, to add another entity manager, we would make a new manager configuration and add it to our list of configured managers:
+
+        ```toml
+        [doctrine]
+
+        	managers = {
+        		"default": "doctrine/default",
+                "blog": "doctrine/blog"
+        	}
+        ```
+
+        You probably get the point.
+
+        Within our code, this is pretty simple to use.  Rather typehinting our `EntityManager` directly, we typehint the `ManagerRegistry` or our `ConnectionRegistry` and simply request the manager/connection we want:
+
+        ```php
+        class BlogService
+        {
+            public function __construct(Hiraeth\Doctrine\ManagerRegistry $registry)
+            {
+                $this->manager = $registry->getManager('blog');
+            }
+        }
+        ```
+
+        Alas, console commands do not seem to support this pattern very well.  For those familiar with doctrine and its console functionality, you may recall or be aware that its default command set requires the `EntityManager` to be registered via an `EntityManagerHelper` which is added to the Symfony console `HelperSet`.  We can see this in the `[console]` section of Hiraeth's doctrine config:
+
+        ```toml
+        [console]
+
+        	helpers = {
+        		"em": "Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper"
+        	}
+        ```
+
+        While dependency injection will take care of this, because the `EntityManagerHelper` uses typhinting, it will only ever get our default `EntityManager`.  After some searching and finding only disgusting and hacky solutions that overload the console command itself to basically run the command separately with two distinct sets of helpers, I decided to look at Symfony.  I still couldn't figure out where Symfony stores its doctrine commands, but I figured it must be overloading them, so I opted to do the same:
+
+
+        ```toml
+        [console]
+
+        	commands = [
+        		"Hiraeth\Doctrine\SchemaCreateCommand",
+        		"Hiraeth\Doctrine\SchemaUpdateCommand",
+        		"Hiraeth\Doctrine\SchemaDropCommand"
+        	]
+        ```
+
+        The solution lies within these overloaded commands which, on face value are pretty simple.  Let's look at the `SchemaUpdateCommand` to get an idea:
+
+        ```php
+        namespace Hiraeth\Doctrine;
+
+        use Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand;
+
+        /**
+         *
+         */
+        class SchemaUpdateCommand extends UpdateCommand
+        {
+        	use MultipleEntityManagers;
+        }
+        ```
+
+        As you can see, I opted to bundle the actual functionality in a trait, as this makes it easier to add this functionality to essentially any command with a simple child class and a `use` statement.  So, let's have a look at the trait:
+
+        ```php
+        namespace Hiraeth\Doctrine;
+
+        use Symfony\Component\Console\Input\InputArgument;
+        use Symfony\Component\Console\Input\InputInterface;
+        use Symfony\Component\Console\Output\OutputInterface;
+        use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+
+        /**
+         *
+         */
+        trait MultipleEntityManagers
+        {
+        	/**
+        	 *
+        	 */
+        	public function __construct(ManagerRegistry $registry)
+        	{
+        		$this->registry = $registry;
+
+        		parent::__construct();
+        	}
+
+
+        	/**
+        	 *
+        	 */
+        	public function configure()
+        	{
+        		$this->addArgument('manager', InputArgument::OPTIONAL, 'The name of the entity manager to use');
+
+        		return parent::configure();
+        	}
+
+
+        	/**
+        	 *
+        	 */
+        	public function execute(InputInterface $input, OutputInterface $output)
+        	{
+        		$manager = $input->getArgument('manager');
+
+        		if ($manager) {
+        			$this->getHelperSet()->set(
+        				new EntityManagerHelper($this->registry->getManager($manager)),
+        				'em'
+        			);
+        		}
+
+        		return parent::execute($input, $output);
+        	}
+        }
+        ```
+
+        As you can see, the problem is not as complex to solve as one might initially think.  We pull in our `ManagerRegistry`, add the argument, and upon execution modify the registered `em` helper.  Although it's a bit unfortunate not to have a cleaner way to inject our `EntityManagerHelper` I'll let this one slide given the very particular nature of this problem and that it's very limited in scope and applicability.
+
+        The final result now shows our manager as an optional argument:
+
+        ```bash
+        matt@phoenix:~/Dropbox/Projects/cpa$ php bin/hiraeth orm:schema-tool:update --help
+        Description:
+          Executes (or dumps) the SQL needed to update the database schema to match the current mapping metadata
+
+        Usage:
+          orm:schema-tool:update [options] [--] [<manager>]
+        ```
+
+        Now we can be explicit, or leave off the manager to just run on the default:
+
+        ```bash
+        matt@phoenix:~/Dropbox/Projects/cpa$ php bin/hiraeth orm:schema-tool:update --force default
+
+         Updating database schema...
+
+             21 queries were executed
+
+
+         [OK] Database schema updated successfully!
+        ```
+
+        Hope this gives anyone else working more directly with doctrine a simple solution to the problem.
+    {% endmarkdown %}
+{% endblock %}

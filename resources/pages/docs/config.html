@@ -1,0 +1,54 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Configuration' %}
+
+{% block content %}
+    {% markdown %}
+        Hiraeth uses [Jsonified Ini Notation](https://github.com/dotink/jin) (JIN) for its `.env` file and its configuration files.  Without going into too much detail, these files essentially look like INI files with JSON-like values.  The language is extremely similar to [TOML](https://github.com/toml-lang/toml), but does not attempt to be compatible or maintain feature parity.  For example:
+
+        ```toml
+        CACHING = true
+        ```
+
+        To get an environment value, you can use the `getEnvironment()` method:
+
+        ```php
+        $app->getEnvironment('CACHING')
+        $app->getEnvironment('CACHING', FALSE) // Default to FALSE if not set
+        ```
+
+        Configurations are similar, except you need to specify a collection.  Each file in the `config` directory constitutes a separate collection, and the collection is the filename, minus the config root and the extension.  For example `config/middleware/acme.jin` would be `middleware/acme`:
+
+        ```php
+        $app->getConfig('middleware/acme', 'middleware.disabled', FALSE)
+        ```
+
+        You can get the values for all collections by specifying a `*`:
+
+        ```php
+        foreach ($app->getConfig('*', 'middleware', array()) as $middleware) {
+            if ($middleware['disabled'] ?? FALSE) {
+                continue;
+            }
+
+            // do middleware things
+        }
+        ```
+
+        The "dot notation" for the second parameter allows you to access values nested at any depth of the collection.  So, for example with a `config/acme.jin` like:
+
+        ```toml
+        [section]
+
+            property = {
+                "key": "value"
+            }
+        ```
+
+        You could do:
+
+        ```php
+        $app->getConfig('acme', 'section.property.key', 'default')
+        ```
+    {% endmarkdown %}
+{% endblock %}
