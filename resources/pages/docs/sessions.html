@@ -4,9 +4,28 @@
 
 {% block content %}
     {% markdown %}
-        Sessions in bootstrap use the [php-cache session handler](https://github.com/php-cache/session-handler) and are therefore stored in [caching](/docs/caching).  By and large, use of the cache directly should be limited only to a few advanced functions and sessions should operate just as normal PHP sessions.  While it is possible, therefore, to work with the `$_SESSION` superglobal directly, it is still recommended that you use the `Hiraeth\Session\ManagerInterface` to work with the session.
+        Hiraeth bootstrap uses [Aura's session package](https://github.com/auraphp/Aura.Session) for managing sesssions, this includes multiple segments and flash messaging.
+
+        ## Obtaining the Session Manager
+
+        You can typhing `Hiraeth\Session\ManagerInterface` to get the instance of the session manager in most contexts.
+
+        ```php
+        public function __construct(Hiraeth\Session\ManagerInterface $session_manager)
+        {
+            $this->sessionManager = $session_manager;
+        }
+        ```
+
+        In the context of an Action, the session manager will be setter injected automatically and is available as a property of the action:
+
+        ```php
+        $session = $this->sessionManager->getSegment('auth');
+        ```
 
         ## Session Cache
+
+        Sessions in bootstrap use the [php-cache session handler](https://github.com/php-cache/session-handler) and are therefore stored in [caching](/docs/caching).  By and large, use of the cache directly should be limited only to a few advanced functions and sessions should operate just as normal PHP sessions.
 
         The session cache is registered in `config/packages/stash-session`.
 
@@ -26,14 +45,12 @@
 
         ```
         use DateTime;
-        use Hiraeth\Session\ManagerInterface as Session;
         use Hiraeth\Caching\PoolManagerInterface as Cache;
 
         class Login extends AbstractAction
         {
-            public function __construct(Session $session, Cache $cache)
+            public function __construct(Cache $cache)
             {
-                $this->session = $session;
                 $this->cache   = $cache;
             }
 
@@ -41,7 +58,7 @@
             {
                 if ($this->get('keep', FALSE)) {
                     $pool = $this->cache->get('session');
-                    $item = $pool->getItem($this->session->getid());
+                    $item = $pool->getItem($this->sessionManager->getId());
                     $time = DateTime::createFromFormat('U', time() + (60 * 60 * 24 * 7));
 
                     $item->expiresAt($time);

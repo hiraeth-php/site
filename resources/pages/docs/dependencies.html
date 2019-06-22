@@ -12,8 +12,10 @@
 
         In the event your class or one of the objects it depends on requires more complex construction, you can create a [delegate](/docs/delegates) and register it with the application to tell it how to construct the dependency.  Delegates implement the `Hiraeth\Delegate` interface which has two methods:
 
-        - `getClass()` &mdash; returns the class name for which the delegate is responsible for constructing
-        - `__invoke()` &mdash; handles the construction of the class and returns the instance
+        | Method         | Description
+        |----------------|----------------------------
+        | `getClass()`   | Returns the class name for which the delegate is responsible for constructing
+        | `__invoke()`   | Handles the construction of the class and returns the instance
 
         A contrived example:
 
@@ -85,15 +87,7 @@
         }
         ```
 
-        You can also use `aliases` to alias concrete classes under another name.  This will use PHP's built in `class_alias()` function to create an alias for the class.  Sometimes it is better to create an alias that "mimics" an interface and typhint that than it is to typhint the concrete class.  For example, if in the example above `Psr\Acme\SomeInterface` is not a real interface, we could reverse the key / value and achieve the same result:
-
-        ```toml
-        [application]
-
-            aliases = {
-                "Acme\Foo\Bar": "Psr\Acme\SomeInterface"
-            }
-        ```
+        If the interface does not exist, the Hiraeth will use PHP's built in `class_alias()` function to alias the concrete class to the interface allowing you to use that name as a stand-in typehint for the class and later replace it with an actual interface.
 
         Although this is not recommended in production code, it can be useful for prototyping wherein a concrete class represents the only available interface at the time, but an interface will be added later for abstraction.
 

@@ -41,12 +41,12 @@
 
         ## Prefixes
 
-        If you need to move all your routes under a specific path, you can use `prefix` to define the base path for all the routes in the collection.  In the following example we use `BASE_PATH` environment variable, defaulting to `/` if the variable is not set.
+        If you need to move all your routes under a specific path, you can use `prefix` to define the leading URL segment for all the routes in the collection.
 
         ```toml
         [routing]
 
-            prefix = env(BASE_PATH, /)
+            prefix = /blog
         ```
 
         ## Parameters

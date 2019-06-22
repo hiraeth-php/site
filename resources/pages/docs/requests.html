@@ -10,9 +10,16 @@
 
         ## Obtaining a Request
 
-        Depending on the context the server request can be obtained in different ways.  Since these objects are immutable by default, the request you obtain may be modified by the original.
+        Depending on the context the server request can be obtained in different ways.  Since these objects are immutable by default, the request you obtain may be modified from the original.  The three primary contexts in which you will acquire a request are as follows:
 
-        In the case of middleware's for example, the request is passed as the first argument, however, it may have been modified by previous middlewares.  See [the PSR-15 documentation](https://www.php-fig.org/psr/psr-15/) for more details, in particular, the `MiddlewareInterface`.
+        - Middleware
+        - Actions
+
+        ### Middleware
+
+        In the case of middleware, the current request is passed as the first argument, however, it may have been modified by previous middlewares.  See [the PSR-15 documentation](https://www.php-fig.org/psr/psr-15/#22-psrhttpservermiddlewareinterface) for more details.
+
+        ### Actions
 
         For classes that extend `Hiraeth\Actions\AbstractAction` (part of the `hireath/actions` package), you can access the `request` property on the object instance:
 
@@ -30,7 +37,17 @@
         }
         ```
 
-        ## Basic Usage
+        ### Other Contexts
+
+        If you need the request in another context, the best way is to have it set on your class or passed in as an argument from a Middleware or Action.  Post-routing, however, it is possible to obtain the request at the time of route resolution by injecting the `Hiraeth\Routing\Resolver` by typehinting its interface (`Hiraeth\Routing\ResolverInterface`) or by creating a provider.
+
+        Once you have the resolver injected, simply use:
+
+        ```php
+        $resolver->getRequest()
+        ```
+
+        ## Basic Request Usage
 
         Get the URI for the request.  Additional details like the domain, path, etc, are available on the URI object.
 
@@ -48,6 +65,12 @@
 
         ```php
         $request->getQueryParams()
+        ```
+
+        Get parsed body (for POST data):
+
+        ```php
+        $request->getParsedBody()
         ```
 
     {% endmarkdown %}
