@@ -4,57 +4,21 @@
 
 {% block content %}
     {% markdown %}
-        The Hiraeth application instance implements PSR-11's `ContainerInterface` and proxies dependency injection on behalf of `Hiraeth\Broker`.  Hiraeth will attempt to construct any object you request with the `get()` regardless of any additional configuration.  Simple dependencies may not require delegates as they don't have any non-object dependencies.
+        The Hiraeth application instance implements PSR-11's `ContainerInterface` and proxies dependency injection on behalf of `Hiraeth\Broker`.  Hiraeth will attempt to construct any object you request with the `get()` method:
 
         ```php
         $app->get(Acme\Foo\Bar::class)
         ```
 
-        In the event your class or one of the objects it depends on requires more complex construction, you can create a [delegate](/docs/delegates) and register it with the application to tell it how to construct the dependency.  Delegates implement the `Hiraeth\Delegate` interface which has two methods:
+        If the class you are trying to construct has additional object dependencies on its `__construct()` method, the broker will attempt to recursively construct all dependencies in order to build your object.  For simple classes without complex configuration or complex dependency creation, this automatic dependency resolution and injection will work fine.
 
-        | Method         | Description
-        |----------------|----------------------------
-        | `getClass()`   | Returns the class name for which the delegate is responsible for constructing
-        | `__invoke()`   | Handles the construction of the class and returns the instance
+        In the event your class or one of the objects it depends on requires more complex construction, you can create a [delegate](/docs/delegates) and register it with the application to tell it how to construct the dependency.
 
-        A contrived example:
+        > NOTE: You should avoid using the application instance as a service locator.  While it is acceptable to use `$app->get()` in some contexts it is better to use typhinted dependency injection directly instead of having `$app` injected and using `get()`.
 
-        ```php
-        namespace Acme\Foo;
+        ## Typehinting Constructor Arguments
 
-        use Hiraeth;
-
-        class BarDelegate implements Hiraeth\Delegate
-        {
-            static public function getClass(): string
-            {
-                return Bar::class
-            }
-
-            public function __invoke(Hiraeth\Application $app): object
-            {
-                return new Bar($app->getConfig('packages/bar', 'setting', NULL));
-            }
-        }
-        ```
-
-        > NOTE: The `__invoke()` method receives the application instance which can be used to get configuration or environment information as well as to construct subsequent dependencies via the injector.
-
-        The delegate can be registered in any config file under the `[application]` section:
-
-        ```toml
-        [application]
-
-            delegates = [
-                "Acme\Foo\BarDelegate"
-            ]
-        ```
-
-        > NOTE: You should avoid using the application instance as a service locator.  While it is acceptable to use `$app->get()` in the context of a delegate to request additional dependencies, you should use typehinted injection in domain level services as shown below.
-
-        ## Typehinting
-
-        When the depenency injector is use to create an object, it will attempt to create that object's dependencies using the typehints provided in its `__construct()` method.  Since those objects are then being constructed by the dependency injector, this operation acts recurisvely until all requisite object dependencies have been constructed.
+        The recommended method of resolving dependencies is to typehint the dependencies as direct arguments on your class's `__construct()` method:
 
         ```php
         class MyService
@@ -89,14 +53,15 @@
 
         If the interface does not exist, the Hiraeth will use PHP's built in `class_alias()` function to alias the concrete class to the interface allowing you to use that name as a stand-in typehint for the class and later replace it with an actual interface.
 
-        Although this is not recommended in production code, it can be useful for prototyping wherein a concrete class represents the only available interface at the time, but an interface will be added later for abstraction.
+        ## What Gets Injected?
 
-        ## Checking Interface / Alias Availability
+        Hiraeth will resolve the following types of objects via the broker:
 
-        You can use PSR-11's `has()` method to determine if there is a concrete class that fulfills a given interface (or mock interface via alias):
+        - Middleware
+        - Adapters
+        - Actions
+        - Responders
+        - Commands
 
-        ```php
-        $app->has(Psr\Acme\SomeInterface::class)
-        ```
     {% endmarkdown %}
 {% endblock %}

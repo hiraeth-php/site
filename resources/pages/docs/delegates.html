@@ -1,0 +1,57 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Delegates' %}
+
+{% block content %}
+    {% markdown %}
+        Delegates implement the `Hiraeth\Delegate` interface which has two methods:
+
+        | Method         | Description
+        |----------------|----------------------------
+        | `getClass()`   | Returns the class name for which the delegate is responsible for constructing
+        | `__invoke()`   | Handles the construction of the class and returns the instance
+
+        A contrived example:
+
+        ```php
+        namespace Acme\Foo;
+
+        use Hiraeth;
+
+        class BarDelegate implements Hiraeth\Delegate
+        {
+            static public function getClass(): string
+            {
+                return Bar::class
+            }
+
+            public function __invoke(Hiraeth\Application $app): object
+            {
+                return new Bar($app->getConfig('packages/bar', 'setting', NULL));
+            }
+        }
+        ```
+
+        > NOTE: The `__invoke()` method receives the application instance which can be used to get configuration or environment information as well as to construct subsequent dependencies via the injector.
+
+        The delegate can be registered in any config file under the `[application]` section:
+
+        ```toml
+        [application]
+
+            delegates = [
+                "Acme\Foo\BarDelegate"
+            ]
+        ```
+
+
+        ## Checking Interface / Alias Availability
+
+        You can use PSR-11's `has()` method to determine if there is a concrete class that fulfills a given interface (or mock interface via alias):
+
+        ```php
+        $app->has(Psr\Acme\SomeInterface::class)
+        ```
+
+    {% endmarkdown %}
+{% endblock %}
