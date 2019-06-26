@@ -53,11 +53,13 @@
 
         For complete parameter documentation, be sure to check out [the chariot README](https://github.com/awesomite/chariot).  Basic parameters can be added to a route by encapsulating them in double curly brackets:
 
+        {% verbatim %}
         ```toml
         routes = map(application.route) {
-            /articles/{{ '{{ slug }}' }}    ViewArticle    ["GET"]
+            /articles/{{ slug }}    ViewArticle    ["GET"]
         }
         ```
+        {% endverbatim %}
 
         Parameters will be passed to the corresponding variables on the target method.
 
@@ -75,19 +77,108 @@
         }
         ```
 
-        You can use multiple simple parameters, however, keep in mind that things may not parse as you expect.  For example a route such as `/articles/{{ '{{ id }}-{{ title }}' }}` cannot differentiate what belongs to `id` and what belongs to `title` in a URL such as `/articles/1-this-is-a-test`.
+        {% verbatim %}
+        You can use multiple simple parameters, however, keep in mind that things may not parse as you expect.  For example a route such as `/articles/{{ id }}-{{ title }}` cannot differentiate what belongs to `id` and what belongs to `title` in a URL such as `/articles/1-this-is-a-test`.
+        {% endverbatim %}
 
-        ## Patterns
+        ### Patterns
 
         To match parameters more precisely, you can use patterns to constrain the match:
 
+        {% verbatim %}
         ```toml
         routes = map(application.route) {
-            /articles/{{ '{{ id :uint }}-{{ title }}' }}    ViewArticle    ["GET"]
+            /articles/{{ id :uint }}-{{ title }}    ViewArticle    ["GET"]
+        }
+        ```
+        {% endverbatim %}
+
+
+        Given the above, the `id` will now be constrained to matching the `uint` pattern, which is basically anything that looks like an unsigned integer.  The `title` now contains whatever the remainder is after the first dash.
+
+        See [chariot's default patterns](https://github.com/awesomite/chariot#default-patterns) for more options.
+
+        ### Custom Patterns and Transformations
+
+        While chariot providers a number of built-in patterns out of the box, it is often the case that you will want to register custom patterns or transform route parameters to an object form or from an object form to a string (when generating URLs).
+
+        A good example of this is chariot's built-in [date pattern](https://github.com/awesomite/chariot/blob/master/src/Pattern/StdPatterns/DatePattern.php).  To create a custom pattern you will want to implement `Awesomite\Chariot\Pattern\PatternInterface`.  In the example below, we will add an "ArticlePattern" to match our article ID and convert it to an article object.
+
+        We'll begin by creating our class:
+
+        ```php
+        use Awesomite\Chariot\Pattern;
+
+        class ArticlePattern implements Pattern\PatternInterface
+        {
+
         }
         ```
 
-        Given the above, the `id` will now be constrained to matching the `uint` pattern, which is basically anything that looks like an unsigned integer.  The `title` now contains whatever the remainder is after the first dash.
+        To this we'll add a `__construct()` method.  This method will be dependency injected when the patterns are initialized and added to the router.  We'll take our article repository as a dependency so we can look up our article:
+
+        ```php
+        /**
+         *
+         */
+        public function __construct(ArticleRepository $articles)
+        {
+            $this->articles = $articles;
+        }
+        ```
+
+        To this we need to add the `getRegex()` method which will return a non-delimited regex to match the pattern in the URL/route:
+
+        ```php
+        /**
+         * Provide the RegEx which matches the route parameter
+         */
+         public function getRegex(): string
+         {
+             return '[1-9][0-9]*';
+         }
+         ```
+
+         Then we add the `fromUrl()` method which will convert the parameter as matched in our URL/route into our object form:
+
+         ```
+         /**
+          * Convert the route parameter to rich data type
+          */
+         public function fromUrl(string $param)
+         {
+             return $this->articles->find($param);
+         }
+         ```
+
+         Finally, we need to implement the `toUrl()` method which will allow an article to be converted back to the URL form when provided as a parameter for link generation (reverse routing):
+
+
+        ```
+        /**
+         * Convert some data (provided in reverse routing) to its URL form
+         */
+        public function toUrl($data): string
+        {
+            if (!$data instanceof Article) {
+                throw new Pattern\PatternException(
+                    'Cannot convert non-article to article id'
+                );
+            }
+
+            return $data->getId();
+        }
+        ```
+
+         To register our pattern, we simply add it to any configuration file's `[routing]` section in a patterns object.  The key will provide the key for paramter matching, e.g. `{{ '{{ article :article }}' }}`, and the value is the class:
+
+        ```toml
+        [routing]
+
+            patterns = {
+                "article": "ArticlePattern"
+            }
+        ```
 
 
     {% endmarkdown %}

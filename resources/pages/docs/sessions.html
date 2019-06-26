@@ -39,6 +39,25 @@
 
         To change the session cache, create a new cache driver configuration in `config/caches/session` folder and simply change the value of the `session` pool to reference that collection.  Information on available cache options can be found in the [caching documentation](/docs/caching).
 
+        ## CSRF Protection
+
+        The session manager provide CSRF Token generation and validation.  By default, the session package includes a registered and enabled middleware which will look for a `csrf::token` field on all `POST`, `PUT`, and `DELETE` requests when the session is started.  If the token is not provided or is invalid, the middleware will return a `400` error response.  You can get the CSRF token value from the manager:
+
+        ```php
+        $manager->getCsrfToken()->getValue();
+        ```
+
+        This is also accessible in templates using the `session` global registered via the session twig extension:
+
+        {% verbatim %}
+        ```html
+        <input type="hidden" name="csrf::token" value="{{ session.csrfToken.value }}" />
+        ```
+        {% endverbatim %}
+
+
+        {#
+
         ## Extending Session Lifetime at Runtime
 
         A common feature on websites is to allow users to optionally have the website "remember them" at login.  This works generally by extending the session lifetime on the cookie.  Since we rely on cache expiration for session garbage cleanup, the way to implement this is to increase the time on the session cache item.
@@ -71,5 +90,7 @@
             }
         }
         ```
+
+        #}
     {% endmarkdown %}
 {% endblock %}

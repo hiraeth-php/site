@@ -4,11 +4,17 @@
 
 {% block content %}
     {% markdown %}
-        Hiraeth's bootstrap middleware component is [middleland](https://github.com/oscarotero/middleland).  Any PSR-15 compatible middleware implementing `Psr\Http\Server\MiddlewareInterface` should work, and a handful of middleware are installed/provided in bootstrap, namely:
+        Hiraeth's bootstrap middleware component is [middleland](https://github.com/oscarotero/middleland).  Any PSR-15 compatible middleware implementing `Psr\Http\Server\MiddlewareInterface` should work, and a handful of middleware are installed/provided in bootstrap:
 
-        - client-ip
-        - encrypt-cookies
-        - firewall
+        | Middleware         | Description
+        |--------------------|--------------------------------------------------------------------
+        | client-ip          | Provides accurate client IP as a Request attribute (`client-ip`)
+        | csrf-token         | Validates `csrf::token` input field
+        | encrypt-cookies    | Encrypts cookies for added security
+        | firewall           | A simple IP based firewall
+        | routing            | Resolves and executes routes
+        | session            | Activates the user session and handles response cookies
+        | templates          | Renders templates directly (no routing / action) based URL path
 
         ## Creating a Middleware
 
