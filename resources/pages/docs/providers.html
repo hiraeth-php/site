@@ -1,0 +1,79 @@
+{% extends '@layouts/docs.html' %}
+
+{% set title = 'Providers' %}
+
+{% block content %}
+    {% markdown %}
+        Providers are similar to delegates in that they peform dependency configuration on objects constructed by the dependency injector.  Where they differ is that instead of being bound to a concrete class, they are bound to interfaces.  This allows providers to operate on a number of different classes which may require a common configuration and/or setter injection.
+
+        While a given class may only have a single delegate, it may, depending on its interfaces, run through a number of providers.
+
+        Providers implement the `Hiraeth\Provider` interface which has two methods:
+
+        | Method            | Description
+        |-------------------|----------------------------
+        | `getInterfaces()` | Returns an array of interface for which the provider services
+        | `__invoke()`      | Handles the setup and configuration of the object
+
+
+        ## Creating a Provider
+
+        In the example below, we examine a case where any number of objects constructed by our dependency injector might implement an interface which allows for an "authorization manager" to be set on the object.  If set, this enable these objects to access authorization information to check whether or not particular actions are allowed.
+
+        ```php
+        namespace Auth;
+
+        use Hiraeth;
+
+        class ManagerProvider implements Hiraeth\Provider
+        {
+            static public function getInterfaces(): array
+            {
+                return [
+                    ManagedInterface::class
+                ];
+            }
+
+            public function __invoke(object $instance, Hiraeth\Application $app): object
+            {
+                $instance->setAuthManager($app->get(ManagerInterface::class));
+
+                return $instance;
+            }
+        }
+        ```
+
+        ## Registering a Provider
+
+        Once our class is added and our autoloader is aware of it, we can register the provider in any config file under the `[application]` section.  Hiraeth scans all `[application]` sections on startup and registers the providers as post-construction callbacks to configure the dependency.
+
+        ```toml
+        [application]
+
+            providers = [
+                "Auth\ManagerProvider"
+            ]
+        ```
+
+        Now, anywhere that dependency injection is used, if the dependency implements the `Auth\ManagedInterface` which defines our `setAuthManager()` method, the provider will be called to inject the dependency which fulfills the `Auth\ManagerInterface`.
+
+        ## Optional Dependencies
+
+        It is often the case that setter injected dependencies are optional and their functionality will only be used if the dependency is set.  An example of this might be PSR-3's `Psr\Log\LoggerAwareInterface` where your object only logs if the logger is set.  Using our example above, however, we can imagine that our dependency will only do authorization checks if the `Auth\Manager` is set.
+
+        We can use PSR-11's `has()` method to determine whether or not we have a concrete instance that provides the requisite service before setting it.  We modify our provider accordingly:
+
+        ```php
+
+        public function __invoke(object $instance, Hiraeth\Application $app): object
+        {
+            if ($app->has(ManagerInterface::class)) {
+                $instance->setAuthManager($app->get(ManagerInterface::class));
+            }
+
+            return $instance;
+        }
+
+        ```
+    {% endmarkdown %}
+{% endblock %}

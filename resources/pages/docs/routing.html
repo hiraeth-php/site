@@ -170,10 +170,10 @@
         }
         ```
 
-         To register our pattern, we simply add it to any configuration file's `[routing]` section in a patterns object.  The key will provide the key for paramter matching, e.g. `{{ '{{ article :article }}' }}`, and the value is the class:
+         To register our pattern, we simply add it to any configuration file's `[chariot]` section in a patterns object.  The key will provide the key for paramter matching, e.g. `{{ '{{ article :article }}' }}`, and the value is the class:
 
         ```toml
-        [routing]
+        [chariot]
 
             patterns = {
                 "article": "ArticlePattern"

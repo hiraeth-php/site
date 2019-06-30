@@ -4,6 +4,10 @@
 
 {% block content %}
     {% markdown %}
+        Delegates are responsible for telling Hiraeth how to configure and create dependencies for the dependency injector.  Think of them as an isolated factory class which can use `Hiraeth\Application` to query configuration information, retrieve related dependencies and return a working object.  The core of Hiraeth integration is performed by creating delegates and registering those delegates through the configuration.
+
+        Delegates are always bound to a class for which that delegate is responsible for constructing.  If you have dependency configuration that maps to an interface (such as with setter injection) you can use a [provider](/docs/providers).
+
         Delegates implement the `Hiraeth\Delegate` interface which has two methods:
 
         | Method         | Description
@@ -11,7 +15,10 @@
         | `getClass()`   | Returns the class name for which the delegate is responsible for constructing
         | `__invoke()`   | Handles the construction of the class and returns the instance
 
-        A contrived example:
+
+        ## Creating a Delegate
+
+        A contrived example in which we need to build our `Bar` class with a particular setting from our configuration might look as follows:
 
         ```php
         namespace Acme\Foo;
@@ -34,7 +41,9 @@
 
         > NOTE: The `__invoke()` method receives the application instance which can be used to get configuration or environment information as well as to construct subsequent dependencies via the injector.
 
-        The delegate can be registered in any config file under the `[application]` section:
+        ## Registering a Delegate
+
+        Once our class is added and our autoloader is aware of it, we can register the delegate in any config file under the `[application]` section.  Hiraeth scans all `[application]` sections on startup and registers the delegates as factories for the class they identify.
 
         ```toml
         [application]
@@ -44,13 +53,53 @@
             ]
         ```
 
-
-        ## Checking Interface / Alias Availability
-
-        You can use PSR-11's `has()` method to determine if there is a concrete class that fulfills a given interface (or mock interface via alias):
+        Now, anywhere that dependency injection is used, if we were to typhint our `Bar` class, Hiraeth will use the delegate to construct and return the object as built by the delegate.
 
         ```php
-        $app->has(Psr\Acme\SomeInterface::class)
+        class MyAction
+        {
+            public function __construct(Bar $bar)
+            {
+                $this->bar = $bar;
+            }
+        }
+        ```
+
+        ## Aliases
+
+        Note that the delegates only tell Hiraeth how to construct a concrete class name (not an interface).  In order to tell Hiraeth which concrete class to use for a given interface, you will want to add an alias to the configuration:
+
+        ```toml
+        [application]
+
+            aliases = {
+                "BarInterface": "Bar"
+            }
+        ```
+
+        No, instead of typhinting the concrete class, we can typehing the interface.  Hiraeth will recognize that the interface should be fulfilled by `Bar` and then look up the delegate responsible for constructing `Bar` to get the instance:
+
+        ```php
+        class MyAction
+        {
+            public function __construct(BarInterface $bar)
+            {
+                $this->bar = $bar;
+            }
+        }
+        ```
+
+        ## Singletons
+
+        If you always need the same instance of a given class, you can share the constructed instance of that class inside the delegate.  Once shared, the broker will no longer configure a new instance, but will always return the previously constructed instance.  We can modify the original delegate accordingly to see how this behavior is achieved:
+
+        ```php
+        public function __invoke(Hiraeth\Application $app): object
+        {
+            $instance = new Bar($app->getConfig('packages/bar', 'setting', NULL));
+
+            return $app->share($instance);
+        }
         ```
 
     {% endmarkdown %}
