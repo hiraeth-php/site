@@ -7,7 +7,9 @@
 	;
 
 	aliases = {
-		"Hiraeth\Session\ManagerInterface": "Aura\Session\Session"
+		"Hiraeth\Events\EmitterInterface": "League\Event\Emitter",
+		"Hiraeth\Events\ListenerInterface": "League\Event\ListenerInterface",
+		"Hiraeth\Events\EventInterface": "League\Event\EventInterface"
 	}
 
 	;
@@ -18,8 +20,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Session\ManagerDelegate",
-		"Hiraeth\Session\MiddlewareDelegate"
+		"Hiraeth\Events\EmitterDelegate"
 	]
 
 	;
@@ -33,21 +34,3 @@
 	providers = [
 
 	]
-
-[twig]
-
-	;
-	; The session extension provides access to the global variable `session` which is the instance
-	; of the Hiraeth\Session\ManagerInterface as well as a function `session()` which acts as a
-	; shorthand to get a segment, e.g. `session('app')` will return the "app" segment.
-	;
-
-	extensions = [
-		"Hiraeth\Session\Twig\SessionExtension"
-	]
-
-[templates]
-
-	paths = {
-		"flash": "resources/flash"
-	}

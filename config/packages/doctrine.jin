@@ -7,7 +7,9 @@
 	;
 
 	aliases = {
-		"Doctrine\ORM\EntityManagerInterface": "Doctrine\ORM\EntityManager"
+		"Doctrine\ORM\EntityManagerInterface": "Doctrine\ORM\EntityManager",
+		"AbstractRepository": "Hiraeth\Doctrine\AbstractRepository",
+		"AbstractEntity": "Hiraeth\Doctrine\AbstractEntity"
 	}
 
 	;
@@ -33,19 +35,14 @@
 
 	]
 
-[doctrine]
-
-	managers = {
-		"default": "doctrine/default"
-	}
-
 [console]
 
-	commands = [
-		"Doctrine\ORM\Tools\Console\Command\SchemaTool\CreateCommand",
-		"Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand",
-		"Doctrine\ORM\Tools\Console\Command\SchemaTool\DropCommand"
-	]
+	commands = {
+		"orm:generate:proxies":   "Hiraeth\Doctrine\GenerateProxiesCommand",
+		"orm:schema-tool:create": "Hiraeth\Doctrine\SchemaCreateCommand",
+		"orm:schema-tool:update": "Hiraeth\Doctrine\SchemaUpdateCommand",
+		"orm:schema-tool:drop":   "Hiraeth\Doctrine\SchemaDropCommand"
+	}
 
 	helpers = {
 		"em": "Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper"

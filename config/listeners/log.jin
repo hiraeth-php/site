@@ -1,0 +1,27 @@
+[listener]
+
+	;
+	; Whether or not the listener is disabled
+	;
+
+	disabled = false
+
+	;
+	; The priority for the listener
+	;
+
+	priority = 1
+
+	;
+	; The listener class
+	;
+
+	class = Hiraeth\Events\LogListener
+
+	;
+	; The list of events for which this listener will be triggered
+	;
+
+	events = [
+		"*"
+	]
