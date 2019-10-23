@@ -4,7 +4,7 @@
 
 {% block content %}
     {% markdown %}
-        Hiraeth recommends single-action controllers, better known simply as "Actions," as opposed to multi-action controllers (large classes that handle requests at multiple endpoints).  The simplest way to create an action is to extend the `AbstractAction` class (an alias for `Hiraeth\Actions\AbstractAction`):
+        Hiraeth recommends single-action controllers, better known simply as "Actions," as opposed to multi-action controllers (large classes that handle requests at multiple endpoints).  The simplest way to create an action is to extend the `AbstractAction` class:
 
         ```php
         class ViewArticle extends AbstractAction
@@ -17,6 +17,9 @@
         ```
 
         The `AbstractAction` class provides a handful of helper methods for the most commonly performed tasks.
+
+        > _NOTE: The `AbstractAction` class name is an alias to Hiraeth's internal class name.  If you want to add additional methods, setters for injection, etc, to the `AbstractAction` simply create a real class called `AbstractAction` and extend `Hiraeth\Actions\AbstractAction`.  Once your class exists, the alias will not be used and all references to `AbstractAction` will point to your concrete class._
+
 
         ### Dependency Injection
 

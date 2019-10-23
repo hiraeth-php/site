@@ -77,7 +77,7 @@
             }
         ```
 
-        No, instead of typhinting the concrete class, we can typehing the interface.  Hiraeth will recognize that the interface should be fulfilled by `Bar` and then look up the delegate responsible for constructing `Bar` to get the instance:
+        Now, instead of typhinting the concrete class, we can typehing the interface.  Hiraeth will recognize that the interface should be fulfilled by `Bar` and then look up the delegate responsible for constructing `Bar` to get the instance:
 
         ```php
         class MyAction
@@ -88,6 +88,20 @@
             }
         }
         ```
+
+        ### Pseudo-Interfaces and Class Aliases
+
+        If you register an alias from a non-existent interface or class name, Hiraeth will register a PHP class alias and add that alias to the dependency injector.  This can be useful in cases where you might want to offer an existing concrete implementation and migrate to an actual interface later, or to allow simple aliases that can be overloaded by concrete implementations.
+
+        For example, the `hiraeth/actions` package registers an alias of `AbstractAction`:
+
+        ```toml
+        aliases = {
+    		"AbstractAction": "Hiraeth\Actions\AbstractAction"
+    	}
+        ```
+
+        This allows any actions you create to simply extend `\AbstractAction` rather than the full class name.  Additionally, since the alias won't be registered if the interface or class already exists, you can add your own real `AbstractAction` class which extends the `Hiraeth\Actions\AbstractAction` class.  Once added, any actions which previously extended the alias will not extend your actual class implementation.
 
         ## Singletons
 

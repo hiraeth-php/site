@@ -22,18 +22,9 @@
 
         ## Multiple Connections
 
-        Connections can be added by creating a new connection configuration in the `config/dbal` directory and adding a reference to it in the `config/packages/dbal.jin` file under the `connections` key in the `[dbal]` section.
+        Connections can be added by creating a new connection configuration in the `config/dbal` directory.  The basename of the configuration (minus the `.jin` extension) will be the name of the connection.
 
-        ```toml
-        [dbal]
-
-        	connections = {
-        		"default": "dbal/default",
-                "blog": "dbal/blog"
-        	}
-        ```
-
-        Alternatively, you can add a `[dbal]` section to any configuration and define connections there.  The connection file itself is relatively straightforward.  Let's copy the `default.jin` example and modify a few things.  We'll change our environment variable names to match our blog settings, and uncomment the password as we'll need a password to access this database.
+        The connection file itself is relatively straightforward.  Let's copy the `default.jin` called `blog.jin` and modify a few things.  We'll change our environment variable names to match our blog settings, and uncomment the password as we'll need a password to access this database.
 
         ```toml
         [connection]
