@@ -18,7 +18,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Dbal\ConnectionDelegate"
+		"Hiraeth\Shell\RunnerDelegate"
 	]
 
 	;
@@ -33,25 +33,41 @@
 
 	]
 
-[dbal]
-
-	types = {
-		"uuid": "Ramsey\Uuid\Doctrine\UuidType"
-	}
+;
+; A [shell] section can be added to any configuration file to add custom commands or variables
+;
 
 [shell]
 
- 	commands = [
-		"Hiraeth\Dbal\QueryCommand"
-	]
+	;
+	; Set a custom prompt.  A prompt should just be a callable class (__invoke) which returns a
+	; string containing the custom prompt.
+	;
 
+	prompt = Hiraeth\Shell\Prompt
 
-[console]
+	;
+	; Add Psysh compatible commands here
+	;
 
 	commands = [
 
 	]
 
-	helpers = {
-		"db": "Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper"
+	;
+	; Variables are resolved using the broker and added to the shell's scope
+	;
+
+	variables = {
+		; "acme" => "Acme\Some\Thing"
+	}
+
+;
+; Register the shell with the console
+;
+
+[console]
+
+	commands = {
+		"shell": "Hiraeth\Shell\ShellCommand"
 	}
