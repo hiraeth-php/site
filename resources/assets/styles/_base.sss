@@ -2,15 +2,26 @@ html
 	background-color: var(--bg-color)
 	color: var(--text-color)
 	font-family: var(--text-family)
+	font-size: 10px
 
 body
+	font-size: var(--text-size)
 	line-height: var(--text-line-height)
+	overflow-y: scroll
+
+hr
+	margin: var(--gutter) 0
 
 p,
 pre,
-ul:not(li ul),
-ol:not(li ol)
+blockquote,
+ul,
+ol
 	margin-top: var(--text-margin)
 
 	&:first-child
 		margin-top: 0
+
+li ul,
+li ol
+	margin-top: 0

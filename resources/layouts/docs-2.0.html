@@ -1,13 +1,18 @@
 {% extends '@layouts/master.html' %}
 
+{% block header %}
+    <header>
+        <h1 class="title">{{ title }}</h1>
+    </header>
+{% endblock %}
+
 {% block primary %}
     <section class="layout">
-        <nav>
+        <nav id="menu">
             {% include '@pages/docs/2.0/--nav.html' %}
+            <a class="open" href="#menu">☰</a>
         </nav>
         <main>
-            <h1>{{ title }}</h1>
-
             {% block content %}
 
             {% endblock %}
