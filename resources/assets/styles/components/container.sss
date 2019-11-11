@@ -1,12 +1,13 @@
 @define-mixin container
 	--max-width: var(--container-max-width)
 	--padding-base: var(--container-padding-base)
-	--padding-multiplier: var(--container-padding-multiplier)
+	--padding-h-multiplier: var(--container-padding-h-multiplier)
+	--padding-v-multiplier: var(--container-padding-v-multiplier)
 
 	padding: var(--padding-base)
 
 	@media (--screen-desktop)
-		padding: calc(var(--padding-base) * var(--padding-multiplier)) 10%
+		padding: calc(var(--padding-base) * var(--padding-v-multiplier)) calc(10% * var(--padding-h-multiplier))
 
 	@media (--screen-hidef)
-		padding: calc(var(--padding-base) * var(--padding-multiplier) * 2) calc((100% - var(--max-width)) / 2)
+		padding: calc(var(--padding-base) * var(--padding-v-multiplier) * 2) calc((100% - var(--max-width)) / 2 * var(--padding-h-multiplier))

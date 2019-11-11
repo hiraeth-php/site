@@ -6,7 +6,7 @@
     {% markdown %}
         Delegates are responsible for telling Hiraeth how to configure and create dependencies for the dependency injector.  Think of them as an isolated factory class which can use `Hiraeth\Application` to query configuration information, retrieve related dependencies and return a working object.  The core of Hiraeth integration is performed by creating delegates and registering those delegates through the configuration.
 
-        Delegates are always bound to a class for which that delegate is responsible for constructing.  If you have dependency configuration that maps to an interface (such as with setter injection) you can use a [provider](/docs/providers).
+        Delegates are always bound to a class for which that delegate is responsible for constructing.  If you have dependency configuration that maps to an interface (such as with setter injection) you can use a [provider](./providers).
 
         Delegates implement the `Hiraeth\Delegate` interface which has two methods:
 

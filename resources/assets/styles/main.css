@@ -9,3 +9,5 @@
 
 @import './attributes/**/*';
 @import './components/**/*';
+
+@import './local.sss';

@@ -13,7 +13,7 @@
         }
         ```
 
-        > NOTE: You should avoid injecting the application directly into domain services so that they don't become tightly coupled to the framework.  Instead, use [delegates](/docs/delegates) and [providers](/docs/providers) to integrate components into the framework.
+        > NOTE: You should avoid injecting the application directly into domain services so that they don't become tightly coupled to the framework.  Instead, use [delegates](./delegates) and [providers](./providers) to integrate components into the framework.
 
         ## Detecting Debugging Mode
 
@@ -39,7 +39,7 @@
 
         ## Detecting Command Line Interface
 
-        Although it is good practice to provide distinct entry-points and runtime handling for web requests vs. command line execution, it is often the case that you may wish to configure some services to operate differently depending on whether or not they are being run from the CLI.  This can be done at the [delegate](/docs/delegate) or [provider](/docs/provider) level by using the `isCLI()` method which will return `TRUE` if Hiraeth is being run from a CLI:
+        Although it is good practice to provide distinct entry-points and runtime handling for web requests vs. command line execution, it is often the case that you may wish to configure some services to operate differently depending on whether or not they are being run from the CLI.  This can be done at the [delegate](./delegate) or [provider](./provider) level by using the `isCLI()` method which will return `TRUE` if Hiraeth is being run from a CLI:
 
         ```php
         $app->isCLI()

@@ -12,7 +12,7 @@
 
         If the class you are trying to construct has additional object dependencies on its `__construct()` method, the broker will attempt to recursively construct all dependencies in order to build your object.  For simple classes without complex configuration or complex dependency creation, this automatic dependency resolution and injection will work fine.
 
-        In the event your class or one of the objects it depends on requires more complex construction, you can create a [delegate](/docs/delegates) and register it with the application to tell it how to construct the dependency.
+        In the event your class or one of the objects it depends on requires more complex construction, you can create a [delegate](./delegates) and register it with the application to tell it how to construct the dependency.
 
         > NOTE: You should avoid using the application instance as a service locator.  While it is acceptable to use `$app->get()` in some contexts it is better to use typhinted dependency injection directly instead of having `$app` injected and using `get()`.
 
