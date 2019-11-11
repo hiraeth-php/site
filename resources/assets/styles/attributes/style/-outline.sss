@@ -1,0 +1,7 @@
+@define-mixin -outline
+	border: var(--border-style) var(--border-width) var(--border-color)
+
+@define-mixin -outline-dotted
+	@mixin -outline
+
+	--border-style: dotted

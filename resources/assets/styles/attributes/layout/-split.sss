@@ -1,0 +1,35 @@
+@define-mixin -split
+	justify-content: space-between
+	margin-left: 0
+
+	& > *
+		margin-left: 0
+
+	@media (--screen-tablet)
+		& > *
+			width: calc((100% - (var(--gutter) * (var(--split, 1) - 1))) / var(--split, 1))
+
+@define-mixin -split-2
+	@mixin -split
+
+	@media (--screen-tablet)
+		& > *
+			--split: 2
+
+@define-mixin -split-3
+	@mixin -split
+
+	@media (--screen-tablet)
+		& > *
+			--split: 3
+
+@define-mixin -split-4
+	@mixin -split
+
+	@media (--screen-tablet)
+		& > *
+			--split: 2
+
+	@media (--screen-desktop)
+		& > *
+			--split: 4

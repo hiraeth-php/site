@@ -1,0 +1,15 @@
+@define-mixin square
+	width: var(--width)
+	position: relative
+
+	&:after
+		content: ''
+		display: block
+		padding-bottom: 100%
+
+	& > :only-child
+		display: block
+		height: 100%
+		overflow: hidden
+		position: absolute
+		width: 100%

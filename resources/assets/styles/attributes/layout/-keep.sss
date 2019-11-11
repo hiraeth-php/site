@@ -1,0 +1,68 @@
+@define-mixin -keep
+	flex-grow: 12
+
+	@media (--screen-tablet)
+		flex-basis: calc(100% / 12 * var(--columns) - var(--gutter))
+		min-width: var(--width-min, unset)
+		max-width: var(--width-max, unset)
+		width: auto
+
+@define-mixin -keep-12
+	@mixin -keep
+
+	--columns: 12
+
+@define-mixin -keep-11
+	@mixin -keep
+
+	--columns: 11
+
+@define-mixin -keep-10
+	@mixin -keep
+
+	--columns: 10
+
+@define-mixin -keep-9
+	@mixin -keep
+
+	--columns: 9
+
+@define-mixin -keep-8
+	@mixin -keep
+
+	--columns: 8
+
+@define-mixin -keep-7
+	@mixin -keep
+
+	--columns: 7
+
+@define-mixin -keep-6
+	@mixin -keep
+
+	--columns: 6
+
+@define-mixin -keep-5
+	@mixin -keep
+
+	--columns: 5
+
+@define-mixin -keep-4
+	@mixin -keep
+
+	--columns: 4
+
+@define-mixin -keep-3
+	@mixin -keep
+
+	--columns: 3
+
+@define-mixin -keep-2
+	@mixin -keep
+
+	--columns: 2
+
+@define-mixin -keep-1
+	@mixin -keep
+
+	--columns: 1

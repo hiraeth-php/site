@@ -1,0 +1,7 @@
+@define-mixin -color
+	color: var(--text-color)
+
+@define-mixin -color-white
+	@mixin -color
+
+	--text-color: var(--white)

@@ -1,0 +1,12 @@
+@define-mixin -lift
+	box-shadow: var(--shadow-x) var(--shadow-y) calc(var(--shadow-blur) * var(--shadow-multiplier)) calc(var(--shadow-width) * var(--shadow-multiplier)) var(--shadow-color)
+
+@define-mixin -lift-high
+	@mixin -lift
+
+	--shadow-multiplier: 2
+
+@define-mixin -lift-low
+	@mixin -lift
+
+	--shadow-multiplier: .5

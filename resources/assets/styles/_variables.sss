@@ -1,0 +1,44 @@
+@custom-media --screen-tablet  screen and (min-width: 1024px)
+@custom-media --screen-desktop screen and (min-width: 1280px)
+@custom-media --screen-hidef   screen and (min-width: 1584px)
+
+:root
+	--bg-color: var(--color-base)
+	--bg-image: none
+
+	--border-style: solid
+	--border-color: currentColor
+	--border-width: 1px
+	--border-radius: .5rem
+	--border-radius-multiplier: 1
+
+	--columns: 12
+	--gutter: 2rem
+
+	--padding-base: 2rem
+	--padding-v-multiplier: 1
+	--padding-h-multiplier: 1
+
+	--shadow-blur: 8px
+	--shadow-color: var(--color-shadow)
+	--shadow-multiplier: 1
+	--shadow-width: 1px
+	--shadow-x: 0
+	--shadow-y: 0
+
+	--text-align: left
+	--text-color: var(--color-face)
+	--text-family-serif: serif
+	--text-family-sans: sans-serif
+	--text-family: var(--font-family-sans)
+	--text-indent: 1.5rem
+	--text-line-height: 1.5em
+	--text-margin: 2rem
+	--text-size: 1.6rem
+
+	--width: auto
+	--width-max: initial
+	--width-min: initial
+
+	@media (--screen-hidef)
+		--text-size: 2rem
