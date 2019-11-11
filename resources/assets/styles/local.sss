@@ -34,6 +34,17 @@ body
             --width: 325px
             --height: 200px
 
+
+    & > section.layout
+        @mixin grid
+
+        & > nav
+            @mixin -keep-3
+
+        & > main
+            @mixin -keep-9
+
+
 .action
     @mixin button
     @mixin -pad
