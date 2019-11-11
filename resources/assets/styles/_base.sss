@@ -6,7 +6,10 @@ html
 body
 	line-height: var(--text-line-height)
 
-p
+p,
+pre,
+ul:not(li ul),
+ol:not(li ol)
 	margin-top: var(--text-margin)
 
 	&:first-child

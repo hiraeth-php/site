@@ -1,0 +1,30 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Installation' %}
+
+{% block content %}
+    {% markdown %}
+        You can install Hiraeth with a few simple [composer](https://getcomposer.org) commands.
+
+        ## Requirements
+
+        - PHP 7.2+
+        - Composer
+
+        ## Create Project
+
+        ```bash
+        composer create-project hiraeth/app
+        ```
+
+        ## Bootstrap
+
+        Although Hiraeth itself is just a nano framework, a lot of time and energy has been put into creating packages that integrate widely used, well-tested, and feature rich PHP libraries available in the ecosystem.  Install these with:
+
+        ```bash
+        composer require hiraeth/bootstrap
+        ```
+
+        > NOTE: All non-advanced documentation assumes you've installed the `hiraeth/bootstrap` package or the equivalent packages therein.  If you already know what you're doing or you're looking to use Hiraeth in an advanced context, you'll want to skip directly ahead to the [advanced section](/docs/advanced) of the documentation.
+    {% endmarkdown %}
+{% endblock %}
