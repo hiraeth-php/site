@@ -3,4 +3,7 @@
 vendor
 storage
 opus.map
+node_modules
 composer.lock
+public/scripts
+public/styles
