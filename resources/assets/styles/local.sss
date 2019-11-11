@@ -1,6 +1,10 @@
 :root
-    --slate: rgb(85, 92, 97)
-    --air: rgb(75, 109, 132)
+    --water: rgb(75, 109, 132)
+    --earth: rgb(70, 40, 10)
+    --grass: rgb(60, 165, 132)
+    --stone: rgb(85, 92, 97)
+    --cloud: rgb(240,240,240)
+    --amber: rgb(153, 51, 0)
 
     --container-max-width: 1280px
 
@@ -12,6 +16,12 @@ h1
 h2
     margin-top: 2rem
     font-size: 2.6rem
+
+a
+    @mixin -color
+
+    --text-color: var(--earth)
+
 
 body
     & > header,
@@ -38,11 +48,71 @@ body
     & > section.layout
         @mixin grid
 
+        --gutter: 6rem
+
         & > nav
             @mixin -keep-3
 
         & > main
-            @mixin -keep-9
+            @mixin -keep-8
+
+
+.layout > nav
+    @mixin -fill
+
+    --bg-color: var(--cloud)
+
+    & ul
+
+        & li
+            position: relative
+
+            & a
+                @mixin -color
+                @mixin -pad
+
+                --text-color: var(--stone)
+                --padding-v-multiplier: .5
+
+                display: block
+                position: relative
+                text-decoration: none
+
+                &:not(:only-child)::before
+                    @mixin -pad
+
+                    content: '﹢'
+                    position: absolute
+                    right: -1.5rem
+                    top: -.125em
+
+                &.active:not(:only-child)::before
+                    content: '﹣'
+
+                &.active + ul
+                    display: block
+
+                    & a.active:after
+                        @mixin -color
+
+                        --text-color: var(--grass)
+
+                        position: absolute
+                        content: '⬤'
+                        left: 0
+                        margin-top: -.125em
+
+
+            & ul
+                @mixin -fill
+
+                --bg-color: var(--stone)
+
+                display: none
+                padding-left: calc(var(--padding-base) / 2)
+
+                & a
+                    --text-color: var(--white)
 
 
 .action
@@ -50,6 +120,9 @@ body
     @mixin -pad
     @mixin -outline
     @mixin -round
+    @mixin -color
+
+    --text-color: var(--amber)
 
     text-decoration: none
 
@@ -58,12 +131,10 @@ body
     @mixin -align-center
     @mixin -fill
 
-    --bg-color: var(--slate)
+    --bg-color: var(--stone)
 
     & .action
-        @mixin -color
-
-        --color: var(--white)
+        --text-color: var(--white)
 
 
 .intro

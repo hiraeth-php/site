@@ -7,7 +7,7 @@
 	;
 
 	aliases = {
-		"Hiraeth\Markdown\ParserInterface": "Hiraeth\Markdown\ParsedownProxy"
+		"Hiraeth\Markdown\ParserInterface": "Hiraeth\Markdown\ParsedownExtraProxy"
 	}
 
 	;

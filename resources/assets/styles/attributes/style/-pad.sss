@@ -1,2 +1,8 @@
 @define-mixin -pad
 	padding: calc(var(--padding-base) * var(--padding-v-multiplier)) calc(var(--padding-base) * var(--padding-h-multiplier))
+
+@define-mixin -pad-v
+	padding: calc(var(--padding-base) * var(--padding-v-multiplier)) 0
+
+@define-mixin -pad-h
+	padding: 0 calc(var(--padding-base) * var(--padding-h-multiplier))
