@@ -4,122 +4,91 @@
 
 {% block content %}
     {% markdown %}
-        Hiraeth recommends single-action controllers, better known simply as "Actions," as opposed to multi-action controllers (large classes that handle requests at multiple endpoints).  The simplest way to create an action is to extend the `AbstractAction` class:
+        {: .note}
+        This document assumes you've installed `hiraeth/bootstrap`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+        Actions are PHP classes which handle incoming web requests.  Their primary responsibility is mapping incoming requests data to your domain level services, models, repositories, etc, and then returning a result.
+
+        The only requirement of an action is that it implements the `__invoke()` method to perform the operations for which it is responsible.  One of the simplest examples of a valid action would, therefore, be the following:
 
         ```php
-        class ViewArticle extends AbstractAction
+        class HelloWorld
         {
-            public function __invoke($id)
+            public function __invoke()
             {
+                return 'Hello World';
+            }
+        }
+        ```
+
+        ## Creating An Action
+
+        While the example above is valid, it's not very practical because we don't have any access to the data or tools we need to really analyze our request or generate an appropriate response.  While it's possible to add a `__construct()` method and get what we need injected, `hiraeth/bootstrap`{: .package]} provided an abstract action implementation that will cover most of the basics.
+
+        To make use of this functionality out of the box, simply make sure your action extends `AbstractAction`{: .class}:
+
+        ```php
+        class MyCustomAction extends AbstractAction
+        {
+            ...
+        }
+        ```
+
+        {: .note}
+        The `AbstractAction`{: .class} name is an alias, by default, to `Hiraeth\Actions\AbstractAction`{: .class}.  You can use this alias to avoid more complex namespacing, however, because the alias is only regsitered if the class does not already exist, it allows you to easily add functionality to the abstract action implementation later by simply creating your own real `AbstractAction`{: .class}.
+
+        ## Accessing Request Information
+
+        Once you have extended the `AbstractAction`{: .class}, it's now possible to easily access the [PSR-7](https://www.php-fig.org/psr/psr-7/) server request object that represents the incoming client request via `$this->request`:
+
+        ```php
+        public function __invoke()
+        {
+            if ($this->request->getMethod() == 'POST') {
                 ...
             }
         }
         ```
 
-        The `AbstractAction` class provides a handful of helper methods for the most commonly performed tasks.
+        For a full list of available methods, their arguments, and returned data types available on the request object, see [the PSR-7 server request interface documentation](https://www.php-fig.org/psr/psr-7/#321-psrhttpmessageserverrequestinterface).
 
-        > _NOTE: The `AbstractAction` class name is an alias to Hiraeth's internal class name.  If you want to add additional methods, setters for injection, etc, to the `AbstractAction` simply create a real class called `AbstractAction` and extend `Hiraeth\Actions\AbstractAction`.  Once your class exists, the alias will not be used and all references to `AbstractAction` will point to your concrete class._
+        ## Accessing Request Data
 
+        It is 100% possible to access all request data via the server request object through standard PSR-7 interfaces.  Depending on the complexity of the incoming data, this may actually be necessary at time to distinguish between query parameters, post data, files, etc.  However, more common is the need to have this information easily combined together and/or to get default values if it hasn't been sent.
 
-        ### Dependency Injection
+        Hiraeth's `AbstractAction`{: .class} provides two methods for easily accomplishing these tasks.
 
-        Actions will be constructed via Hiraeth's dependency injector and will therefore be automatically and recursively injected with simple dependencies and dependencies for which there are already delegates/providers registered.
+        ### Seeing If Data Exists
 
-
-        ```php
-        public function __construct(Acme\Blog\Articles $articles)
-        {
-            $this->articles = $articles;
-        }
-        ```
-
-        Additionally, the `__invoke()` method will be injected with type-hinted dependencies, so it is possible (although not recommended) to add dependencies at the point of execution (as opposed to construction).
+        If you need to check if a parameter has been sent (regardless of via query parameter, request body, or custom attributes), you can use the `has()` method:
 
         ```php
-        public function __invoke($id, Acme\Blog\Articles $articles)
-        {
+        if ($this->has('file')) {
             ...
         }
         ```
 
-        > NOTE: Actions are essentially constructed and executed in the same instance, so there is no benefit with respect to lazy loading by moving dependencies from the constructor to the `__invoke()` method.
+        ### Getting Data
 
-
-        ## Get Request Values
-
-        You can easily check for the existing of various request values and get the value with the `has()` and `get()` methods.  These will check for and return the named value in the following order:
-
-        - Attributes
-        - Uploaded Files
-        - Body Paramters (POST, PUT, etc)
-        - Query Parameters (GET)
-
-        To check if a value exists in any of these collections use the `has()` method:
+        To get the data by name, you can use the `get()` method in very much the same way.
 
         ```php
-        if ($this->has('source')) {
-            ...
-        }
+        $file = $this->get('file')
         ```
 
-        You can get the value using `get()`:
-
-        ```php
-        $source = $this->get('source');
-        ```
-
-        If the value does not exist and no default is provided, `NULL` will be returned.  However, you can specify an alternative default as the second parameter:
-
-        ```php
-        $source = $this->get('source', 'unknown');
-        ```
-
-        ### Inferred Data Types
-
-        If your default is a specific data type, then the value from the parameter will be casted as that type.  So for example, if you're requesting a `page` parameter and pass a default of `1` the a URL where `?page=2` will return `(int) 2`:
+        In addition to being able to get data that has been sent, you can also provide a default in the event it hasn't.  This is common, for example, in the case of pagination, where you likely want to default to a value of `1` if a specific page has not been requested:
 
         ```php
         $page = $this->get('page', 1);
         ```
 
-        ## Return a Response
 
-        You can return a PSR-7 response object using the `response()` helper method.  The only required argument is the HTTP status:
 
-        ```php
-        return $this->response(404);
-        ```
 
-        You can optionally add content your response using this method:
 
-        ```php
-        return $this->response(200, 'Hello World!')
-        ```
 
-        Or headers:
 
-        ```php
-        return $this->response(301, NULL, [
-            'Location' => 'https://example.com'
-        ]);
-        ```
 
-        ## Additional Return Helpers
 
-        In addition to `response()`, the `AbstractAction` class will also be provided with implementations of `Hiraeth\Routing\UrlGeneratorInterface` and `Hiraeth\Templates\TemplateManagerInterface` if there are concrete implementations registered in the dependency injector.
-
-        This will allow you to use the `redirect()` and `template()` helper to return redirect responses and templates for rendering.
-
-        Compose a redirect response given the provided base URL and query parameters:
-
-        ```php
-        return $this->redirect('https://example.com', []);
-        ```
-
-        Compose a template with the provided file and data:
-
-        ```php
-        return $this->template('@pages/articles/view.html', get_defined_vars());
-        ```
     {% endmarkdown %}
 {% endblock %}

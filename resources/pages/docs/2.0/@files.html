@@ -4,7 +4,7 @@
 
 {% block content %}
     {% markdown %}
-        The `hiraeth/app` package provides the following default directories for your application:
+        The default directory structure of `hiraeth/app`{: .package} looks like the following:
 
         | Directory      | Description
         |----------------|------------------------------
@@ -16,7 +16,10 @@
         | storage        | Contains application writable files and folders (user uploads, logs, cache)
         | vendor         | Contains vendor PHP source code: classes, interface, traits, etc
 
-        The containing directory of these directories is the "application root" and all file and directory related methods on the application instance are relative to this root directory.
+        The parent directory of these is referred to as the "application root."  The `Hiraeth\Application`{: .class} instance provided a number of helper methods to work with files and directories.
+
+        {: .note}
+        File and directory names beginning with a `/` or `<scheme>://` are considered absolute.  If the path does not begin with one of these, it will be treated as relative to the application root.
 
         ## Checking for a File or Directory
 

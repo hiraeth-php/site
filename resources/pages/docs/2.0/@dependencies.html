@@ -4,58 +4,9 @@
 
 {% block content %}
     {% markdown %}
-        The Hiraeth application instance implements PSR-11's `ContainerInterface` and proxies dependency injection on behalf of `Hiraeth\Broker`.  Hiraeth will attempt to construct any object you request with the `get()` method:
+        Hiraeth's flexibility and power comes from its dependency injection system which relies on the `Hiraeth\Broker`{: .class}, a [PSR-11](https://www.php-fig.org/psr/psr-11/) compatible version of [the auryn dependency injector](https://github.com/rdlowrey/auryn).  Put simply, dependency injection is simply a way to instantiate classes into objects such that the additional objects on which that class relies are automatically created and passed to it's `__construct()` method.
 
-        ```php
-        $app->get(Acme\Foo\Bar::class)
-        ```
-
-        If the class you are trying to construct has additional object dependencies on its `__construct()` method, the broker will attempt to recursively construct all dependencies in order to build your object.  For simple classes without complex configuration or complex dependency creation, this automatic dependency resolution and injection will work fine.
-
-        In the event your class or one of the objects it depends on requires more complex construction, you can create a [delegate](./delegates) and register it with the application to tell it how to construct the dependency.
-
-        > NOTE: You should avoid using the application instance as a service locator.  While it is acceptable to use `$app->get()` in some contexts it is better to use typhinted dependency injection directly instead of having `$app` injected and using `get()`.
-
-        ## Typehinting Constructor Arguments
-
-        The recommended method of resolving dependencies is to typehint the dependencies as direct arguments on your class's `__construct()` method:
-
-        ```php
-        class MyService
-        {
-            public function __construct(Acme\Foo\Bar $bar)
-            {
-                $this->bar = $bar;
-            }
-
-            ...
-        }
-        ```
-
-        While it is completely possible to typehint concrete class names, in many cases it is better to typehint an interface instead of a concrete class.  To tell the dependency injector which concrete class should be provided for an interface, you can add an `aliases` object to the `[application]` section of any config, or append to an exisitng one:
-
-        ```toml
-        [application]
-
-            aliases = {
-                "Psr\Acme\SomeInterface": "Acme\Foo\Bar"
-            }
-        ```
-
-        Now we can typehint interfaces instaed:
-
-        ```php
-        public function __construct(Psr\Acme\SomeInterface $something)
-        {
-            $this->something = $something;
-        }
-        ```
-
-        If the interface does not exist, the Hiraeth will use PHP's built in `class_alias()` function to alias the concrete class to the interface allowing you to use that name as a stand-in typehint for the class and later replace it with an actual interface.
-
-        ## What Gets Injected?
-
-        Hiraeth will resolve the following types of objects via the broker:
+        Dependency injection is not magic, it relies on objects being instantiated _by_ the dependency injector itself and it requires good object oriented design with strong typehinting to know what it needs to inject.  Hiraeth packages go to great efforts to ensure that most object instantiation occurs in this manner.  If you're adding a class to a configuration file, chances are it is going to be instantiated by the dependency injector.  But for some certainty, all of the following will be dependency injected when using `hiraeth/bootstrap`{: .package}:
 
         - Middleware
         - Adapters
@@ -63,5 +14,7 @@
         - Responders
         - Commands
 
+        {: .note}
+        Dependency injection is recursive.  As such, the dependency injector will try to construct any class/interface typehinted dependencies for your dependencies.  In some cases, the dependency injector doesn't have the information required to know what to inject.  Hiraeth allows you to define how these classes should be constructed by registering [delegates](./delegates) and [providers](./providers).
     {% endmarkdown %}
 {% endblock %}
