@@ -9,9 +9,10 @@
 	aliases = {
 		"Psr\Http\Message\ResponseInterface": "Zend\Diactoros\Response",
 		"Psr\Http\Message\ServerRequestInterface": "Zend\Diactoros\ServerRequest",
+		"Psr\Http\Message\RequestFactoryInterface": "Zend\Diactoros\RequestFactory",
+		"Psr\Http\Message\ServerRequestFactoryInterface": "Zend\Diactoros\ServerRequestFactory",
 		"Psr\Http\Message\ResponseFactoryInterface": "Zend\Diactoros\ResponseFactory",
 		"Psr\Http\Message\StreamFactoryInterface": "Zend\Diactoros\StreamFactory"
-
 	}
 
 	;
