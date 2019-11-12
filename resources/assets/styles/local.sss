@@ -18,13 +18,40 @@ h1
 		font-size: 6rem
 
 h2
-	margin-top: 2rem
+	margin-top: var(--text-margin)
 	font-size: 3rem
 
 a
 	@mixin -color
 
 	--text-color: var(--earth)
+
+
+
+
+table
+	width: 100%
+	border-collapse: collapse
+	border: 1px solid #eee
+	border-bottom: 2px solid var(--earth)
+
+
+tr:hover
+	background: rgba(0,75,0,.035)
+
+
+th, td
+	border: 1px solid #ddd
+	color: var(--earth)
+	padding: 1.5rem 3.5rem
+	border-collapse: collapse
+
+
+th
+	border: 1px solid var(--cloud)
+	background-color: var(--cloud)
+	text-transform: uppercase
+	color: var(--stone)
 
 
 body
@@ -60,6 +87,18 @@ body
 		& > main
 			@mixin -keep-8
 
+.docs
+	& h1
+		@mixin -outline-bottom
+		@mixin -pad-bottom
+
+		--padding-v-multiplier: 3
+		--border-color: var(--grass)
+
+	& h2
+		@mixin -color
+
+		--text-color: var(--water)
 
 .layout > nav
 	@mixin -fill
@@ -143,20 +182,6 @@ body
 
 		& ul
 			display: block
-.hljs
-	@mixin -round-less
-	@mixin -pad
-
-.action
-	@mixin button
-	@mixin -pad
-	@mixin -outline
-	@mixin -round
-	@mixin -color
-
-	--text-color: var(--amber)
-
-	text-decoration: none
 
 .callouts
 	@mixin container
@@ -170,6 +195,87 @@ body
 
 .intro
 	@mixin container
+
+pre
+	@mixin -fill
+	@mixin -round-less
+	@mixin -pad
+
+	--bg-color: var(--stone)
+
+	overflow-x: auto
+
+	& > code
+		background-color: transparent !important
+
+code:not(.hljs)
+	@mixin -outline
+	@mixin -pad
+
+	--border-color: var(--cloud)
+	--padding-v-multiplier: 0
+	--padding-h-multiplier: .25
+
+	font-size: calc(var(--text-size) * .85)
+	line-height: calc(var(--text-line-height) * .85)
+
+	&[class]::before
+		@mixin icon
+		@mixin -outline-right
+
+		--icon-size: 1em
+
+		font-size: 1em
+		padding-right: .5em
+		margin-right: .5em
+		vertical-align: -0.25em
+
+	&.package::before
+		--icon-content: url('https://api.iconify.design/octicon:gift.svg')
+
+	&.config::before
+		--icon-content: url('https://api.iconify.design/octicon:gear.svg')
+
+	&.code::before
+		--icon-content: url('https://api.iconify.design/octicon:code.svg')
+
+	&.folder::before
+		--icon-content: url('https://api.iconify.design/octicon:file-directory.svg')
+
+
+.note
+	@mixin -pad
+	@mixin -round-less
+	@mixin -outline
+	@mixin -color
+	@mixin -fill
+
+	--bg-color: var(--white)
+	--text-color: var(--water)
+
+	position: relative
+	padding-left: calc(var(--padding-base) * 3)
+
+	&:before
+		@mixin icon
+		@mixin -fade-less
+
+		--content: '⚑'
+
+		position: absolute
+		left: 0
+		top: 0
+
+.action
+	@mixin button
+	@mixin -pad
+	@mixin -outline
+	@mixin -round
+	@mixin -color
+
+	--text-color: var(--amber)
+
+	text-decoration: none
 
 .github-corner svg
 	@mixin -grow

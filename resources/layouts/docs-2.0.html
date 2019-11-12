@@ -1,5 +1,7 @@
 {% extends '@layouts/master.html' %}
 
+{% set pageClass = 'docs' %}
+
 {% block header %}
     <header>
         <h1 class="title">{{ title }}</h1>
@@ -16,17 +18,15 @@
             {% block content %}
 
             {% endblock %}
-
-            <hr />
-
-            <script src="https://utteranc.es/client.js"
-                repo="hiraeth-php/site"
-                issue-term="pathname"
-                label="comment"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-            </script>
         </main>
+        <script src="https://utteranc.es/client.js"
+            repo="hiraeth-php/site"
+            issue-term="pathname"
+            label="comment"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+
     </section>
 {% endblock %}

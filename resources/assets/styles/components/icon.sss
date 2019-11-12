@@ -1,0 +1,14 @@
+@define-mixin icon
+	@mixin -grow
+	@mixin -align-center
+	@mixin -color
+
+	--width: var(--icon-size, 6rem)
+	--height: var(--icon-size, 6rem)
+	--content: var(--icon-content, ?)
+	--text-color: var(--icon-color, var(--black))
+
+	display: inline-block
+	line-height: var(--width)
+	font-size: calc(var(--width) / 1.5)
+	content: var(--content)

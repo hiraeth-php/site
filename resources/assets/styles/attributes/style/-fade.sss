@@ -1,0 +1,8 @@
+@define-mixin -fade
+	opacity: var(--opacity, .5)
+
+@define-mixin -fade-more
+	opacity: calc(var(--opacity) * .5)
+
+@define-mixin -fade-less
+	opacity: calc(var(--opacity) * 1.5)
