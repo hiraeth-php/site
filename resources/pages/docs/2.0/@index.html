@@ -4,8 +4,21 @@
 
 {% block content %}
     {% markdown %}
-        Thanks for your interest in Hiraeth.  Documentation is a work in progress.  Please be patient as pages and sections continue to be added.  If there's something you would like to know in particular, please submit an issue on [the main application repo on GitHub](https://github.com/hiraeth-php/app).  Beyond that, if you're still interested:
+        {: .note}
+        Documentation is a work in progress.  Please be patient as pages and sections continue to be added.  If there's something you would like to know in particular, please submit an issue on [the main application repo on GitHub](https://github.com/hiraeth-php/app).
 
-        [Get Started](./intro){.action}
+        Hiraeth is a nano framework for PHP 7.2+.  It combines a novel and modular configuration system with robust dependency injection to increase the re-usability and modularity of code.
+
+        ## What is a Nano Framework?
+
+        The phrase "nano framework" was chosen for Hiraeth due to the extremely limited scope of its core components.  At its core, Hiraeth is only concerned with three distinct responsibilities:
+
+        1. Basic Application Services
+        2. Dependency Injection
+        3. Configuration
+
+        Rather than re-writing or providing separately maintained libraries to perform the work of similar monolithic frameworks, Hiraeth was designed from the ground up to have existing libraries and utilities integrated with it.
+
+        [Install Hiraeth](./installation){: .action}
     {% endmarkdown %}
 {% endblock %}

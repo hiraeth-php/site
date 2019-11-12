@@ -1,0 +1,53 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Creating Pages' %}
+
+{% block content %}
+    {% markdown %}
+        {: .note}
+        This document assumes you've installed `hiraeth/bootstrap`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+        Hiraeth provides two primary ways to add a page to your website or web applicaton.
+        - [Static Templates](#static-templates)
+        - [Routed Actions](#routed-actions)
+
+        ## Static Templates {: #static-templates}
+
+        To create a page using static templates you don't need to do much more than add an `.html` file to `resources/pages`{: .folder}.  For example, if you don't already have a homepage, simply create a file at `resources/pages/@index.html`{: .code} and paste in the following:
+
+        ```html
+        <!doctype html>
+        <html>
+            <head>
+                <title>My New Website</title>
+            </head>
+            <body>
+                <h1>Hello World!</h1>
+            </body>
+        </html>
+        ```
+
+        Now reload [http://localhost:8080/](http://localhost:8080/) to see the result.
+
+        {: .note}
+        If you're having trouble seeing the page, it may be that you forgot to add the **`@`** symbol at the beginning of it.  Hiraeth uses this character at the beginning of a file name to know when its safe to render it directly without a corresponding action.
+
+        ### Path Resolution
+
+        Additional static templates can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .code} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .code} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .code}.
+
+        If the URL's corresponding static page cannot be found it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .code} in the example above.  If the page does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .code} file within.
+
+        In the event an alternate static template path is found, an HTTP `301` status code will be returned with the more direct URL location for the path.
+
+        ## Routed Actions {: #routed-actions}
+
+        {: .note}
+        Routed actions **always** supersede static templates.  Although it is possible for static templates to serve as fallbacks, in the event the action returns an HTTP `404` response, we generally not mixing the two for a single URL path in order to avoid confusion.
+
+        Routed actions are PHP classes which are invoked when a URL mapped explicitly to them is requested by a web client.  You may already be familiar with the concept, but only know them as "Controllers."  While Hiraeth supports more traditional controller paradigms, it strongly encourages the use of "single action controllers" or "actions" to reduce the complexity that may occur in monolithic controller classes.
+
+        [Learn How to Create Actions](./actions){: .action}
+
+    {% endmarkdown %}
+{% endblock %}

@@ -12,19 +12,16 @@ body
 hr
 	margin: var(--gutter) 0
 
-p,
-pre,
-blockquote,
-table,
-ul,
-ol
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, table, ul, ol
 	margin-top: var(--text-margin)
 
 	&:first-child
 		margin-top: 0
 
-li ul,
-li ol
+ul, ol
+	list-style-position: inside
+
+li ul, li ol
 	margin-top: 0
 
 code
