@@ -28,32 +28,37 @@ a
 
 	--text-color: var(--earth)
 
-
-
-
 table
-	width: 100%
+	@mixin -grow-full
+	@mixin -outline
+
+	--border-color: var(--cloud)
+
 	border-collapse: collapse
-	border: 1px solid #eee
-	border-bottom: 2px solid var(--earth)
+	border-bottom: 3px solid var(--earth)
 
+	& tr:hover
+		@mixin -fill
 
-tr:hover
-	background: rgba(0,75,0,.035)
+		--bg-color: rgba(0,75,0,.035)
 
+	& th,
+	& td
+		@mixin -pad
+		@mixin -color
+		@mixin -outline
 
-th, td
-	border: 1px solid #ddd
-	color: var(--earth)
-	padding: 1.5rem 3.5rem
-	border-collapse: collapse
+		--text-color: var(--earth)
+		--border-color: var(--cloud)
 
+	& th
+		@mixin -fill
+		@mixin -color
+		@mixin -outline
 
-th
-	border: 1px solid var(--cloud)
-	background-color: var(--cloud)
-	text-transform: uppercase
-	color: var(--stone)
+		--border-color: var(--cloud)
+		--bg-color: var(--cloud)
+		--text-color: var(--stone)
 
 
 body
@@ -127,36 +132,38 @@ body
 
 	&:target
 		& .open
-			display: none
+			@mixin -hide
 
 		& > ul
-			display: block
+			@mixin -show
 
 	& > ul
-		display: none
+		@mixin -hide
 
 	& ul
 		& li
-			position: relative
+			@mixin -position-relative
 
 			& a
-				@mixin -color
 				@mixin -pad
+				@mixin -color
+				@mixin -grow
+				@mixin -position-relative
 
 				--text-color: var(--stone)
 				--padding-v-multiplier: .5
 
 				display: block
-				position: relative
 				text-decoration: none
 
 				&:not(:only-child)::before
 					@mixin -pad
+					@mixin -position-absolute
+
+					--top: 0
+					--right: 0
 
 					content: '+'
-					position: absolute
-					right: 0
-					top: 0
 
 				&.active:not(:only-child)::before
 					content: '−'
@@ -164,33 +171,32 @@ body
 				&.active + ul
 					display: block
 
-					& a.active:after
+					& a.active::after
 						@mixin -color
+						@mixin -position-absolute
 
+						--top: .5em
+						--left: -1rem
 						--text-color: var(--grass)
 
-						position: absolute
 						content: '⬤'
-						left: -1rem
-						top: .5em
 
 			& ul
 				@mixin -fill
+				@mixin -hide
+				@mixin -pad-left
 
 				--bg-color: var(--stone)
-
-				display: none
-				padding-left: var(--padding-base)
 
 				& a
 					--text-color: var(--white)
 
 	@media (--screen-tablet)
 		& .open
-			display: none
+			@mixin -hide
 
 		& ul
-			display: block
+			@mixin -show
 
 .callouts
 	@mixin container
@@ -206,16 +212,17 @@ body
 	@mixin container
 
 pre
+	@mixin -pad
 	@mixin -fill
 	@mixin -round-less
-	@mixin -pad
+	@mixin -scroll-x
 
 	--bg-color: var(--stone)
 
-	overflow-x: auto
-
 	& > code
-		background-color: transparent !important
+		@mixin -fill
+
+		--bg-color: transparent !important
 
 code:not(.hljs)
 	@mixin -outline

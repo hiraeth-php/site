@@ -2232,22 +2232,22 @@
         },
         {
             "name": "hiraeth/diactoros",
-            "version": "1.0-beta4",
+            "version": "1.0-beta5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/diactoros.git",
-                "reference": "7f2c6c5a2a24374698324a770dab69890c37e0a0"
+                "reference": "2e5a509f591b4288c49138e372912e538fee79e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/diactoros/zipball/7f2c6c5a2a24374698324a770dab69890c37e0a0",
-                "reference": "7f2c6c5a2a24374698324a770dab69890c37e0a0",
+                "url": "https://api.github.com/repos/hiraeth-php/diactoros/zipball/2e5a509f591b4288c49138e372912e538fee79e1",
+                "reference": "2e5a509f591b4288c49138e372912e538fee79e1",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
                 "psr/http-message": "^1.0",
-                "zendframework/zend-diactoros": "^2.1"
+                "zendframework/zend-diactoros": "^2.2"
             },
             "type": "opus-package",
             "extra": {
@@ -2274,7 +2274,7 @@
                 }
             ],
             "description": "PSR-7 via Diactoros for the Hiraeth Nano Framework",
-            "time": "2019-10-31T19:42:36+00:00"
+            "time": "2019-11-12T22:20:31+00:00"
         },
         {
             "name": "hiraeth/doctrine",
@@ -6724,16 +6724,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "2.1.5",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "6dcf9e760a6b476f3e9d80abbc9ce9c4aa921f9c"
+                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/6dcf9e760a6b476f3e9d80abbc9ce9c4aa921f9c",
-                "reference": "6dcf9e760a6b476f3e9d80abbc9ce9c4aa921f9c",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/66eded992a75bfe75a829005a2884aae5ca86daa",
+                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa",
                 "shasum": ""
             },
             "require": {
@@ -6787,7 +6787,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2019-10-10T17:38:20+00:00"
+            "time": "2019-11-12T17:26:16+00:00"
         },
         {
             "name": "zendframework/zend-httphandlerrunner",
