@@ -4,51 +4,76 @@
 
 {% block content %}
     {% markdown %}
-        Hiraeth uses [Jsonified Ini Notation](https://github.com/dotink/jin) (JIN) for its `.env` file and its configuration files.  Without going into too much detail, these files essentially look like INI files with JSON-like values.  The language is extremely similar to [TOML](https://github.com/toml-lang/toml), but does not attempt to be compatible or maintain feature parity.  For example:
+        Hiraeth uses [Jsonified Ini Notation](https://github.com/dotink/jin) (JIN) for all configuration files and its `.env`{: .config}.  Without going into too much detail, these files use an INI structure with JSON-like values.  The language is extremely similar to [TOML](https://github.com/toml-lang/toml), but does not attempt to be compatible or maintain feature parity.  For example:
 
         ```toml
-        CACHING = true
+        [middleware]
+
+            disabled = false
+
+            class = Acme\Middleware
         ```
 
-        To get an environment value, you can use the `getEnvironment()` method:
+        ## Getting Configuration Information {: #getting-info}
 
-        ```php
-        $app->getEnvironment('CACHING')
-        $app->getEnvironment('CACHING', FALSE) // Default to FALSE if not set
-        ```
+        A configuration collection is just an object containing informatoin from a file somewhere in `config`{: .folder}.  The collection "path" refers to the relative file path minus the `.jin` extension.  For example, the collection path for `config/common.jin`{: .config} is simply `common`.
 
-        Configurations are similar, except you need to specify a collection.  Each file in the `config` directory constitutes a separate collection, and the collection is the filename, minus the config root and the extension.  For example `config/middleware/acme.jin` would be `middleware/acme`:
+        To get specific configuration information you can use the `$app->getConfig()` method by passing it the path, the key to the setting, and a default value in the event that it's not set.  The following example shows how we might determine if an `Acme\Middleware`{: .class} is disabled for the previous example JIN code:
 
         ```php
         $app->getConfig('middleware/acme', 'middleware.disabled', FALSE)
         ```
 
-        You can get the values for all collections by specifying a `*`:
+        The "dot notation" for the second parameter allows you to access information nested at any depth of the collection, including retrieving from object / array values set in the configuration.
+
+        ### Default Values and Inferred Typing {: #inferred-typing}
+
+        When retrieving information from a specific collection, the default value will first and foremost be returned if:
+
+        1. The path does not refer to a valid collection
+        2. The the collection does not have a value set for the provided key
+
+        However, the default value is additionally used to infer and set the data type on any data retrieved.  JIN supports typing natively, so this functionality is primarily used to convert scalar values to arrays at the time of retrieval or to typecast mixed values into booleans for simple checks.
+
+        Additionally, if the retrieved value is an array (natively or by inference) and the default value is an array, then any keys/values which exist in the default that don't exist in the retrieved value will be added to the result.
+
+        ### Querying Information {: #querying}
+
+        In some cases you want to get a lot of similar configuration information across the entire set of collections.  To perform this, you can specify a `*` as the first parameter and the `$app->getconfig()` method will return an array of values keyed by the collection path they're found in.
 
         ```php
-        foreach ($app->getConfig('*', 'middleware', array()) as $middleware) {
-            if ($middleware['disabled'] ?? FALSE) {
+        $defaults = [
+            'disabled' => FALSE,
+            'priority' => 50
+        ];
+
+        foreach ($app->getConfig('*', 'middleware', $defaults) as $path => $collection) {
+            if ($middleware['disabled']) {
                 continue;
             }
 
+            //
             // do middleware things
+            //
         }
         ```
 
-        The "dot notation" for the second parameter allows you to access values nested at any depth of the collection.  So, for example with a `config/acme.jin` like:
+        {: .note}
+        Unlike when getting specific configuration information, querying information will only return values from collections where the key exists.  That is, the default value will _not_ be returned for collections which don't have the value, but will still be used to infer data types and provide defaults within a retreived array.
 
-        ```toml
-        [section]
+        ## Getting Environment Variables
 
-            property = {
-                "key": "value"
-            }
-        ```
+        Hiraeth, like many other popular frameworks, provides a `.env` file for setting environment specific data.  Unlike other popular frameworks, the `.env` file also contains JIN.  Although the source for the environment is JIN, because the environment cannot contain rich data types only simple key names and strings, the structure of the environment is flattened with the keys of nested information separated by an `_` (underscore).  **Use arrays at your own risk!**
 
-        You could do:
+        To get an environment value, you can use the `$app->getEnvironment()` method:
 
         ```php
-        $app->getConfig('acme', 'section.property.key', 'default')
+        $app->getEnvironment('CONFIG_DIR', 'config')
         ```
+
+        {: .note}
+        When accessing environment variables through `$app->getEnvironment()`, Hiraeth will perform the same default value and inferred typing as [described above](#inferred-typing) and will be accessing the data in its original data types.
+
+        You also access data using PHP's built-in `getenv()` and the `$_ENV` superglobal.  Though in the case of the former the data will only be available as a string.
     {% endmarkdown %}
 {% endblock %}

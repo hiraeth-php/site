@@ -22,7 +22,12 @@
 
         ## Creating a Responder
 
-        Responders must implement the `Hiraeth\Routing\ResponderInterface`{: .class}.  In order to implement this interface you will need to implement two methods.  The first method, `match()`, is responsible for determining whether or not that responder should be used to convert the action's return value.  The second method, `__invoke()` is called to perform the conversion itself.
+        Responders must implement the `Hiraeth\Routing\ResponderInterface`{: .interface}.  In order to implement this interface you will need to implement two methods.
+
+        | Method       | Description
+        |--------------|------------------------------------------------------------
+        | `match()`    | Determine whether or not that responder should be used to convert the action's return value
+        | `__invoke()` | Perform the conversion of the action's return value into a [PSR-7](https://www.php-fig.org/psr/psr-7/) response object
 
         Both methods receive the `Hiraeth\Routing\Resolver`{: .class} as an argument which allows you to access the return value of the action.
 
@@ -43,7 +48,7 @@
 
         ### Converting the Response
 
-        Once a responder is matched, it will be invoked via the `__invoke()` method.  The `__invoke()` method is responsible for taking the information from the return value and mapping it or converting it to a valid `Psr\Http\Message\ResponseInterface`{: .class}.  In our previous example, the result was _already_ a valid [PSR-7](https://www.php-fig.org/psr/psr-7/) response object, so it would only return the original result.
+        Once a responder is matched, it will be invoked via the `__invoke()` method.  The `__invoke()` method is responsible for taking the information from the return value and mapping it or converting it to a valid `Psr\Http\Message\ResponseInterface`{: .interface}.  In our previous example, the result was _already_ a valid [PSR-7](https://www.php-fig.org/psr/psr-7/) response object, so it would only return the original result.
 
         Here, we'll look at the `Hiraeth\Routing\StringResolver`{: .class}.  In this instance, we would have matached if the return result from the action was a native PHP `string`.  As with the `match()` method, we receive the resolver.  From there, we can `getResult()` and convert it:
 
@@ -82,10 +87,14 @@
             priority = 10
         ```
 
-        If you need to disable a particular conflicting responder for some reason you can set the `disabled` option to `TRUE`:
+        If you need to disable a particular conflicting responder for some reason you can set the `disabled` option to `true`:
 
         ```toml
             disabled = true
         ```
+
+        ----
+
+        [Learn About Middleware](./middleware){: .action}
     {% endmarkdown %}
 {% endblock %}

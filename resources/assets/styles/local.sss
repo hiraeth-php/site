@@ -252,11 +252,17 @@ code:not(.hljs)
 	&.config::before
 		--icon-content: url('https://api.iconify.design/octicon:gear.svg')
 
-	&.code::before
+	&.html::before
 		--icon-content: url('https://api.iconify.design/octicon:code.svg')
 
 	&.class::before
 		--icon-content: url('https://api.iconify.design/mdi:alpha-c-box-outline.svg')
+
+	&.interface::before
+		--icon-content: url('https://api.iconify.design/mdi:alpha-i-box-outline.svg')
+
+	&.file::before
+		--icon-content: url('https://api.iconify.design/octicon:file.svg')
 
 	&.folder::before
 		--icon-content: url('https://api.iconify.design/octicon:file-directory.svg')
@@ -295,6 +301,17 @@ code:not(.hljs)
 	--text-color: var(--amber)
 
 	text-decoration: none
+	white-space: nowrap
+
+	& + a
+		display: block
+		margin-top: var(--text-margin)
+
+		@media (--screen-tablet)
+			display: inline-block
+			margin-left: var(--text-margin)
+			margin-top: auto
+
 
 .github-corner svg
 	@mixin -grow

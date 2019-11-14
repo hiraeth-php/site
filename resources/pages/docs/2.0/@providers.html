@@ -8,7 +8,7 @@
 
         While a given class may only have a single delegate, it may, depending on its interfaces, run through a number of providers.
 
-        Providers implement the `Hiraeth\Provider` interface which has two methods:
+        Providers implement the `Hiraeth\Provider`{: interface} interface which has two methods:
 
         | Method            | Description
         |-------------------|----------------------------
@@ -18,7 +18,7 @@
 
         ## Creating a Provider
 
-        In the example below, we examine a case where any number of objects constructed by our dependency injector might implement an interface which allows for an "authorization manager" to be set on the object.  If set, this enable these objects to access authorization information to check whether or not particular actions are allowed.
+        In the example below, we examine a case where any number of objects constructed by our dependency injector might implement an interface which allows for an "authorization manager" to be set on the object.  If set, this enables these objects to access authorization information to check whether or not particular actions are allowed.
 
         ```php
         namespace Auth;
@@ -43,6 +43,9 @@
         }
         ```
 
+        {: .note}
+        Providers can operate on more than a single interface or class, however, only a single provider can be registered per interface or class.  It is possible to register a delegate to construct a class and a provider to do additional setter injection or configuration.
+
         ## Registering a Provider
 
         Once our class is added and our autoloader is aware of it, we can register the provider in any config file under the `[application]` section.  Hiraeth scans all `[application]` sections on startup and registers the providers as post-construction callbacks to configure the dependency.
@@ -55,13 +58,13 @@
             ]
         ```
 
-        Now, anywhere that dependency injection is used, if the dependency implements the `Auth\ManagedInterface` which defines our `setAuthManager()` method, the provider will be called to inject the dependency which fulfills the `Auth\ManagerInterface`.
+        Now, anywhere that dependency injection is used, if the dependency implements the `Auth\ManagedInterface`{: .interface} which defines our `setAuthManager()` method, the provider will be called to inject the required object.
 
         ## Optional Dependencies
 
-        It is often the case that setter injected dependencies are optional and their functionality will only be used if the dependency is set.  An example of this might be PSR-3's `Psr\Log\LoggerAwareInterface` where your object only logs if the logger is set.  Using our example above, however, we can imagine that our dependency will only do authorization checks if the `Auth\Manager` is set.
+        It is often the case that setter injected dependencies are optional and their functionality will only be used if the dependency is available.  An example of this might be PSR-3's `Psr\Log\LoggerAwareInterface`{: .interface} where your object only performs logging if the logger is set.  Using our example above, however, we can imagine that our dependency will only do authorization checks if the `Auth\ManagerInterface`{: .interface} is set.
 
-        We can use PSR-11's `has()` method to determine whether or not we have a concrete instance that provides the requisite service before setting it.  We modify our provider accordingly:
+        We can use [PSR-11 documentation](https://www.php-fig.org/psr/psr-11/)'s `has()` method to determine whether or not we have a concrete instance that provides the requisite service before setting it.  We modify our provider accordingly:
 
         ```php
 
@@ -75,5 +78,9 @@
         }
 
         ```
+
+        The `$app->has()` method will always return true for a class that exists because the dependency injector will try to construct it if needed.  If you pass it the name of the interface, however, it will only return true if an alias is defined.
+
+        [Learn About Aliases](./aliases){: .action}
     {% endmarkdown %}
 {% endblock %}

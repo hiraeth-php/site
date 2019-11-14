@@ -16,12 +16,9 @@
         | storage        | Contains application writable files and folders (user uploads, logs, cache)
         | vendor         | Contains vendor PHP source code: classes, interface, traits, etc
 
-        The parent directory of these is referred to as the "application root."  The `Hiraeth\Application`{: .class} instance provided a number of helper methods to work with files and directories.
+        The parent directory of these is referred to as the "application root."
 
-        {: .note}
-        File and directory names beginning with a `/` or `<scheme>://` are considered absolute.  If the path does not begin with one of these, it will be treated as relative to the application root.
-
-        ## Checking for a File or Directory
+        ## Checking for a File or Directory {: #checking-files}
 
         You can check if a file exists using the `hasFile()` method.  For example, to see if there is a `.env` file in the application root, you can do:
 
@@ -35,7 +32,11 @@
         $app->hasDirectory('storage/cache')
         ```
 
-        ## Getting File or Directory Information
+        {: .note}
+        File and directory names beginning with a `/` or `<scheme>://` are considered absolute.  If the path does not begin with one of these, it will be treated as relative to the application root.
+
+
+        ## Getting File or Directory Information {: #getting-files}
 
         To get an `SplFileInfo` object for a file or directory use the `getFile()` and `getDirectory()` methods with the application root relative path:
 
@@ -49,7 +50,7 @@
         $app->getDirectory('storage/public')->getRealPath()
         ```
 
-        ## Creating a File or Directory
+        ## Creating a File or Directory {: #creating-files}
 
         In many cases you may want to create a file or directory if it does not exist.  This is frequently the case, for example, if you're using `getDirectory()` to get sub-directories for storing various assets.  Adding, `TRUE` as the second argument to either `getFile()` or `getDirectory()` will attempt to create the file or directory if it does not exist.
 
