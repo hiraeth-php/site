@@ -1,0 +1,9 @@
+{% extends '@layouts/master.html' %}
+
+{% set pageClasses = ['internal']|merge(pageClasses ?? []) %}
+
+{% block header %}
+    <header>
+        <h1 class="title">{{ title }}</h1>
+    </header>
+{% endblock %}

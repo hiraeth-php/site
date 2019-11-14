@@ -57,5 +57,11 @@
         ```php
         $app->getFile('storage/sync.lock', TRUE)->openFile('w')->fwrite('1')
         ```
+
+        In addition to basic file access via `Hiraeth\Application`{: .class}, you can install `hiraeth\gaufrette`{: .package} to provide access to external storage interfaces like S3, SFTP, and additional local volumes.  
+
+        ----
+
+        [Learn About Volumes](./volumes){: .action}
     {% endmarkdown %}
 {% endblock %}

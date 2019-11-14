@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="//unpkg.com/basic-css-typography-reset@1.0.0/typography.min.css" />
     <link rel="stylesheet" href="/styles/main.css" />
 </head>
-<body class="{{ pageClass is defined ? pageClass : 'landing' }}">
+<body class="{{ pageClasses is defined ? pageClasses|join(' ') : 'landing' }}">
     {% block header %}
 
     {% endblock %}

@@ -61,7 +61,7 @@
         {: .note}
         Unlike when getting specific configuration information, querying information will only return values from collections where the key exists.  That is, the default value will _not_ be returned for collections which don't have the value, but will still be used to infer data types and provide defaults within a retreived array.
 
-        ## Getting Environment Variables
+        ## Getting Environment Variables {: #environment}
 
         Hiraeth, like many other popular frameworks, provides a `.env` file for setting environment specific data.  Unlike other popular frameworks, the `.env` file also contains JIN.  Although the source for the environment is JIN, because the environment cannot contain rich data types only simple key names and strings, the structure of the environment is flattened with the keys of nested information separated by an `_` (underscore).  **Use arrays at your own risk!**
 
@@ -75,5 +75,11 @@
         When accessing environment variables through `$app->getEnvironment()`, Hiraeth will perform the same default value and inferred typing as [described above](#inferred-typing) and will be accessing the data in its original data types.
 
         You also access data using PHP's built-in `getenv()` and the `$_ENV` superglobal.  Though in the case of the former the data will only be available as a string.
+
+        Once you've got the basics down, you'll probably want to modify your `.env`{: .config} and get some basic error handling in place.
+
+        ----
+
+        [Learn About Error Handling](./error-handling){: .action}
     {% endmarkdown %}
 {% endblock %}

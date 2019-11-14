@@ -1,20 +1,14 @@
-{% extends '@layouts/master.html' %}
+{% extends '@layouts/internal.html' %}
 
-{% set pageClass = 'docs' %}
-
-{% block header %}
-    <header>
-        <h1 class="title">{{ title }}</h1>
-    </header>
-{% endblock %}
+{% set pageClasses = ['docs', 'layout'] %}
 
 {% block primary %}
-    <section class="layout">
+    <div class="layout">
         <nav id="menu">
             {% include '@pages/docs/2.0/--nav.html' %}
             <a class="open" href="#menu">☰</a>
         </nav>
-        <main>
+        <main id="content">
             {% block content %}
 
             {% endblock %}
@@ -27,6 +21,5 @@
             crossorigin="anonymous"
             async>
         </script>
-
-    </section>
+    </div>
 {% endblock %}

@@ -4,7 +4,7 @@
 
 {% block content %}
     {% markdown %}
-        ## Set Up environment
+        ## Set Up environment {: #dot-env}
 
         Copy the `.env.example` to `.env`{: .config}.  This provides basic environment variables which your Hireath install may need to know about.
 
@@ -12,7 +12,7 @@
         cp .env.example .env
         ```
 
-        ## Ensure Storage is Writable
+        ## Ensure Storage is Writable {: #permissions}
 
         {: .note}
         **If you're just testing things out and are running PHP's built in web server as the same user that you installed Hiraeth as, you probably don't need to worry too much about this.**  If not, the examples below are just examples and we assume you know enough about how to admin your own servers.
@@ -34,7 +34,7 @@
 
         Windows users, you're on your own.
 
-        ## Using PHP's Built In Web Server
+        ## Using PHP's Built In Web Server {: #server}
 
         Hiraeth provides a passthru call to PHP's built in web server that allows you to quickly start a local development server.  To start this local server with your application's `public`{: .folder} as the document root, simply execute (from your application root):
 

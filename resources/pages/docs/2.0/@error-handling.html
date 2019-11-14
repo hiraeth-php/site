@@ -4,7 +4,12 @@
 
 {% block content %}
     {% markdown %}
-        ## Debugging Mode
+        Hiraeth provides robust error handling using [SlashTrace](https://github.com/slashtrace/slashtrace).  In addition to providing extensive debugging information, you can add support for additional logging and external logging services such as [Sentry](https://sentry.io).
+
+        {: .note}
+        Hiraeth runs in production mode by default.  This means that until you've set up debugging, logging, or additional services in your `.env`{: .config}, you won't be seeing much detail if something is going wrong.  Make sure to read the below sections carefully and choose what makes the most sense for your environment.
+
+        ## Debugging Mode {: #debugging}
 
         To put the application in debugging mode, modify the `.env` file and make sure the following is set:
 
@@ -12,32 +17,40 @@
         DEBUG = true
         ```
 
-        ## Production Mode
+        You can check if the application is in debugging mode by performing the following:
 
-        When the application is not in debugging mode, the production handler will exit with a 500 status (HTTP) or the exception/error code (CLI) and output will be suppressed.  You can enable logging in the `.env` file to have errors outputted to the configured loggers:
-
-        ```toml
-        LOGGING = true
+        ```php
+        if ($app->isDebugging()) {
+            ...
+        }
         ```
 
-        ## Sentry Support
+        When the application is in debugging mode, you will see stacktrace and related context information presented to a web request or in the cli in accordance with [SlashTrace's standard output](https://slashtrace.com/demo.php).
 
-        You can install the `hiraeth/sentry` package to enable support for sentry:
+        ## Services {: #services}
 
-        ```bash
-        composer require hiraeth/sentry
-        ```
+        [SlashTrace](https://github.com/slashtrace/slashtrace) provides the ability to create custom handlers which send error output to third-party services.  Handlers are avilable for many common services, however, at present, Hiraeth only has an integration package for [Sentry](https://sentry.io).
 
-        Once installed, you will need to register the handler in any environment that should use it.  In the `.env` file, add the following information:
+        To get Sentry support enabled, install `hiraeth/sentry`{: .package} and add your `DSN` in `.env`{: .config}.
 
         ```toml
-        HANDLERS = [
-        	"SlashTrace\Sentry\SentryHandler"
-        ]
-
         [SENTRY]
 
         	DSN = <your sentry dsn>
         ```
+
+        ## Logging {: #logging}
+
+        You can enable logging by installing `hiraeth/monolog`{: .package} and updating your `.env`{: .config} to set `LOGGING` to the approriate log level.
+
+        ```toml
+        LOGGING = Psr\Log\LogLevel::ERROR
+        ```
+
+        Logs of the requests level or higher will then be sent to the default file location under `storage/logs`{: .folder}.
+
+        ----
+
+        [Learn About Logging](./logging){: .action}
     {% endmarkdown %}
 {% endblock %}

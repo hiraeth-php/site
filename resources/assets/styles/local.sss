@@ -82,19 +82,24 @@ body
 			--width: 325px
 			--height: 200px
 
-
-	& > section.layout
-		@mixin grid
-
-		--gutter: 6rem
-
-		& > nav
-			@mixin -keep-3
-
+	&.internal
 		& > main
-			@mixin -keep-8
+			& > section
+				@mixin container
 
-.docs
+		& > .layout
+			@mixin grid
+			@mixin container
+
+			--gutter: 6rem
+
+			& > nav
+				@mixin -keep-3
+
+			& > main
+				@mixin -keep-8
+
+.internal
 	& h1
 		@mixin -outline-bottom
 		@mixin -pad-bottom
@@ -218,6 +223,7 @@ pre
 	@mixin -scroll-x
 
 	--bg-color: var(--stone)
+	tab-size: 4
 
 	& > code
 		@mixin -fill

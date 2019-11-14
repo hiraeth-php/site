@@ -34,7 +34,7 @@
 
         Although Hiraeth calls these direct to file pages "static templates", this along with any other `.html` file you add to `resources/pages`{: .folder} have the full power of [Twig](https://twig.symfony.com/) behind them.  So feel free to create parent templates and extend them, include partials, etc.  See the [templating documentation](./templating) for more details.
 
-        ### Path Resolution
+        ### Path Resolution {: #paths}
 
         Additional static templates can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .code} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .code}.
 
@@ -51,7 +51,7 @@
 
         ----
 
-        [Learn How to Create Actions](./actions){: .action}
+        [How Do I Create Actions?](./actions){: .action}
 
     {% endmarkdown %}
 {% endblock %}

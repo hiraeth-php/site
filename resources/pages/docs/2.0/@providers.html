@@ -44,7 +44,7 @@
         ```
 
         {: .note}
-        Providers can operate on more than a single interface or class, however, only a single provider can be registered per interface or class.  It is possible to register a delegate to construct a class and a provider to do additional setter injection or configuration.
+        Hiraeth has one _special_ form of provider called an "application provider."  Application providers differ from normal providers in two ways.  The `$instance` provided is a shared application state object which can have properties assigned to it to help coordinate between multiple application providers.  The only "interface" it provides for is `Hiraeth\Application`{: .class}.  See [an example](https://github.com/hiraeth-php/monolog/blob/master/src/providers/ApplicationProvider.php) of an application provider in `hiraeth/monolog`{: .package}.
 
         ## Registering a Provider
 
@@ -59,6 +59,10 @@
         ```
 
         Now, anywhere that dependency injection is used, if the dependency implements the `Auth\ManagedInterface`{: .interface} which defines our `setAuthManager()` method, the provider will be called to inject the required object.
+
+        {: .note}
+        Providers can operate on more than a single interface or class, however, only a single provider can be registered per interface or class.  It is possible to register a delegate to construct a class and a provider to do additional setter injection or configuration.
+
 
         ## Optional Dependencies
 
@@ -80,6 +84,10 @@
         ```
 
         The `$app->has()` method will always return true for a class that exists because the dependency injector will try to construct it if needed.  If you pass it the name of the interface, however, it will only return true if an alias is defined.
+
+        Using interfaces instead of concrete classes provides a lot more flexibility and maintainability to your code.  In addition to the above dependency and configuration wiring, interfaces can be used the typehint dependencies instead of concrete classes.  All you'll need to do is add an alias.
+
+        ----
 
         [Learn About Aliases](./aliases){: .action}
     {% endmarkdown %}
