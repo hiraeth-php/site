@@ -7,7 +7,7 @@
 	;
 
 	aliases = {
-		"Hiraeth\Routing\ResolverInterface": "Hiraeth\Routing\Resolver"
+
 	}
 
 	;
@@ -43,5 +43,14 @@
 			"route":   $route,
 			"target":  $target,
 			"methods": $methods
+		}
+	}
+
+[twig]
+
+	functions = {
+		"route": {
+			"target": "Hiraeth\Routing\UrlGenerator",
+			"required": false
 		}
 	}

@@ -7,7 +7,7 @@
 	;
 
 	aliases = {
-		"Hiraeth\Markdown\ParserInterface": "Hiraeth\Markdown\CommonMarkProxy"
+		"Hiraeth\Markdown\Parser": "Hiraeth\CommonMark\Proxy"
 	}
 
 	;
@@ -18,7 +18,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Markdown\ConverterDelegate"
+		"Hiraeth\CommonMark\ConverterDelegate"
 	]
 
 	;
@@ -34,7 +34,7 @@
 	]
 
 
-[markdown]
+[commonmark]
 
 	extensions = [
 		"League\CommonMark\Extras\CommonMarkExtrasExtension",
