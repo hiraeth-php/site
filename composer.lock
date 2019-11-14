@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "7c8603c348aef69fa10ded34f0854a3f",
@@ -2377,16 +2377,16 @@
         },
         {
             "name": "hiraeth/fastroute",
-            "version": "1.0-beta20",
+            "version": "1.0-beta25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/fastroute.git",
-                "reference": "1acf83aeb298cd9057975c06c8a90dde4f7aedf0"
+                "reference": "937a53aef33d68a5e9863f663c1c8789150be033"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/fastroute/zipball/1acf83aeb298cd9057975c06c8a90dde4f7aedf0",
-                "reference": "1acf83aeb298cd9057975c06c8a90dde4f7aedf0",
+                "url": "https://api.github.com/repos/hiraeth-php/fastroute/zipball/937a53aef33d68a5e9863f663c1c8789150be033",
+                "reference": "937a53aef33d68a5e9863f663c1c8789150be033",
                 "shasum": ""
             },
             "require": {
@@ -2425,7 +2425,7 @@
                 }
             ],
             "description": "FastRoute integration for the Hiraeth Nano-Framework",
-            "time": "2019-11-13T20:12:55+00:00"
+            "time": "2019-11-14T03:31:12+00:00"
         },
         {
             "name": "hiraeth/gaufrette",
