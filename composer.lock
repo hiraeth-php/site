@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "7c8603c348aef69fa10ded34f0854a3f",
@@ -930,16 +930,16 @@
         },
         {
             "name": "doctrine/collections",
-            "version": "1.6.3",
+            "version": "1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "037ccc5b1c249275f8f6bb48e35f140fd52fd577"
+                "reference": "6b1e4b2b66f6d6e49983cebfe23a21b7ccc5b0d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/037ccc5b1c249275f8f6bb48e35f140fd52fd577",
-                "reference": "037ccc5b1c249275f8f6bb48e35f140fd52fd577",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/6b1e4b2b66f6d6e49983cebfe23a21b7ccc5b0d7",
+                "reference": "6b1e4b2b66f6d6e49983cebfe23a21b7ccc5b0d7",
                 "shasum": ""
             },
             "require": {
@@ -996,7 +996,7 @@
                 "iterators",
                 "php"
             ],
-            "time": "2019-11-04T15:26:07+00:00"
+            "time": "2019-11-13T13:07:11+00:00"
         },
         {
             "name": "doctrine/common",
@@ -1825,16 +1825,16 @@
         },
         {
             "name": "hiraeth/actions",
-            "version": "1.0-beta12",
+            "version": "1.0-beta15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "7b7932e5e6888eead855ee62b9273dc1fb696c9f"
+                "reference": "4b51a49bc76d0227f1ca8fc50a734b2f76ffd4df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/7b7932e5e6888eead855ee62b9273dc1fb696c9f",
-                "reference": "7b7932e5e6888eead855ee62b9273dc1fb696c9f",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/4b51a49bc76d0227f1ca8fc50a734b2f76ffd4df",
+                "reference": "4b51a49bc76d0227f1ca8fc50a734b2f76ffd4df",
                 "shasum": ""
             },
             "require": {
@@ -1870,7 +1870,7 @@
                 }
             ],
             "description": "Robust actions for the Hiraeth Nano Framework",
-            "time": "2019-11-01T22:07:14+00:00"
+            "time": "2019-11-13T20:27:04+00:00"
         },
         {
             "name": "hiraeth/auth",
@@ -2129,16 +2129,16 @@
         },
         {
             "name": "hiraeth/core",
-            "version": "2.0-beta50",
+            "version": "2.0-beta100",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "7aee34eedf59ccd810a3e41ca68d0423066f1f4b"
+                "reference": "1261f9a947f9fd05d76ca25ea951194ad6b5d0c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/7aee34eedf59ccd810a3e41ca68d0423066f1f4b",
-                "reference": "7aee34eedf59ccd810a3e41ca68d0423066f1f4b",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/1261f9a947f9fd05d76ca25ea951194ad6b5d0c4",
+                "reference": "1261f9a947f9fd05d76ca25ea951194ad6b5d0c4",
                 "shasum": ""
             },
             "require": {
@@ -2178,7 +2178,7 @@
                 }
             ],
             "description": "Core classes for the Hiraeth Nano-Framework",
-            "time": "2019-11-08T18:38:17+00:00"
+            "time": "2019-11-13T09:32:07+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -2377,16 +2377,16 @@
         },
         {
             "name": "hiraeth/fastroute",
-            "version": "1.0-beta14",
+            "version": "1.0-beta20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/fastroute.git",
-                "reference": "c016c2069df076f93365a58fec85a9cd2e647013"
+                "reference": "1acf83aeb298cd9057975c06c8a90dde4f7aedf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/fastroute/zipball/c016c2069df076f93365a58fec85a9cd2e647013",
-                "reference": "c016c2069df076f93365a58fec85a9cd2e647013",
+                "url": "https://api.github.com/repos/hiraeth-php/fastroute/zipball/1acf83aeb298cd9057975c06c8a90dde4f7aedf0",
+                "reference": "1acf83aeb298cd9057975c06c8a90dde4f7aedf0",
                 "shasum": ""
             },
             "require": {
@@ -2425,7 +2425,7 @@
                 }
             ],
             "description": "FastRoute integration for the Hiraeth Nano-Framework",
-            "time": "2019-11-08T08:38:16+00:00"
+            "time": "2019-11-13T20:12:55+00:00"
         },
         {
             "name": "hiraeth/gaufrette",
@@ -4503,16 +4503,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.25.1",
+            "version": "1.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf"
+                "reference": "d5e2fb341cb44f7e2ab639d12a1e5901091ec287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
-                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d5e2fb341cb44f7e2ab639d12a1e5901091ec287",
+                "reference": "d5e2fb341cb44f7e2ab639d12a1e5901091ec287",
                 "shasum": ""
             },
             "require": {
@@ -4577,7 +4577,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2019-09-06T13:49:17+00:00"
+            "time": "2019-11-13T10:00:05+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -4776,16 +4776,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.1.1",
+            "version": "v6.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "26bd96350b0b2fcbf0ef4e6f0f9cf3528302a9d8"
+                "reference": "0ae8505d26fa7fa15d3d2d5ec1e695e854bb1538"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/26bd96350b0b2fcbf0ef4e6f0f9cf3528302a9d8",
-                "reference": "26bd96350b0b2fcbf0ef4e6f0f9cf3528302a9d8",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/0ae8505d26fa7fa15d3d2d5ec1e695e854bb1538",
+                "reference": "0ae8505d26fa7fa15d3d2d5ec1e695e854bb1538",
                 "shasum": ""
             },
             "require": {
@@ -4838,7 +4838,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2019-09-27T21:33:43+00:00"
+            "time": "2019-11-13T20:09:28+00:00"
         },
         {
             "name": "psr/cache",
@@ -5889,7 +5889,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.3.7",
+            "version": "v4.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -5953,16 +5953,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.3.7",
+            "version": "v4.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "d2e39dbddae68560fa6be0c576da6ad4e945b90d"
+                "reference": "831424efae0a1fe6642784bd52aae14ece6538e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/d2e39dbddae68560fa6be0c576da6ad4e945b90d",
-                "reference": "d2e39dbddae68560fa6be0c576da6ad4e945b90d",
+                "url": "https://api.github.com/repos/symfony/console/zipball/831424efae0a1fe6642784bd52aae14ece6538e6",
+                "reference": "831424efae0a1fe6642784bd52aae14ece6538e6",
                 "shasum": ""
             },
             "require": {
@@ -6024,11 +6024,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-05T15:00:49+00:00"
+            "time": "2019-11-13T07:29:07+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.3.7",
+            "version": "v4.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -6311,7 +6311,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v3.4.34",
+            "version": "v3.4.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
@@ -6380,7 +6380,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.3.7",
+            "version": "v4.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -6724,16 +6724,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa"
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/66eded992a75bfe75a829005a2884aae5ca86daa",
-                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/de5847b068362a88684a55b0dbb40d85986cfa52",
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52",
                 "shasum": ""
             },
             "require": {
@@ -6787,7 +6787,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2019-11-12T17:26:16+00:00"
+            "time": "2019-11-13T19:16:13+00:00"
         },
         {
             "name": "zendframework/zend-httphandlerrunner",
