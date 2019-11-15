@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "7c8603c348aef69fa10ded34f0854a3f",
@@ -1674,16 +1674,16 @@
         },
         {
             "name": "dotink/jin",
-            "version": "3.3.3",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dotink/jin.git",
-                "reference": "e3b8d3bd8cec3accba862ff3336a217c9878bbd2"
+                "reference": "86cd0025cb18001739ce27e1c5ec9a0b9cf60871"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dotink/jin/zipball/e3b8d3bd8cec3accba862ff3336a217c9878bbd2",
-                "reference": "e3b8d3bd8cec3accba862ff3336a217c9878bbd2",
+                "url": "https://api.github.com/repos/dotink/jin/zipball/86cd0025cb18001739ce27e1c5ec9a0b9cf60871",
+                "reference": "86cd0025cb18001739ce27e1c5ec9a0b9cf60871",
                 "shasum": ""
             },
             "require": {
@@ -1716,7 +1716,7 @@
             "keywords": [
                 "keyword"
             ],
-            "time": "2019-07-12T12:43:03+00:00"
+            "time": "2019-11-15T05:42:11+00:00"
         },
         {
             "name": "ellipse/cookie-encryption",
@@ -2186,21 +2186,21 @@
         },
         {
             "name": "hiraeth/core",
-            "version": "2.0-beta150",
+            "version": "2.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "252bdfcdf22b488664efb607f7613fa176b11c51"
+                "reference": "a7141b1999821257acb94fc1717f6aab05b9e44b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/252bdfcdf22b488664efb607f7613fa176b11c51",
-                "reference": "252bdfcdf22b488664efb607f7613fa176b11c51",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/a7141b1999821257acb94fc1717f6aab05b9e44b",
+                "reference": "a7141b1999821257acb94fc1717f6aab05b9e44b",
                 "shasum": ""
             },
             "require": {
                 "defuse/php-encryption": "^2.2",
-                "dotink/jin": "^3.3",
+                "dotink/jin": "^3.5",
                 "php": ">=7.2",
                 "psr/container": "^1.0",
                 "psr/log": "^1.1",
@@ -2235,7 +2235,7 @@
                 }
             ],
             "description": "Core classes for the Hiraeth Nano-Framework",
-            "time": "2019-11-14T09:26:09+00:00"
+            "time": "2019-11-15T05:50:49+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -2912,21 +2912,24 @@
         },
         {
             "name": "hiraeth/monolog",
-            "version": "2.0-beta7",
+            "version": "2.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/monolog.git",
-                "reference": "787561bfe1363048c7187bbb8bcbe3440592c5c3"
+                "reference": "85c9aa7d30fc7f293fbd22fb718f1f06d05db0dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/787561bfe1363048c7187bbb8bcbe3440592c5c3",
-                "reference": "787561bfe1363048c7187bbb8bcbe3440592c5c3",
+                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/85c9aa7d30fc7f293fbd22fb718f1f06d05db0dd",
+                "reference": "85c9aa7d30fc7f293fbd22fb718f1f06d05db0dd",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
                 "monolog/monolog": "^1.24"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.11.19"
             },
             "type": "opus-package",
             "extra": {
@@ -2953,7 +2956,7 @@
                 }
             ],
             "description": "Monolog for the Hiraeth Nano-Framework",
-            "time": "2019-11-08T18:22:16+00:00"
+            "time": "2019-11-15T04:43:42+00:00"
         },
         {
             "name": "hiraeth/routing",
