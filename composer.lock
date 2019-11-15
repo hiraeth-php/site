@@ -1678,12 +1678,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dotink/jin.git",
-                "reference": "86cd0025cb18001739ce27e1c5ec9a0b9cf60871"
+                "reference": "d617fcc92a712f99b43883ad27652c68f3aed01a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dotink/jin/zipball/86cd0025cb18001739ce27e1c5ec9a0b9cf60871",
-                "reference": "86cd0025cb18001739ce27e1c5ec9a0b9cf60871",
+                "url": "https://api.github.com/repos/dotink/jin/zipball/d617fcc92a712f99b43883ad27652c68f3aed01a",
+                "reference": "d617fcc92a712f99b43883ad27652c68f3aed01a",
                 "shasum": ""
             },
             "require": {
@@ -1716,7 +1716,7 @@
             "keywords": [
                 "keyword"
             ],
-            "time": "2019-11-15T05:42:11+00:00"
+            "time": "2019-11-15T10:32:09+00:00"
         },
         {
             "name": "ellipse/cookie-encryption",
