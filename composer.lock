@@ -1877,21 +1877,21 @@
         },
         {
             "name": "hiraeth/auth",
-            "version": "2.0-beta5",
+            "version": "2.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/auth.git",
-                "reference": "d85aebeffb7a86c5fe20707cb26071a1727b0239"
+                "reference": "fdc1e3bf02a17488e7d0878ecb2d1d76b0f95156"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/auth/zipball/d85aebeffb7a86c5fe20707cb26071a1727b0239",
-                "reference": "d85aebeffb7a86c5fe20707cb26071a1727b0239",
+                "url": "https://api.github.com/repos/hiraeth-php/auth/zipball/fdc1e3bf02a17488e7d0878ecb2d1d76b0f95156",
+                "reference": "fdc1e3bf02a17488e7d0878ecb2d1d76b0f95156",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
-                "hiraeth/signal": "^1.2",
+                "hiraeth/signal": "^2.0",
                 "imarc/auth": "^2.0"
             },
             "require-dev": {
@@ -1923,27 +1923,29 @@
                 }
             ],
             "description": "RBAC/ACL auth for the Hiraeth Nano-Framework",
-            "time": "2019-07-22T17:01:25+00:00"
+            "time": "2019-11-15T10:05:56+00:00"
         },
         {
             "name": "hiraeth/bootstrap",
-            "version": "1.0-beta18",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/bootstrap.git",
-                "reference": "4a064f53b75a35d6bb07f017daa1543519ed999e"
+                "reference": "112f6b0a06012e529b7995316574a543b1147e1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/4a064f53b75a35d6bb07f017daa1543519ed999e",
-                "reference": "4a064f53b75a35d6bb07f017daa1543519ed999e",
+                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/112f6b0a06012e529b7995316574a543b1147e1e",
+                "reference": "112f6b0a06012e529b7995316574a543b1147e1e",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/actions": "^1.0",
                 "hiraeth/app": "^2.0",
                 "hiraeth/auth": "^2.0",
+                "hiraeth/caching": "^1.0",
                 "hiraeth/checkpoint": "^2.0",
+                "hiraeth/commonmark": "^1.0",
                 "hiraeth/console": "^2.0",
                 "hiraeth/diactoros": "^1.0",
                 "hiraeth/doctrine": "^1.0",
@@ -1962,7 +1964,7 @@
                 "hiraeth/routing": "^1.0",
                 "hiraeth/session": "^1.0",
                 "hiraeth/shell": "^1.0",
-                "hiraeth/signal": "^1.2",
+                "hiraeth/signal": "^2.0",
                 "hiraeth/stash": "^1.0",
                 "hiraeth/stash-session": "^1.0",
                 "hiraeth/templates": "^1.0",
@@ -1983,7 +1985,7 @@
                 }
             ],
             "description": "Official packages for the Hiraeth PHP Nano Framework",
-            "time": "2019-11-08T10:35:19+00:00"
+            "time": "2019-11-15T07:43:14+00:00"
         },
         {
             "name": "hiraeth/caching",
@@ -1991,12 +1993,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/caching.git",
-                "reference": "7cadb58d468a07ef5133ebd9c65281d80d45fb47"
+                "reference": "791408c7ebefd5b1c4aaf83837cb07b5c5393916"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/caching/zipball/7cadb58d468a07ef5133ebd9c65281d80d45fb47",
-                "reference": "7cadb58d468a07ef5133ebd9c65281d80d45fb47",
+                "url": "https://api.github.com/repos/hiraeth-php/caching/zipball/791408c7ebefd5b1c4aaf83837cb07b5c5393916",
+                "reference": "791408c7ebefd5b1c4aaf83837cb07b5c5393916",
                 "shasum": ""
             },
             "require": {
@@ -2031,7 +2033,7 @@
                 }
             ],
             "description": "Caching abstraction for the Hiraeth Nano Framework",
-            "time": "2019-11-15T02:11:25+00:00"
+            "time": "2019-11-15T07:30:07+00:00"
         },
         {
             "name": "hiraeth/checkpoint",
@@ -2087,12 +2089,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/commonmark.git",
-                "reference": "3aab0219368c28d0a7c23b02893a93ae94313e17"
+                "reference": "51d7823ab3f17b733e12cdbf6b488a63fe8c283e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/commonmark/zipball/3aab0219368c28d0a7c23b02893a93ae94313e17",
-                "reference": "3aab0219368c28d0a7c23b02893a93ae94313e17",
+                "url": "https://api.github.com/repos/hiraeth-php/commonmark/zipball/51d7823ab3f17b733e12cdbf6b488a63fe8c283e",
+                "reference": "51d7823ab3f17b733e12cdbf6b488a63fe8c283e",
                 "shasum": ""
             },
             "require": {
@@ -2133,7 +2135,7 @@
                 }
             ],
             "description": "CommonMark parsing for the Hiraeth Nano Framework",
-            "time": "2019-11-14T09:43:05+00:00"
+            "time": "2019-11-15T07:31:20+00:00"
         },
         {
             "name": "hiraeth/console",
@@ -2190,12 +2192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "a7141b1999821257acb94fc1717f6aab05b9e44b"
+                "reference": "d66d87e4654b1909b7be569701afcd09e5888827"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/a7141b1999821257acb94fc1717f6aab05b9e44b",
-                "reference": "a7141b1999821257acb94fc1717f6aab05b9e44b",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/d66d87e4654b1909b7be569701afcd09e5888827",
+                "reference": "d66d87e4654b1909b7be569701afcd09e5888827",
                 "shasum": ""
             },
             "require": {
@@ -2235,7 +2237,7 @@
                 }
             ],
             "description": "Core classes for the Hiraeth Nano-Framework",
-            "time": "2019-11-15T05:50:49+00:00"
+            "time": "2019-11-15T10:00:55+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -2394,21 +2396,21 @@
         },
         {
             "name": "hiraeth/events",
-            "version": "1.0-beta3",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/events.git",
-                "reference": "93c0cd6ddb3e0b93884cbc03dcb19ebabe5fe3b7"
+                "reference": "abd912fedd3ae4bbd86f63ddcda4e9911efeda1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/events/zipball/93c0cd6ddb3e0b93884cbc03dcb19ebabe5fe3b7",
-                "reference": "93c0cd6ddb3e0b93884cbc03dcb19ebabe5fe3b7",
+                "url": "https://api.github.com/repos/hiraeth-php/events/zipball/abd912fedd3ae4bbd86f63ddcda4e9911efeda1a",
+                "reference": "abd912fedd3ae4bbd86f63ddcda4e9911efeda1a",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
-                "hiraeth/signal": "^1.2",
+                "hiraeth/signal": "^2.0",
                 "league/event": "^2.2"
             },
             "type": "opus-package",
@@ -2436,7 +2438,7 @@
                 }
             ],
             "description": "Event handling provided by League Event for the Hiraeth Nano Framework",
-            "time": "2019-08-16T17:03:06+00:00"
+            "time": "2019-11-15T10:16:03+00:00"
         },
         {
             "name": "hiraeth/fastroute",
@@ -2495,21 +2497,25 @@
         },
         {
             "name": "hiraeth/gaufrette",
-            "version": "1.0-beta4",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/gaufrette.git",
-                "reference": "6436998caed01ca42d76fd04a74743a14fa4423c"
+                "reference": "c6b9b3d5bc95e69edbcfc197086fa5f11a9a1111"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/gaufrette/zipball/6436998caed01ca42d76fd04a74743a14fa4423c",
-                "reference": "6436998caed01ca42d76fd04a74743a14fa4423c",
+                "url": "https://api.github.com/repos/hiraeth-php/gaufrette/zipball/c6b9b3d5bc95e69edbcfc197086fa5f11a9a1111",
+                "reference": "c6b9b3d5bc95e69edbcfc197086fa5f11a9a1111",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
                 "knplabs/gaufrette": "^0.8"
+            },
+            "require-dev": {
+                "league/flysystem": "^1.0",
+                "phpstan/phpstan": "^0.11.19"
             },
             "type": "opus-package",
             "extra": {
@@ -2536,7 +2542,7 @@
                 }
             ],
             "description": "Gaufrette for the Hiraeth Nano Framework",
-            "time": "2019-11-11T19:39:27+00:00"
+            "time": "2019-11-15T08:20:35+00:00"
         },
         {
             "name": "hiraeth/http",
@@ -2916,12 +2922,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/monolog.git",
-                "reference": "85c9aa7d30fc7f293fbd22fb718f1f06d05db0dd"
+                "reference": "415f772dcb8b871d41c01c66255b727e533777f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/85c9aa7d30fc7f293fbd22fb718f1f06d05db0dd",
-                "reference": "85c9aa7d30fc7f293fbd22fb718f1f06d05db0dd",
+                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/415f772dcb8b871d41c01c66255b727e533777f4",
+                "reference": "415f772dcb8b871d41c01c66255b727e533777f4",
                 "shasum": ""
             },
             "require": {
@@ -2956,20 +2962,20 @@
                 }
             ],
             "description": "Monolog for the Hiraeth Nano-Framework",
-            "time": "2019-11-15T04:43:42+00:00"
+            "time": "2019-11-15T06:59:23+00:00"
         },
         {
             "name": "hiraeth/routing",
-            "version": "1.0-beta75",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/routing.git",
-                "reference": "5ea354c490d507b30b609ed7ef2cb6db19d903fc"
+                "reference": "08421791bc7fc4c4d45a256d0189fbfa1c16aba8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/5ea354c490d507b30b609ed7ef2cb6db19d903fc",
-                "reference": "5ea354c490d507b30b609ed7ef2cb6db19d903fc",
+                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/08421791bc7fc4c4d45a256d0189fbfa1c16aba8",
+                "reference": "08421791bc7fc4c4d45a256d0189fbfa1c16aba8",
                 "shasum": ""
             },
             "require": {
@@ -2977,7 +2983,7 @@
                 "hiraeth/http": "^1.0",
                 "hiraeth/http-imp": "^1.0",
                 "hiraeth/mime": "^1.0",
-                "hiraeth/signal": "^1.0",
+                "hiraeth/signal": "^2.0",
                 "psr/http-server-middleware": "^1.0"
             },
             "require-dev": {
@@ -3009,7 +3015,7 @@
                 }
             ],
             "description": "Router abstraction for the Hiraeth Nano Framework",
-            "time": "2019-11-15T01:44:38+00:00"
+            "time": "2019-11-15T10:22:34+00:00"
         },
         {
             "name": "hiraeth/sentry",
@@ -3155,19 +3161,24 @@
         },
         {
             "name": "hiraeth/signal",
-            "version": "1.2.2",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/signal.git",
-                "reference": "1197d8f91396df4cf39c1852c9cf1e35a75bd7a7"
+                "reference": "5fda37c6bd95fb058f7da9dc03c77f597d75b286"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/signal/zipball/1197d8f91396df4cf39c1852c9cf1e35a75bd7a7",
-                "reference": "1197d8f91396df4cf39c1852c9cf1e35a75bd7a7",
+                "url": "https://api.github.com/repos/hiraeth-php/signal/zipball/5fda37c6bd95fb058f7da9dc03c77f597d75b286",
+                "reference": "5fda37c6bd95fb058f7da9dc03c77f597d75b286",
                 "shasum": ""
             },
+            "require": {
+                "psr/container": "^1.0"
+            },
             "require-dev": {
+                "hiraeth/app": "^2.0",
+                "phpstan/phpstan": "^0.11.19",
                 "phpunit/phpunit": "^7.4"
             },
             "type": "opus-package",
@@ -3190,24 +3201,25 @@
             "authors": [
                 {
                     "name": "Matthew J. Sahagian",
-                    "email": "matthew.sahagian@gmail.com"
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
                 }
             ],
             "description": "A generic callback wrapper which enables lazy DI instantiation",
-            "time": "2019-05-10T03:01:22+00:00"
+            "time": "2019-11-14T10:51:11+00:00"
         },
         {
             "name": "hiraeth/stash",
-            "version": "1.0-beta20",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/stash.git",
-                "reference": "ed436454af4bd550cd68f85d694563326b420793"
+                "reference": "23f3345d1d2a46be8cc88f077a6698f696239061"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/stash/zipball/ed436454af4bd550cd68f85d694563326b420793",
-                "reference": "ed436454af4bd550cd68f85d694563326b420793",
+                "url": "https://api.github.com/repos/hiraeth-php/stash/zipball/23f3345d1d2a46be8cc88f077a6698f696239061",
+                "reference": "23f3345d1d2a46be8cc88f077a6698f696239061",
                 "shasum": ""
             },
             "require": {
@@ -3245,20 +3257,20 @@
                 }
             ],
             "description": "Caching provided by Stash for the Hiraeth Nano Framework",
-            "time": "2019-11-14T10:49:59+00:00"
+            "time": "2019-11-15T06:48:35+00:00"
         },
         {
             "name": "hiraeth/stash-session",
-            "version": "1.0-beta10",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/stash-session.git",
-                "reference": "0e072a5516cdd455d407259ca1524803494f0a5b"
+                "reference": "711134e97cfd4c11be4b788a2cc2264205bf0b4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/stash-session/zipball/0e072a5516cdd455d407259ca1524803494f0a5b",
-                "reference": "0e072a5516cdd455d407259ca1524803494f0a5b",
+                "url": "https://api.github.com/repos/hiraeth-php/stash-session/zipball/711134e97cfd4c11be4b788a2cc2264205bf0b4a",
+                "reference": "711134e97cfd4c11be4b788a2cc2264205bf0b4a",
                 "shasum": ""
             },
             "require": {
@@ -3294,7 +3306,7 @@
                 }
             ],
             "description": "Cache based session storage via stash for the Hiraeth Nano Framework",
-            "time": "2019-11-14T10:49:07+00:00"
+            "time": "2019-11-15T06:49:35+00:00"
         },
         {
             "name": "hiraeth/templates",
