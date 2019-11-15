@@ -2192,12 +2192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "d66d87e4654b1909b7be569701afcd09e5888827"
+                "reference": "39a3cfbed11c0e5ab18cb635530f5f9ce0602ede"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/d66d87e4654b1909b7be569701afcd09e5888827",
-                "reference": "d66d87e4654b1909b7be569701afcd09e5888827",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/39a3cfbed11c0e5ab18cb635530f5f9ce0602ede",
+                "reference": "39a3cfbed11c0e5ab18cb635530f5f9ce0602ede",
                 "shasum": ""
             },
             "require": {
@@ -2237,7 +2237,7 @@
                 }
             ],
             "description": "Core classes for the Hiraeth Nano-Framework",
-            "time": "2019-11-15T10:00:55+00:00"
+            "time": "2019-11-15T10:50:56+00:00"
         },
         {
             "name": "hiraeth/dbal",
