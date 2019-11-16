@@ -14,9 +14,57 @@
             class = Acme\Middleware
         ```
 
+        ## Functions
+
+        Jin supports mapping functions for configuration values.  These are useful to get information that requires some logic in order to generate or retrieve.  Hiraeth registers three important functions that allow you to write more flexible configs.
+
+        ### The env() Function
+
+        Get environment variables value, including those set in your `.env`{: .config}.
+
+        ```
+        [config]
+
+            setting = env(VALUE)
+        ```
+
+        With a default value if not found:
+
+        ```
+        [config]
+
+            setting = env(VALUE, true)
+        ```
+
+        ### The dir() Function
+
+        If you need to get an "application root" relative directory, you can use the `dir()` function.  This is equivalent to `$app->getDirectory()` (See: [Files and Directories](./files)).
+
+        ```
+        [config]
+
+            directory = dir(storage/cache/acme)
+        ```
+
+        {: .note}
+        Using the `dir()` function will always create the directory if it does not exist.
+
+        ### The file() Function
+
+        If you need to get an "application root" relative file, you can use the `file()` funciton.  This is equivalent to `$app->getFile()` (See: [Files and Directories](./files)).
+
+        ```
+        [config]
+
+            file = file(storage/example.txt)
+        ```
+
+        {: .note}
+        Using the `file()` function will always create the file if it does not exist.
+
         ## Getting Configuration Information {: #getting-info}
 
-        A configuration collection is just an object containing informatoin from a file somewhere in `config`{: .folder}.  The collection "path" refers to the relative file path minus the `.jin` extension.  For example, the collection path for `config/common.jin`{: .config} is simply `common`.
+        A configuration collection is just an object containing information from a file somewhere in `config`{: .folder}.  The collection "path" refers to the relative file path minus the `.jin` extension.  For example, the collection path for `config/common.jin`{: .config} is simply `common`.
 
         To get specific configuration information you can use the `$app->getConfig()` method by passing it the path, the key to the setting, and a default value in the event that it's not set.  The following example shows how we might determine if an `Acme\Middleware`{: .class} is disabled for the previous example JIN code:
 
@@ -35,7 +83,42 @@
 
         However, the default value is additionally used to infer and set the data type on any data retrieved.  JIN supports typing natively, so this functionality is primarily used to convert scalar values to arrays at the time of retrieval or to typecast mixed values into booleans for simple checks.
 
+        For example, given the following config:
+
+        ```
+        [config]
+
+            setting = value
+        ```
+
+        Retrieving with `$app->getConfig('path', 'config.value', [])` will result in `[value]`.  This will allow you to create settings that can be optionally scalar values or arrays and safely `foreach` over them:
+
+        ```
+        foreach ($app->getConfig('path', 'config.value', []) as $value) {
+            ...
+        }
+        ```
+
         Additionally, if the retrieved value is an array (natively or by inference) and the default value is an array, then any keys/values which exist in the default that don't exist in the retrieved value will be added to the result.
+
+        For example, given the following config:
+
+        ```
+        [config]
+
+            setting = {
+                "foo": "bar"
+            }
+        ```
+
+        Retrieving with `$app->getConfig('path', 'config.value', ['bar' => 'foo'])` will result in:
+
+        ```php
+        [
+            'foo' => 'bar',
+            'bar' => 'foo'
+        ]
+        ```
 
         ### Querying Information {: #querying}
 

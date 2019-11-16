@@ -44,8 +44,10 @@
         You can enable logging by installing `hiraeth/monolog`{: .package} and updating your `.env`{: .config} to set `LOGGING` to the approriate log level.
 
         ```toml
-        LOGGING = Psr\Log\LogLevel::ERROR
+        LOGGING = error
         ```
+
+        Supported types map to [PSR-3 LogLevel constants](https://www.php-fig.org/psr/psr-3/#5-psrlogloglevel).
 
         Logs of the requests level or higher will then be sent to the default file location under `storage/logs`{: .folder}.
 
