@@ -1182,16 +1182,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.6.4",
+            "version": "v2.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "b52ef5a1002f99ab506a5a2d6dba5a2c236c5f43"
+                "reference": "2d9b9351831d1230881c52f006011cbf72fe944e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/b52ef5a1002f99ab506a5a2d6dba5a2c236c5f43",
-                "reference": "b52ef5a1002f99ab506a5a2d6dba5a2c236c5f43",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/2d9b9351831d1230881c52f006011cbf72fe944e",
+                "reference": "2d9b9351831d1230881c52f006011cbf72fe944e",
                 "shasum": ""
             },
             "require": {
@@ -1259,7 +1259,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2019-09-20T14:30:26+00:00"
+            "time": "2019-11-18T22:01:21+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1677,12 +1677,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/bootstrap.git",
-                "reference": "112f6b0a06012e529b7995316574a543b1147e1e"
+                "reference": "7ed1c0f538bf3718aea846a3eb8f33b9e0d4d07b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/112f6b0a06012e529b7995316574a543b1147e1e",
-                "reference": "112f6b0a06012e529b7995316574a543b1147e1e",
+                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/7ed1c0f538bf3718aea846a3eb8f33b9e0d4d07b",
+                "reference": "7ed1c0f538bf3718aea846a3eb8f33b9e0d4d07b",
                 "shasum": ""
             },
             "require": {
@@ -1703,6 +1703,7 @@
                 "hiraeth/markdown": "^1.0",
                 "hiraeth/middleland": "^1.0",
                 "hiraeth/middleware-client-ip": "^1.0",
+                "hiraeth/middleware-common": "^1.0",
                 "hiraeth/middleware-encrypt-cookies": "^1.0",
                 "hiraeth/middleware-firewall": "^1.0",
                 "hiraeth/mime": "^1.0",
@@ -1731,7 +1732,7 @@
                 }
             ],
             "description": "Official packages for the Hiraeth PHP Nano Framework",
-            "time": "2019-11-15T07:43:14+00:00"
+            "time": "2019-11-18T18:03:48+00:00"
         },
         {
             "name": "hiraeth/caching",
@@ -1991,12 +1992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/dbal.git",
-                "reference": "16c9264988b66dd403ea7a9bdd071f17c9684783"
+                "reference": "66586e219e21fbc3988b54d1790878cb4957086d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/16c9264988b66dd403ea7a9bdd071f17c9684783",
-                "reference": "16c9264988b66dd403ea7a9bdd071f17c9684783",
+                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/66586e219e21fbc3988b54d1790878cb4957086d",
+                "reference": "66586e219e21fbc3988b54d1790878cb4957086d",
                 "shasum": ""
             },
             "require": {
@@ -2032,7 +2033,7 @@
                 }
             ],
             "description": "Database abstraction via Doctrine for the Hiraeth Nano Framework",
-            "time": "2019-11-15T23:09:30+00:00"
+            "time": "2019-11-18T21:22:34+00:00"
         },
         {
             "name": "hiraeth/diactoros",
@@ -2092,12 +2093,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/doctrine.git",
-                "reference": "8793a600b5c687898b613cff1b7808f60f51cc27"
+                "reference": "969901d163199c0d8b00b3fd91fa34896c7567b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/8793a600b5c687898b613cff1b7808f60f51cc27",
-                "reference": "8793a600b5c687898b613cff1b7808f60f51cc27",
+                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/969901d163199c0d8b00b3fd91fa34896c7567b2",
+                "reference": "969901d163199c0d8b00b3fd91fa34896c7567b2",
                 "shasum": ""
             },
             "require": {
@@ -2137,7 +2138,7 @@
                 }
             ],
             "description": "Doctrine integration for the Hiraeth Nano Framework",
-            "time": "2019-11-15T20:25:37+00:00"
+            "time": "2019-11-18T21:02:11+00:00"
         },
         {
             "name": "hiraeth/events",
@@ -2522,6 +2523,50 @@
             ],
             "description": "Client IP middleware for the Hiraeth Nano Framework",
             "time": "2019-04-10T01:49:35+00:00"
+        },
+        {
+            "name": "hiraeth/middleware-common",
+            "version": "1.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/middleware-common.git",
+                "reference": "4b2d2d9d2216040d33f0b17b536a8800b220a98a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-common/zipball/4b2d2d9d2216040d33f0b17b536a8800b220a98a",
+                "reference": "4b2d2d9d2216040d33f0b17b536a8800b220a98a",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/app": "^2.0"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "Common middleware for the Hiraeth Nano Framework",
+            "time": "2019-11-18T18:01:01+00:00"
         },
         {
             "name": "hiraeth/middleware-encrypt-cookies",

@@ -22,7 +22,7 @@
 
         Get environment variables value, including those set in your `.env`{: .config}.
 
-        ```
+        ```toml
         [config]
 
             setting = env(VALUE)
@@ -30,7 +30,7 @@
 
         With a default value if not found:
 
-        ```
+        ```toml
         [config]
 
             setting = env(VALUE, true)
@@ -40,7 +40,7 @@
 
         If you need to get an "application root" relative directory, you can use the `dir()` function.  This is equivalent to `$app->getDirectory()` (See: [Files and Directories](./files)).
 
-        ```
+        ```toml
         [config]
 
             directory = dir(storage/cache/acme)
@@ -53,7 +53,7 @@
 
         If you need to get an "application root" relative file, you can use the `file()` funciton.  This is equivalent to `$app->getFile()` (See: [Files and Directories](./files)).
 
-        ```
+        ```toml
         [config]
 
             file = file(storage/example.txt)
@@ -85,7 +85,7 @@
 
         For example, given the following config:
 
-        ```
+        ```toml
         [config]
 
             setting = value
@@ -93,7 +93,7 @@
 
         Retrieving with `$app->getConfig('path', 'config.value', [])` will result in `[value]`.  This will allow you to create settings that can be optionally scalar values or arrays and safely `foreach` over them:
 
-        ```
+        ```php
         foreach ($app->getConfig('path', 'config.value', []) as $value) {
             ...
         }
@@ -103,7 +103,7 @@
 
         For example, given the following config:
 
-        ```
+        ```toml
         [config]
 
             setting = {

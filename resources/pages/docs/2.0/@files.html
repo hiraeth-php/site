@@ -55,10 +55,16 @@
         In many cases you may want to create a file or directory if it does not exist.  This is frequently the case, for example, if you're using `getDirectory()` to get sub-directories for storing various assets.  Adding, `TRUE` as the second argument to either `getFile()` or `getDirectory()` will attempt to create the file or directory if it does not exist.
 
         ```php
-        $app->getFile('storage/sync.lock', TRUE)->openFile('w')->fwrite('1')
+        $app->getFile('storage/sync.lock', TRUE)
         ```
 
-        In addition to basic file access via `Hiraeth\Application`{: .class}, you can install `hiraeth\gaufrette`{: .package} to provide access to external storage interfaces like S3, SFTP, and additional local volumes.  
+        When files are created, they will be created using the `UMASK` set in the `.env`{: .config} file.  By default, this value is `0002` which means owner and group will be able to write (this allows ACLs to limit permissions on group).  You can change this value to modify the umask for all application created files and directories.
+
+        ```toml
+        UMASK = 0022
+        ```
+
+        In addition to basic file access via `Hiraeth\Application`{: .class}, you can install `hiraeth\gaufrette`{: .package} to provide access to external storage interfaces like S3, SFTP, and additional local volumes.
 
         ----
 

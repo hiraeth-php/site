@@ -1,0 +1,9 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Entry Point' %}
+
+{% block content %}
+    {% markdown %}
+        When accessing Hiraeth over HTTP (any standard web server), you will be hitting the application through the `public/index.php`{: .html} file.  This file is provided by `hiraeth/bootstrap`{: .package}, though more specifically through `hiraeth/http`{: .package}.
+    {% endmarkdown %}
+{% endblock %}
