@@ -1986,7 +1986,7 @@
                 }
             ],
             "description": "Core classes for the Hiraeth Nano-Framework",
-            "time": "2019-11-15T10:50:56+00:00"
+            "time": "2019-11-19T10:40:58+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -2035,7 +2035,7 @@
                 }
             ],
             "description": "Database abstraction via Doctrine for the Hiraeth Nano Framework",
-            "time": "2019-11-18T21:22:34+00:00"
+            "time": "2019-11-19T06:35:59+00:00"
         },
         {
             "name": "hiraeth/diactoros",
@@ -2119,7 +2119,8 @@
             "extra": {
                 "opus": {
                     "hiraeth/app": {
-                        "config": ""
+                        "config": "",
+                        "local": ""
                     }
                 }
             },
@@ -2140,7 +2141,7 @@
                 }
             ],
             "description": "Doctrine integration for the Hiraeth Nano Framework",
-            "time": "2019-11-18T21:02:11+00:00"
+            "time": "2019-11-19T06:42:03+00:00"
         },
         {
             "name": "hiraeth/events",
@@ -2705,7 +2706,7 @@
                 }
             ],
             "description": "Monolog for the Hiraeth Nano-Framework",
-            "time": "2019-11-15T06:59:23+00:00"
+            "time": "2019-11-19T07:39:11+00:00"
         },
         {
             "name": "hiraeth/routing",
