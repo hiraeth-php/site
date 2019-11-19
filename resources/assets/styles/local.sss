@@ -1,4 +1,7 @@
 :root
+	--text-family-sans: 'Muli'
+	--text-family-mono: 'Source Code Pro'
+
 	--water: rgb(75, 109, 132)
 	--earth: rgb(70, 40, 10)
 	--grass: rgb(60, 165, 132)
@@ -94,7 +97,7 @@ body
 			--gutter: 6rem
 
 			& > nav
-				@mixin -keep-3
+				@mixin -keep-4
 
 			& > main
 				@mixin -keep-8
@@ -232,17 +235,18 @@ pre
 		--bg-color: transparent !important
 
 	& > .copy
-		@mixin icon
-		@mixin -color
 		@mixin -position
 
-		--top: 0
-		--right: 0
-		--icon-size: 4rem
-		--icon-content: ''
-		--text-color: var(--white)
+		--top: .5rem
+		--right: .5rem
 
 		cursor: pointer
+
+		&::before
+			@mixin icon
+
+			--icon-size: 2rem
+			--icon-content: url('https://api.iconify.design/mdi:content-copy.svg?color=%23ffffff&height=20')
 
 code:not(.hljs)
 	@mixin -outline

@@ -28,11 +28,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         copy.addEventListener('click', function(event) {
             event.target.clpb.value = event.target.closest('pre').querySelector('code').innerText;
 
-            console.log(event.target.clpb.select());
+            event.target.clpb.select();
             document.execCommand('copy');
         });
 
-        copy.innerHTML             = '⎘';
+        copy.innerHTML             = ' ';
         copy.clpb.style.background = 'transparent';
         copy.clpb.style.overflow   = 'hidden';
         copy.clpb.style.display    = 'block';
