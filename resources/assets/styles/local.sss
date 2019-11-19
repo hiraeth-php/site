@@ -223,12 +223,26 @@ pre
 	@mixin -scroll-x
 
 	--bg-color: var(--stone)
+	position: relative
 	tab-size: 4
 
 	& > code
 		@mixin -fill
 
 		--bg-color: transparent !important
+
+	& > .copy
+		@mixin icon
+		@mixin -color
+		@mixin -position
+
+		--top: 0
+		--right: 0
+		--icon-size: 4rem
+		--icon-content: ''
+		--text-color: var(--white)
+
+		cursor: pointer
 
 code:not(.hljs)
 	@mixin -outline
