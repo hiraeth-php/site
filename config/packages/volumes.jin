@@ -7,7 +7,7 @@
 	;
 
 	aliases = {
-		"Hiraeth\Volumes\VolumeManagerInterface": "Gaufrette\FilesystemMap"
+
 	}
 
 	;
@@ -17,7 +17,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Gaufrette\FilesystemMapDelegate"
+
 	]
 
 	;
@@ -26,11 +26,11 @@
 	;
 
 	providers = [
-		"Hiraeth\Gaufrette\ApplicationProvider"
+		"Hiraeth\Volumes\ApplicationProvider"
 	]
 
 
-[gaufrette]
+[volumes]
 
 	;
 	; The scheme to be used with the stream wrapper, e.g vol://public/images/picture.jpg if the

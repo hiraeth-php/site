@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "f6eecb024126e989b5d7fcd22dc61a66",
@@ -1182,33 +1182,35 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.6.6",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "2d9b9351831d1230881c52f006011cbf72fe944e"
+                "reference": "4d763ca4c925f647b248b9fa01b5f47aa3685d62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/2d9b9351831d1230881c52f006011cbf72fe944e",
-                "reference": "2d9b9351831d1230881c52f006011cbf72fe944e",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/4d763ca4c925f647b248b9fa01b5f47aa3685d62",
+                "reference": "4d763ca4c925f647b248b9fa01b5f47aa3685d62",
                 "shasum": ""
             },
             "require": {
-                "doctrine/annotations": "~1.5",
-                "doctrine/cache": "~1.6",
-                "doctrine/collections": "^1.4",
-                "doctrine/common": "^2.7.1",
-                "doctrine/dbal": "^2.6",
-                "doctrine/instantiator": "~1.1",
+                "doctrine/annotations": "^1.8",
+                "doctrine/cache": "^1.9.1",
+                "doctrine/collections": "^1.5",
+                "doctrine/common": "^2.11",
+                "doctrine/dbal": "^2.9.3",
+                "doctrine/event-manager": "^1.1",
+                "doctrine/instantiator": "^1.3",
+                "doctrine/persistence": "^1.2",
                 "ext-pdo": "*",
                 "php": "^7.1",
-                "symfony/console": "~3.0|~4.0"
+                "symfony/console": "^3.0|^4.0|^5.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^5.0",
                 "phpunit/phpunit": "^7.5",
-                "symfony/yaml": "~3.4|~4.0"
+                "symfony/yaml": "^3.4|^4.0|^5.0"
             },
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
@@ -1219,7 +1221,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6.x-dev"
+                    "dev-master": "2.7.x-dev"
                 }
             },
             "autoload": {
@@ -1254,12 +1256,12 @@
                 }
             ],
             "description": "Object-Relational-Mapper for PHP",
-            "homepage": "http://www.doctrine-project.org",
+            "homepage": "https://www.doctrine-project.org/projects/orm.html",
             "keywords": [
                 "database",
                 "orm"
             ],
-            "time": "2019-11-18T22:01:21+00:00"
+            "time": "2019-11-19T08:38:05+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1677,12 +1679,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/bootstrap.git",
-                "reference": "7ed1c0f538bf3718aea846a3eb8f33b9e0d4d07b"
+                "reference": "648eaaf196a427186ae6d2d81aae940282f76854"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/7ed1c0f538bf3718aea846a3eb8f33b9e0d4d07b",
-                "reference": "7ed1c0f538bf3718aea846a3eb8f33b9e0d4d07b",
+                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/648eaaf196a427186ae6d2d81aae940282f76854",
+                "reference": "648eaaf196a427186ae6d2d81aae940282f76854",
                 "shasum": ""
             },
             "require": {
@@ -1697,7 +1699,6 @@
                 "hiraeth/doctrine": "^1.0",
                 "hiraeth/events": "^1.0",
                 "hiraeth/fastroute": "^1.0",
-                "hiraeth/gaufrette": "^1.0",
                 "hiraeth/http": "^1.0",
                 "hiraeth/mailer": "^2.0",
                 "hiraeth/markdown": "^1.0",
@@ -1717,7 +1718,8 @@
                 "hiraeth/templates": "^1.0",
                 "hiraeth/twig": "^2.0",
                 "hiraeth/twig-cache": "^1.0",
-                "hiraeth/twig-markdown": "^1.0"
+                "hiraeth/twig-markdown": "^1.0",
+                "hiraeth/volumes": "^1.0"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1732,7 +1734,7 @@
                 }
             ],
             "description": "Official packages for the Hiraeth PHP Nano Framework",
-            "time": "2019-11-18T18:03:48+00:00"
+            "time": "2019-11-19T16:46:56+00:00"
         },
         {
             "name": "hiraeth/caching",
@@ -1939,12 +1941,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "39a3cfbed11c0e5ab18cb635530f5f9ce0602ede"
+                "reference": "22e9d86bbc7e4c55a514a8e0ab67c83074986e15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/39a3cfbed11c0e5ab18cb635530f5f9ce0602ede",
-                "reference": "39a3cfbed11c0e5ab18cb635530f5f9ce0602ede",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/22e9d86bbc7e4c55a514a8e0ab67c83074986e15",
+                "reference": "22e9d86bbc7e4c55a514a8e0ab67c83074986e15",
                 "shasum": ""
             },
             "require": {
@@ -1992,12 +1994,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/dbal.git",
-                "reference": "66586e219e21fbc3988b54d1790878cb4957086d"
+                "reference": "226a5dfa43fafdd0da15407e11fd16614c0a8072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/66586e219e21fbc3988b54d1790878cb4957086d",
-                "reference": "66586e219e21fbc3988b54d1790878cb4957086d",
+                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/226a5dfa43fafdd0da15407e11fd16614c0a8072",
+                "reference": "226a5dfa43fafdd0da15407e11fd16614c0a8072",
                 "shasum": ""
             },
             "require": {
@@ -2093,12 +2095,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/doctrine.git",
-                "reference": "969901d163199c0d8b00b3fd91fa34896c7567b2"
+                "reference": "c7aaa08125bd184d663770af1d57e08b9c614815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/969901d163199c0d8b00b3fd91fa34896c7567b2",
-                "reference": "969901d163199c0d8b00b3fd91fa34896c7567b2",
+                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/c7aaa08125bd184d663770af1d57e08b9c614815",
+                "reference": "c7aaa08125bd184d663770af1d57e08b9c614815",
                 "shasum": ""
             },
             "require": {
@@ -2240,55 +2242,6 @@
             ],
             "description": "FastRoute integration for the Hiraeth Nano-Framework",
             "time": "2019-11-14T08:41:34+00:00"
-        },
-        {
-            "name": "hiraeth/gaufrette",
-            "version": "1.0-beta",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hiraeth-php/gaufrette.git",
-                "reference": "c6b9b3d5bc95e69edbcfc197086fa5f11a9a1111"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/gaufrette/zipball/c6b9b3d5bc95e69edbcfc197086fa5f11a9a1111",
-                "reference": "c6b9b3d5bc95e69edbcfc197086fa5f11a9a1111",
-                "shasum": ""
-            },
-            "require": {
-                "hiraeth/app": "^2.0",
-                "knplabs/gaufrette": "^0.8"
-            },
-            "require-dev": {
-                "league/flysystem": "^1.0",
-                "phpstan/phpstan": "^0.11.19"
-            },
-            "type": "opus-package",
-            "extra": {
-                "opus": {
-                    "hiraeth/app": {
-                        "config": ""
-                    }
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthew J. Sahagian",
-                    "email": "matthew.sahagian@gmail.com",
-                    "role": "Lead Architect / Developer"
-                }
-            ],
-            "description": "Gaufrette for the Hiraeth Nano Framework",
-            "time": "2019-11-15T08:20:35+00:00"
         },
         {
             "name": "hiraeth/http",
@@ -2712,12 +2665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/monolog.git",
-                "reference": "415f772dcb8b871d41c01c66255b727e533777f4"
+                "reference": "04d8f92432c1cd0bafb70995a54ed408d22b60e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/415f772dcb8b871d41c01c66255b727e533777f4",
-                "reference": "415f772dcb8b871d41c01c66255b727e533777f4",
+                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/04d8f92432c1cd0bafb70995a54ed408d22b60e2",
+                "reference": "04d8f92432c1cd0bafb70995a54ed408d22b60e2",
                 "shasum": ""
             },
             "require": {
@@ -3302,6 +3255,55 @@
             "time": "2019-11-14T05:44:28+00:00"
         },
         {
+            "name": "hiraeth/volumes",
+            "version": "1.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/volumes.git",
+                "reference": "2566e4f76864082f99b29d59b0350105673bc0a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/volumes/zipball/2566e4f76864082f99b29d59b0350105673bc0a1",
+                "reference": "2566e4f76864082f99b29d59b0350105673bc0a1",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/app": "^2.0",
+                "league/flysystem": "^1.0",
+                "twistor/flysystem-stream-wrapper": "^1.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.11.19"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "Volumes for the Hiraeth Nano Framework",
+            "time": "2019-11-19T16:43:20+00:00"
+        },
+        {
             "name": "imarc/auth",
             "version": "2.0-beta5",
             "source": {
@@ -3537,95 +3539,6 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
-        },
-        {
-            "name": "knplabs/gaufrette",
-            "version": "v0.8.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "1d44b7ac74256a240704b0fb16d2d66360511a07"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/1d44b7ac74256a240704b0fb16d2d66360511a07",
-                "reference": "1d44b7ac74256a240704b0fb16d2d66360511a07",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "conflict": {
-                "microsoft/windowsazure": "<0.4.3"
-            },
-            "require-dev": {
-                "akeneo/phpspec-skip-example-extension": "^4.0",
-                "amazonwebservices/aws-sdk-for-php": "1.5.*",
-                "aws/aws-sdk-php": "^2.4.12||~3",
-                "doctrine/dbal": ">=2.3",
-                "dropbox-php/dropbox-php": "*",
-                "google/apiclient": "~1.1.3",
-                "league/flysystem": "~1.0",
-                "microsoft/azure-storage-blob": "^1.0",
-                "mikey179/vfsstream": "~1.2.0",
-                "mongodb/mongodb": "^1.1",
-                "phpseclib/phpseclib": "^2.0",
-                "phpspec/phpspec": "~5.1",
-                "phpunit/phpunit": "~7.5",
-                "rackspace/php-opencloud": "^1.9.2"
-            },
-            "suggest": {
-                "ext-curl": "*",
-                "ext-fileinfo": "This extension is used to automatically detect the content-type of a file in the AwsS3, OpenCloud, AzureBlogStorage and GoogleCloudStorage adapters",
-                "ext-mbstring": "*",
-                "gaufrette/aws-s3-adapter": "to use AwsS3 adapter (supports SDK v2 and v3)",
-                "gaufrette/azure-blob-storage-adapter": "to use AzureBlobStorage adapter",
-                "gaufrette/doctrine-dbal-adapter": "to use DBAL adapter",
-                "gaufrette/flysystem-adapter": "to use Flysystem adapter",
-                "gaufrette/ftp-adapter": "to use Ftp adapter",
-                "gaufrette/gridfs-adapter": "to use GridFS adapter",
-                "gaufrette/in-memory-adapter": "to use InMemory adapter",
-                "gaufrette/local-adapter": "to use Local adapter",
-                "gaufrette/opencloud-adapter": "to use Opencloud adapter",
-                "gaufrette/phpseclib-sftp-adapter": "to use PhpseclibSftp adapter",
-                "gaufrette/zip-adapter": "to use Zip adapter",
-                "google/apiclient": "to use GoogleCloudStorage adapter",
-                "knplabs/knp-gaufrette-bundle": "to use with Symfony2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.9.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Gaufrette": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "The contributors",
-                    "homepage": "http://github.com/knplabs/Gaufrette/contributors"
-                },
-                {
-                    "name": "KnpLabs Team",
-                    "homepage": "http://knplabs.com"
-                }
-            ],
-            "description": "PHP library that provides a filesystem abstraction layer",
-            "homepage": "http://knplabs.com",
-            "keywords": [
-                "abstraction",
-                "file",
-                "filesystem",
-                "media"
-            ],
-            "time": "2019-06-06T09:56:58+00:00"
         },
         {
             "name": "league/climate",
@@ -4164,6 +4077,90 @@
                 "listener"
             ],
             "time": "2018-11-26T11:52:41+00:00"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "1.0.57",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": ">=5.5.9"
+            },
+            "conflict": {
+                "league/flysystem-sftp": "<1.0.6"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^3.4",
+                "phpunit/phpunit": "^5.7.10"
+            },
+            "suggest": {
+                "ext-fileinfo": "Required for MimeType",
+                "ext-ftp": "Allows you to use FTP server storage",
+                "ext-openssl": "Allows you to use FTPS server storage",
+                "league/flysystem-aws-s3-v2": "Allows you to use S3 storage with AWS SDK v2",
+                "league/flysystem-aws-s3-v3": "Allows you to use S3 storage with AWS SDK v3",
+                "league/flysystem-azure": "Allows you to use Windows Azure Blob storage",
+                "league/flysystem-cached-adapter": "Flysystem adapter decorator for metadata caching",
+                "league/flysystem-eventable-filesystem": "Allows you to use EventableFilesystem",
+                "league/flysystem-rackspace": "Allows you to use Rackspace Cloud Files",
+                "league/flysystem-sftp": "Allows you to use SFTP server storage via phpseclib",
+                "league/flysystem-webdav": "Allows you to use WebDAV storage",
+                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
+                "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
+                "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "description": "Filesystem abstraction: Many filesystems, one API.",
+            "keywords": [
+                "Cloud Files",
+                "WebDAV",
+                "abstraction",
+                "aws",
+                "cloud",
+                "copy.com",
+                "dropbox",
+                "file systems",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "rackspace",
+                "remote",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "time": "2019-10-16T21:01:05+00:00"
         },
         {
             "name": "league/plates",
@@ -6450,6 +6447,87 @@
                 "templating"
             ],
             "time": "2019-11-11T16:52:09+00:00"
+        },
+        {
+            "name": "twistor/flysystem-stream-wrapper",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twistor/flysystem-stream-wrapper.git",
+                "reference": "c97389f188a6493759389861f9fc732652460c58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twistor/flysystem-stream-wrapper/zipball/c97389f188a6493759389861f9fc732652460c58",
+                "reference": "c97389f188a6493759389861f9fc732652460c58",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "^1.0.9",
+                "twistor/stream-util": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twistor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Leppanen",
+                    "email": "chris.leppanen@gmail.com"
+                }
+            ],
+            "description": "Adapts Flysystem filesystems to PHP stream wrappers.",
+            "homepage": "http://github.com/twistor/flysystem-stream-wrapper",
+            "time": "2018-11-14T06:41:03+00:00"
+        },
+        {
+            "name": "twistor/stream-util",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twistor/stream-util.git",
+                "reference": "226e74e6234508a53639b960c4a2752aee61799a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twistor/stream-util/zipball/226e74e6234508a53639b960c4a2752aee61799a",
+                "reference": "226e74e6234508a53639b960c4a2752aee61799a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twistor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Leppanen",
+                    "email": "chris.leppanen@gmail.com"
+                }
+            ],
+            "description": "Helper utilities for dealing with streams.",
+            "homepage": "http://github.com/twistor/stream-util",
+            "time": "2015-06-12T11:33:28+00:00"
         },
         {
             "name": "webuni/commonmark-attributes-extension",

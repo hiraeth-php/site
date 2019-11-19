@@ -10,7 +10,7 @@
 	; The adapter class
 	;
 
-	class = Gaufrette\Adapter\Local
+	class = League\Flysystem\Adapter\Local
 
 	;
 	; Below is a list of options that will be translated to parameters for the above class's
@@ -25,22 +25,7 @@
 		; The base directory to be passed to Local::__construct()
 		;
 
-		directory = dir(storage/public)
-
-		;
-		; Whether or not to create the directory if it does not exist, passed to
-		; Local::__construct()
-		;
-
-		create = true
-
-		;
-		; The mode to be used with mkdir if the directory is to be created, passed to
-		; Local::__construct()
-		;
-
-		mode = 0777
-
+		root = dir(storage/public)
 
 	;
 	; For remote volumes, you can enable local caching with the settings below.  Note, this
