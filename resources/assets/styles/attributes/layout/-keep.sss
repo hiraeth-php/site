@@ -1,5 +1,5 @@
 @define-mixin -keep
-	width: 100%
+	width: calc(100% - var(--gutter))
 
 	@media (--screen-tablet)
 		width: calc(((100% + var(--gutter) * 2) * var(--columns) / 12) - var(--gutter) * 2)
