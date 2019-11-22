@@ -5,13 +5,13 @@
 	--size: var(--icon-size)
 	--width: var(--icon-width, var(--size))
 	--height: var(--icon-height, var(--size))
-	--content: var(--icon-content, '?')
 	--padding: var(--icon-padding, 2rem)
+	--content: var(--icon-content, ' ')
 
 	display: inline-block
+	width: var(--width)
+	height: var(--height)
+	line-height: var(--height)
+	font-size: calc(var(--height) - var(--padding) * 2)
+	background-size: var(--width) var(--height)
 	content: var(--content)
-	line-height: var(--width)
-	font-size: calc(var(--width) - var(--padding))
-
-	& > svg
-		height: calc(var(--width) - var(--padding))

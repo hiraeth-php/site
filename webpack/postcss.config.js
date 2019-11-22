@@ -8,8 +8,7 @@ module.exports = {
 
 		},
 		'postcss-preset-env': {
-			stage: 0,
-			browsers: ['last 2 versions', '> 5%'],
+			stage: 0
 		},
 	},
 };
