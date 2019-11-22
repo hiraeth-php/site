@@ -1,3 +1,5 @@
+@import '../_variables.sss'
+
 :root
 
 	/**************************************************************************************************/
@@ -31,7 +33,7 @@
 	/**************************************************************************************************/
 
 	--container-max-width: 1440px
-	--container-padding-base: var(--padding-base)
+	--container-padding: var(--padding)
 	--container-padding-h-multiplier: var(--padding-h-multiplier)
 	--container-padding-v-multiplier: var(--padding-v-multiplier)
 
@@ -40,6 +42,7 @@
 	/**************************************************************************************************/
 
 	--grid-gutter: var(--gutter)
+	--grid-gutter-multiplier: 2
 
 	/**************************************************************************************************/
 	/* Buttons
@@ -48,7 +51,7 @@
 	--button-bg-color: var(--color-callout)
 	--button-text-color: var(--color-callout-face)
 
-	--button-padding-base: var(--padding-base)
+	--button-padding: var(--padding)
 	--button-padding-v-multiplier: .5
 	--button-padding-h-multiplier: 1
 
@@ -58,5 +61,10 @@
 	--button-border-radius: var(--border-radius)
 
 
-	--icon-size: 6rem
+	/**************************************************************************************************/
+	/* Grid
+	/**************************************************************************************************/
+
+	--icon-size: 4rem
 	--icon-color: var(--amber)
+	--icon-padding: 2rem

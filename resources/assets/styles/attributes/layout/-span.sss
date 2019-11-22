@@ -1,0 +1,211 @@
+@define-mixin -span
+	flex-basis: calc(100% - var(--gutter))
+	width: initial
+
+	@media (--screen-sm)
+		flex-basis: calc((100% + var(--gutter)) / 12 * var(--columns) - var(--gutter))
+		--columns: 12
+
+@define-mixin -span-12
+	@mixin -span
+
+	--columns: 12
+
+@define-mixin -span-11
+	@mixin -span
+
+	--columns: 11
+
+@define-mixin -span-10
+	@mixin -span
+
+	--columns: 10
+
+@define-mixin -span-9
+	@mixin -span
+
+	--columns: 9
+
+@define-mixin -span-8
+	@mixin -span
+
+	--columns: 8
+
+@define-mixin -span-7
+	@mixin -span
+
+	--columns: 7
+
+@define-mixin -span-6
+	@mixin -span
+
+	--columns: 6
+
+@define-mixin -span-5
+	@mixin -span
+
+	--columns: 5
+
+@define-mixin -span-4
+	@mixin -span
+
+	--columns: 4
+
+@define-mixin -span-3
+	@mixin -span
+
+	--columns: 3
+
+@define-mixin -span-2
+	@mixin -span
+
+	--columns: 2
+
+@define-mixin -span-1
+	@mixin -span
+
+	--columns: 1
+
+@define-mixin -span:md-12
+	@media (--screen-md)
+		--columns: 12
+
+@define-mixin -span:md-11
+	@media (--screen-md)
+		--columns: 11
+
+@define-mixin -span:md-10
+	@media (--screen-md)
+		--columns: 10
+
+@define-mixin -span:md-9
+	@media (--screen-md)
+		--columns: 9
+
+@define-mixin -span:md-8
+	@media (--screen-md)
+		--columns: 8
+
+@define-mixin -span:md-7
+	@media (--screen-md)
+		--columns: 7
+
+@define-mixin -span:md-6
+	@media (--screen-md)
+		--columns: 6
+
+@define-mixin -span:md-5
+	@media (--screen-md)
+		--columns: 5
+
+@define-mixin -span:md-4
+	@media (--screen-md)
+		--columns: 4
+
+@define-mixin -span:md-3
+	@media (--screen-md)
+		--columns: 3
+
+@define-mixin -span:md-2
+	@media (--screen-md)
+		--columns: 2
+
+@define-mixin -span:md-1
+	@media (--screen-md)
+		--columns: 1
+
+@define-mixin -span:lg-12
+	@media (--screen-lg)
+		--columns: 12
+
+@define-mixin -span:lg-11
+	@media (--screen-lg)
+		--columns: 11
+
+@define-mixin -span:lg-10
+	@media (--screen-lg)
+		--columns: 10
+
+@define-mixin -span:lg-9
+	@media (--screen-lg)
+		--columns: 9
+
+@define-mixin -span:lg-8
+	@media (--screen-lg)
+		--columns: 8
+
+@define-mixin -span:lg-7
+	@media (--screen-lg)
+		--columns: 7
+
+@define-mixin -span:lg-6
+	@media (--screen-lg)
+		--columns: 6
+
+@define-mixin -span:lg-5
+	@media (--screen-lg)
+		--columns: 5
+
+@define-mixin -span:lg-4
+	@media (--screen-lg)
+		--columns: 4
+
+@define-mixin -span:lg-3
+	@media (--screen-lg)
+		--columns: 3
+
+@define-mixin -span:lg-2
+	@media (--screen-lg)
+		--columns: 2
+
+@define-mixin -span:lg-1
+	@media (--screen-lg)
+		--columns: 1
+
+@define-mixin -span:xl-12
+	@media (--screen-xl)
+		--columns: 12
+
+@define-mixin -span:xl-11
+	@media (--screen-xl)
+		--columns: 11
+
+@define-mixin -span:xl-10
+	@media (--screen-xl)
+		--columns: 10
+
+@define-mixin -span:xl-9
+	@media (--screen-xl)
+		--columns: 9
+
+@define-mixin -span:xl-8
+	@media (--screen-xl)
+		--columns: 8
+
+@define-mixin -span:xl-7
+	@media (--screen-xl)
+		--columns: 7
+
+@define-mixin -span:xl-6
+	@media (--screen-xl)
+		--columns: 6
+
+@define-mixin -span:xl-5
+	@media (--screen-xl)
+		--columns: 5
+
+@define-mixin -span:xl-4
+	@media (--screen-xl)
+		--columns: 4
+
+@define-mixin -span:xl-3
+	@media (--screen-xl)
+		--columns: 3
+
+@define-mixin -span:xl-2
+	@media (--screen-xl)
+		--columns: 2
+
+@define-mixin -span:xl-1
+	@media (--screen-xl)
+		--columns: 1

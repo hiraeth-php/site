@@ -1,15 +1,15 @@
 module.exports = {
-  sourceMap: true,
-  plugins: {
-    'postcss-easy-import': {
-        extensions: ['.css', '.sss']
-    },
-    'postcss-mixins': {
+	sourceMap: true,
+	plugins: {
+		'postcss-easy-import': {
+			extensions: ['.css', '.sss']
+		},
+		'postcss-mixins': {
 
-    },
-    'postcss-preset-env': {
-        stage: 0,
-        browsers: ['last 2 versions', '> 5%'],
-    },
-  },
+		},
+		'postcss-preset-env': {
+			stage: 0,
+			browsers: ['last 2 versions', '> 5%'],
+		},
+	},
 };

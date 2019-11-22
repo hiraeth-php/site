@@ -43,13 +43,13 @@ module.exports = {
 	},
 
 
-    //
-    // HTML Loader
-    //
+	//
+	// HTML Loader
+	//
 
-    HTMLLoader: {
-        test: /\.html$/,
-        loader: 'html-loader',
-        exclude: "/node_modules/"
-    }
+	HTMLLoader: {
+		test: /\.html$/,
+		loader: 'html-loader',
+		exclude: "/node_modules/"
+	}
 };

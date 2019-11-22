@@ -9,14 +9,14 @@ module.exports = {
 		rules: [
 			loaders.JSLoader,
 			loaders.CSSLoader,
-            loaders.HTMLLoader
+			loaders.HTMLLoader
 		]
 	},
-    resolve: {
-        alias: {
-            "vue$": "vue/dist/vue.esm.js"
-        }
-    },
+	resolve: {
+		alias: {
+			"vue$": "vue/dist/vue.esm.js"
+		}
+	},
 	plugins: [
 		plugins.MiniCSS
 	],

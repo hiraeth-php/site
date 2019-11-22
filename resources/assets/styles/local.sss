@@ -17,7 +17,7 @@ h1
 	font-size: 4rem
 	font-weight: 700
 
-	@media (--screen-tablet)
+	@media (--screen-sm)
 		font-size: 6rem
 
 h2
@@ -97,10 +97,10 @@ body
 			--gutter: 6rem
 
 			& > nav
-				@mixin -keep-4
+				@mixin -span-4
 
 			& > main
-				@mixin -keep-8
+				@mixin -span-8
 
 .internal
 	& h1
@@ -136,7 +136,7 @@ body
 		@mixin -pad
 
 		--text-color: var(--stone)
-		--padding-base: 4rem
+		--padding: 4rem
 
 	&:target
 		& .open
@@ -176,30 +176,33 @@ body
 				&.active:not(:only-child)::before
 					content: '−'
 
-				&.active + ul
-					display: block
+				&:not(.active) + ul
+					@mixin -hide
 
-					& a.active::after
-						@mixin -color
-						@mixin -position-absolute
-
-						--top: .5em
-						--left: -1rem
-						--text-color: var(--grass)
-
-						content: '⬤'
 
 			& ul
 				@mixin -fill
-				@mixin -hide
 				@mixin -pad-left
 
 				--bg-color: var(--stone)
 
+				display: block
+
 				& a
 					--text-color: var(--white)
 
-	@media (--screen-tablet)
+				& a.active::after
+					@mixin -color
+					@mixin -position-absolute
+
+					--top: .5em
+					--left: -1rem
+					--text-color: var(--grass)
+
+					content: '⬤'
+
+
+	@media (--screen-sm)
 		& .open
 			@mixin -hide
 
@@ -306,12 +309,15 @@ code:not(.hljs)
 	--text-color: var(--water)
 
 	position: relative
-	padding-left: calc(var(--padding-base) * 3)
+	padding-left: calc(var(--padding) * 3)
 
 	&:before
 		@mixin icon
+		@mixin -color
 		@mixin -fade-less
 
+		--size: 6rem
+		--text-color: var(--amber)
 		--content: '⚑'
 
 		position: absolute
@@ -334,7 +340,7 @@ code:not(.hljs)
 		display: block
 		margin-top: var(--text-margin)
 
-		@media (--screen-tablet)
+		@media (--screen-sm)
 			display: inline-block
 			margin-left: var(--text-margin)
 			margin-top: auto
@@ -346,7 +352,7 @@ code:not(.hljs)
 	--width: 40px
 	--height: 40px
 
-	@media (--screen-tablet)
+	@media (--screen-sm)
 		--width: 100px
 		--height: 100px
 

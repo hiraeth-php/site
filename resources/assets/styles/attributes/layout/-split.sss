@@ -1,35 +1,70 @@
 @define-mixin -split
-	justify-content: space-between
-	margin-left: 0
+	width: 100%
 
-	& > *
-		margin-left: 0
-
-	@media (--screen-tablet)
+	@media (--screen-sm)
 		& > *
-			width: calc((100% - (var(--gutter) * (var(--split, 1) - 1))) / var(--split, 1))
+			width: calc((100% + var(--gutter)) / var(--split) - var(--gutter))
+			--split: 1
 
 @define-mixin -split-2
 	@mixin -split
 
-	@media (--screen-tablet)
-		& > *
-			--split: 2
+	& > *
+		--split: 2
 
 @define-mixin -split-3
 	@mixin -split
 
-	@media (--screen-tablet)
-		& > *
-			--split: 3
+	& > *
+		--split: 3
 
 @define-mixin -split-4
 	@mixin -split
 
-	@media (--screen-tablet)
+	& > *
+		--split: 4
+
+@define-mixin -split:md-2
+	@media (--screen-md)
 		& > *
 			--split: 2
 
-	@media (--screen-desktop)
+@define-mixin -split:md-3
+	@media (--screen-md)
+		& > *
+			--split: 3
+
+@define-mixin -split:md-4
+	@media (--screen-md)
+		& > *
+			--split: 4
+
+@define-mixin -split:lg-2
+	@media (--screen-lg)
+		& > *
+			--split: 2
+
+@define-mixin -split:lg-3
+	@media (--screen-lg)
+		& > *
+			--split: 3
+
+@define-mixin -split:lg-4
+	@media (--screen-lg)
+		& > *
+			--split: 4
+
+@define-mixin -split:xl-2
+	@media (--screen-xl)
+		& > *
+			--split: 2
+
+@define-mixin -split:xl-3
+	@media (--screen-xl)
+		& > *
+			--split: 3
+
+@define-mixin -split:xl-4
+	@media (--screen-xl)
 		& > *
 			--split: 4

@@ -1,6 +1,7 @@
-@custom-media --screen-tablet  screen and (min-width: 1024px)
-@custom-media --screen-desktop screen and (min-width: 1280px)
-@custom-media --screen-hidef   screen and (min-width: 1584px)
+@custom-media --screen-sm screen and (min-width: 1024px)
+@custom-media --screen-md screen and (min-width: 1280px)
+@custom-media --screen-lg screen and (min-width: 1440px)
+@custom-media --screen-xl screen and (min-width: 1600px)
 
 :root
 	--bg-color: var(--color-base)
@@ -13,9 +14,9 @@
 	--border-radius-multiplier: 1
 
 	--columns: 12
-	--gutter: 2rem
+	--gutter: calc(var(--padding) * 2)
 
-	--padding-base: 2rem
+	--padding: 2rem
 	--padding-h-multiplier: 1
 	--padding-v-multiplier: 1
 
@@ -46,6 +47,6 @@
 
 	--height: auto
 
-	@media (--screen-hidef)
+	@media (--screen-lg)
 		--text-size: 1.8rem
 		--text-line-height: 2.4em

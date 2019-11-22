@@ -2,12 +2,6 @@
 /* Load
 /**************************************************************************************************/
 
-@import './_variables.sss';
-@import './_theme.sss';
-@import './_reset.sss';
-@import './_base.sss';
-
-@import './attributes/**/*';
-@import './components/**/*';
-
+@import './themes/default.sss';
+@import './load.sss';
 @import './local.sss';
