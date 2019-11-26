@@ -17,7 +17,8 @@
         "imarc/opus": "^1.1",
         "hiraeth/core": "^2.0",
         "hiraeth/bootstrap": "^1.0",
-        "hiraeth/sentry": "^1.0"
+        "hiraeth/sentry": "^1.0",
+        "dotink/json": "^1.0"
     },
     "autoload": {
         "classmap": ["local/"],
