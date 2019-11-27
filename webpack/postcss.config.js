@@ -20,6 +20,6 @@ module.exports = ({ options }) => ({
 		'postcss-nested': {},
 		'postcss-simple-vars': {},
 		'postcss-property-lookup': {},
-		'cssnano': options.prod
+		'cssnano': options.mode == 'production' ? {} : false
 	}
 });

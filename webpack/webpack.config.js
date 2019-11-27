@@ -2,11 +2,8 @@ const path    = require('path');
 const loaders = require('./loaders');
 const plugins = require('./plugins');
 const entries = require('./entries');
-const command = require('get-options')(process.argv, {
-	'-p, --production': ''
-});
 
-module.exports = {
+module.exports = (env, argv) => ({
 	entry: entries,
 	optimization: {
 		splitChunks: {
@@ -31,9 +28,9 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			loaders.HTMLLoader(command.options.production),
-			loaders.CSSLoader(command.options.production),
-			loaders.JSLoader(command.options.production)
+			loaders.HTMLLoader(argv),
+			loaders.CSSLoader(argv),
+			loaders.JSLoader(argv)
 		]
 	},
 	plugins: [
@@ -46,11 +43,8 @@ module.exports = {
 	watchOptions: {
 		aggregateTimeout: 300,
 		poll: true
-	},
-	mode: command.options.production
-		? 'production'
-		: 'development'
-};
+	}
+});
 
 //
 // Add Browser Sync if serving

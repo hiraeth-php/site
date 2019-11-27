@@ -4,7 +4,7 @@ module.exports = {
 	// Javascript Loader
 	//
 
-	JSLoader: (prod) => ({
+	JSLoader: (argv) => ({
 		test: /\.js$/,
 		exclude: /node_modules/,
 		use: [
@@ -21,26 +21,24 @@ module.exports = {
 	// CSS Loader
 	//
 
-	CSSLoader: prod => ({
+	CSSLoader: (argv) => ({
 		test: /\.css$|\.sss$/,
 		use: [
 			require("mini-css-extract-plugin").loader,
 			{
 				loader: 'css-loader',
 				options: {
-					sourceMap: prod,
+					sourceMap: process.env.NODE_ENV == 'production',
 					importLoaders: 1
 				},
 			},
 			{
 				loader: 'postcss-loader',
 				options: {
-					sourceMap: prod,
+					sourceMap: argv.mode == 'production',
 					config: {
 						path: __dirname + '/postcss.config.js',
-						ctx: {
-							prod: prod
-						}
+						ctx: argv
 					}
 				}
 			}
@@ -51,7 +49,7 @@ module.exports = {
 	// HTML Loader
 	//
 
-	HTMLLoader: (prod) => ({
+	HTMLLoader: (argv) => ({
 		test: /\.html$/,
 		loader: 'html-loader',
 		exclude: "/node_modules/"

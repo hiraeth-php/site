@@ -29,8 +29,8 @@
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js -p --config ./webpack/webpack.config.js --display-error-details",
     "watch": "./node_modules/webpack/bin/webpack.js -d --watch --config ./webpack/webpack.config.js",
-    "fract": "./node_modules/@frctl/fractal/bin/fractal build",
-    "serve": "./node_modules/@frctl/fractal/bin/fractal start --sync"
+    "serve": "./node_modules/@frctl/fractal/bin/fractal start --sync",
+    "fract": "./node_modules/@frctl/fractal/bin/fractal build"
   },
   "dependencies": {
     "vue": "^2.5.17"
