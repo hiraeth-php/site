@@ -358,31 +358,33 @@
         },
         {
             "name": "dflydev/fig-cookies",
-            "version": "v1.0.2",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dflydev/dflydev-fig-cookies.git",
-                "reference": "883233c159d00d39e940bd12cfe42c0d23420c1c"
+                "reference": "a59857139b9e30978b5b802b3631b5eaf34e8c66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-fig-cookies/zipball/883233c159d00d39e940bd12cfe42c0d23420c1c",
-                "reference": "883233c159d00d39e940bd12cfe42c0d23420c1c",
+                "url": "https://api.github.com/repos/dflydev/dflydev-fig-cookies/zipball/a59857139b9e30978b5b802b3631b5eaf34e8c66",
+                "reference": "a59857139b9e30978b5b802b3631b5eaf34e8c66",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4",
-                "psr/http-message": "~1.0"
+                "ext-pcre": "*",
+                "php": "^7.2",
+                "psr/http-message": "^1"
             },
             "require-dev": {
-                "codeclimate/php-test-reporter": "~0.1@dev",
-                "phpunit/phpunit": "~4.5",
-                "squizlabs/php_codesniffer": "~2.3"
+                "doctrine/coding-standard": "^4",
+                "phpstan/phpstan": "^0.10.1",
+                "phpunit/phpunit": "^7.2.6",
+                "squizlabs/php_codesniffer": "^3.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -406,7 +408,7 @@
                 "psr-7",
                 "psr7"
             ],
-            "time": "2016-03-28T09:10:18+00:00"
+            "time": "2018-07-11T06:54:37+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1511,111 +1513,6 @@
             "time": "2019-11-25T14:26:44+00:00"
         },
         {
-            "name": "ellipse/cookie-encryption",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ellipsephp/cookie-encryption.git",
-                "reference": "cf47e50e818dcd75cfcc4bf176bc614625c9e54e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ellipsephp/cookie-encryption/zipball/cf47e50e818dcd75cfcc4bf176bc614625c9e54e",
-                "reference": "cf47e50e818dcd75cfcc4bf176bc614625c9e54e",
-                "shasum": ""
-            },
-            "require": {
-                "defuse/php-encryption": "^2.1",
-                "dflydev/fig-cookies": "^1.0",
-                "php": ">=7.1",
-                "psr/http-message": "^1.0",
-                "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "eloquent/phony-kahlan": "^1.0",
-                "kahlan/kahlan": "^4.0",
-                "zendframework/zend-diactoros": "^1.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Ellipse\\Cookies\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "pmall",
-                    "email": "pierre.mallinjoud@gmail.com"
-                }
-            ],
-            "description": "Psr-15 middleware allowing to encrypt cookies using defuse/php-encryption",
-            "homepage": "https://github.com/ellipsephp/cookie-encryption",
-            "keywords": [
-                "cookie",
-                "encryption",
-                "middleware",
-                "psr-15",
-                "psr-7"
-            ],
-            "time": "2018-01-23T10:51:09+00:00"
-        },
-        {
-            "name": "ellipse/session-start",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ellipsephp/session-start.git",
-                "reference": "cc854f0157c309e5e084764c7218843c745b0e3b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ellipsephp/session-start/zipball/cc854f0157c309e5e084764c7218843c745b0e3b",
-                "reference": "cc854f0157c309e5e084764c7218843c745b0e3b",
-                "shasum": ""
-            },
-            "require": {
-                "dflydev/fig-cookies": "^1.0",
-                "php": ">=7.0",
-                "psr/http-message": "^1.0",
-                "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "eloquent/phony-kahlan": "^1.0",
-                "kahlan/kahlan": "^4.0",
-                "zendframework/zend-diactoros": "^1.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Ellipse\\Session\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "pmall",
-                    "email": "pierre.mallinjoud@gmail.com"
-                }
-            ],
-            "description": "Psr-15 middleware allowing to use session with Psr-7 request and response",
-            "homepage": "https://github.com/ellipsephp/session-start",
-            "keywords": [
-                "middleware",
-                "psr-15",
-                "session"
-            ],
-            "time": "2018-02-23T14:01:06+00:00"
-        },
-        {
             "name": "hiraeth/actions",
             "version": "1.0-beta",
             "source": {
@@ -1715,7 +1612,7 @@
                 }
             ],
             "description": "RBAC/ACL auth for the Hiraeth Nano-Framework",
-            "time": "2019-11-15T10:05:56+00:00"
+            "time": "2019-11-22T22:50:46+00:00"
         },
         {
             "name": "hiraeth/bootstrap",
@@ -1723,12 +1620,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/bootstrap.git",
-                "reference": "648eaaf196a427186ae6d2d81aae940282f76854"
+                "reference": "aece39810961b77f306919412a6fe573226e1f22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/648eaaf196a427186ae6d2d81aae940282f76854",
-                "reference": "648eaaf196a427186ae6d2d81aae940282f76854",
+                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/aece39810961b77f306919412a6fe573226e1f22",
+                "reference": "aece39810961b77f306919412a6fe573226e1f22",
                 "shasum": ""
             },
             "require": {
@@ -1778,7 +1675,7 @@
                 }
             ],
             "description": "Official packages for the Hiraeth PHP Nano Framework",
-            "time": "2019-11-19T16:46:56+00:00"
+            "time": "2019-11-26T22:52:11+00:00"
         },
         {
             "name": "hiraeth/caching",
@@ -2083,16 +1980,16 @@
         },
         {
             "name": "hiraeth/diactoros",
-            "version": "1.0-beta16",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/diactoros.git",
-                "reference": "fae3d6bad039a552a7a9a8b3db323962aa47f697"
+                "reference": "42370b1800b41c081149fff08c51d56c7cee1c7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/diactoros/zipball/fae3d6bad039a552a7a9a8b3db323962aa47f697",
-                "reference": "fae3d6bad039a552a7a9a8b3db323962aa47f697",
+                "url": "https://api.github.com/repos/hiraeth-php/diactoros/zipball/42370b1800b41c081149fff08c51d56c7cee1c7d",
+                "reference": "42370b1800b41c081149fff08c51d56c7cee1c7d",
                 "shasum": ""
             },
             "require": {
@@ -2131,7 +2028,7 @@
                 }
             ],
             "description": "PSR-7 via Diactoros for the Hiraeth Nano Framework",
-            "time": "2019-11-15T01:39:40+00:00"
+            "time": "2019-11-27T03:30:03+00:00"
         },
         {
             "name": "hiraeth/doctrine",
@@ -2139,12 +2036,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/doctrine.git",
-                "reference": "612f2e35e41bbeea611682cdb94a41bebfb95bf2"
+                "reference": "82311a8b716d67d892070d32f27f6cd39953882a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/612f2e35e41bbeea611682cdb94a41bebfb95bf2",
-                "reference": "612f2e35e41bbeea611682cdb94a41bebfb95bf2",
+                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/82311a8b716d67d892070d32f27f6cd39953882a",
+                "reference": "82311a8b716d67d892070d32f27f6cd39953882a",
                 "shasum": ""
             },
             "require": {
@@ -2185,7 +2082,7 @@
                 }
             ],
             "description": "Doctrine integration for the Hiraeth Nano Framework",
-            "time": "2019-11-25T23:55:14+00:00"
+            "time": "2019-11-26T18:37:10+00:00"
         },
         {
             "name": "hiraeth/events",
@@ -2290,21 +2187,20 @@
         },
         {
             "name": "hiraeth/http",
-            "version": "1.0-beta15",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/http.git",
-                "reference": "2cbb268700b99abceae321a80c638cf637c32435"
+                "reference": "ccff2b82f57156a94e52c86deca13af7d22d4c41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/http/zipball/2cbb268700b99abceae321a80c638cf637c32435",
-                "reference": "2cbb268700b99abceae321a80c638cf637c32435",
+                "url": "https://api.github.com/repos/hiraeth-php/http/zipball/ccff2b82f57156a94e52c86deca13af7d22d4c41",
+                "reference": "ccff2b82f57156a94e52c86deca13af7d22d4c41",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
-                "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0",
                 "psr/http-server-handler": "^1.0",
                 "zendframework/zend-httphandlerrunner": "^1.1"
@@ -2333,7 +2229,7 @@
                 }
             ],
             "description": "HTTP Entry point and PSR-7 response handling for the Hiraeth Nano Framework",
-            "time": "2019-11-15T01:38:05+00:00"
+            "time": "2019-11-27T03:20:48+00:00"
         },
         {
             "name": "hiraeth/mailer",
@@ -2433,23 +2329,25 @@
         },
         {
             "name": "hiraeth/middleland",
-            "version": "1.0-beta2",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleland.git",
-                "reference": "45e420287558e86445dd0817d525991a52664800"
+                "reference": "93a415bc90a28c4e1f063352e4913024f2782f2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleland/zipball/45e420287558e86445dd0817d525991a52664800",
-                "reference": "45e420287558e86445dd0817d525991a52664800",
+                "url": "https://api.github.com/repos/hiraeth-php/middleland/zipball/93a415bc90a28c4e1f063352e4913024f2782f2d",
+                "reference": "93a415bc90a28c4e1f063352e4913024f2782f2d",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
-                "hiraeth/http": "^1.0",
                 "hiraeth/http-imp": "^1.0",
                 "oscarotero/middleland": "^1.0"
+            },
+            "provide": {
+                "hiraeth/middleware-imp": "1.0.0"
             },
             "require-dev": {
                 "hiraeth/diactoros": "^1.0",
@@ -2480,25 +2378,29 @@
                 }
             ],
             "description": "PSR-7 Request handling and middleware provided by Middleman for the Hiraeth Nano Framework",
-            "time": "2019-11-15T01:46:29+00:00"
+            "time": "2019-11-27T06:17:09+00:00"
         },
         {
             "name": "hiraeth/middleware-client-ip",
-            "version": "1.0-beta3",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-client-ip.git",
-                "reference": "08847d7d663f71ca9473346d36732ed575486f62"
+                "reference": "258ec72a96dbf525817fee25b8fc3e4bfb884135"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/08847d7d663f71ca9473346d36732ed575486f62",
-                "reference": "08847d7d663f71ca9473346d36732ed575486f62",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/258ec72a96dbf525817fee25b8fc3e4bfb884135",
+                "reference": "258ec72a96dbf525817fee25b8fc3e4bfb884135",
                 "shasum": ""
             },
             "require": {
-                "hiraeth/app": "^2.0",
                 "middlewares/client-ip": "^1.3"
+            },
+            "require-dev": {
+                "hiraeth/app": "^2.0",
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^8.4"
             },
             "type": "opus-package",
             "extra": {
@@ -2520,7 +2422,7 @@
                 }
             ],
             "description": "Client IP middleware for the Hiraeth Nano Framework",
-            "time": "2019-04-10T01:49:35+00:00"
+            "time": "2019-11-27T06:44:54+00:00"
         },
         {
             "name": "hiraeth/middleware-common",
@@ -2568,21 +2470,28 @@
         },
         {
             "name": "hiraeth/middleware-encrypt-cookies",
-            "version": "1.0-beta3",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-encrypt-cookies.git",
-                "reference": "c6c7300a0f9f4cb0be0e9e04b7b7f0bad5546852"
+                "reference": "da38442b8157830c9cbb66e9f134556859c358ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-encrypt-cookies/zipball/c6c7300a0f9f4cb0be0e9e04b7b7f0bad5546852",
-                "reference": "c6c7300a0f9f4cb0be0e9e04b7b7f0bad5546852",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-encrypt-cookies/zipball/da38442b8157830c9cbb66e9f134556859c358ed",
+                "reference": "da38442b8157830c9cbb66e9f134556859c358ed",
                 "shasum": ""
             },
             "require": {
-                "ellipse/cookie-encryption": "^1.0",
-                "hiraeth/app": "^2.0"
+                "defuse/php-encryption": "^2.2",
+                "dflydev/fig-cookies": "^2.0",
+                "hiraeth/app": "^2.0",
+                "psr/http-message": "^1.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.11.19"
             },
             "type": "opus-package",
             "extra": {
@@ -2609,7 +2518,7 @@
                 }
             ],
             "description": "PSR-15 middleware to encrypt cookies for the Hiraeth Nano Framework",
-            "time": "2019-04-10T00:08:54+00:00"
+            "time": "2019-11-26T08:37:37+00:00"
         },
         {
             "name": "hiraeth/middleware-firewall",
@@ -2658,23 +2567,23 @@
         },
         {
             "name": "hiraeth/mime",
-            "version": "1.0-beta5",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/mime.git",
-                "reference": "4895928b2c61f27eadd86f8ae36be1e79d567e25"
+                "reference": "a9a2770bb646a8211347c8c0437055937447c79f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/mime/zipball/4895928b2c61f27eadd86f8ae36be1e79d567e25",
-                "reference": "4895928b2c61f27eadd86f8ae36be1e79d567e25",
+                "url": "https://api.github.com/repos/hiraeth-php/mime/zipball/a9a2770bb646a8211347c8c0437055937447c79f",
+                "reference": "a9a2770bb646a8211347c8c0437055937447c79f",
                 "shasum": ""
             },
             "require": {
-                "hiraeth/app": "^2.0",
                 "ralouphie/mimey": "^2.1"
             },
             "require-dev": {
+                "hiraeth/app": "^2.0",
                 "phpstan/phpstan": "^0.11.19"
             },
             "type": "opus-package",
@@ -2702,7 +2611,55 @@
                 }
             ],
             "description": "Mime type transformations for the Hiraeth Nano Framework",
-            "time": "2019-11-14T10:53:03+00:00"
+            "time": "2019-11-27T05:27:22+00:00"
+        },
+        {
+            "name": "hiraeth/mime-types",
+            "version": "1.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/mime-types.git",
+                "reference": "c2593344f176e959098ab66cb42426577007c1ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/mime-types/zipball/c2593344f176e959098ab66cb42426577007c1ec",
+                "reference": "c2593344f176e959098ab66cb42426577007c1ec",
+                "shasum": ""
+            },
+            "require": {
+                "ralouphie/mimey": "^2.1"
+            },
+            "require-dev": {
+                "hiraeth/app": "^2.0",
+                "phpstan/phpstan": "^0.11.19"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "Mime type transformations for the Hiraeth Nano Framework",
+            "time": "2019-11-27T05:36:52+00:00"
         },
         {
             "name": "hiraeth/monolog",
@@ -2710,12 +2667,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/monolog.git",
-                "reference": "04d8f92432c1cd0bafb70995a54ed408d22b60e2"
+                "reference": "8dec7377b903f66c8b0f021a768ed0cba0980281"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/04d8f92432c1cd0bafb70995a54ed408d22b60e2",
-                "reference": "04d8f92432c1cd0bafb70995a54ed408d22b60e2",
+                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/8dec7377b903f66c8b0f021a768ed0cba0980281",
+                "reference": "8dec7377b903f66c8b0f021a768ed0cba0980281",
                 "shasum": ""
             },
             "require": {
@@ -2750,7 +2707,7 @@
                 }
             ],
             "description": "Monolog for the Hiraeth Nano-Framework",
-            "time": "2019-11-19T07:39:11+00:00"
+            "time": "2019-11-27T06:23:26+00:00"
         },
         {
             "name": "hiraeth/routing",
@@ -2758,25 +2715,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/routing.git",
-                "reference": "08421791bc7fc4c4d45a256d0189fbfa1c16aba8"
+                "reference": "8b7f1dbc4a48f02744a124a422dd2c7398881f4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/08421791bc7fc4c4d45a256d0189fbfa1c16aba8",
-                "reference": "08421791bc7fc4c4d45a256d0189fbfa1c16aba8",
+                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/8b7f1dbc4a48f02744a124a422dd2c7398881f4e",
+                "reference": "8b7f1dbc4a48f02744a124a422dd2c7398881f4e",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
-                "hiraeth/http": "^1.0",
                 "hiraeth/http-imp": "^1.0",
-                "hiraeth/mime": "^1.0",
-                "hiraeth/signal": "^2.0",
-                "psr/http-server-middleware": "^1.0"
+                "hiraeth/mime-types": "^1.0",
+                "hiraeth/signal": "^2.0"
             },
             "require-dev": {
                 "hiraeth/diactoros": "^1.0",
-                "phpstan/phpstan": "^0.11.8"
+                "phpstan/phpstan": "^0.11.8",
+                "psr/http-server-middleware": "^1.0"
             },
             "type": "opus-package",
             "extra": {
@@ -2803,7 +2759,7 @@
                 }
             ],
             "description": "Router abstraction for the Hiraeth Nano Framework",
-            "time": "2019-11-15T10:22:34+00:00"
+            "time": "2019-11-27T05:42:14+00:00"
         },
         {
             "name": "hiraeth/sentry",
@@ -2852,26 +2808,30 @@
         },
         {
             "name": "hiraeth/session",
-            "version": "1.0-beta15",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/session.git",
-                "reference": "db0104f06b8b79e2d6b2796af67fcfc5f860b72b"
+                "reference": "c37f48fe5e1932779cddd5f09f86bf2e7fa0aa07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/session/zipball/db0104f06b8b79e2d6b2796af67fcfc5f860b72b",
-                "reference": "db0104f06b8b79e2d6b2796af67fcfc5f860b72b",
+                "url": "https://api.github.com/repos/hiraeth-php/session/zipball/c37f48fe5e1932779cddd5f09f86bf2e7fa0aa07",
+                "reference": "c37f48fe5e1932779cddd5f09f86bf2e7fa0aa07",
                 "shasum": ""
             },
             "require": {
-                "aura/session": "^2.1",
-                "ellipse/session-start": "^1.0",
-                "hiraeth/app": "^2.0"
+                "aura/session": "^2.1"
             },
             "require-dev": {
+                "dflydev/fig-cookies": "^2.0",
+                "hiraeth/app": "^2.0",
                 "hiraeth/twig": "^2.0",
-                "phpstan/phpstan": "^0.11.19"
+                "phpstan/phpstan": "^0.11.19",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
             },
             "type": "opus-package",
             "extra": {
@@ -2899,7 +2859,7 @@
                 }
             ],
             "description": "Session handling for the Hiraeth Nano Framework",
-            "time": "2019-11-14T10:51:55+00:00"
+            "time": "2019-11-27T03:16:37+00:00"
         },
         {
             "name": "hiraeth/shell",
@@ -2949,16 +2909,16 @@
         },
         {
             "name": "hiraeth/signal",
-            "version": "2.0.1",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/signal.git",
-                "reference": "5fda37c6bd95fb058f7da9dc03c77f597d75b286"
+                "reference": "1a617f4cd683c9748442c175f5a756723ca9b2a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/signal/zipball/5fda37c6bd95fb058f7da9dc03c77f597d75b286",
-                "reference": "5fda37c6bd95fb058f7da9dc03c77f597d75b286",
+                "url": "https://api.github.com/repos/hiraeth-php/signal/zipball/1a617f4cd683c9748442c175f5a756723ca9b2a6",
+                "reference": "1a617f4cd683c9748442c175f5a756723ca9b2a6",
                 "shasum": ""
             },
             "require": {
@@ -2994,7 +2954,7 @@
                 }
             ],
             "description": "A generic callback wrapper which enables lazy DI instantiation",
-            "time": "2019-11-14T10:51:11+00:00"
+            "time": "2019-11-26T15:57:46+00:00"
         },
         {
             "name": "hiraeth/stash",
@@ -3098,16 +3058,16 @@
         },
         {
             "name": "hiraeth/templates",
-            "version": "1.0-beta11",
+            "version": "1.0-beta12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "d8926f1e7b499cc988a3d2201268e52927d250af"
+                "reference": "f80f8ae8531952562d0aaa2dce7200628ff56a72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/d8926f1e7b499cc988a3d2201268e52927d250af",
-                "reference": "d8926f1e7b499cc988a3d2201268e52927d250af",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/f80f8ae8531952562d0aaa2dce7200628ff56a72",
+                "reference": "f80f8ae8531952562d0aaa2dce7200628ff56a72",
                 "shasum": ""
             },
             "require": {
@@ -3145,7 +3105,7 @@
                 }
             ],
             "description": "Template abstraction for the Hiraeth Nano Framework",
-            "time": "2019-11-14T10:30:33+00:00"
+            "time": "2019-11-26T09:34:42+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -3350,16 +3310,16 @@
         },
         {
             "name": "imarc/auth",
-            "version": "2.0-beta6",
+            "version": "2.0-beta7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imarc/auth.git",
-                "reference": "24b9522d9a7154a5c955aaa03a753307e92723fb"
+                "reference": "367a0ed6cbc43a1bf9cda48dde64d84d3304f4b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imarc/auth/zipball/24b9522d9a7154a5c955aaa03a753307e92723fb",
-                "reference": "24b9522d9a7154a5c955aaa03a753307e92723fb",
+                "url": "https://api.github.com/repos/imarc/auth/zipball/367a0ed6cbc43a1bf9cda48dde64d84d3304f4b5",
+                "reference": "367a0ed6cbc43a1bf9cda48dde64d84d3304f4b5",
                 "shasum": ""
             },
             "require": {
@@ -3402,7 +3362,7 @@
                 "auth",
                 "rbac"
             ],
-            "time": "2019-11-22T22:48:14+00:00"
+            "time": "2019-11-27T05:46:01+00:00"
         },
         {
             "name": "imarc/checkpoint",

@@ -1,14 +1,25 @@
-module.exports = {
-	sourceMap: true,
+module.exports = ({ options }) => ({
+	parser: 'sugarss',
 	plugins: {
 		'postcss-easy-import': {
-			extensions: ['.css', '.sss']
-		},
-		'postcss-mixins': {
-
+			extensions: [
+				'.sss'
+			]
 		},
 		'postcss-preset-env': {
-			stage: 0
+			stage: 0,
+			browsers: [
+				'last 2 versions',
+				'> 5%'
+			],
+			features: {
+				'custom-properties': false
+			}
 		},
-	},
-};
+		'postcss-mixins': {},
+		'postcss-nested': {},
+		'postcss-simple-vars': {},
+		'postcss-property-lookup': {},
+		'cssnano': options.prod
+	}
+});

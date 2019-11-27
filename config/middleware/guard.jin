@@ -10,18 +10,10 @@
 	; The priority for the middleware
 	;
 
-	priority = 5
+	priority = 55
 
 	;
 	; The middleware class
 	;
 
-	class = Hiraeth\Middleware\EncryptCookies
-
-	;
-	; A list of cookie names to not encrypt
-	;
-
-	bypass = [
-
-	]
+	class = Auth\GuardMiddleware

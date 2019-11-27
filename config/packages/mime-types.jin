@@ -1,5 +1,6 @@
 [application]
 
+
 	;
 	; Aliases enable you to inform the dependency injector which concrete class should be built
 	; to provide for a type-hinted interface.  If the interface does not exist, a built in php
@@ -17,7 +18,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Routing\ResolverDelegate"
+		"Hiraeth\Utils\MimeTypesDelegate"
 	]
 
 	;
@@ -26,26 +27,15 @@
 	;
 
 	providers = [
-		"Hiraeth\Routing\ApplicationProvider"
+
 	]
 
+[mime-types]
+
 	;
-	; A template for our routes map
+	; Custom mime types by extension
 	;
 
-	route = def(route, target, methods) {
-		{
-			"route":   $route,
-			"target":  $target,
-			"methods": $methods
-		}
-	}
-
-[twig]
-
-	functions = {
-		"route": {
-			"target": "Hiraeth\Routing\UrlGenerator",
-			"required": false
-		}
+	map = {
+		; "ext": "application/x-ext-type"
 	}

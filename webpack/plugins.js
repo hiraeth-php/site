@@ -19,6 +19,10 @@ module.exports = {
 		host: 'localhost',
 		server: './public/',
 		startPath: '/patterns/',
-		files: ['./public/patterns/**/*']
+		files: [
+			'./public/patterns/**/*',
+			'./public/scripts/**/*',
+			'./public/styles/**/*'
+		]
 	})
 };
