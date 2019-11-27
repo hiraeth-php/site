@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "893a2daf40db22355dcc7293a40da65b",
@@ -1518,12 +1518,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "0840a0ea17f63495045e206b15e65a0379002530"
+                "reference": "ca27731cf925d9d0ab7c5dc85947d74681c16ef3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/0840a0ea17f63495045e206b15e65a0379002530",
-                "reference": "0840a0ea17f63495045e206b15e65a0379002530",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/ca27731cf925d9d0ab7c5dc85947d74681c16ef3",
+                "reference": "ca27731cf925d9d0ab7c5dc85947d74681c16ef3",
                 "shasum": ""
             },
             "require": {
@@ -1620,12 +1620,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/bootstrap.git",
-                "reference": "aece39810961b77f306919412a6fe573226e1f22"
+                "reference": "7f6e2be67586e99b7a1fa0b2f26d32b15f9422ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/aece39810961b77f306919412a6fe573226e1f22",
-                "reference": "aece39810961b77f306919412a6fe573226e1f22",
+                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/7f6e2be67586e99b7a1fa0b2f26d32b15f9422ff",
+                "reference": "7f6e2be67586e99b7a1fa0b2f26d32b15f9422ff",
                 "shasum": ""
             },
             "require": {
@@ -1648,7 +1648,7 @@
                 "hiraeth/middleware-common": "^1.0",
                 "hiraeth/middleware-encrypt-cookies": "^1.0",
                 "hiraeth/middleware-firewall": "^1.0",
-                "hiraeth/mime": "^1.0",
+                "hiraeth/mime-types": "^1.0",
                 "hiraeth/monolog": "^2.0",
                 "hiraeth/routing": "^1.0",
                 "hiraeth/session": "^1.0",
@@ -1675,7 +1675,7 @@
                 }
             ],
             "description": "Official packages for the Hiraeth PHP Nano Framework",
-            "time": "2019-11-26T22:52:11+00:00"
+            "time": "2019-11-27T19:41:29+00:00"
         },
         {
             "name": "hiraeth/caching",
@@ -1935,12 +1935,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/dbal.git",
-                "reference": "226a5dfa43fafdd0da15407e11fd16614c0a8072"
+                "reference": "f21654df0d33e4b691186cbbccbecf898a1507f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/226a5dfa43fafdd0da15407e11fd16614c0a8072",
-                "reference": "226a5dfa43fafdd0da15407e11fd16614c0a8072",
+                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/f21654df0d33e4b691186cbbccbecf898a1507f3",
+                "reference": "f21654df0d33e4b691186cbbccbecf898a1507f3",
                 "shasum": ""
             },
             "require": {
@@ -2036,12 +2036,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/doctrine.git",
-                "reference": "82311a8b716d67d892070d32f27f6cd39953882a"
+                "reference": "fded8dbafa9cd0c792888b7cb77566324c696076"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/82311a8b716d67d892070d32f27f6cd39953882a",
-                "reference": "82311a8b716d67d892070d32f27f6cd39953882a",
+                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/fded8dbafa9cd0c792888b7cb77566324c696076",
+                "reference": "fded8dbafa9cd0c792888b7cb77566324c696076",
                 "shasum": ""
             },
             "require": {
@@ -2566,54 +2566,6 @@
             "time": "2019-04-10T01:51:04+00:00"
         },
         {
-            "name": "hiraeth/mime",
-            "version": "1.0-beta",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hiraeth-php/mime.git",
-                "reference": "a9a2770bb646a8211347c8c0437055937447c79f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/mime/zipball/a9a2770bb646a8211347c8c0437055937447c79f",
-                "reference": "a9a2770bb646a8211347c8c0437055937447c79f",
-                "shasum": ""
-            },
-            "require": {
-                "ralouphie/mimey": "^2.1"
-            },
-            "require-dev": {
-                "hiraeth/app": "^2.0",
-                "phpstan/phpstan": "^0.11.19"
-            },
-            "type": "opus-package",
-            "extra": {
-                "opus": {
-                    "hiraeth/app": {
-                        "config": ""
-                    }
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthew J. Sahagian",
-                    "email": "matthew.sahagian@gmail.com",
-                    "role": "Lead Architect / Developer"
-                }
-            ],
-            "description": "Mime type transformations for the Hiraeth Nano Framework",
-            "time": "2019-11-27T05:27:22+00:00"
-        },
-        {
             "name": "hiraeth/mime-types",
             "version": "1.0-beta",
             "source": {
@@ -2715,12 +2667,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/routing.git",
-                "reference": "8b7f1dbc4a48f02744a124a422dd2c7398881f4e"
+                "reference": "78b2cd675e2296bb8eac7fb4e8d1e183b08679eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/8b7f1dbc4a48f02744a124a422dd2c7398881f4e",
-                "reference": "8b7f1dbc4a48f02744a124a422dd2c7398881f4e",
+                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/78b2cd675e2296bb8eac7fb4e8d1e183b08679eb",
+                "reference": "78b2cd675e2296bb8eac7fb4e8d1e183b08679eb",
                 "shasum": ""
             },
             "require": {
@@ -3058,25 +3010,25 @@
         },
         {
             "name": "hiraeth/templates",
-            "version": "1.0-beta12",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "f80f8ae8531952562d0aaa2dce7200628ff56a72"
+                "reference": "75cd4a30f6c1c618458b7e9d40b52bd8e46dd685"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/f80f8ae8531952562d0aaa2dce7200628ff56a72",
-                "reference": "f80f8ae8531952562d0aaa2dce7200628ff56a72",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/75cd4a30f6c1c618458b7e9d40b52bd8e46dd685",
+                "reference": "75cd4a30f6c1c618458b7e9d40b52bd8e46dd685",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
-                "hiraeth/mime": "^1.0",
-                "hiraeth/routing": "^1.0",
-                "psr/http-message": "^1.0"
+                "hiraeth/mime-types": "^1.0"
             },
             "require-dev": {
+                "hiraeth/middleware-imp": "^1.0",
+                "hiraeth/routing-imp": "^1.0",
                 "phpstan/phpstan": "^0.12.0@dev"
             },
             "type": "opus-package",
@@ -3105,7 +3057,7 @@
                 }
             ],
             "description": "Template abstraction for the Hiraeth Nano Framework",
-            "time": "2019-11-26T09:34:42+00:00"
+            "time": "2019-11-27T19:49:02+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -5875,16 +5827,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
+                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/550ebaac289296ce228a706d0867afc34687e3f4",
-                "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
+                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
                 "shasum": ""
             },
             "require": {
@@ -5896,7 +5848,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -5929,20 +5881,20 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
                 "shasum": ""
             },
             "require": {
@@ -5954,7 +5906,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -5988,20 +5940,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T14:18:11+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "2ceb49eaccb9352bff54d22570276bb75ba4a188"
+                "reference": "4b0e2222c55a25b4541305a053013d5647d3a25f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/2ceb49eaccb9352bff54d22570276bb75ba4a188",
-                "reference": "2ceb49eaccb9352bff54d22570276bb75ba4a188",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/4b0e2222c55a25b4541305a053013d5647d3a25f",
+                "reference": "4b0e2222c55a25b4541305a053013d5647d3a25f",
                 "shasum": ""
             },
             "require": {
@@ -6010,7 +5962,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -6046,7 +5998,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T16:25:15+00:00"
         },
         {
             "name": "symfony/service-contracts",
