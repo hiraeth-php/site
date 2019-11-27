@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "893a2daf40db22355dcc7293a40da65b",
@@ -1518,12 +1518,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "ca27731cf925d9d0ab7c5dc85947d74681c16ef3"
+                "reference": "33e2259b7d4df9b73694168694e7544da89643a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/ca27731cf925d9d0ab7c5dc85947d74681c16ef3",
-                "reference": "ca27731cf925d9d0ab7c5dc85947d74681c16ef3",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/33e2259b7d4df9b73694168694e7544da89643a5",
+                "reference": "33e2259b7d4df9b73694168694e7544da89643a5",
                 "shasum": ""
             },
             "require": {
@@ -2386,16 +2386,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-client-ip.git",
-                "reference": "258ec72a96dbf525817fee25b8fc3e4bfb884135"
+                "reference": "fb74bd281621e0c880c2949cbf0aae5aa0ffad1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/258ec72a96dbf525817fee25b8fc3e4bfb884135",
-                "reference": "258ec72a96dbf525817fee25b8fc3e4bfb884135",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/fb74bd281621e0c880c2949cbf0aae5aa0ffad1d",
+                "reference": "fb74bd281621e0c880c2949cbf0aae5aa0ffad1d",
                 "shasum": ""
             },
             "require": {
-                "middlewares/client-ip": "^1.3"
+                "middlewares/client-ip": "^1.3",
+                "psr/http-message": "^1.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
             },
             "require-dev": {
                 "hiraeth/app": "^2.0",
@@ -2410,6 +2413,11 @@
                     }
                 }
             },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -2422,7 +2430,7 @@
                 }
             ],
             "description": "Client IP middleware for the Hiraeth Nano Framework",
-            "time": "2019-11-27T06:44:54+00:00"
+            "time": "2019-11-27T22:38:17+00:00"
         },
         {
             "name": "hiraeth/middleware-common",
@@ -2430,12 +2438,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-common.git",
-                "reference": "4b2d2d9d2216040d33f0b17b536a8800b220a98a"
+                "reference": "dc3e5a2d44bcbd949250c8fc61a4c8fb8d2e1ac1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-common/zipball/4b2d2d9d2216040d33f0b17b536a8800b220a98a",
-                "reference": "4b2d2d9d2216040d33f0b17b536a8800b220a98a",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-common/zipball/dc3e5a2d44bcbd949250c8fc61a4c8fb8d2e1ac1",
+                "reference": "dc3e5a2d44bcbd949250c8fc61a4c8fb8d2e1ac1",
                 "shasum": ""
             },
             "require": {
@@ -2466,7 +2474,7 @@
                 }
             ],
             "description": "Common middleware for the Hiraeth Nano Framework",
-            "time": "2019-11-18T18:01:01+00:00"
+            "time": "2019-11-27T22:07:18+00:00"
         },
         {
             "name": "hiraeth/middleware-encrypt-cookies",
@@ -2522,21 +2530,28 @@
         },
         {
             "name": "hiraeth/middleware-firewall",
-            "version": "1.0-beta4",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-firewall.git",
-                "reference": "b10afbee515d6e793e7f9ee0444e53c39d50f107"
+                "reference": "b4dbee62ffb57157aef08846d73cd673a7823035"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-firewall/zipball/b10afbee515d6e793e7f9ee0444e53c39d50f107",
-                "reference": "b10afbee515d6e793e7f9ee0444e53c39d50f107",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-firewall/zipball/b4dbee62ffb57157aef08846d73cd673a7823035",
+                "reference": "b4dbee62ffb57157aef08846d73cd673a7823035",
                 "shasum": ""
             },
             "require": {
+                "middlewares/firewall": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
                 "hiraeth/app": "^2.0",
-                "middlewares/firewall": "^1.0"
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^8.4"
             },
             "type": "opus-package",
             "extra": {
@@ -2563,7 +2578,7 @@
                 }
             ],
             "description": "Firewall middleware for the Hiraeth Nano Framework",
-            "time": "2019-04-10T01:51:04+00:00"
+            "time": "2019-11-27T22:30:17+00:00"
         },
         {
             "name": "hiraeth/mime-types",
@@ -2715,21 +2730,25 @@
         },
         {
             "name": "hiraeth/sentry",
-            "version": "1.0-beta5",
+            "version": "1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/sentry.git",
-                "reference": "c88bb16c8120c855b1d6942357d4367997e4d0f5"
+                "reference": "c789c4163e10ec00c14bdbf7a4916811ce5a8630"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/sentry/zipball/c88bb16c8120c855b1d6942357d4367997e4d0f5",
-                "reference": "c88bb16c8120c855b1d6942357d4367997e4d0f5",
+                "url": "https://api.github.com/repos/hiraeth-php/sentry/zipball/c789c4163e10ec00c14bdbf7a4916811ce5a8630",
+                "reference": "c789c4163e10ec00c14bdbf7a4916811ce5a8630",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
                 "slashtrace/slashtrace-sentry": "^1.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^8.4"
             },
             "type": "opus-package",
             "extra": {
@@ -2756,7 +2775,7 @@
                 }
             ],
             "description": "Sentry support for the Hiraeth Nano Framework",
-            "time": "2019-11-08T18:23:36+00:00"
+            "time": "2019-11-27T22:19:02+00:00"
         },
         {
             "name": "hiraeth/session",
@@ -5179,16 +5198,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.9",
+            "version": "v0.9.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "9aaf29575bb8293206bb0420c1e1c87ff2ffa94e"
+                "reference": "5442009e4ac8ad01ed7e06823350bd75e692257a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/9aaf29575bb8293206bb0420c1e1c87ff2ffa94e",
-                "reference": "9aaf29575bb8293206bb0420c1e1c87ff2ffa94e",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/5442009e4ac8ad01ed7e06823350bd75e692257a",
+                "reference": "5442009e4ac8ad01ed7e06823350bd75e692257a",
                 "shasum": ""
             },
             "require": {
@@ -5198,8 +5217,8 @@
                 "jakub-onderka/php-console-highlighter": "0.3.*|0.4.*",
                 "nikic/php-parser": "~1.3|~2.0|~3.0|~4.0",
                 "php": ">=5.4.0",
-                "symfony/console": "~2.3.10|^2.4.2|~3.0|~4.0",
-                "symfony/var-dumper": "~2.7|~3.0|~4.0"
+                "symfony/console": "~2.3.10|^2.4.2|~3.0|~4.0|~5.0",
+                "symfony/var-dumper": "~2.7|~3.0|~4.0|~5.0"
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.2",
@@ -5249,7 +5268,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2018-10-13T15:16:03+00:00"
+            "time": "2019-11-27T19:51:19+00:00"
         },
         {
             "name": "ralouphie/mimey",

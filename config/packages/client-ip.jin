@@ -17,7 +17,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Sentry\SentryHandlerDelegate"
+		"Hiraeth\Middleware\ClientIpDelegate"
 	]
 
 	;
@@ -26,5 +26,5 @@
 	;
 
 	providers = [
-		"Hiraeth\Sentry\ApplicationProvider"
+
 	]
