@@ -5,7 +5,7 @@
 {% block content %}
     {% markdown %}
         {: .note}
-        This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/middleland`{: .package}, and `hiraeth/actions`{: .package}..  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+        This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/fastroute`{: .package}, and `hiraeth/actions`{: .package}..  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
         Responders take the return result of an [action](./actions) and convert it to a [PSR-7](https://www.php-fig.org/psr/psr-7/) response object.  In most cases this will be totally transparent to the user as `hiraeth/bootstrap`{: .package} comes with a number of common responders out of the box.  However, if you're writing an API, creating custom responders is an extremely powerful way to handle conversion of data transfer objects, models, collections, etc, to the client.
 

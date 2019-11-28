@@ -16,7 +16,7 @@
 
         ## Functions
 
-        Jin supports mapping functions for configuration values.  These are useful to get information that requires some logic in order to generate or retrieve.  Hiraeth registers three important functions that allow you to write more flexible configs.
+        JIN supports mapping functions for configuration values.  These are useful to get information that requires some logic in order to generate or retrieve.  Hiraeth registers three important functions that allow you to write more flexible configs.
 
         ### The env() Function
 
@@ -126,12 +126,13 @@
 
         ```php
         $defaults = [
+            'class'    => NULL,
             'disabled' => FALSE,
             'priority' => 50
         ];
 
         foreach ($app->getConfig('*', 'middleware', $defaults) as $path => $collection) {
-            if ($middleware['disabled']) {
+            if (!$middleware['class'] || $middleware['disabled']) {
                 continue;
             }
 

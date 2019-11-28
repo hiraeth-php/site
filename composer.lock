@@ -2333,17 +2333,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleland.git",
-                "reference": "93a415bc90a28c4e1f063352e4913024f2782f2d"
+                "reference": "2b7d5bd02545935af00c013c35946cdcb9982279"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleland/zipball/93a415bc90a28c4e1f063352e4913024f2782f2d",
-                "reference": "93a415bc90a28c4e1f063352e4913024f2782f2d",
+                "url": "https://api.github.com/repos/hiraeth-php/middleland/zipball/2b7d5bd02545935af00c013c35946cdcb9982279",
+                "reference": "2b7d5bd02545935af00c013c35946cdcb9982279",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
                 "hiraeth/http-imp": "^1.0",
+                "hiraeth/middleware": "^1.0",
                 "oscarotero/middleland": "^1.0"
             },
             "provide": {
@@ -2378,7 +2379,59 @@
                 }
             ],
             "description": "PSR-7 Request handling and middleware provided by Middleman for the Hiraeth Nano Framework",
-            "time": "2019-11-27T06:17:09+00:00"
+            "time": "2019-11-28T07:18:45+00:00"
+        },
+        {
+            "name": "hiraeth/middleware",
+            "version": "1.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/middleware.git",
+                "reference": "552cb4a5bfeccf3f65960946ec15f84c9ff368bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware/zipball/552cb4a5bfeccf3f65960946ec15f84c9ff368bd",
+                "reference": "552cb4a5bfeccf3f65960946ec15f84c9ff368bd",
+                "shasum": ""
+            },
+            "require": {
+                "psr/container": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "hiraeth/app": "^2.0",
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^7.4"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "PSR-15 middleware abstraction for the Hiraeth Nano Framework",
+            "time": "2019-11-28T07:54:11+00:00"
         },
         {
             "name": "hiraeth/middleware-client-ip",
@@ -2386,22 +2439,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-client-ip.git",
-                "reference": "fb74bd281621e0c880c2949cbf0aae5aa0ffad1d"
+                "reference": "07cd819fb337b5dd73da721a4fc0399202361b14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/fb74bd281621e0c880c2949cbf0aae5aa0ffad1d",
-                "reference": "fb74bd281621e0c880c2949cbf0aae5aa0ffad1d",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/07cd819fb337b5dd73da721a4fc0399202361b14",
+                "reference": "07cd819fb337b5dd73da721a4fc0399202361b14",
                 "shasum": ""
             },
             "require": {
-                "middlewares/client-ip": "^1.3",
-                "psr/http-message": "^1.0",
-                "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0"
+                "hiraeth/app": "^2.0",
+                "hiraeth/middleware-imp": "^1.0",
+                "middlewares/client-ip": "^1.3"
             },
             "require-dev": {
-                "hiraeth/app": "^2.0",
+                "hiraeth/diactoros": "^1.0",
+                "hiraeth/middleland": "^1.0",
                 "phpstan/phpstan": "^0.11.19",
                 "phpunit/phpunit": "^8.4"
             },
@@ -2430,7 +2483,7 @@
                 }
             ],
             "description": "Client IP middleware for the Hiraeth Nano Framework",
-            "time": "2019-11-27T22:38:17+00:00"
+            "time": "2019-11-28T07:28:00+00:00"
         },
         {
             "name": "hiraeth/middleware-common",
@@ -2482,24 +2535,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-encrypt-cookies.git",
-                "reference": "da38442b8157830c9cbb66e9f134556859c358ed"
+                "reference": "315d39310b74a4947671478e322b0612769c49e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-encrypt-cookies/zipball/da38442b8157830c9cbb66e9f134556859c358ed",
-                "reference": "da38442b8157830c9cbb66e9f134556859c358ed",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-encrypt-cookies/zipball/315d39310b74a4947671478e322b0612769c49e5",
+                "reference": "315d39310b74a4947671478e322b0612769c49e5",
                 "shasum": ""
             },
             "require": {
                 "defuse/php-encryption": "^2.2",
                 "dflydev/fig-cookies": "^2.0",
                 "hiraeth/app": "^2.0",
-                "psr/http-message": "^1.0",
-                "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0"
+                "hiraeth/middleware-imp": "^1.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.11.19"
+                "hiraeth/diactoros": "^1.0",
+                "hiraeth/middleland": "^1.0",
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^8.4"
             },
             "type": "opus-package",
             "extra": {
@@ -2526,7 +2580,7 @@
                 }
             ],
             "description": "PSR-15 middleware to encrypt cookies for the Hiraeth Nano Framework",
-            "time": "2019-11-26T08:37:37+00:00"
+            "time": "2019-11-28T07:36:27+00:00"
         },
         {
             "name": "hiraeth/middleware-firewall",
@@ -2534,22 +2588,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-firewall.git",
-                "reference": "b4dbee62ffb57157aef08846d73cd673a7823035"
+                "reference": "1b3ddeb24e87f98d8367fe504fa4d50c8de39344"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-firewall/zipball/b4dbee62ffb57157aef08846d73cd673a7823035",
-                "reference": "b4dbee62ffb57157aef08846d73cd673a7823035",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-firewall/zipball/1b3ddeb24e87f98d8367fe504fa4d50c8de39344",
+                "reference": "1b3ddeb24e87f98d8367fe504fa4d50c8de39344",
                 "shasum": ""
             },
             "require": {
-                "middlewares/firewall": "^1.0",
-                "psr/http-message": "^1.0",
-                "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0"
+                "hiraeth/app": "^2.0",
+                "hiraeth/middleware-imp": "^1.0",
+                "middlewares/firewall": "^1.0"
             },
             "require-dev": {
-                "hiraeth/app": "^2.0",
+                "hiraeth/diactoros": "^1.0",
+                "hiraeth/middleland": "^1.0",
                 "phpstan/phpstan": "^0.11.19",
                 "phpunit/phpunit": "^8.4"
             },
@@ -2578,7 +2632,7 @@
                 }
             ],
             "description": "Firewall middleware for the Hiraeth Nano Framework",
-            "time": "2019-11-27T22:30:17+00:00"
+            "time": "2019-11-28T07:38:19+00:00"
         },
         {
             "name": "hiraeth/mime-types",
@@ -5198,16 +5252,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.10",
+            "version": "v0.9.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "5442009e4ac8ad01ed7e06823350bd75e692257a"
+                "reference": "75d9ac1c16db676de27ab554a4152b594be4748e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/5442009e4ac8ad01ed7e06823350bd75e692257a",
-                "reference": "5442009e4ac8ad01ed7e06823350bd75e692257a",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/75d9ac1c16db676de27ab554a4152b594be4748e",
+                "reference": "75d9ac1c16db676de27ab554a4152b594be4748e",
                 "shasum": ""
             },
             "require": {
@@ -5268,7 +5322,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2019-11-27T19:51:19+00:00"
+            "time": "2019-11-27T22:44:29+00:00"
         },
         {
             "name": "ralouphie/mimey",
