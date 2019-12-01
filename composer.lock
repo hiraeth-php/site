@@ -513,16 +513,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "1.9.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "89a5c76c39c292f7798f964ab3c836c3f8192a55"
+                "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/89a5c76c39c292f7798f964ab3c836c3f8192a55",
-                "reference": "89a5c76c39c292f7798f964ab3c836c3f8192a55",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/382e7f4db9a12dc6c19431743a2b096041bcdd62",
+                "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62",
                 "shasum": ""
             },
             "require": {
@@ -589,10 +589,9 @@
                 "memcached",
                 "php",
                 "redis",
-                "riak",
                 "xcache"
             ],
-            "time": "2019-11-15T14:31:57+00:00"
+            "time": "2019-11-29T15:36:20+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -1620,12 +1619,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/bootstrap.git",
-                "reference": "7f6e2be67586e99b7a1fa0b2f26d32b15f9422ff"
+                "reference": "e033c13ded8c27cfe9df923de23aded8cc6dfc7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/7f6e2be67586e99b7a1fa0b2f26d32b15f9422ff",
-                "reference": "7f6e2be67586e99b7a1fa0b2f26d32b15f9422ff",
+                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/e033c13ded8c27cfe9df923de23aded8cc6dfc7b",
+                "reference": "e033c13ded8c27cfe9df923de23aded8cc6dfc7b",
                 "shasum": ""
             },
             "require": {
@@ -2439,12 +2438,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-client-ip.git",
-                "reference": "07cd819fb337b5dd73da721a4fc0399202361b14"
+                "reference": "4b377e668a89be16109c5e7519691a335772caa4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/07cd819fb337b5dd73da721a4fc0399202361b14",
-                "reference": "07cd819fb337b5dd73da721a4fc0399202361b14",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/4b377e668a89be16109c5e7519691a335772caa4",
+                "reference": "4b377e668a89be16109c5e7519691a335772caa4",
                 "shasum": ""
             },
             "require": {
@@ -2483,7 +2482,7 @@
                 }
             ],
             "description": "Client IP middleware for the Hiraeth Nano Framework",
-            "time": "2019-11-28T07:28:00+00:00"
+            "time": "2019-12-01T19:27:03+00:00"
         },
         {
             "name": "hiraeth/middleware-common",
@@ -2491,30 +2490,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-common.git",
-                "reference": "dc3e5a2d44bcbd949250c8fc61a4c8fb8d2e1ac1"
+                "reference": "f82d41bc7f4052b6953cb0911a42b1f0f2a23419"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-common/zipball/dc3e5a2d44bcbd949250c8fc61a4c8fb8d2e1ac1",
-                "reference": "dc3e5a2d44bcbd949250c8fc61a4c8fb8d2e1ac1",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-common/zipball/f82d41bc7f4052b6953cb0911a42b1f0f2a23419",
+                "reference": "f82d41bc7f4052b6953cb0911a42b1f0f2a23419",
                 "shasum": ""
             },
             "require": {
-                "hiraeth/app": "^2.0"
+                "hiraeth/app": "^2.0",
+                "hiraeth/middleware-client-ip": "^1.0",
+                "hiraeth/middleware-encrypt-cookies": "^1.0",
+                "hiraeth/middleware-expand-inputs": "^1.0",
+                "hiraeth/middleware-firewall": "^1.0",
+                "hiraeth/middleware-hidden-methods": "^1.0",
+                "hiraeth/middleware-imp": "^1.0",
+                "hiraeth/middleware-referer-attribute": "^1.0"
             },
-            "type": "opus-package",
-            "extra": {
-                "opus": {
-                    "hiraeth/app": {
-                        "config": ""
-                    }
-                }
+            "require-dev": {
+                "hiraeth/diactoros": "^1.0",
+                "hiraeth/middleland": "^1.0",
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^8.4"
             },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
+            "type": "library",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -2527,7 +2527,7 @@
                 }
             ],
             "description": "Common middleware for the Hiraeth Nano Framework",
-            "time": "2019-11-27T22:07:18+00:00"
+            "time": "2019-12-01T19:52:39+00:00"
         },
         {
             "name": "hiraeth/middleware-encrypt-cookies",
@@ -2535,12 +2535,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-encrypt-cookies.git",
-                "reference": "315d39310b74a4947671478e322b0612769c49e5"
+                "reference": "214091e330654d67b3d4b970e903f956bfca9788"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-encrypt-cookies/zipball/315d39310b74a4947671478e322b0612769c49e5",
-                "reference": "315d39310b74a4947671478e322b0612769c49e5",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-encrypt-cookies/zipball/214091e330654d67b3d4b970e903f956bfca9788",
+                "reference": "214091e330654d67b3d4b970e903f956bfca9788",
                 "shasum": ""
             },
             "require": {
@@ -2580,7 +2580,58 @@
                 }
             ],
             "description": "PSR-15 middleware to encrypt cookies for the Hiraeth Nano Framework",
-            "time": "2019-11-28T07:36:27+00:00"
+            "time": "2019-12-01T19:27:45+00:00"
+        },
+        {
+            "name": "hiraeth/middleware-expand-inputs",
+            "version": "1.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/middleware-expand-inputs.git",
+                "reference": "bae60946121f75f44367ffbdd84a8d2025f93c7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-expand-inputs/zipball/bae60946121f75f44367ffbdd84a8d2025f93c7a",
+                "reference": "bae60946121f75f44367ffbdd84a8d2025f93c7a",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/app": "^2.0",
+                "hiraeth/middleware-imp": "^1.0"
+            },
+            "require-dev": {
+                "hiraeth/diactoros": "^1.0",
+                "hiraeth/middleland": "^1.0",
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^8.4"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "Input expansion middleware for the Hiraeth Nano Framework",
+            "time": "2019-12-01T19:30:07+00:00"
         },
         {
             "name": "hiraeth/middleware-firewall",
@@ -2588,16 +2639,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-firewall.git",
-                "reference": "1b3ddeb24e87f98d8367fe504fa4d50c8de39344"
+                "reference": "2fd56bc445f3cbb6e09cf45051497ee107b84917"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-firewall/zipball/1b3ddeb24e87f98d8367fe504fa4d50c8de39344",
-                "reference": "1b3ddeb24e87f98d8367fe504fa4d50c8de39344",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-firewall/zipball/2fd56bc445f3cbb6e09cf45051497ee107b84917",
+                "reference": "2fd56bc445f3cbb6e09cf45051497ee107b84917",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
+                "hiraeth/middleware-client-ip": "^1.0",
                 "hiraeth/middleware-imp": "^1.0",
                 "middlewares/firewall": "^1.0"
             },
@@ -2632,7 +2684,109 @@
                 }
             ],
             "description": "Firewall middleware for the Hiraeth Nano Framework",
-            "time": "2019-11-28T07:38:19+00:00"
+            "time": "2019-12-01T19:31:45+00:00"
+        },
+        {
+            "name": "hiraeth/middleware-hidden-methods",
+            "version": "1.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/middleware-hidden-methods.git",
+                "reference": "93e8bdb1b456a03f51479787006a098abbfaf869"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-hidden-methods/zipball/93e8bdb1b456a03f51479787006a098abbfaf869",
+                "reference": "93e8bdb1b456a03f51479787006a098abbfaf869",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/app": "^2.0",
+                "hiraeth/middleware-imp": "^1.0"
+            },
+            "require-dev": {
+                "hiraeth/diactoros": "^1.0",
+                "hiraeth/middleland": "^1.0",
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^8.4"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "Hidden methods middleware for the Hiraeth Nano Framework",
+            "time": "2019-12-01T19:33:41+00:00"
+        },
+        {
+            "name": "hiraeth/middleware-referer-attribute",
+            "version": "1.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/middleware-referer-attribute.git",
+                "reference": "24748dffd40f7fe97891d3873ed3cc3474ab2ba4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-referer-attribute/zipball/24748dffd40f7fe97891d3873ed3cc3474ab2ba4",
+                "reference": "24748dffd40f7fe97891d3873ed3cc3474ab2ba4",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/app": "^2.0",
+                "hiraeth/middleware-imp": "^1.0"
+            },
+            "require-dev": {
+                "hiraeth/diactoros": "^1.0",
+                "hiraeth/middleland": "^1.0",
+                "phpstan/phpstan": "^0.11.19",
+                "phpunit/phpunit": "^8.4"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "Referer attribute middleware for the Hiraeth Nano Framework",
+            "time": "2019-12-01T19:35:17+00:00"
         },
         {
             "name": "hiraeth/mime-types",
@@ -3572,16 +3726,16 @@
         },
         {
             "name": "league/climate",
-            "version": "3.5.1",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/climate.git",
-                "reference": "04c8aba2ac34cc12ddae6908ac15f6c46d3b4f9f"
+                "reference": "6b53a28a58ad9f5f63042e291eb870cf0d02a9c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/climate/zipball/04c8aba2ac34cc12ddae6908ac15f6c46d3b4f9f",
-                "reference": "04c8aba2ac34cc12ddae6908ac15f6c46d3b4f9f",
+                "url": "https://api.github.com/repos/thephpleague/climate/zipball/6b53a28a58ad9f5f63042e291eb870cf0d02a9c9",
+                "reference": "6b53a28a58ad9f5f63042e291eb870cf0d02a9c9",
                 "shasum": ""
             },
             "require": {
@@ -3629,7 +3783,7 @@
                 "php",
                 "terminal"
             ],
-            "time": "2019-11-24T22:10:45+00:00"
+            "time": "2019-12-01T15:25:43+00:00"
         },
         {
             "name": "league/commonmark",
@@ -5366,44 +5520,46 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.8.0",
+            "version": "3.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "d09ea80159c1929d75b3f9c60504d613aeb4a1e3"
+                "reference": "5ac2740e0c8c599d2bbe7f113a939f2b5b216c67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/d09ea80159c1929d75b3f9c60504d613aeb4a1e3",
-                "reference": "d09ea80159c1929d75b3f9c60504d613aeb4a1e3",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/5ac2740e0c8c599d2bbe7f113a939f2b5b216c67",
+                "reference": "5ac2740e0c8c599d2bbe7f113a939f2b5b216c67",
                 "shasum": ""
             },
             "require": {
-                "paragonie/random_compat": "^1.0|^2.0|9.99.99",
-                "php": "^5.4 || ^7.0",
+                "ext-json": "*",
+                "paragonie/random_compat": "^1 | ^2 | 9.99.99",
+                "php": "^5.4 | ^7",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "replace": {
                 "rhumsaa/uuid": "self.version"
             },
             "require-dev": {
-                "codeception/aspect-mock": "^1.0 | ~2.0.0",
-                "doctrine/annotations": "~1.2.0",
-                "goaop/framework": "1.0.0-alpha.2 | ^1.0 | ~2.1.0",
-                "ircmaxell/random-lib": "^1.1",
+                "codeception/aspect-mock": "^1 | ^2",
+                "doctrine/annotations": "^1.2",
+                "goaop/framework": "1.0.0-alpha.2 | ^1 | ^2.1",
                 "jakub-onderka/php-parallel-lint": "^0.9.0",
                 "mockery/mockery": "^0.9.9",
                 "moontoast/math": "^1.1",
-                "php-mock/php-mock-phpunit": "^0.3|^1.1",
-                "phpunit/phpunit": "^4.7|^5.0|^6.5",
+                "paragonie/random-lib": "^2",
+                "php-mock/php-mock-phpunit": "^0.3 | ^1.1",
+                "phpunit/phpunit": "^4.8 | ^5.4 | ^6.5",
                 "squizlabs/php_codesniffer": "^2.3"
             },
             "suggest": {
                 "ext-ctype": "Provides support for PHP Ctype functions",
                 "ext-libsodium": "Provides the PECL libsodium extension for use with the SodiumRandomGenerator",
+                "ext-openssl": "Provides the OpenSSL extension for use with the OpenSslGenerator",
                 "ext-uuid": "Provides the PECL UUID extension for use with the PeclUuidTimeGenerator and PeclUuidRandomGenerator",
-                "ircmaxell/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
                 "moontoast/math": "Provides support for converting UUID to 128-bit integer (in string form).",
+                "paragonie/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
                 "ramsey/uuid-console": "A console application for generating UUIDs with ramsey/uuid",
                 "ramsey/uuid-doctrine": "Allows the use of Ramsey\\Uuid\\Uuid as Doctrine field type."
             },
@@ -5416,7 +5572,10 @@
             "autoload": {
                 "psr-4": {
                     "Ramsey\\Uuid\\": "src/"
-                }
+                },
+                "files": [
+                    "src/functions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5424,17 +5583,17 @@
             ],
             "authors": [
                 {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "https://benramsey.com"
+                },
+                {
                     "name": "Marijn Huizendveld",
                     "email": "marijn.huizendveld@gmail.com"
                 },
                 {
                     "name": "Thibaud Fabre",
                     "email": "thibaud@aztech.io"
-                },
-                {
-                    "name": "Ben Ramsey",
-                    "email": "ben@benramsey.com",
-                    "homepage": "https://benramsey.com"
                 }
             ],
             "description": "Formerly rhumsaa/uuid. A PHP 5.4+ library for generating RFC 4122 version 1, 3, 4, and 5 universally unique identifiers (UUID).",
@@ -5444,7 +5603,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2018-07-19T23:38:55+00:00"
+            "time": "2019-12-01T04:55:27+00:00"
         },
         {
             "name": "ramsey/uuid-doctrine",
@@ -5824,16 +5983,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.4.0",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "35d9077f495c6d184d9930f7a7ecbd1ad13c7ab8"
+                "reference": "f0aea3df20d15635b3cb9730ca5eea1c65b7f201"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/35d9077f495c6d184d9930f7a7ecbd1ad13c7ab8",
-                "reference": "35d9077f495c6d184d9930f7a7ecbd1ad13c7ab8",
+                "url": "https://api.github.com/repos/symfony/console/zipball/f0aea3df20d15635b3cb9730ca5eea1c65b7f201",
+                "reference": "f0aea3df20d15635b3cb9730ca5eea1c65b7f201",
                 "shasum": ""
             },
             "require": {
@@ -5896,11 +6055,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-13T07:39:40+00:00"
+            "time": "2019-12-01T10:06:17+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.13.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -5958,7 +6117,7 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.13.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -6017,7 +6176,7 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.13.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
@@ -6133,7 +6292,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v4.4.0",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -6183,7 +6342,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v3.4.35",
+            "version": "v3.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
