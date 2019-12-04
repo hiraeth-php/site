@@ -2035,21 +2035,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/doctrine.git",
-                "reference": "fded8dbafa9cd0c792888b7cb77566324c696076"
+                "reference": "76885e7f2796f7b5e4311d56877431903d141594"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/fded8dbafa9cd0c792888b7cb77566324c696076",
-                "reference": "fded8dbafa9cd0c792888b7cb77566324c696076",
+                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/76885e7f2796f7b5e4311d56877431903d141594",
+                "reference": "76885e7f2796f7b5e4311d56877431903d141594",
                 "shasum": ""
             },
             "require": {
                 "cache/psr-6-doctrine-bridge": "^3.0",
                 "doctrine/orm": "^2.6",
                 "hiraeth/app": "^2.0",
-                "hiraeth/caching": "^1.0",
-                "hiraeth/dbal": "^1.0",
-                "thadafinser/psr6-null-cache": "dev-master as 1.0"
+                "hiraeth/caching-imp": "^1.0",
+                "hiraeth/dbal": "^1.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.15",
@@ -2081,7 +2080,7 @@
                 }
             ],
             "description": "Doctrine integration for the Hiraeth Nano Framework",
-            "time": "2019-11-26T18:37:10+00:00"
+            "time": "2019-12-04T04:38:59+00:00"
         },
         {
             "name": "hiraeth/events",
@@ -3545,16 +3544,16 @@
         },
         {
             "name": "imarc/checkpoint",
-            "version": "1.4.1",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imarc/checkpoint.git",
-                "reference": "c363ae974f2b405a3dab4832d9149e1603c0af26"
+                "reference": "a08c967507b0eabb9a679abca6c204e234dad517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imarc/checkpoint/zipball/c363ae974f2b405a3dab4832d9149e1603c0af26",
-                "reference": "c363ae974f2b405a3dab4832d9149e1603c0af26",
+                "url": "https://api.github.com/repos/imarc/checkpoint/zipball/a08c967507b0eabb9a679abca6c204e234dad517",
+                "reference": "a08c967507b0eabb9a679abca6c204e234dad517",
                 "shasum": ""
             },
             "require": {
@@ -3590,7 +3589,7 @@
             "keywords": [
                 "validation"
             ],
-            "time": "2019-07-25T19:00:09+00:00"
+            "time": "2019-12-02T23:46:14+00:00"
         },
         {
             "name": "imarc/opus",
@@ -3791,12 +3790,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "1a28e6e68171a7286018b9832b15c674777a8636"
+                "reference": "4c1ed7f118ce9f212cb46f5726a05f72bab21854"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/1a28e6e68171a7286018b9832b15c674777a8636",
-                "reference": "1a28e6e68171a7286018b9832b15c674777a8636",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/4c1ed7f118ce9f212cb46f5726a05f72bab21854",
+                "reference": "4c1ed7f118ce9f212cb46f5726a05f72bab21854",
                 "shasum": ""
             },
             "require": {
@@ -3854,7 +3853,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2019-11-11T23:02:19+00:00"
+            "time": "2019-12-03T20:39:43+00:00"
         },
         {
             "name": "league/commonmark-ext-autolink",
@@ -4158,12 +4157,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark-extras.git",
-                "reference": "a7d49a2bcaf47951fd0c91c3a69d12a4fdd4d0e3"
+                "reference": "8bcf188c02f09f60a5a1be3ac49f667d17833a1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark-extras/zipball/a7d49a2bcaf47951fd0c91c3a69d12a4fdd4d0e3",
-                "reference": "a7d49a2bcaf47951fd0c91c3a69d12a4fdd4d0e3",
+                "url": "https://api.github.com/repos/thephpleague/commonmark-extras/zipball/8bcf188c02f09f60a5a1be3ac49f667d17833a1e",
+                "reference": "8bcf188c02f09f60a5a1be3ac49f667d17833a1e",
                 "shasum": ""
             },
             "require": {
@@ -4210,7 +4209,7 @@
                 "gfm",
                 "markdown"
             ],
-            "time": "2019-10-11T20:14:33+00:00"
+            "time": "2019-12-03T13:10:49+00:00"
         },
         {
             "name": "league/event",
@@ -6468,50 +6467,6 @@
                 "sessions"
             ],
             "time": "2019-03-09T21:04:14+00:00"
-        },
-        {
-            "name": "thadafinser/psr6-null-cache",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ThaDafinser/psr6-null-cache.git",
-                "reference": "f77e89b9f3516d17726eb0fd834b5f7f73456080"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ThaDafinser/psr6-null-cache/zipball/f77e89b9f3516d17726eb0fd834b5f7f73456080",
-                "reference": "f77e89b9f3516d17726eb0fd834b5f7f73456080",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~7.0",
-                "psr/cache": "^1.0"
-            },
-            "provide": {
-                "psr/cache-implementation": "1.0.0"
-            },
-            "require-dev": {
-                "fabpot/php-cs-fixer": "^1.11",
-                "phpunit/phpunit": "^5.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Psr6NullCache\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Martin Keckeis",
-                    "email": "martin.keckeis1@gmail.com"
-                }
-            ],
-            "description": "PSR-6 cache NullObject implementation, to avoid null checks and for testing",
-            "time": "2016-04-08T09:00:07+00:00"
         },
         {
             "name": "twig/cache-extension",
