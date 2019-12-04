@@ -1,0 +1,103 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Database Connections' %}
+
+{% block content %}
+    {% markdown %}
+        {: .note}
+        This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/dbal`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+
+        Hiraeth's database access and datbase abstraction layer is powered by [Doctrine's DBAL library](https://www.doctrine-project.org/projects/dbal.html).
+
+        Connections are the starting point for database functionality, they enable you to execute queries (including prepared statements) as well as gain access to additional utilities for things like schema inflection, building queries, etc.
+
+        Each connection is defined by a JIN configuration file containing a `[connection]` section.  For example `config/connections/default.jin`{: .config} contains the settings for the connect named `default`:
+
+        ```toml
+        [connection]
+        	driver = env(DATABASES_DEFAULT_TYPE)
+        	user = env(DATABASES_DEFAULT_USER)
+        	; password = env(DATABASES_DEFAULT_PASS)
+        	; host = env(DATABASES_DEFAULT_HOST)
+        	; port = env(DATABASES_DEFAULT_PORT)
+        	dbname = env(DATABASES_DEFAULT_NAME)
+        ```
+
+        Uncomment the `password`, `host`, and `port` settings if you need to modify these.  Or add [additional configuration settings corresponding to doctrine's DBAL configuration](https://www.doctrine-project.org/projects/doctrine-dbal/en/2.9/reference/configuration.html#connection-details).  Since we are using the `env()` function to get the actual values, we will also need to modify our `.env`{: .config} to add the actual values:
+
+        ```toml
+        [DATABASES]
+
+            [&.DEFAULT]
+
+                TYPE = pdo_pgsql
+                NAME = database
+                USER = user
+        ```
+
+        Hiraeth's DBAL integration supports mulitple connections out of the box, so the preferred way to obtain your connection is to inject the `Hiraeth\Dbal\ConnectionRegistry`{: .class}:
+
+        ```php
+        use Hiraeth\Dbal\ConnectionRegistry;
+
+        class MyService
+        {
+            public function __construct(ConnectionRegistry $registry)
+            {
+                $this->connection = $registry->getConnection('default');
+            }
+        }
+        ```
+
+        Once you've obtained a connection, you should be able to use it in accordance with [Doctrine's documentation](https://www.doctrine-project.org/projects/doctrine-dbal/en/2.9/reference/data-retrieval-and-manipulation.html).  In the above example, the name is optional, but if not provided will always attempt to return the connection named `default`.
+
+        ## Adding a Connection
+
+        Connections can be added by creating a new connection configuration in the `config/dbal` directory.  The basename of the configuration (minus the `.jin` extension) will be the name of the connection.
+
+        The connection file itself is relatively straightforward.  Let's copy the `default.jin` called `blog.jin` and modify a few things.  We'll change our environment variable names to match our blog settings, and uncomment the password as we'll need a password to access this database.
+
+        ```toml
+        [connection]
+        	driver = env(DATABASES_BLOG_TYPE)
+            dbname = env(DATABASES_BLOG_NAME)
+        	user = env(DATABASES_BLOG_USER)
+        	password = env(DATABASES_BLOG_PASS)
+        ```
+
+        Now we can add our `.env`{: .config} settings accordingly:
+
+        ```toml
+        [DATABASES]
+
+        	[&.BLOG]
+
+        		TYPE = pdo_mysql
+        		NAME = blog
+        		USER = bloguser
+        		PASS = myS3cr3tP455werd
+        ```
+
+        Finally, we can get our blog connection thusly:
+
+        ```php
+        use Hiraeth\Dbal\ConnectionRegistry;
+
+        class MyBlogService
+        {
+            public function __construct(ConnectionRegistry $registry)
+            {
+                $this->connection = $registry->getConnection('blog');
+            }
+        }
+        ```
+
+        To enable the ORM, you'll need to add `hiraeth/doctrine` and configure the entity manager.
+
+        ----
+
+        [Learn About Managers](./managers){: .action}
+
+    {% endmarkdown %}
+{% endblock %}
