@@ -4,3 +4,4 @@ opus.map
 node_modules
 public/scripts
 public/styles
+.vscode
