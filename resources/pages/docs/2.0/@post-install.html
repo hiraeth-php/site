@@ -47,6 +47,15 @@
 
         You can then visit [http://localhost:8080/](http://localhost:8080/) to hit the `public/index.php`{: .html} entry point.  Other pages throughout this documentation will use this as a reference URL for examples.
 
+        If you want to change the host and port which the server runs on you can modify your `.env`{: .config} and add something like:
+
+        ```toml
+        [SERVER]
+
+            HOST = myhost.local
+            PORT = 3000
+        ```
+
         ----
 
         [I'm ready to create my first page](./pages){: .action} [No, I'm writing an API](./responders)

@@ -21,7 +21,13 @@
         }
         ```
 
-        ## Creating An Action {: #creating}
+        The suggested directory for actions is `local/actions`{: .folder}.  Once you've added your action, regenerate autoloading:
+
+        ```php
+        composer dump-autoload
+        ```
+
+        ## Creating From Abstract Action {: #creating}
 
         While the example above is valid, it's not very practical because we don't have any access to the data or tools we need to really analyze our request or generate an appropriate response.  While it's possible to add a `__construct()` method and get what we need injected, `hiraeth/bootstrap`{: .package]} provided an abstract action implementation that will cover most of the basics.
 
