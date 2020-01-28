@@ -7,9 +7,9 @@
 	;
 
 	aliases = {
-		"Hiraeth\Events\EmitterInterface": "League\Event\Emitter",
-		"Hiraeth\Events\ListenerInterface": "League\Event\ListenerInterface",
-		"Hiraeth\Events\EventInterface": "League\Event\EventInterface"
+		"Hiraeth\Events\Emitter":  "League\Event\Emitter",
+		"Hiraeth\Events\Event":    "League\Event\EventInterface",
+		"Hiraeth\Events\Listener": "League\Event\ListenerInterface"
 	}
 
 	;

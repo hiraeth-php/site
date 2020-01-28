@@ -7,12 +7,13 @@
 	;
 
 	aliases = {
-		"Psr\Http\Message\ResponseInterface": "Zend\Diactoros\Response",
-		"Psr\Http\Message\ServerRequestInterface": "Zend\Diactoros\ServerRequest",
-		"Psr\Http\Message\ServerRequestFactoryInterface": "Zend\Diactoros\ServerRequestFactory",
-		"Psr\Http\Message\RequestFactoryInterface": "Zend\Diactoros\RequestFactory",
-		"Psr\Http\Message\ResponseFactoryInterface": "Zend\Diactoros\ResponseFactory",
-		"Psr\Http\Message\StreamFactoryInterface": "Zend\Diactoros\StreamFactory"
+		"Psr\Http\Message\ResponseInterface": "Laminas\Diactoros\Response",
+		"Psr\Http\Message\ServerRequestInterface": "Laminas\Diactoros\ServerRequest",
+		"Psr\Http\Message\UploadedFileFactoryInterface": "Laminas\Diactoros\UploadedFileFactory",
+		"Psr\Http\Message\ServerRequestFactoryInterface": "Laminas\Diactoros\ServerRequestFactory",
+		"Psr\Http\Message\ResponseFactoryInterface": "Laminas\Diactoros\ResponseFactory",
+		"Psr\Http\Message\RequestFactoryInterface": "Laminas\Diactoros\RequestFactory",
+		"Psr\Http\Message\StreamFactoryInterface": "Laminas\Diactoros\StreamFactory"
 	}
 
 	;
