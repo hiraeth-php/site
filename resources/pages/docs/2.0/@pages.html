@@ -36,9 +36,9 @@
 
         ### Path Resolution {: #paths}
 
-        Additional static templates can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .code} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .code}.
+        Additional static templates can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .html} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .html}.
 
-        If the URL's corresponding static template cannot be found it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .code} in the example above.  If the page does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .code} file within.
+        If the URL's corresponding static template cannot be found it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .html} in the example above.  If the page does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .html} file within.
 
         In the event an alternate static template path is found, an HTTP `301` status code will be returned with the more direct URL location for the path.
 

@@ -53,7 +53,8 @@
         });
         ```
 
-        > _NOTE: Before passing the `QueryBuilder` to the build method(s), the builder will be initialized to select the current repository's entity class aliases as `this`.
+        {: .note}
+        Before passing the `QueryBuilder` to the build method(s), the builder will be initialized to select the current repository's entity class aliases as `this`.
 
         Alternatively to passing the `query()` method a callable, you can pass it a string corresponding to an existing `build*()` method.  For example, instead of the above we could add to our repository:
 
