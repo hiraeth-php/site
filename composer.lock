@@ -1522,18 +1522,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "46129557a547049a4c47d140e46b3f31beb92355"
+                "reference": "776dedef7857acb813bcc1088401afd82b4a057c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/46129557a547049a4c47d140e46b3f31beb92355",
-                "reference": "46129557a547049a4c47d140e46b3f31beb92355",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/776dedef7857acb813bcc1088401afd82b4a057c",
+                "reference": "776dedef7857acb813bcc1088401afd82b4a057c",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
                 "hiraeth/routing": "^1.0",
-                "hiraeth/routing-imp": "^1.0",
                 "hiraeth/session": "^1.0",
                 "hiraeth/templates": "^1.0"
             },
@@ -1566,7 +1565,7 @@
                 }
             ],
             "description": "Robust actions for the Hiraeth Nano Framework",
-            "time": "2020-03-09T21:17:36+00:00"
+            "time": "2020-04-02T19:51:34+00:00"
         },
         {
             "name": "hiraeth/auth",
@@ -1936,12 +1935,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/dbal.git",
-                "reference": "a2428b3e6d0b1b8d4e378141fc778b643be5f86c"
+                "reference": "326f2f6f86957d7fb82767ccf62b046ea793908a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/a2428b3e6d0b1b8d4e378141fc778b643be5f86c",
-                "reference": "a2428b3e6d0b1b8d4e378141fc778b643be5f86c",
+                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/326f2f6f86957d7fb82767ccf62b046ea793908a",
+                "reference": "326f2f6f86957d7fb82767ccf62b046ea793908a",
                 "shasum": ""
             },
             "require": {
@@ -1977,7 +1976,7 @@
                 }
             ],
             "description": "Database abstraction via Doctrine for the Hiraeth Nano Framework",
-            "time": "2020-01-25T01:00:45+00:00"
+            "time": "2020-05-11T23:31:01+00:00"
         },
         {
             "name": "hiraeth/diactoros",
@@ -2037,12 +2036,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/doctrine.git",
-                "reference": "ba41eb0015ffbb83245a40ee9867de4afb042d5e"
+                "reference": "60cda527f88cae56ee510e10d12fc032c723fefc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/ba41eb0015ffbb83245a40ee9867de4afb042d5e",
-                "reference": "ba41eb0015ffbb83245a40ee9867de4afb042d5e",
+                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/60cda527f88cae56ee510e10d12fc032c723fefc",
+                "reference": "60cda527f88cae56ee510e10d12fc032c723fefc",
                 "shasum": ""
             },
             "require": {
@@ -2082,7 +2081,7 @@
                 }
             ],
             "description": "Doctrine integration for the Hiraeth Nano Framework",
-            "time": "2020-03-19T19:59:12+00:00"
+            "time": "2020-05-19T22:39:33+00:00"
         },
         {
             "name": "hiraeth/events",
@@ -2491,21 +2490,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-common.git",
-                "reference": "f82d41bc7f4052b6953cb0911a42b1f0f2a23419"
+                "reference": "6a392e475be062d98b581251194bbb406fa3729e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-common/zipball/f82d41bc7f4052b6953cb0911a42b1f0f2a23419",
-                "reference": "f82d41bc7f4052b6953cb0911a42b1f0f2a23419",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-common/zipball/6a392e475be062d98b581251194bbb406fa3729e",
+                "reference": "6a392e475be062d98b581251194bbb406fa3729e",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^2.0",
                 "hiraeth/middleware-client-ip": "^1.0",
                 "hiraeth/middleware-encrypt-cookies": "^1.0",
-                "hiraeth/middleware-expand-inputs": "^1.0",
-                "hiraeth/middleware-firewall": "^1.0",
-                "hiraeth/middleware-hidden-methods": "^1.0",
                 "hiraeth/middleware-imp": "^1.0",
                 "hiraeth/middleware-referer-attribute": "^1.0"
             },
@@ -2528,7 +2524,7 @@
                 }
             ],
             "description": "Common middleware for the Hiraeth Nano Framework",
-            "time": "2019-12-01T19:52:39+00:00"
+            "time": "2020-05-15T17:39:20+00:00"
         },
         {
             "name": "hiraeth/middleware-encrypt-cookies",
@@ -2744,12 +2740,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-referer-attribute.git",
-                "reference": "24748dffd40f7fe97891d3873ed3cc3474ab2ba4"
+                "reference": "68d1c5f66c2422449b032d84b4ea0143229ee11d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-referer-attribute/zipball/24748dffd40f7fe97891d3873ed3cc3474ab2ba4",
-                "reference": "24748dffd40f7fe97891d3873ed3cc3474ab2ba4",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-referer-attribute/zipball/68d1c5f66c2422449b032d84b4ea0143229ee11d",
+                "reference": "68d1c5f66c2422449b032d84b4ea0143229ee11d",
                 "shasum": ""
             },
             "require": {
@@ -2787,7 +2783,7 @@
                 }
             ],
             "description": "Referer attribute middleware for the Hiraeth Nano Framework",
-            "time": "2019-12-01T19:35:17+00:00"
+            "time": "2020-04-09T23:25:00+00:00"
         },
         {
             "name": "hiraeth/mime-types",
@@ -2992,12 +2988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/session.git",
-                "reference": "5479754e7eb226ecfffa8b2f30a06cc7d62b3f37"
+                "reference": "a07876b24a426cbee6c9f2e174ab8caadf5b72c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/session/zipball/5479754e7eb226ecfffa8b2f30a06cc7d62b3f37",
-                "reference": "5479754e7eb226ecfffa8b2f30a06cc7d62b3f37",
+                "url": "https://api.github.com/repos/hiraeth-php/session/zipball/a07876b24a426cbee6c9f2e174ab8caadf5b72c5",
+                "reference": "a07876b24a426cbee6c9f2e174ab8caadf5b72c5",
                 "shasum": ""
             },
             "require": {
@@ -3039,7 +3035,7 @@
                 }
             ],
             "description": "Session handling for the Hiraeth Nano Framework",
-            "time": "2020-01-24T04:31:56+00:00"
+            "time": "2020-04-02T20:06:20+00:00"
         },
         {
             "name": "hiraeth/shell",
@@ -3242,12 +3238,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "75cd4a30f6c1c618458b7e9d40b52bd8e46dd685"
+                "reference": "a2ce21e422c7be99719e86fa37998c272fc4fa20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/75cd4a30f6c1c618458b7e9d40b52bd8e46dd685",
-                "reference": "75cd4a30f6c1c618458b7e9d40b52bd8e46dd685",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/a2ce21e422c7be99719e86fa37998c272fc4fa20",
+                "reference": "a2ce21e422c7be99719e86fa37998c272fc4fa20",
                 "shasum": ""
             },
             "require": {
@@ -3255,9 +3251,11 @@
                 "hiraeth/mime-types": "^1.0"
             },
             "require-dev": {
-                "hiraeth/middleware-imp": "^1.0",
-                "hiraeth/routing-imp": "^1.0",
-                "phpstan/phpstan": "^0.12.0@dev"
+                "hiraeth/app": "^2.0",
+                "hiraeth/diactoros": "^1.0",
+                "hiraeth/routing": "^1.0",
+                "phpstan/phpstan": "^0.12.0@dev",
+                "psr/http-server-middleware": "^1.0"
             },
             "type": "opus-package",
             "extra": {
@@ -3285,7 +3283,7 @@
                 }
             ],
             "description": "Template abstraction for the Hiraeth Nano Framework",
-            "time": "2019-11-27T19:49:02+00:00"
+            "time": "2020-04-02T20:05:58+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -3445,12 +3443,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/volumes.git",
-                "reference": "2566e4f76864082f99b29d59b0350105673bc0a1"
+                "reference": "d5d6674256ae97d6d21ceebe5e046dd8ac907c45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/volumes/zipball/2566e4f76864082f99b29d59b0350105673bc0a1",
-                "reference": "2566e4f76864082f99b29d59b0350105673bc0a1",
+                "url": "https://api.github.com/repos/hiraeth-php/volumes/zipball/d5d6674256ae97d6d21ceebe5e046dd8ac907c45",
+                "reference": "d5d6674256ae97d6d21ceebe5e046dd8ac907c45",
                 "shasum": ""
             },
             "require": {
@@ -3486,7 +3484,7 @@
                 }
             ],
             "description": "Volumes for the Hiraeth Nano Framework",
-            "time": "2019-11-19T16:43:20+00:00"
+            "time": "2020-04-07T17:13:20+00:00"
         },
         {
             "name": "imarc/auth",
@@ -3677,6 +3675,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -3723,6 +3722,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -4110,6 +4110,7 @@
                 "markdown",
                 "twitter"
             ],
+            "abandoned": "league/commonmark",
             "time": "2020-01-14T01:53:02+00:00"
         },
         {
@@ -4166,6 +4167,7 @@
                 "punctuation",
                 "smartpunct"
             ],
+            "abandoned": "league/commonmark",
             "time": "2019-10-03T12:57:34+00:00"
         },
         {
@@ -4227,6 +4229,7 @@
                 "strikeout",
                 "strikethrough"
             ],
+            "abandoned": "league/commonmark",
             "time": "2019-06-29T11:34:00+00:00"
         },
         {
@@ -4292,6 +4295,7 @@
                 "markdown",
                 "table"
             ],
+            "abandoned": "league/commonmark",
             "time": "2019-09-26T13:28:33+00:00"
         },
         {
@@ -4349,6 +4353,7 @@
                 "markdown",
                 "task"
             ],
+            "abandoned": "league/commonmark",
             "time": "2019-07-11T00:35:13+00:00"
         },
         {
@@ -5193,16 +5198,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.1.5",
+            "version": "v6.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "a8bf068f64a580302026e484ee29511f661b2ad3"
+                "reference": "c2796cb1cb99d7717290b48c4e6f32cb6c60b7b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/a8bf068f64a580302026e484ee29511f661b2ad3",
-                "reference": "a8bf068f64a580302026e484ee29511f661b2ad3",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/c2796cb1cb99d7717290b48c4e6f32cb6c60b7b3",
+                "reference": "c2796cb1cb99d7717290b48c4e6f32cb6c60b7b3",
                 "shasum": ""
             },
             "require": {
@@ -5251,7 +5256,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2020-03-14T14:23:48+00:00"
+            "time": "2020-05-27T12:24:03+00:00"
         },
         {
             "name": "psr/cache",
