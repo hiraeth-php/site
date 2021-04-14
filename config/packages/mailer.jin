@@ -34,16 +34,33 @@
 	]
 
 [mailer]
+	[&.attempts]
 
-	[mailer.contacts.debug]
+		;
+		; If the mailer fails it will retry at most the max number of times.
+		;
+		max = 3
 
-		name  = env(MAILER_DEBUG_NAME, null)
-		email = env(MAILER_DEBUG_EMAIL, null)
+		;
+		; The delay between retry attempts in microseconds.
+		;
+		delay = 250000 ; quarter of a second
 
-	[mailer.contacts.sender]
+	[&.contacts]
 
-		name  = env(MAILER_SENDER_NAME, null)
-		email = env(MAILER_SENDER_EMAIL, null)
+		;
+		; The e-mail addresses used by the mailer
+		;
+
+		[&&.debug]
+
+			name  = env(MAILER_DEBUG_NAME, null)
+			email = env(MAILER_DEBUG_EMAIL, null)
+
+		[&&.sender]
+
+			name  = env(MAILER_SENDER_NAME, null)
+			email = env(MAILER_SENDER_EMAIL, null)
 
 [templates]
 
