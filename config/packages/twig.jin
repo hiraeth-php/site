@@ -119,6 +119,15 @@
 		"array": {
 			"target": "is_array"
 		},
+		"unique": {
+			"target": "array_unique"
+		},
+		"sum": {
+			"target": "array_sum"
+		},
+		"unescape": {
+			"target": "htmlspecialchars_decode"
+		},
 		"attr": {
 			"target": "Hiraeth\Twig\AttrFilter",
 			"options": {

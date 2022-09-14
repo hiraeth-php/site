@@ -28,3 +28,11 @@
 	providers = [
 
 	]
+
+[twig]
+
+	filters = {
+		"jin": {
+			"target": "TwigJin"
+		}
+	}

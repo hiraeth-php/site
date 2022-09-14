@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro|Muli" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/nord.min.css" />
     <link rel="stylesheet" href="/styles/main.css" />
+
+	{% block styles %}
+
+	{% endblock %}
 </head>
 <body class="{{ pageClasses is defined ? pageClasses|join(' ') : 'landing' }}">
     {% block header %}
@@ -27,3 +31,7 @@
 
 <script>((window.gitter = {}).chat = {}).options = { room: 'hiraeth-php/Lobby' };</script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+{% block scripts %}
+
+{% endblock %}

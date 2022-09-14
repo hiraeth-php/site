@@ -1,0 +1,63 @@
+{% extends '@layouts/internal.html' %}
+
+{% set title = 'Online JIN Viewer' %}
+{% set data  = false %}
+
+{% if request.parsedBody.body is defined %}
+    {% set data = 'You did not paste anything' %}
+
+    {% if request.parsedBody.body|trim %}
+        {% set data = request.parsedBody.body|jin %}
+
+        {% if data|type == 'array' %}
+            {% block styles %}
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+                <link rel="stylesheet" href="/lib/jsonview/jsonview.bundle.css" />
+                <style>
+                    #json {
+                        line-height: 1.5em;
+						font-size: 15px;
+                    }
+
+					#json .caret-icon i {
+						margin-top: .5em;
+					}
+                </style>
+            {% endblock %}
+
+            {% block scripts %}
+                <script type="text/javascript" src="/lib/jsonview/jsonview.bundle.js"></script>
+                <script>
+                    JsonView.renderJSON(JSON.stringify({{ data|json_encode|raw }}), document.getElementById('json'));
+                </script>
+            {% endblock %}
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+{% block primary %}
+    <main>
+        {% if data %}
+            <section>
+                {% if data|type == 'array' %}
+                    <div id="json"></div>
+                {% else %}
+                    <p>
+                        {{ data }}
+                    </p>
+                {% endif %}
+            </section>
+        {% endif %}
+
+        <section>
+            <form method="POST">
+                <label>Paste Some JIN</label>
+                <textarea style="width:100%; height: 50%;" name="body">{{ request.parsedBody.body ?? null }}</textarea>
+                {% if session is defined %}
+                    <input type="hidden" name="csrf::token" value="{{ session.csrfToken.value }}" />
+                {% endif %}
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+{% endblock %}
