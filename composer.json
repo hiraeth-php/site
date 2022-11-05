@@ -13,10 +13,10 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "imarc/opus": "^1.1",
         "hiraeth/core": "^2.0",
-        "hiraeth/bootstrap": "^1.0",
+        "hiraeth/bootstrap": "^2.0",
         "hiraeth/sentry": "^1.0",
         "dotink/json": "^1.0"
     },
@@ -28,7 +28,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.2.0"
+            "php": "7.3"
         },
         "allow-plugins": {
             "imarc/opus": true

@@ -18,7 +18,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Shell\RunnerDelegate"
+		"Hiraeth\Inflector\InflectorDelegate"
 	]
 
 	;
@@ -33,41 +33,6 @@
 
 	]
 
-;
-; A [shell] section can be added to any configuration file to add custom commands or variables
-;
+[inflector]
 
-[shell]
-
-	;
-	; Set a custom prompt.  A prompt should just be a callable class (__invoke) which returns a
-	; string containing the custom prompt.
-	;
-
-	prompt = Hiraeth\Shell\Prompt
-
-	;
-	; Add Psysh compatible commands here
-	;
-
-	commands = [
-
-	]
-
-	;
-	; Variables are resolved using the broker and added to the shell's scope
-	;
-
-	variables = {
-		; "acme" => "Acme\Some\Thing"
-	}
-
-;
-; Register the shell with the console
-;
-
-[console]
-
-	commands = [
-		"Hiraeth\Shell\ShellCommand"
-	]
+	language = env(LANGUAGE, english)

@@ -13,7 +13,7 @@
 		"Psr\Http\Message\ServerRequestFactoryInterface": "Laminas\Diactoros\ServerRequestFactory",
 		"Psr\Http\Message\ResponseFactoryInterface": "Laminas\Diactoros\ResponseFactory",
 		"Psr\Http\Message\RequestFactoryInterface": "Laminas\Diactoros\RequestFactory",
-		"Psr\Http\Message\StreamFactoryInterface": "Laminas\Diactoros\StreamFactory"
+		"Psr\Http\Message\StreamFactoryInterface": "Laminas\Diactoros\StreamFactory",
 	}
 
 	;
@@ -24,7 +24,7 @@
 
 	delegates = [
 		"Hiraeth\Diactoros\ServerRequestDelegate",
-		"Hiraeth\Diactoros\ResponseDelegate"
+		"Hiraeth\Diactoros\ResponseDelegate",
 	]
 
 	;
