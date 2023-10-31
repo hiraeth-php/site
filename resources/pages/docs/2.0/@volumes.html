@@ -3,7 +3,7 @@
 {% set title = 'Volumes' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         {: .note}
         This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/volumes`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
@@ -45,5 +45,5 @@
         Options for the class are named arguments.  That is to say, the key for each option must match the parameter name on the class.  These options should only contain non-object dependency information for the injector.  If your adapter requires additional object dependencies, the dependency injector will attempt to instantiate them automatically and use any [delegates](./delegates) for those classes.
 
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

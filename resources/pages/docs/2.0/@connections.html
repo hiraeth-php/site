@@ -3,7 +3,7 @@
 {% set title = 'Database Connections' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         {: .note}
         This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/dbal`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
@@ -99,5 +99,5 @@
 
         [Learn About Managers](./managers){: .action}
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

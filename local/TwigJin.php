@@ -1,11 +1,19 @@
 <?php
 
+use Dotink\Jin\Parser;
+
 class TwigJin
 {
 	/**
+	 * @var Parser
+	 */
+	protected $parser;
+
+
+	/**
 	 *
 	 */
-	public function __construct(Dotink\Jin\Parser $parser)
+	public function __construct(Parser $parser)
 	{
 		$this->parser = $parser;
 	}

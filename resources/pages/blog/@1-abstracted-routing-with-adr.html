@@ -3,7 +3,7 @@
 {% set title = 'Abstracted Routing with Action Domain Responder' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         A little over a year ago I was introduced to Paul M. Jone's (PMJ) Action Domain Responder (ADR) pattern.  While the pattern struck me as solving a number of problems I found inherent to traditional MVC approaches, I was finding it extremely difficult to stick to the clear separation of concerns dictated by the pattern.
 
         Old habits die hard and the pattern as I had seen it demonstrated just wasn't enough to keep me from returning to those habits.  I'm a big proponent of using technical solutions to make doing something the wrong way more difficult than doing it the right way.  To be more specific, although the pattern is almost always demonstrated as simply returning a payload from a domain and passing it to the responder to render a response, not a single example I'd seen truly separated the action from the responder.
@@ -177,5 +177,5 @@
         1. Responders' scope remains small, one responder handles `text/html` for a given result, another `application/json`.
         2. Responders no longer interact with the action at all, enforcing (technically) the separate responsibilities.
         3. We don't need to get tricky with routing or duplicate actions just for separate responders.
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

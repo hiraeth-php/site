@@ -3,7 +3,7 @@
 {% set title = 'Configuration' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Hiraeth uses [Jsonified Ini Notation](https://github.com/dotink/jin) (JIN) for all configuration files and its `.env`{: .config}.  Without going into too much detail, these files use an INI structure with JSON-like values.  The language is extremely similar to [TOML](https://github.com/toml-lang/toml), but does not attempt to be compatible or maintain feature parity.  For example:
 
         ```toml
@@ -165,5 +165,5 @@
         ----
 
         [Learn About Error Handling](./error-handling){: .action}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

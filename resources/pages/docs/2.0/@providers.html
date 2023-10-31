@@ -3,7 +3,7 @@
 {% set title = 'Providers' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Providers are similar to delegates in that they peform dependency configuration on objects constructed by the dependency injector.  Where they differ is that instead of being bound to a concrete class, they are bound to interfaces.  This allows providers to operate on a number of different classes which may require a common configuration and/or setter injection.
 
         While a given class may only have a single delegate, it may, depending on its interfaces, run through a number of providers.
@@ -90,5 +90,5 @@
         ----
 
         [Learn About Aliases](./aliases){: .action}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

@@ -3,7 +3,7 @@
 {% set title = 'Aliases' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Aliases are a way to tell Hiraeth's dependency injector which concrete classes should be injected for which interfaces.
 
         If we review our example for [creating a delegate](./delegates#creating-delegates), we created `Bar`{: .class} using a delegate in order to inject some necessary confguration value during construction.  In this example, we can imagine that `Bar`{: .class} now implements `BarInterface`{: .interface}.  Rather than typehinting `Bar`{: .class} directly, we may want to receive it when we typehint the interface as such:
@@ -51,5 +51,5 @@
         ----
 
         [Learn About Dependency Injection](./dependencies){: .action}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

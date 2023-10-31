@@ -3,7 +3,7 @@
 {% set title = 'Multiple Entity Managers in Doctrine' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         I love doctrine.  Well... kinda.  I think doctrine is by far the best ORM available for PHP at the moment.  This isn't to say I don't have criticisms.  One of those criticisms recently came to a head while implementing support for doctrine for the 2.0 release of Hiraeth (still in beta).  For those Symfony users out there, this may not seem like much of a problem, as Symfony has already done this work.  Although I couldn't determine how they did it, I was able to come up with my own solution while looking around.
 
         Let's start from the beginning.
@@ -218,5 +218,5 @@
         ```
 
         Hope this gives anyone else working more directly with doctrine a simple solution to the problem.
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

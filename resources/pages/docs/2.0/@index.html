@@ -3,7 +3,7 @@
 {% set title = 'Documentation' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         {: .note}
         Documentation is a work in progress.  Please be patient as pages and sections continue to be added.  If there's something you would like to know in particular, please submit an issue on [the main application repo on GitHub](https://github.com/hiraeth-php/app).
 
@@ -22,5 +22,5 @@
         ---
 
         [Install Hiraeth](./installation){: .action}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

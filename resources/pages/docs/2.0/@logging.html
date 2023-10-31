@@ -3,7 +3,7 @@
 {% set title = 'Logging' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         {: .note}
         This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/monolog`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
@@ -57,5 +57,5 @@
         $logger->error('Failed updating user', ['id' => $user_id])
         ```
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

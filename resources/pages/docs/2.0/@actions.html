@@ -3,7 +3,7 @@
 {% set title = 'Actions' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         {: .note}
         This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/fastroute`{: .package}, and `hiraeth/actions`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
@@ -125,5 +125,5 @@
 
         [Add a Route](./routing){: .action} [No, I want to learn more about responders](./responders)
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

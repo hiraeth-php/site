@@ -3,7 +3,7 @@
 {% set title = 'Delegates' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Delegates are responsible for telling Hiraeth how to configure and create dependencies for the dependency injector.  Think of them as an isolated factory class which can use `Hiraeth\Application`{: .class} to query configuration information, retrieve related dependencies and return a working object.  The core of Hiraeth integration is performed by creating delegates and registering those delegates through the configuration.
 
         Delegates are always bound to a concrete class for which that delegate is responsible for _constructing_.
@@ -84,5 +84,5 @@
 
         [Learn About Providers](./providers){: .action}
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

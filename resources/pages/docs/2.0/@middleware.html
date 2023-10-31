@@ -3,7 +3,7 @@
 {% set title = 'Middleware' %}
 
 {% block content %}
-	{% markdown %}
+	{% apply markdown %}
 		{: .note}
 		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package} and `hiraeth/middleland`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
@@ -187,5 +187,5 @@
 
 				setteropation = 'customvalue'
 		```
-	{% endmarkdown %}
+	{% endapply %}
 {% endblock %}

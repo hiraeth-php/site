@@ -3,7 +3,7 @@
 {% set title = 'Adapters' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Adapters are responsible for converting a route target into an executable callback.  These enable custom targets in your routing config that can resolve and return highly custom actions.  For example, you could register a `ProxyAdapter` which will match a URL target and return an action that will proxy the request to the external URL and return the response from that request.
 
         By default the `hiraeth/routing` package registers and enables the following adapters:
@@ -56,5 +56,5 @@
         ```toml
             disabled = true
         ```
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

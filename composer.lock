@@ -1824,12 +1824,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/bootstrap.git",
-                "reference": "13c3016c88bfd0a7ac9c8e21595257cb781e8eb0"
+                "reference": "ff057579bde47ba00bf532b3da2e3e71c89c00fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/13c3016c88bfd0a7ac9c8e21595257cb781e8eb0",
-                "reference": "13c3016c88bfd0a7ac9c8e21595257cb781e8eb0",
+                "url": "https://api.github.com/repos/hiraeth-php/bootstrap/zipball/ff057579bde47ba00bf532b3da2e3e71c89c00fe",
+                "reference": "ff057579bde47ba00bf532b3da2e3e71c89c00fe",
                 "shasum": ""
             },
             "require": {
@@ -1859,6 +1859,7 @@
                 "hiraeth/signal": "^3.0",
                 "hiraeth/templates": "^3.0",
                 "hiraeth/twig": "^3.0",
+                "hiraeth/twig-markdown": "^3.0",
                 "hiraeth/volumes": "^3.0"
             },
             "type": "library",
@@ -1878,7 +1879,7 @@
                 "issues": "https://github.com/hiraeth-php/bootstrap/issues",
                 "source": "https://github.com/hiraeth-php/bootstrap/tree/3.0-beta"
             },
-            "time": "2023-10-29T23:55:00+00:00"
+            "time": "2023-10-31T08:04:48+00:00"
         },
         {
             "name": "hiraeth/cache",
@@ -2049,12 +2050,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/commonmark.git",
-                "reference": "ceb0decef41217e7e4e8477b3620a42c83a91b00"
+                "reference": "ef67dc7bc6b209cc3efa22668c20adddf86e21f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/commonmark/zipball/ceb0decef41217e7e4e8477b3620a42c83a91b00",
-                "reference": "ceb0decef41217e7e4e8477b3620a42c83a91b00",
+                "url": "https://api.github.com/repos/hiraeth-php/commonmark/zipball/ef67dc7bc6b209cc3efa22668c20adddf86e21f6",
+                "reference": "ef67dc7bc6b209cc3efa22668c20adddf86e21f6",
                 "shasum": ""
             },
             "require": {
@@ -2064,7 +2065,7 @@
                 "league/commonmark": "^2.0"
             },
             "provide": {
-                "hiraeth/markdown-imp": "2.0.0"
+                "hiraeth/markdown-imp": "3.0.0"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.0",
@@ -2099,7 +2100,7 @@
                 "issues": "https://github.com/hiraeth-php/commonmark/issues",
                 "source": "https://github.com/hiraeth-php/commonmark/tree/3.0-beta"
             },
-            "time": "2023-10-31T00:33:05+00:00"
+            "time": "2023-10-31T08:01:56+00:00"
         },
         {
             "name": "hiraeth/console",
@@ -3585,6 +3586,61 @@
                 "source": "https://github.com/hiraeth-php/twig/tree/3.0-beta"
             },
             "time": "2023-10-30T03:38:33+00:00"
+        },
+        {
+            "name": "hiraeth/twig-markdown",
+            "version": "3.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/twig-markdown.git",
+                "reference": "53e408f0b6f25b91df3ff0e8753ce4c14bab3750"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/twig-markdown/zipball/53e408f0b6f25b91df3ff0e8753ce4c14bab3750",
+                "reference": "53e408f0b6f25b91df3ff0e8753ce4c14bab3750",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/app": "^3.0",
+                "hiraeth/markdown": "^3.0",
+                "hiraeth/markdown-imp": "^3.0"
+            },
+            "require-dev": {
+                "hiraeth/commonmark": "^3.0",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "Twig Markdown extension for the Hiraeth Nano Framework",
+            "support": {
+                "issues": "https://github.com/hiraeth-php/twig-markdown/issues",
+                "source": "https://github.com/hiraeth-php/twig-markdown/tree/3.0-beta"
+            },
+            "time": "2023-10-31T16:21:24+00:00"
         },
         {
             "name": "hiraeth/volumes",

@@ -3,7 +3,7 @@
 {% set title = 'Post-Install Setup' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         ## Set Up environment {: #dot-env}
 
         Copy the `.env.example` to `.env`{: .config}.  This provides basic environment variables which your Hireath install may need to know about.
@@ -59,5 +59,5 @@
         ----
 
         [I'm ready to create my first page](./pages){: .action} [No, I'm writing an API](./responders)
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

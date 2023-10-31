@@ -3,7 +3,7 @@
 {% set title = 'Pages' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         {: .note}
         This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/middleland`{: .package}, and `hiraeth/twig`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
@@ -53,5 +53,5 @@
 
         [How Do I Create Actions?](./actions){: .action}
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

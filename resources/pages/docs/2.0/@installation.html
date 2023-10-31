@@ -3,7 +3,7 @@
 {% set title = 'Installation' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         You can install Hiraeth with a few simple [composer](https://getcomposer.org) commands.
 
         ## Requirements {: #requirements}
@@ -35,5 +35,5 @@
         ----
 
         [Okay, What's Next?](./post-install){: .action}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

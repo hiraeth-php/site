@@ -3,7 +3,7 @@
 {% set title = 'Error Handling' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Hiraeth provides robust error handling using [SlashTrace](https://github.com/slashtrace/slashtrace).  In addition to providing extensive debugging information, you can add support for additional logging and external logging services such as [Sentry](https://sentry.io).
 
         {: .note}
@@ -54,5 +54,5 @@
         ----
 
         [Learn About Logging](./logging){: .action}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

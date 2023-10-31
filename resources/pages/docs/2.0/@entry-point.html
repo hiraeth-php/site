@@ -3,7 +3,7 @@
 {% set title = 'Entry Point' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         When accessing Hiraeth over HTTP (any standard web server), you will be hitting the application through the `public/index.php`{: .html} file.  This file is provided by `hiraeth/bootstrap`{: .package}, though more specifically through `hiraeth/http`{: .package}.  If you've not installed these packages or are integrating your own libraries, you can create your own custom entry point.
 
         We'll deconstruct the entry point for `hiraeth/http`{: .package} to get a better idea of the steps involved.
@@ -51,5 +51,5 @@
 
 
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

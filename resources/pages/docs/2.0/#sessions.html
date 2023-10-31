@@ -3,7 +3,7 @@
 {% set title = 'Sessions' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Hiraeth bootstrap uses [Aura's session package](https://github.com/auraphp/Aura.Session) for managing sesssions, this includes multiple segments and flash messaging.
 
         ## Obtaining the Session Manager
@@ -106,5 +106,5 @@
         ```
 
         #}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

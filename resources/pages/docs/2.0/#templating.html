@@ -3,7 +3,7 @@
 {% set title = 'Templating' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Hiraeth's bootstrap template engine is [twig](https://twig.symfony.com/) which provides extremely robust templating as well as extensibility.
 
         ## Register Template Paths
@@ -50,5 +50,5 @@
         {% endcache %}
         {% endverbatim %}```
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

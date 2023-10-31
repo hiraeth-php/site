@@ -3,7 +3,7 @@
 {% set title = 'Dependency Injection' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Hiraeth's flexibility and power comes from its dependency injection system which relies on the `Hiraeth\Broker`{: .class}, a [PSR-11](https://www.php-fig.org/psr/psr-11/) compatible version of [the auryn dependency injector](https://github.com/rdlowrey/auryn).  Put simply, dependency injection is a way to instantiate classes into objects such that the additional objects on which that class relies (depends) are automatically created and passed to its `__construct()` method.
 
         Dependency injection is not magic, it relies on objects being instantiated _by_ the dependency injector itself and it requires good object oriented design with strong typehinting to know what it needs to inject.  Hiraeth packages go to great efforts to ensure that most object instantiation occurs in this manner.  If you're adding a class to a configuration file, chances are it is going to be instantiated by the dependency injector.
@@ -21,5 +21,5 @@
         ----
 
         [Learn About Delegates](./delegates){: .action}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

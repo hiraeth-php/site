@@ -3,7 +3,7 @@
 {% set title = 'Object Relational Mapper (ORM)' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         ## AbstractRepository
 
         > _NOTE: The doctrine package will alias, by default, `Hiraeth\Doctrine\AbstractRepository` as `AbstractRepository`.  In order to take full advantage of the features below, you will need to make sure your repository class(es) extend it directly, or via the alias._
@@ -93,5 +93,5 @@
         const QUERY_TALL   = 'tall';
         ```
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

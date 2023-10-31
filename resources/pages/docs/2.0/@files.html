@@ -3,7 +3,7 @@
 {% set title = 'Files and Directories' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         The default directory structure of `hiraeth/app`{: .package} looks like the following:
 
         | Directory      | Description
@@ -69,5 +69,5 @@
         ----
 
         [Learn About Volumes](./volumes){: .action}
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}

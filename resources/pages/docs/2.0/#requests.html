@@ -3,7 +3,7 @@
 {% set title = 'Web Requests' %}
 
 {% block content %}
-    {% markdown %}
+    {% apply markdown %}
         Hiraeth uses a combination of PSR-7 / PSR-15 compatible components for handling web requests.  The official PSR-7 library used by Hiraeth's bootstrap is Laminas's [diactoros](https://github.com/laminas/laminas-diactoros).
 
         Without going into complete detail, we'll cover some of the basics here, however, to understand the full scope of PSR-7 requests you should look at the [documentation](https://www.php-fig.org/psr/psr-7/), in particular, the `ServerRequestInterface`.
@@ -73,5 +73,5 @@
         $request->getParsedBody()
         ```
 
-    {% endmarkdown %}
+    {% endapply %}
 {% endblock %}
