@@ -14,7 +14,7 @@
 	; probably the way to go.  You can also try to add nesting = 1 to the options below.
 	;
 
-	class = Stash\Driver\Sqlite
+	class = Symfony\Component\Cache\Adapter\FilesystemAdapter
 
 	;
 	; Driver Options
@@ -26,4 +26,4 @@
 		;
 		;
 
-		path = dir(storage/sessions)
+		directory = dir(storage/sessions)

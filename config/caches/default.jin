@@ -10,16 +10,16 @@
 	;
 	;
 
-	class = Stash\Driver\FileSystem
+	class = Symfony\Component\Cache\Adapter\FilesystemAdapter
 
 	;
-	;
+	; Options ma
 	;
 
 	[&.options]
 
 		;
-		;
+		; When using the filesystem adapter, this is where data will be stored
 		;
 
-		path = dir(storage/cache/data)
+		directory = dir(storage/cache/data)

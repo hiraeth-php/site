@@ -1,6 +1,6 @@
 {
     "name": "hiraeth/app",
-    "version": "2.0.0",
+    "version": "3.0-beta",
     "description": "A PHP Nano Framework",
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -13,11 +13,11 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
-        "imarc/opus": "^1.1",
-        "hiraeth/core": "^2.0",
-        "hiraeth/bootstrap": "^2.0",
-        "hiraeth/sentry": "^1.0",
+        "php": ">=8.2",
+        "imarc/opus": "^1.0",
+        "hiraeth/core": "^3.0",
+        "hiraeth/bootstrap": "^3.0",
+        "hiraeth/sentry": "^3.0",
         "dotink/json": "^1.0"
     },
     "autoload": {
@@ -28,7 +28,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.3"
+            "php": "8.2"
         },
         "allow-plugins": {
             "imarc/opus": true
