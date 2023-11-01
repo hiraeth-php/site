@@ -8,6 +8,7 @@
 
 	aliases = {
 		"Doctrine\ORM\EntityManagerInterface": "Doctrine\ORM\EntityManager",
+		"Doctrine\ORM\Tools\Console\EntityManagerProvider": "Hiraeth\Doctrine\ManagerRegistry",
 		"AbstractRepository": "Hiraeth\Doctrine\AbstractRepository",
 		"AbstractEntity": "Hiraeth\Doctrine\AbstractEntity"
 	}
@@ -62,15 +63,11 @@
 
 [console]
 
-	commands = [
-		"Hiraeth\Doctrine\GenerateProxiesCommand",
-		"Hiraeth\Doctrine\SchemaCreateCommand",
-		"Hiraeth\Doctrine\SchemaUpdateCommand",
-		"Hiraeth\Doctrine\SchemaDropCommand"
-	]
-
-	helpers = {
-		"em": "Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper"
+	commands = {
+		"orm:generate-proxies":   "Doctrine\ORM\Tools\Console\Command\GenerateProxiesCommand",
+		"orm:schema-tool:create": "Doctrine\ORM\Tools\Console\Command\SchemaTool\CreateCommand",
+		"orm:schema-tool:update": "Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand",
+		"orm:schema-tool:drop":   "Doctrine\ORM\Tools\Console\Command\SchemaTool\DropCommand",
 	}
 
 [fastroute]
