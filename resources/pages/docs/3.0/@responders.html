@@ -1,0 +1,100 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Responders' %}
+
+{% block content %}
+	{% apply markdown %}
+		{: .note}
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/fastroute`{: .package}, and `hiraeth/actions`{: .package}..  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+		Responders take the return result of an [action](./actions) and convert it to a [PSR-7](https://www.php-fig.org/psr/psr-7/) response object.  In most cases this will be totally transparent to the user as `hiraeth/bootstrap`{: .package} comes with a number of common responders out of the box.  However, if you're writing an API, creating custom responders is an extremely powerful way to handle conversion of data transfer objects, models, collections, etc, to the client.
+
+		By default `hiraeth/bootstrap`{: .package} comes with the following responders:
+
+		| Responder                | Description
+		|--------------------------|------------------------------------------------
+		| NativeResponder          | Handles a returned PSR-7 Response object, makes no modifications
+		| JsonResponder            | Handles a returned array, stdClass, or JsonSerializable, converts to JSON
+		| FileResponder            | Handles a returned SplFileINfo object, discerns content type via extension
+		| StringResponder          | Handles a returned string, discerns content type based on content
+		| TemplateResponder        | Handles a returned template, discerns content type via the template extension
+
+
+		## Creating a Responder
+
+		Responders must implement the `Hiraeth\Routing\Responder`{: .interface}.  In order to implement this interface you will need to implement two methods.
+
+		| Method       | Description
+		|--------------|------------------------------------------------------------
+		| `match()`    | Determine whether or not that responder should be used to convert the action's return value
+		| `__invoke()` | Perform the conversion of the action's return value into a [PSR-7](https://www.php-fig.org/psr/psr-7/) response object
+
+		Both methods receive the `Hiraeth\Routing\Resolver`{: .class} as an argument which allows you to access the return value of the action.
+
+		As an example, let's begin by looking at the `Hiraeth\Routing\NativeResponder`{: .class}.
+
+		### Matching the Response
+
+		The `match()` method takes the `Hiraeth\Routing\Resolver`{: .class}, on which you can use `getResult()` to get the return value from the action.  It returns `TRUE` in the event it knows how to convert the result to a response, `FALSE` otherwise.  The first responder to return `TRUE` is chosen to send the response.
+
+		The `Hiraeth\Routing\NativeResponder`{: .class} matches if the return value of the action is a already a [PSR-7](https://www.php-fig.org/psr/psr-7/) response object.
+
+		```php
+		public function match(Resolver $resolver): bool
+		{
+			return $resolver->getResult() instanceof Psr\Http\Message\ResponseInterface;
+		}
+		```
+
+		### Converting the Response
+
+		Once a responder is matched, it will be invoked via the `__invoke()` method.  The `__invoke()` method is responsible for taking the information from the return value and mapping it or converting it to a valid `Psr\Http\Message\ResponseInterface`{: .interface}.  In our previous example, the result was _already_ a valid [PSR-7](https://www.php-fig.org/psr/psr-7/) response object, so it would only return the original result.
+
+		Here, we'll look at the `Hiraeth\Routing\StringResolver`{: .class}.  In this instance, we would have matached if the return result from the action was a native PHP `string`.  As with the `match()` method, we receive the resolver.  From there, we can `getResult()` and convert it:
+
+		```php
+		public function __invoke(Resolver $resolver): Response
+		{
+			$finfo     = finfo_open();
+			$result    = $resolver->getResult();
+			$response  = $resolver->getResponse();
+			$stream    = $this->streamFactory->createStream($result);
+			$mime_type = finfo_buffer($finfo, $result, FILEINFO_MIME_TYPE);
+
+			finfo_close($finfo);
+
+			return $response
+				->withStatus(200)
+				->withBody($stream)
+				->withHeader('Content-Type', $mime_type)
+			;
+		}
+		```
+
+		## Registering Responders
+
+		Responders can be registered by creating a new file in `config/responders`{: .folder}, e.g. `config/responders/acme.jin`{: .config} with a `[responder]` section and specifying the `class` of the responder:
+
+		```toml
+		[responder]
+
+			class = Acme\Responder\CustomResponder
+		```
+
+		Responders are matched in the order of their specified `priority` in the config.  The first to match will be executed, so if you have a responder that handles the same type of response as another, make sure the responder with the more specific matching criteria has a **lower** value.
+
+		```toml
+			priority = 10
+		```
+
+		If you need to disable a particular conflicting responder for some reason you can set the `disabled` option to `true`:
+
+		```toml
+			disabled = true
+		```
+
+		----
+
+		[Learn About Middleware](./middleware){: .action}
+	{% endapply %}
+{% endblock %}

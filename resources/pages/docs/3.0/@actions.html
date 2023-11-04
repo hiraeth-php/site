@@ -1,0 +1,129 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Actions' %}
+
+{% block content %}
+    {% apply markdown %}
+        {: .note}
+        This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/fastroute`{: .package}, and `hiraeth/actions`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+        Actions are PHP classes which handle incoming web requests.  Their primary responsibility is mapping incoming requests data to your domain level services, models, repositories, etc, and then returning a result.
+
+        The only requirement of an action is that it implements the `__invoke()` method to perform the operations for which it is responsible.  One of the simplest examples of a valid action would, therefore, be the following:
+
+        ```php
+        class HelloWorld
+        {
+            public function __invoke()
+            {
+                return 'Hello World';
+            }
+        }
+        ```
+
+        The suggested directory for actions is `local/actions`{: .folder}.  Once you've added your action, regenerate autoloading:
+
+        ```php
+        composer dump-autoload
+        ```
+
+        ## Creating From Abstract Action {: #creating}
+
+        While the example above is valid, it's not very practical because we don't have any access to the data or tools we need to really analyze our request or generate an appropriate response.  While it's possible to add a `__construct()` method and get what we need injected, `hiraeth/bootstrap`{: .package]} provided an abstract action implementation that will cover most of the basics.
+
+        To make use of this functionality out of the box, simply make sure your action extends `AbstractAction`{: .class}:
+
+        ```php
+        class MyCustomAction extends AbstractAction
+        {
+            ...
+        }
+        ```
+
+        {: .note}
+        The `AbstractAction`{: .class} name is an alias, by default, to `Hiraeth\Actions\AbstractAction`{: .class}.  You can use this alias to avoid more complex namespacing, however, because the alias is only regsitered if the class does not already exist, it allows you to easily add functionality to the abstract action implementation later by simply creating your own real `AbstractAction`{: .class}.
+
+        ## Accessing Request Information {: #requet-info}
+
+        Once you have extended the `AbstractAction`{: .class}, it's now possible to easily access the [PSR-7](https://www.php-fig.org/psr/psr-7/) server request object that represents the incoming client request via `$this->request`:
+
+        ```php
+        public function __invoke()
+        {
+            if ($this->request->getMethod() == 'POST') {
+                ...
+            }
+        }
+        ```
+
+        For a full list of available methods, their arguments, and returned data types available on the request object, see [the PSR-7 server request interface documentation](https://www.php-fig.org/psr/psr-7/#321-psrhttpmessageserverrequestinterface).
+
+        ## Accessing Request Data {: #request-data}
+
+        It is 100% possible to access all request data via the server request object through standard PSR-7 interfaces.  Depending on the complexity of the incoming data, this may actually be necessary at time to distinguish between query parameters, post data, files, etc.  However, more common is the need to have this information easily combined together and/or to get default values if it hasn't been sent.
+
+        Hiraeth's `AbstractAction`{: .class} provides two methods for easily accomplishing these tasks.
+
+        ### Checking If Data Exists {: #checking-data}
+
+        If you need to check if a parameter has been sent (regardless of via query parameter, request body, or custom attributes), you can use the `has()` method:
+
+        ```php
+        if ($this->has('file')) {
+            ...
+        }
+        ```
+
+        ### Getting Data {: #getting-data}
+
+        To get the data by name, you can use the `get()` method in very much the same way.
+
+        ```php
+        $this->get('file')
+        ```
+
+        In addition to being able to get data that has been sent, you can also provide a default in the event it hasn't.  This is common, for example, in the case of pagination, where you likely want to default to a value of `1` if a specific page has not been requested:
+
+        ```php
+        $this->get('page', 1)
+        ```
+
+        ## Returning Data {: #returning-data}
+
+        Hiraeth does not require actions to return a particular object or type of data.  Rather, it uses a system of responders which are registered in the configuration and which, in turn will be matched against your action's return value to convert it into a proper response.  That said, the `Hiraeth\Actions\AbstractAction`{: .class} provides a number of helpers to create the most common return types.
+
+        ### Templates {: #templates}
+
+        ```php
+        return $this->template('@pages/index.html', $template_data)
+        ```
+
+        ### Redirects {: #redirects }
+
+        ```php
+        return $this->redirect('/people', ['page' => 1])
+        ```
+
+        ### Responses {: #responses}
+
+        ```php
+        return $this->response(404)
+        ```
+
+        You can also return some data quite directly using the built in responders.  For example, if you want to send back some JSON, you can simply return an array:
+
+        ```php
+        return [
+            'title' => 'A nice JSON response',
+            'body'  => 'Nothing to see here'
+        ]
+        ```
+
+        Now that you've got your action in place, you're going to need to add a route in order to map a URL to your action.
+
+        ----
+
+        [Add a Route](./routing){: .action} [No, I want to learn more about responders](./responders)
+
+    {% endapply %}
+{% endblock %}

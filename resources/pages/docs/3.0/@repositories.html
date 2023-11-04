@@ -1,0 +1,97 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Object Relational Mapper (ORM)' %}
+
+{% block content %}
+    {% apply markdown %}
+        ## AbstractRepository
+
+        > _NOTE: The doctrine package will alias, by default, `Hiraeth\Doctrine\AbstractRepository` as `AbstractRepository`.  In order to take full advantage of the features below, you will need to make sure your repository class(es) extend it directly, or via the alias._
+
+        ### Setting the Entity Class
+
+        The first thing you want to do when you extend the `AbstractRepository` is to set the corresponding entity class:
+
+        ```
+        protected static $entity = Person::class;
+        ```
+
+        ### Setting the Default Order
+
+        The second thing you want to do is set the default order:
+
+        ```
+        protected static $order = [
+            'lastName'  => 'asc',
+            'firstName' => 'asc'
+        ];
+        ```
+
+        ### Collections vs. Arrays
+
+        Doctrine's standard `findBy`, `findAll` and similar methods which traditionally return arrays will return instances of `Hiraeth\Doctrine\Collection` which extends the standard doctrine `ArrayCollection`.  This allows you to go from query to PHP in one seamless/fluid method chain:
+
+        ```
+        $names = $repository->findAll()->map(function($person) {
+            return $person->getFullName();
+        });
+        ```
+
+        If you need to get an array to use with PHP's native array functions or to pass to a function that only supports arrays you can use the `toArray()` method:
+
+        ```
+        $names->toArray()
+        ```
+
+        ### Queries and Builders
+
+        Doing complex queries will generally require you to use DQL or Doctrine's `QueryBuilder`.  We expose a simple mechanism for building queries for a given repository with the `query()` method:
+
+        ```
+        $adults = $repository->query(function($builder) {
+            return $builder->where('this.age >= 18');
+        });
+        ```
+
+        {: .note}
+        Before passing the `QueryBuilder` to the build method(s), the builder will be initialized to select the current repository's entity class aliases as `this`.
+
+        Alternatively to passing the `query()` method a callable, you can pass it a string corresponding to an existing `build*()` method.  For example, instead of the above we could add to our repository:
+
+        ```
+        protected function buildAdults($builder)
+        {
+            return $builder->where('this.age >= 18');
+        }
+        ```
+
+        Then do the following:
+
+        ```
+        $adults = $repository->query('adults');
+        ```
+
+        You can do more than one by passing an array:
+
+        ```
+        $tall_adults = $repository->query(['tall', 'adults']);
+        ```
+
+        As long as you have the corresponding build function:
+
+        ```
+        protected function buildTall($builder)
+        {
+            return $builder->where('this.height >= 72');
+        }
+        ```
+
+        Want auto-complete?  Add some constants:
+
+        ```
+        const QUERY_ADULTS = 'adults';
+        const QUERY_TALL   = 'tall';
+        ```
+
+    {% endapply %}
+{% endblock %}

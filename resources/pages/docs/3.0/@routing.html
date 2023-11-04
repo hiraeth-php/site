@@ -1,0 +1,139 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Routing' %}
+
+{% block content %}
+	{% apply markdown %}
+		{: .note}
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package} and `hiraeth/fastroute`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+		Hiraeth's bootstrap uses [FastRoute](https://github.com/nikic/FastRoute) with a custom "transformation layer" on top to provide some much needed missing features like:
+
+		- Pattern Aliases
+		- Parameter Transformers
+		- Route Masks
+
+		## Adding Routes {: #adding-routes}
+
+		Routes are broken down into groups.  Each group is represented by a configuration collection in the `config/routing`{: .folder}.  Each collection is capable of defining a custom prefix and a series of routes routes which map to specific actions.
+
+		Routes can be added to the `routes` map, a tab separated values list defining the route, target, and methods for which the route applies:
+
+		```toml
+		[routing]
+
+			;
+			; Route definitions in this group.  Add tab separate lines
+			; for each route in the format:
+			;
+			; {route}	{target}	{methods}
+			;
+
+			routes = map(application.route) {
+				/	ViewHome	["GET"]
+			}
+		```
+
+		If you need to match all possible methods, you can use `["*"]` as the methods value.
+
+
+		## Prefixes {: #prefixes}
+
+		If you need to move all your routes under a specific path, you can use `prefix` to define the leading URL segment for all the routes in the group.  Multiple groups can have the same prefix as well, so feel free to break up your route collections in more specific groups if you like.
+
+		```toml
+		[routing]
+
+			prefix = /blog
+		```
+
+		## Parameters {: #parameters}
+
+		Parameters are a way to take in pieces of your route as values to be passed to your action.  The basic style of a parameter is simply the parameter name surrounded by curly braces, e.g. `{id}`.
+
+
+		```toml
+		routes = map(application.route) {
+			/articles/{id}-{title}	ViewArticle	["GET"]
+		}
+		```
+
+		Parameters will be injected into your action using the same names as defined in the route.  You can receive as many or as few as you like.  In the example below, despite defining both the `{id}` and the `{title}` in the route, we only really need the id for lookup:
+
+		```php
+		class ViewArticle extends AbstractAction
+		{
+			public function __invoke($id)
+			{
+				//
+				// Find article with the $id
+				//
+			}
+		}
+		```
+
+		Although it's possible to add multiple simple parameters to your routes, to prevent mismatching and ambiguities in which parts of the URL belong to which parameters you will want to further restrict what constitutes a valid value for the parameter using patterns.
+
+		### Patterns {: #patterns}
+
+		To match parameters more precisely, you can follow the parameter name in the route with a `:` and add a RegEx or a pattern alias (a simple character or string used as a shorthand):
+
+		```toml
+		routes = map(application.route) {
+			/articles/{id:+}-{title:!}	ViewArticle	["GET"]
+		}
+		```
+
+		Given the above, the `id` will now be constrained to matching the `+` pattern, which translates to `\d+` while the `title` will be constrained to `!` which translates to `[a-z0-9-]+`.
+
+		To add your own patterns, you can add a `[fastroute]` section to any configuration collection and set a `patterns` key equal to an object mapping the pattern alias (the key) to the regular expression (the value).  An example date pattern might look like the following:
+
+		```toml
+		[fastroute]
+
+			patterns = {
+				"d": "[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]"
+			}
+		```
+
+		## Transformers {: #transformers}
+
+		Transformers are a way to convert parameters to native PHP types (including objects) before they're passed to your actions.  Since URLs are ultimately only strings, if you're matching an integer or a date as in our example above, you may want to receive an actual integer or `DateTime` object respectively.
+
+		Transformers are classes which must implement `Hiraeth\FastRoute\Transformer`{: .interface}.  This interface requires two methods:
+
+		| Method       | Description
+		|--------------|--------------------------------------------
+		| `fromUrl()`  | Converts the paramter from the URL form (string) to the native PHP type
+		| `toUrl()`    | Converts the parameter from the native PHP type (mixed) to the URL form (string)
+
+		Let's look at how we might implement a transformer for the above date pattern to get a `DateTime` object instead of a string.
+
+		```php
+		class DateTransformer implements Hiraeth\FastRoute\Transformer
+		{
+			public function fromUrl($name, $value, array $context = array())
+			{
+				try {
+					return DateTime($value);
+				} catch (Exception $e) {
+					return NULL;
+				}
+			}
+
+			public function toUrl($name, $value, array $context = array()): string
+			{
+				if (!$value instanceof DateTime) {
+					throw new InvalidArgumentException(sprintf(
+						'Parameter %s must be a valid DateTime object',
+						$name
+					))
+				}
+
+				return $value->format('Y-m-d');
+			}
+		}
+		```
+
+	{% endapply %}
+{% endblock %}

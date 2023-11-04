@@ -1,0 +1,58 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Error Handling' %}
+
+{% block content %}
+    {% apply markdown %}
+        Hiraeth provides robust error handling using [SlashTrace](https://github.com/slashtrace/slashtrace).  In addition to providing extensive debugging information, you can add support for additional logging and external logging services such as [Sentry](https://sentry.io).
+
+        {: .note}
+        Hiraeth runs in production mode by default.  This means that until you've set up debugging, logging, or additional services in your `.env`{: .config}, you won't be seeing much detail if something is going wrong.  Make sure to read the below sections carefully and choose what makes the most sense for your environment.
+
+        ## Debugging Mode {: #debugging}
+
+        To put the application in debugging mode, modify the `.env` file and make sure the following is set:
+
+        ```toml
+        DEBUG = true
+        ```
+
+        You can check if the application is in debugging mode by performing the following:
+
+        ```php
+        if ($app->isDebugging()) {
+            ...
+        }
+        ```
+
+        When the application is in debugging mode, you will see stacktrace and related context information presented to a web request or in the cli in accordance with [SlashTrace's standard output](https://slashtrace.com/demo.php).
+
+        ## Services {: #services}
+
+        [SlashTrace](https://github.com/slashtrace/slashtrace) provides the ability to create custom handlers which send error output to third-party services.  Handlers are avilable for many common services, however, at present, Hiraeth only has an integration package for [Sentry](https://sentry.io).
+
+        To get Sentry support enabled, install `hiraeth/sentry`{: .package} and add your `DSN` in `.env`{: .config}.
+
+        ```toml
+        [SENTRY]
+
+        	DSN = <your sentry dsn>
+        ```
+
+        ## Logging {: #logging}
+
+        You can enable logging by installing `hiraeth/monolog`{: .package} and updating your `.env`{: .config} to set `LOGGING` to the approriate log level.
+
+        ```toml
+        LOGGING = error
+        ```
+
+        Supported types map to [PSR-3 LogLevel constants](https://www.php-fig.org/psr/psr-3/#5-psrlogloglevel).
+
+        Logs of the requests level or higher will then be sent to the default file location under `storage/logs`{: .folder}.
+
+        ----
+
+        [Learn About Logging](./logging){: .action}
+    {% endapply %}
+{% endblock %}
