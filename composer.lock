@@ -61,48 +61,37 @@
         },
         {
             "name": "aura/session",
-            "version": "2.1.0",
+            "version": "4.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/auraphp/Aura.Session.git",
-                "reference": "7d2f7d41ad693970b5b6b83facca0961d3378883"
+                "reference": "b315a89f42a0c9eeb683a3ddbb3c36f16a868e00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auraphp/Aura.Session/zipball/7d2f7d41ad693970b5b6b83facca0961d3378883",
-                "reference": "7d2f7d41ad693970b5b6b83facca0961d3378883",
+                "url": "https://api.github.com/repos/auraphp/Aura.Session/zipball/b315a89f42a0c9eeb683a3ddbb3c36f16a868e00",
+                "reference": "b315a89f42a0c9eeb683a3ddbb3c36f16a868e00",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": "^7.2 || ^8.0"
             },
             "require-dev": {
-                "aura/di": "~2.0"
+                "phpunit/phpunit": "^8.5"
             },
             "suggest": {
                 "ext-mcrypt": "Mcrypt generates the next best secure CSRF tokens.",
-                "ext-openssl": "OpenSSL generates the best secure CSRF tokens.",
-                "ircmaxell/random-lib": "A Library For Generating Secure Random Numbers",
-                "paragonie/random_compat": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7"
+                "ext-openssl": "OpenSSL generates the best secure CSRF tokens."
             },
             "type": "library",
-            "extra": {
-                "aura": {
-                    "type": "library",
-                    "config": {
-                        "common": "Aura\\Session\\_Config\\Common"
-                    }
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "Aura\\Session\\": "src/",
-                    "Aura\\Session\\_Config\\": "config/"
+                    "Aura\\Session\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-2-Clause"
+                "MIT"
             ],
             "authors": [
                 {
@@ -121,9 +110,9 @@
             ],
             "support": {
                 "issues": "https://github.com/auraphp/Aura.Session/issues",
-                "source": "https://github.com/auraphp/Aura.Session/tree/2.x"
+                "source": "https://github.com/auraphp/Aura.Session/tree/4.0.0-beta1"
             },
-            "time": "2016-10-03T20:28:32+00:00"
+            "time": "2023-09-23T11:25:19+00:00"
         },
         {
             "name": "brick/math",
@@ -2420,12 +2409,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/doctrine.git",
-                "reference": "40e5c5344776f04ad804850420346ec515dcc146"
+                "reference": "cfe9bb660aa0b9ccb40fdc6d32189071b7e4f4d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/40e5c5344776f04ad804850420346ec515dcc146",
-                "reference": "40e5c5344776f04ad804850420346ec515dcc146",
+                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/cfe9bb660aa0b9ccb40fdc6d32189071b7e4f4d6",
+                "reference": "cfe9bb660aa0b9ccb40fdc6d32189071b7e4f4d6",
                 "shasum": ""
             },
             "require": {
@@ -2472,7 +2461,7 @@
                 "issues": "https://github.com/hiraeth-php/doctrine/issues",
                 "source": "https://github.com/hiraeth-php/doctrine/tree/3.0-beta"
             },
-            "time": "2023-10-30T00:36:50+00:00"
+            "time": "2023-11-02T00:13:46+00:00"
         },
         {
             "name": "hiraeth/events",
@@ -2652,12 +2641,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/http.git",
-                "reference": "12ee889fc5d774cf2f454fcde3b37e3df0601171"
+                "reference": "8a0a071748fb0b861414ea4029a5f8576794fb90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/http/zipball/12ee889fc5d774cf2f454fcde3b37e3df0601171",
-                "reference": "12ee889fc5d774cf2f454fcde3b37e3df0601171",
+                "url": "https://api.github.com/repos/hiraeth-php/http/zipball/8a0a071748fb0b861414ea4029a5f8576794fb90",
+                "reference": "8a0a071748fb0b861414ea4029a5f8576794fb90",
                 "shasum": ""
             },
             "require": {
@@ -2695,7 +2684,7 @@
                 "issues": "https://github.com/hiraeth-php/http/issues",
                 "source": "https://github.com/hiraeth-php/http/tree/3.0-beta"
             },
-            "time": "2023-11-01T16:49:39+00:00"
+            "time": "2023-11-04T01:28:56+00:00"
         },
         {
             "name": "hiraeth/inflector",
@@ -2703,12 +2692,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/inflector.git",
-                "reference": "2e0018bb76639423fb05e273d9b0104dcfe793cf"
+                "reference": "86d1c65996291bb3b7aebe21aed7bd49fa22c95c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/inflector/zipball/2e0018bb76639423fb05e273d9b0104dcfe793cf",
-                "reference": "2e0018bb76639423fb05e273d9b0104dcfe793cf",
+                "url": "https://api.github.com/repos/hiraeth-php/inflector/zipball/86d1c65996291bb3b7aebe21aed7bd49fa22c95c",
+                "reference": "86d1c65996291bb3b7aebe21aed7bd49fa22c95c",
                 "shasum": ""
             },
             "require": {
@@ -2716,7 +2705,6 @@
                 "hiraeth/app": "^3.0"
             },
             "require-dev": {
-                "hiraeth/app": "^3.0",
                 "phpstan/phpstan": "^1.0",
                 "phpunit/phpunit": "^10.0"
             },
@@ -2730,7 +2718,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2749,7 +2737,7 @@
                 "issues": "https://github.com/hiraeth-php/inflector/issues",
                 "source": "https://github.com/hiraeth-php/inflector/tree/3.0-beta"
             },
-            "time": "2023-10-29T20:52:08+00:00"
+            "time": "2023-11-03T23:31:36+00:00"
         },
         {
             "name": "hiraeth/mailer",
@@ -2757,12 +2745,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/mailer.git",
-                "reference": "b5a3c38d5f11d2fec3b29dd2d5461654ef469e6d"
+                "reference": "8190d69da0dd85d6aec87d07e2be79df13c69190"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/mailer/zipball/b5a3c38d5f11d2fec3b29dd2d5461654ef469e6d",
-                "reference": "b5a3c38d5f11d2fec3b29dd2d5461654ef469e6d",
+                "url": "https://api.github.com/repos/hiraeth-php/mailer/zipball/8190d69da0dd85d6aec87d07e2be79df13c69190",
+                "reference": "8190d69da0dd85d6aec87d07e2be79df13c69190",
                 "shasum": ""
             },
             "require": {
@@ -2785,7 +2773,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2804,7 +2792,7 @@
                 "issues": "https://github.com/hiraeth-php/mailer/issues",
                 "source": "https://github.com/hiraeth-php/mailer/tree/3.0-beta"
             },
-            "time": "2023-10-29T21:00:40+00:00"
+            "time": "2023-11-03T23:43:11+00:00"
         },
         {
             "name": "hiraeth/markdown",
@@ -2812,12 +2800,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/markdown.git",
-                "reference": "e32dd3ca9638ef7665eea8fa25852d167d7c9dc8"
+                "reference": "b2375412e892886b60e66fad5053333a98f7a6ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/markdown/zipball/e32dd3ca9638ef7665eea8fa25852d167d7c9dc8",
-                "reference": "e32dd3ca9638ef7665eea8fa25852d167d7c9dc8",
+                "url": "https://api.github.com/repos/hiraeth-php/markdown/zipball/b2375412e892886b60e66fad5053333a98f7a6ab",
+                "reference": "b2375412e892886b60e66fad5053333a98f7a6ab",
                 "shasum": ""
             },
             "require": {
@@ -2835,7 +2823,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2854,7 +2842,7 @@
                 "issues": "https://github.com/hiraeth-php/markdown/issues",
                 "source": "https://github.com/hiraeth-php/markdown/tree/3.0-beta"
             },
-            "time": "2023-10-29T21:11:17+00:00"
+            "time": "2023-11-03T23:45:28+00:00"
         },
         {
             "name": "hiraeth/middleware",
@@ -2862,22 +2850,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware.git",
-                "reference": "0e641bbe86ec164972bd9e0096a8be6a953b366c"
+                "reference": "46f849f718ef055460ea464bea0692d325c754a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware/zipball/0e641bbe86ec164972bd9e0096a8be6a953b366c",
-                "reference": "0e641bbe86ec164972bd9e0096a8be6a953b366c",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware/zipball/46f849f718ef055460ea464bea0692d325c754a5",
+                "reference": "46f849f718ef055460ea464bea0692d325c754a5",
                 "shasum": ""
             },
             "require": {
+                "hiraeth/app": "^3.0",
                 "psr/container": "^2.0",
                 "psr/http-message": "^2.0",
                 "psr/http-server-handler": "^1.0",
                 "psr/http-server-middleware": "^1.0"
             },
             "require-dev": {
-                "hiraeth/app": "^3.0",
                 "phpstan/phpstan": "^1.0",
                 "phpunit/phpunit": "^10.0"
             },
@@ -2891,7 +2879,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2910,7 +2898,7 @@
                 "issues": "https://github.com/hiraeth-php/middleware/issues",
                 "source": "https://github.com/hiraeth-php/middleware/tree/3.0-beta"
             },
-            "time": "2023-10-29T21:17:52+00:00"
+            "time": "2023-11-03T23:46:50+00:00"
         },
         {
             "name": "hiraeth/middleware-client-ip",
@@ -2918,12 +2906,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-client-ip.git",
-                "reference": "4114ceca0827014528c89622c66da766136b5a32"
+                "reference": "cf38d0379808c95939fa8dfd9ec15a1df03d60e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/4114ceca0827014528c89622c66da766136b5a32",
-                "reference": "4114ceca0827014528c89622c66da766136b5a32",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-client-ip/zipball/cf38d0379808c95939fa8dfd9ec15a1df03d60e2",
+                "reference": "cf38d0379808c95939fa8dfd9ec15a1df03d60e2",
                 "shasum": ""
             },
             "require": {
@@ -2947,7 +2935,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2966,7 +2954,7 @@
                 "issues": "https://github.com/hiraeth-php/middleware-client-ip/issues",
                 "source": "https://github.com/hiraeth-php/middleware-client-ip/tree/3.0-beta"
             },
-            "time": "2023-10-29T21:55:16+00:00"
+            "time": "2023-11-03T23:53:05+00:00"
         },
         {
             "name": "hiraeth/middleware-common",
@@ -3018,12 +3006,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-encrypt-cookies.git",
-                "reference": "a7da9de6d92777fa14197bd95a2af2787b45b935"
+                "reference": "4a5b5fb00a77f02e80ca6ef671a9e9b68ae97a80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-encrypt-cookies/zipball/a7da9de6d92777fa14197bd95a2af2787b45b935",
-                "reference": "a7da9de6d92777fa14197bd95a2af2787b45b935",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-encrypt-cookies/zipball/4a5b5fb00a77f02e80ca6ef671a9e9b68ae97a80",
+                "reference": "4a5b5fb00a77f02e80ca6ef671a9e9b68ae97a80",
                 "shasum": ""
             },
             "require": {
@@ -3048,7 +3036,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3067,7 +3055,7 @@
                 "issues": "https://github.com/hiraeth-php/middleware-encrypt-cookies/issues",
                 "source": "https://github.com/hiraeth-php/middleware-encrypt-cookies/tree/3.0-beta"
             },
-            "time": "2023-10-29T21:57:12+00:00"
+            "time": "2023-11-04T00:01:25+00:00"
         },
         {
             "name": "hiraeth/middleware-referer-attribute",
@@ -3075,12 +3063,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/middleware-referer-attribute.git",
-                "reference": "d13a720cbd5bf2a8648ee11b443b75427fc75b6c"
+                "reference": "47f18c74f4e680191dd8482cb5aec73f2d6928ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/middleware-referer-attribute/zipball/d13a720cbd5bf2a8648ee11b443b75427fc75b6c",
-                "reference": "d13a720cbd5bf2a8648ee11b443b75427fc75b6c",
+                "url": "https://api.github.com/repos/hiraeth-php/middleware-referer-attribute/zipball/47f18c74f4e680191dd8482cb5aec73f2d6928ff",
+                "reference": "47f18c74f4e680191dd8482cb5aec73f2d6928ff",
                 "shasum": ""
             },
             "require": {
@@ -3103,7 +3091,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3122,7 +3110,7 @@
                 "issues": "https://github.com/hiraeth-php/middleware-referer-attribute/issues",
                 "source": "https://github.com/hiraeth-php/middleware-referer-attribute/tree/3.0-beta"
             },
-            "time": "2023-10-29T21:58:03+00:00"
+            "time": "2023-11-04T00:07:03+00:00"
         },
         {
             "name": "hiraeth/mime-types",
@@ -3182,12 +3170,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/monolog.git",
-                "reference": "f9ea570e1d067b0d18b2d365fa29ec063f51e834"
+                "reference": "fcd78601abe0a3254277cfe5c9dbc67bc8d1c6ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/f9ea570e1d067b0d18b2d365fa29ec063f51e834",
-                "reference": "f9ea570e1d067b0d18b2d365fa29ec063f51e834",
+                "url": "https://api.github.com/repos/hiraeth-php/monolog/zipball/fcd78601abe0a3254277cfe5c9dbc67bc8d1c6ea",
+                "reference": "fcd78601abe0a3254277cfe5c9dbc67bc8d1c6ea",
                 "shasum": ""
             },
             "require": {
@@ -3195,7 +3183,8 @@
                 "monolog/monolog": "^2.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.0"
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^10.0"
             },
             "type": "opus-package",
             "extra": {
@@ -3207,7 +3196,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3226,7 +3215,7 @@
                 "issues": "https://github.com/hiraeth-php/monolog/issues",
                 "source": "https://github.com/hiraeth-php/monolog/tree/3.0-beta"
             },
-            "time": "2023-10-29T19:51:51+00:00"
+            "time": "2023-11-04T00:08:19+00:00"
         },
         {
             "name": "hiraeth/routing",
@@ -3234,12 +3223,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/routing.git",
-                "reference": "fbc9ffce8be55ae0d316f396c1883d0f46608b51"
+                "reference": "ad87130d5dc59233555def631b8846328c00e367"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/fbc9ffce8be55ae0d316f396c1883d0f46608b51",
-                "reference": "fbc9ffce8be55ae0d316f396c1883d0f46608b51",
+                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/ad87130d5dc59233555def631b8846328c00e367",
+                "reference": "ad87130d5dc59233555def631b8846328c00e367",
                 "shasum": ""
             },
             "require": {
@@ -3264,7 +3253,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3283,7 +3272,7 @@
                 "issues": "https://github.com/hiraeth-php/routing/issues",
                 "source": "https://github.com/hiraeth-php/routing/tree/3.0-beta"
             },
-            "time": "2023-10-31T04:37:36+00:00"
+            "time": "2023-11-04T00:14:01+00:00"
         },
         {
             "name": "hiraeth/sentry",
@@ -3343,22 +3332,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/session.git",
-                "reference": "93e55cd1a4da3d37507c16a566566d22822b787f"
+                "reference": "e0a6d0187509bce0a4d23d096c236a0dbc2347dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/session/zipball/93e55cd1a4da3d37507c16a566566d22822b787f",
-                "reference": "93e55cd1a4da3d37507c16a566566d22822b787f",
+                "url": "https://api.github.com/repos/hiraeth-php/session/zipball/e0a6d0187509bce0a4d23d096c236a0dbc2347dc",
+                "reference": "e0a6d0187509bce0a4d23d096c236a0dbc2347dc",
                 "shasum": ""
             },
             "require": {
-                "aura/session": "^2.1",
+                "aura/session": "^4.0",
                 "dflydev/fig-cookies": "^3.0"
             },
             "require-dev": {
                 "hiraeth/app": "^2.0",
                 "hiraeth/twig": "^2.0",
                 "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^10.0",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0",
                 "psr/http-server-handler": "^1.0",
@@ -3375,7 +3365,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3394,7 +3384,7 @@
                 "issues": "https://github.com/hiraeth-php/session/issues",
                 "source": "https://github.com/hiraeth-php/session/tree/3.0-beta"
             },
-            "time": "2023-10-29T17:12:03+00:00"
+            "time": "2023-11-04T00:26:01+00:00"
         },
         {
             "name": "hiraeth/session-cache",
@@ -3402,12 +3392,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/session-cache.git",
-                "reference": "95c61c62d4a3e6122d3d9708a7c4a013ed1ecdca"
+                "reference": "7b7585390ff50e2bbf36dcc602bb588da5c84dc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/session-cache/zipball/95c61c62d4a3e6122d3d9708a7c4a013ed1ecdca",
-                "reference": "95c61c62d4a3e6122d3d9708a7c4a013ed1ecdca",
+                "url": "https://api.github.com/repos/hiraeth-php/session-cache/zipball/7b7585390ff50e2bbf36dcc602bb588da5c84dc9",
+                "reference": "7b7585390ff50e2bbf36dcc602bb588da5c84dc9",
                 "shasum": ""
             },
             "require": {
@@ -3428,7 +3418,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3447,7 +3437,7 @@
                 "issues": "https://github.com/hiraeth-php/session-cache/issues",
                 "source": "https://github.com/hiraeth-php/session-cache/tree/3.0-beta"
             },
-            "time": "2023-10-29T23:53:40+00:00"
+            "time": "2023-11-04T01:18:46+00:00"
         },
         {
             "name": "hiraeth/shell",
@@ -3455,12 +3445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/shell.git",
-                "reference": "eeaf11950a7938e44c3ef4f01a905e63fbf06120"
+                "reference": "38cf261cd2357ae825dbd3866ca4fdc301d2630a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/shell/zipball/eeaf11950a7938e44c3ef4f01a905e63fbf06120",
-                "reference": "eeaf11950a7938e44c3ef4f01a905e63fbf06120",
+                "url": "https://api.github.com/repos/hiraeth-php/shell/zipball/38cf261cd2357ae825dbd3866ca4fdc301d2630a",
+                "reference": "38cf261cd2357ae825dbd3866ca4fdc301d2630a",
                 "shasum": ""
             },
             "require": {
@@ -3482,7 +3472,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3501,7 +3491,7 @@
                 "issues": "https://github.com/hiraeth-php/shell/issues",
                 "source": "https://github.com/hiraeth-php/shell/tree/3.0-beta"
             },
-            "time": "2023-11-01T08:53:46+00:00"
+            "time": "2023-11-04T00:46:40+00:00"
         },
         {
             "name": "hiraeth/signal",
@@ -3509,12 +3499,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/signal.git",
-                "reference": "3530faa88797c3e69b7b30fd07ba43db9a1322f3"
+                "reference": "a5ba1fb83f074ff560dc6b34d74d77a64fcfe8c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/signal/zipball/3530faa88797c3e69b7b30fd07ba43db9a1322f3",
-                "reference": "3530faa88797c3e69b7b30fd07ba43db9a1322f3",
+                "url": "https://api.github.com/repos/hiraeth-php/signal/zipball/a5ba1fb83f074ff560dc6b34d74d77a64fcfe8c1",
+                "reference": "a5ba1fb83f074ff560dc6b34d74d77a64fcfe8c1",
                 "shasum": ""
             },
             "require": {
@@ -3535,7 +3525,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3554,7 +3544,7 @@
                 "issues": "https://github.com/hiraeth-php/signal/issues",
                 "source": "https://github.com/hiraeth-php/signal/tree/3.0-beta"
             },
-            "time": "2023-10-29T21:59:40+00:00"
+            "time": "2023-11-04T00:48:21+00:00"
         },
         {
             "name": "hiraeth/templates",
@@ -3562,12 +3552,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "5569e4a24a1cce1afc4c90daba312be3775cb505"
+                "reference": "28dea95edaf7d1342133b3c1a485499ce091f519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/5569e4a24a1cce1afc4c90daba312be3775cb505",
-                "reference": "5569e4a24a1cce1afc4c90daba312be3775cb505",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/28dea95edaf7d1342133b3c1a485499ce091f519",
+                "reference": "28dea95edaf7d1342133b3c1a485499ce091f519",
                 "shasum": ""
             },
             "require": {
@@ -3575,11 +3565,10 @@
                 "hiraeth/mime-types": "^3.0"
             },
             "require-dev": {
-                "hiraeth/app": "^3.0",
                 "hiraeth/diactoros": "^3.0",
                 "hiraeth/routing": "^3.0",
                 "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^8.5",
+                "phpunit/phpunit": "^10.5",
                 "psr/http-server-middleware": "^1.0"
             },
             "type": "opus-package",
@@ -3593,7 +3582,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3612,7 +3601,7 @@
                 "issues": "https://github.com/hiraeth-php/templates/issues",
                 "source": "https://github.com/hiraeth-php/templates/tree/3.0-beta"
             },
-            "time": "2023-10-30T06:10:25+00:00"
+            "time": "2023-11-04T00:49:38+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -3620,12 +3609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/twig.git",
-                "reference": "57b874d4854a37de9d2d0a0aa70a6769b4249687"
+                "reference": "4cd15cf1ba60a8e7ae77a74993907bbfc2d18968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/twig/zipball/57b874d4854a37de9d2d0a0aa70a6769b4249687",
-                "reference": "57b874d4854a37de9d2d0a0aa70a6769b4249687",
+                "url": "https://api.github.com/repos/hiraeth-php/twig/zipball/4cd15cf1ba60a8e7ae77a74993907bbfc2d18968",
+                "reference": "4cd15cf1ba60a8e7ae77a74993907bbfc2d18968",
                 "shasum": ""
             },
             "require": {
@@ -3637,7 +3626,8 @@
                 "hiraeth/templates-imp": "3.0.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.0"
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^10.0"
             },
             "type": "opus-package",
             "extra": {
@@ -3649,7 +3639,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3668,7 +3658,7 @@
                 "issues": "https://github.com/hiraeth-php/twig/issues",
                 "source": "https://github.com/hiraeth-php/twig/tree/3.0-beta"
             },
-            "time": "2023-10-30T03:38:33+00:00"
+            "time": "2023-11-04T00:56:13+00:00"
         },
         {
             "name": "hiraeth/twig-markdown",
@@ -3676,12 +3666,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/twig-markdown.git",
-                "reference": "53e408f0b6f25b91df3ff0e8753ce4c14bab3750"
+                "reference": "689fd401de82e2397d019ab5289b0e2c6bdad706"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/twig-markdown/zipball/53e408f0b6f25b91df3ff0e8753ce4c14bab3750",
-                "reference": "53e408f0b6f25b91df3ff0e8753ce4c14bab3750",
+                "url": "https://api.github.com/repos/hiraeth-php/twig-markdown/zipball/689fd401de82e2397d019ab5289b0e2c6bdad706",
+                "reference": "689fd401de82e2397d019ab5289b0e2c6bdad706",
                 "shasum": ""
             },
             "require": {
@@ -3704,7 +3694,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3723,7 +3713,7 @@
                 "issues": "https://github.com/hiraeth-php/twig-markdown/issues",
                 "source": "https://github.com/hiraeth-php/twig-markdown/tree/3.0-beta"
             },
-            "time": "2023-10-31T16:21:24+00:00"
+            "time": "2023-11-04T00:58:01+00:00"
         },
         {
             "name": "hiraeth/volumes",
@@ -3731,12 +3721,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/volumes.git",
-                "reference": "b5352e48cc7d62cbd88734c8040182dd39676d5c"
+                "reference": "0fcfb571f54676a8ab2dd9dcfc02c115779704b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/volumes/zipball/b5352e48cc7d62cbd88734c8040182dd39676d5c",
-                "reference": "b5352e48cc7d62cbd88734c8040182dd39676d5c",
+                "url": "https://api.github.com/repos/hiraeth-php/volumes/zipball/0fcfb571f54676a8ab2dd9dcfc02c115779704b3",
+                "reference": "0fcfb571f54676a8ab2dd9dcfc02c115779704b3",
                 "shasum": ""
             },
             "require": {
@@ -3762,7 +3752,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/"
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3781,7 +3771,7 @@
                 "issues": "https://github.com/hiraeth-php/volumes/issues",
                 "source": "https://github.com/hiraeth-php/volumes/tree/3.0-beta"
             },
-            "time": "2023-10-30T03:13:07+00:00"
+            "time": "2023-11-04T01:15:53+00:00"
         },
         {
             "name": "imarc/auth",
