@@ -3,61 +3,70 @@
 {% set title = 'Post-Install Setup' %}
 
 {% block content %}
-    {% apply markdown %}
-        ## Set Up environment {: #dot-env}
+	{% apply markdown %}
+		## Set Up environment {: #dot-env}
 
-        Copy the `.env.example` to `.env`{: .config}.  This provides basic environment variables which your Hireath install may need to know about.
+		Copy the `.env.example` to `.env`{: .config}.  This provides basic environment variables which your Hireath install may need to know about.
 
-        ```bash
-        cp .env.example .env
-        ```
+		```bash
+		cp .env.example .env
+		```
 
-        ## Ensure Storage is Writable {: #permissions}
+		By default, you won't see any debug output if there's errors because the default configuration is to run in production.  So if you're just messing around, feel free to update the file and set `DEBUG` equal to `true`:
 
-        {: .note}
-        **If you're just testing things out and are running PHP's built in web server as the same user that you installed Hiraeth as, you probably don't need to worry too much about this.**  If not, the examples below are just examples and we assume you know enough about how to admin your own servers.
+		```toml
+		DEBUG    = true
+		CACHING  = false
+		LOGGING  = false
+		TIMEZONE = America/Los_Angeles
+		```
 
-        Hiraeth needs a place to write files.  Since you're _probably_ running it through a web server, you'll want to make sure that your webserver can write to `storage`{: .folder} in the application root.  On Linux systems, we strongly suggest the use of ACLs:
+		## Ensure Storage is Writable {: #permissions}
 
-        ```bash
-        setfacl -R -dm u:www-data:rwx storage
-        setfacl -R -m u:www-data:rwx storage
-        chmod -R g+w storage
-        ```
+		{: .note}
+		**If you're just testing things out and are running PHP's built in web server as the same user that you installed Hiraeth as, you probably don't need to worry too much about this.**  If not, the examples below are just examples and we assume you know enough about how to admin your own servers.
 
-        For Linux or Unix-based systems that don't have this option, you may need to change the group:
+		Hiraeth needs a place to write files.  Since you're _probably_ running it through a web server, you'll want to make sure that your webserver can write to `storage`{: .folder} in the application root.  On Linux systems, we strongly suggest the use of ACLs:
 
-        ```bash
-        chgrp -R www-data storage
-        chmod -R g+w storage
-        ```
+		```bash
+		setfacl -R -dm u:www-data:rwx storage
+		setfacl -R -m u:www-data:rwx storage
+		chmod -R g+w storage
+		```
 
-        Windows users, you're on your own.
+		For Linux or Unix-based systems that don't have this option, you may need to change the group:
 
-        ## Using PHP's Built In Web Server {: #server}
+		```bash
+		chgrp -R www-data storage
+		chmod -R g+w storage
+		```
 
-        Hiraeth provides a passthru call to PHP's built in web server that allows you to quickly start a local development server.  To start this local server with your application's `public`{: .folder} as the document root, simply execute (from your application root):
+		Windows users, you're on your own.
 
-        ```bash
-        php bin/server
-        ```
+		## Using PHP's Built In Web Server {: #server}
 
-        {: .note}
-        Did you install `hiraeth/boostrap`{: .package}?  If not, you're not going to have an `public/index.php`{: .html}.  You'll need to write a [custom entry point](./entry-point).
+		Hiraeth provides a passthru call to PHP's built in web server that allows you to quickly start a local development server.  To start this local server with your application's `public`{: .folder} as the document root, simply execute (from your application root):
 
-        You can then visit [http://localhost:8080/](http://localhost:8080/) to hit the `public/index.php`{: .html} entry point.  Other pages throughout this documentation will use this as a reference URL for examples.
+		```bash
+		php bin/server
+		```
 
-        If you want to change the host and port which the server runs on you can modify your `.env`{: .config} and add something like:
+		{: .note}
+		Did you install `hiraeth/boostrap`{: .package}?  If not, you're not going to have an `public/index.php`{: .html}.  You'll need to write a [custom entry point](./entry-point).
 
-        ```toml
-        [SERVER]
+		You can then visit [http://localhost:8080/](http://localhost:8080/) to hit the `public/index.php`{: .html} entry point.  Other pages throughout this documentation will use this as a reference URL for examples.
 
-            HOST = myhost.local
-            PORT = 3000
-        ```
+		If you want to change the host and port which the server runs on you can modify your `.env`{: .config} and add something like:
 
-        ----
+		```toml
+		[SERVER]
 
-        [I'm ready to create my first page](./pages){: .action} [No, I'm writing an API](./responders)
-    {% endapply %}
+			HOST = myhost.local
+			PORT = 3000
+		```
+
+		----
+
+		[I'm ready to create my first page](./pages){: .action} [No, I'm writing an API](./responders)
+	{% endapply %}
 {% endblock %}

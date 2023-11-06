@@ -18,7 +18,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Dbal\ConnectionDelegate"
+
 	]
 
 	;
@@ -30,31 +30,5 @@
 	;
 
 	providers = [
-
+		"Hiraeth\Json\JsonProvider"
 	]
-
-[dbal]
-
-	types = {
-		"uuid": "Ramsey\Uuid\Doctrine\UuidType",
-		"file": "Hiraeth\Dbal\FileType"
-	}
-
-[shell]
-
-	commands = {
-		"query": "Hiraeth\Dbal\QueryCommand"
-	}
-
-
-[console]
-
-	commands = {
-		"migrations:status":      "Hiraeth\Dbal\StatusCommand",
-		"migrations:latest":      "Hiraeth\Dbal\LatestCommand",
-		"migrations:rollup":      "Hiraeth\Dbal\RollupCommand",
-		"migrations:version":     "Hiraeth\Dbal\VersionCommand",
-		"migrations:migrate":     "Hiraeth\Dbal\MigrateCommand",
-		"migrations:execute":     "Hiraeth\Dbal\ExecuteCommand",
-		"migrations:generate":    "Hiraeth\Dbal\GenerateCommand"
-	}
