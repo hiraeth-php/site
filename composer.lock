@@ -2210,12 +2210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/dbal.git",
-                "reference": "c1ec4e3bf0f8405291f3d30950325cbc1b7568ca"
+                "reference": "36b00cd6a9e035be197554d634f3d34d8a4cb079"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/c1ec4e3bf0f8405291f3d30950325cbc1b7568ca",
-                "reference": "c1ec4e3bf0f8405291f3d30950325cbc1b7568ca",
+                "url": "https://api.github.com/repos/hiraeth-php/dbal/zipball/36b00cd6a9e035be197554d634f3d34d8a4cb079",
+                "reference": "36b00cd6a9e035be197554d634f3d34d8a4cb079",
                 "shasum": ""
             },
             "require": {
@@ -2263,7 +2263,7 @@
                 "issues": "https://github.com/hiraeth-php/dbal/issues",
                 "source": "https://github.com/hiraeth-php/dbal/tree/3.0-beta"
             },
-            "time": "2023-11-05T23:52:31+00:00"
+            "time": "2023-11-11T01:47:07+00:00"
         },
         {
             "name": "hiraeth/diactoros",

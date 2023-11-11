@@ -5,7 +5,7 @@
 {% block content %}
     {% apply markdown %}
         {: .note}
-        This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/doctrine`{: .package} and `hiraeth/stash`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+        This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/doctrine`{: .package} and `hiraeth/cache`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
         Managers, or more fully "Entity Managers," are Doctrine's mechanism for working with model objects or "entities."  Minimally, a manager needs to know what [connection](./connections) it uses and where to find its entity classes.  The `default` manager will use the `default` connection and look for entities in `local/entities`{: .folder}.
 
