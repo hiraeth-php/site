@@ -14,9 +14,9 @@
     ],
     "require": {
         "php": ">=8.2",
-        "imarc/opus": "^1.0",
+        "imarc/opus": "^2.0",
         "hiraeth/core": "^3.0",
-        "hiraeth/bootstrap": "^3.0",
+        "hiraeth/bootstrap": "^3.0@beta",
         "hiraeth/sentry": "^3.0",
         "dotink/json": "^1.0"
     },
