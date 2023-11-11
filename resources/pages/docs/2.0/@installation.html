@@ -3,37 +3,38 @@
 {% set title = 'Installation' %}
 
 {% block content %}
-    {% apply markdown %}
-        You can install Hiraeth with a few simple [composer](https://getcomposer.org) commands.
+	{% apply markdown %}
+		You can install Hiraeth with a few simple [composer](https://getcomposer.org) commands.
 
-        ## Requirements {: #requirements}
+		## Requirements {: #requirements}
 
-        - PHP 7.2+
-        - Composer
+		- PHP 7.2+
+		- Composer
 
-        ## Create Project {: #create-project}
+		## Create Project {: #create-project}
 
-        ```bash
-        composer create-project hiraeth/app
-        ```
+		```bash
+		composer create-project hiraeth/app <path> ^2.0
+		cd <path>
+		```
 
-        Hiraeth, itself, is just a nano framework.  But, a lot of time and energy has been put into creating packages that integrate widely used, well-tested, and feature rich PHP libraries available in the ecosystem.  If you're looking for a turnkey framework with lots of bells and whistles, go ahead an **bootstrap** it.  From inside your app directory:
+		Hiraeth, itself, is just a nano framework.  But, a lot of time and energy has been put into creating packages that integrate widely used, well-tested, and feature rich PHP libraries available in the ecosystem.  If you're looking for a turnkey framework with lots of bells and whistles, go ahead an **bootstrap** it.  From inside your app directory:
 
-        ```bash
-        composer require hiraeth/bootstrap
-        ```
+		```bash
+		composer require hiraeth/bootstrap
+		```
 
-        ### Bootstrap Requirements {: #bootstrap}
+		### Bootstrap Requirements {: #bootstrap}
 
-        In order to install `hiraeth/bootstrap`{: .package} you will need the following additional dependencies:
+		In order to install `hiraeth/bootstrap`{: .package} you will need the following additional dependencies:
 
-        - PDO Sqlite3 Extension
-        - BCMath Extension
-        - MBString Extension
-        - Curl Extension
+		- PDO Sqlite3 Extension
+		- BCMath Extension
+		- MBString Extension
+		- Curl Extension
 
-        ----
+		----
 
-        [Okay, What's Next?](./post-install){: .action}
-    {% endapply %}
+		[Okay, What's Next?](./post-install){: .action}
+	{% endapply %}
 {% endblock %}

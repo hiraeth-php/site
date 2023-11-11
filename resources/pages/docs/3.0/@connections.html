@@ -18,10 +18,10 @@
         [connection]
         	driver = env(DATABASES_DEFAULT_TYPE)
         	user = env(DATABASES_DEFAULT_USER)
-        	; password = env(DATABASES_DEFAULT_PASS)
-        	; host = env(DATABASES_DEFAULT_HOST)
-        	; port = env(DATABASES_DEFAULT_PORT)
-        	dbname = env(DATABASES_DEFAULT_NAME)
+        	pass = env(DATABASES_DEFAULT_PASS)
+        	host = env(DATABASES_DEFAULT_HOST)
+        	port = env(DATABASES_DEFAULT_PORT)
+        	name = env(DATABASES_DEFAULT_NAME)
         ```
 
         Uncomment the `password`, `host`, and `port` settings if you need to modify these.  Or add [additional configuration settings corresponding to doctrine's DBAL configuration](https://www.doctrine-project.org/projects/doctrine-dbal/en/2.9/reference/configuration.html#connection-details).  Since we are using the `env()` function to get the actual values, we will also need to modify our `.env`{: .config} to add the actual values:
