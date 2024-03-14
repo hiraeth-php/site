@@ -1,0 +1,23 @@
+{% extends '@layouts/docs-2.0.html' %}
+
+{% set title = 'Packages' %}
+
+{% block content %}
+	{% apply markdown %}
+
+		Alternative to the `hiraeth/bootstrap`{: .package} package, you can install individual packages for common components in an à la carte fashion.  Below is a list of officially supported packages and their use cases.
+
+		| Package           | Description
+		|-------------------|------------------------------
+		| hiraeth/console   | Symfony console integration for creating CLI application commands
+		| hiraeth/diactoros | HTTP response/request handling with Laminas components
+		| hiraeth/harmony   | PSR-15 middlware support via Harmony
+		| hiraeth/twig      | Twig template engine and direct to page rendering via middleware
+		| hiraeth/fastroute | Fastroute based routing with add-ons for pattern matching and transformations
+
+
+		----
+
+		[Finalize Installation](./post-install){: .action}
+	{% endapply %}
+{% endblock %}
