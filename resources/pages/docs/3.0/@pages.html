@@ -3,55 +3,68 @@
 {% set title = 'Pages' %}
 
 {% block content %}
-    {% apply markdown %}
-        {: .note}
-        This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/harmony`{: .package}, and `hiraeth/twig`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+	{% apply markdown %}
+		{: .note}
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/harmony`{: .package}, and `hiraeth/twig`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
-        Hiraeth provides two primary ways to add a page to your website or web applicaton.
-        - [Static Templates](#static-templates)
-        - [Actions](#actions)
+		Hiraeth provides three primary ways to add a page to your website or web applicaton.
+		- [Static Templates](#static-templates)
+		- [Routed Templates](#routed-templates)
+		- [Actions](#actions)
 
-        ## Static Templates {: #static-templates}
+		## Static Templates {: #static-templates}
 
-        To create a page using static templates you don't need to do much more than add an `.html` file to `resources/pages`{: .folder}.  For example, if you don't already have a homepage, simply create a file at `resources/pages/@index.html`{: .html} and paste in the following:
+		To create a page using static templates you don't need to do much more than add an `.html` file to `resources/pages`{: .folder}.  For example, if you don't already have a homepage, simply create a file at `resources/pages/@index.html`{: .html} and paste in the following:
 
-        ```html
-        <!doctype html>
-        <html>
-            <head>
-                <title>My New Website</title>
-            </head>
-            <body>
-                <h1>Hello World!</h1>
-            </body>
-        </html>
-        ```
+		```html
+		<!doctype html>
+		<html>
+			<head>
+				<title>My New Website</title>
+			</head>
+			<body>
+				<h1>Hello World!</h1>
+			</body>
+		</html>
+		```
 
-        Now reload [http://localhost:8080/](http://localhost:8080/) to see the result.
+		Now reload [http://localhost:8080/](http://localhost:8080/) to see the result.
 
-        {: .note}
-        If you're having trouble seeing the page, it may be that you forgot to add the **`@`** symbol at the beginning of it.  Hiraeth uses this character at the beginning of a file name to know when its safe to render it directly without a corresponding action.
+		{: .note}
+		If you're having trouble seeing the page, it may be that you forgot to add the **`@`** symbol at the beginning of it.  Hiraeth uses this character at the beginning of a file name to know when its safe to render it directly without a corresponding action.
 
-        Although Hiraeth calls these direct to file pages "static templates", this along with any other `.html` file you add to `resources/pages`{: .folder} have the full power of [Twig](https://twig.symfony.com/) behind them.  So feel free to create parent templates and extend them, include partials, etc.  See the [templating documentation](./templating) for more details.
+		Although Hiraeth calls these direct to file pages "static templates", this along with any other `.html` file you add to `resources/pages`{: .folder} have the full power of [Twig](https://twig.symfony.com/) behind them.  So feel free to create parent templates and extend them, include partials, etc.  See the [templating documentation](./templating) for more details.
 
-        ### Path Resolution {: #paths}
+		### Path Resolution {: #paths}
 
-        Additional static templates can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .html} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .html}.
+		Additional static templates can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .html} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .html}.
 
-        If the URL's corresponding static template cannot be found it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .html} in the example above.  If the page does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .html} file within.
+		If the URL's corresponding static template cannot be found it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .html} in the example above.  If the page does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .html} file within.
 
-        In the event an alternate static template path is found, an HTTP `301` status code will be returned with the more direct URL location for the path.
+		In the event an alternate static template path is found, an HTTP `301` status code will be returned with the more direct URL location for the path.
 
-        ## Actions {: #actions}
+		## Routed Templates {: #routed-templates}
 
-        {: .note}
-        Actions **always** supersede static templates.  Although it is possible for static templates to serve as fallbacks, in the event the action returns an HTTP `404` response, we generally suggest not mixing the two for a single URL path in order to avoid confusion.
+		Routed templates are similar to static templates in that the request is short circuited and goes directly to loading a template.  Unlike static templates, however, routed templates add the ability to have some variability in the template location (and therefore extension).  To route directly to a template, simply add your route (with optional parameters) to the `routes.jin` file.
 
-        Actions are PHP classes which are invoked when a URL mapped explicitly to them via a route is requested by a web client.  You may already be familiar with the concept, but only know them as "Controllers."  While Hiraeth supports more traditional controller paradigms, it strongly encourages the use of "single action controllers" or simply "actions" to reduce the complexity that may occur in monolithic controller classes.
+		```toml
+		routes = map(application.route) {
+			/schema/{version}		@pages/schema/{version}.json		["GET"]
+		}
+		```
 
-        ----
+		In the above example we provide a route to multiple JSON schema versions.
 
-        [How Do I Create Actions?](./actions){: .action}
+		## Actions {: #actions}
 
-    {% endapply %}
+		{: .note}
+		Actions **always** supersede static templates.  Although it is possible for static templates to serve as fallbacks, in the event the action returns an HTTP `404` response, we generally suggest not mixing the two for a single URL path in order to avoid confusion.
+
+		Actions are PHP classes which are invoked when a URL mapped explicitly to them via a route is requested by a web client.  You may already be familiar with the concept, but only know them as "Controllers."  While Hiraeth supports more traditional controller paradigms, it strongly encourages the use of "single action controllers" or simply "actions" to reduce the complexity that may occur in monolithic controller classes.
+
+		----
+
+		[How Do I Create Actions?](./actions){: .action}
+
+	{% endapply %}
 {% endblock %}

@@ -27,18 +27,6 @@
 
         When the application is in debugging mode, you will see stacktrace and related context information presented to a web request or in the cli in accordance with [SlashTrace's standard output](https://slashtrace.com/demo.php).
 
-        ## Services {: #services}
-
-        [SlashTrace](https://github.com/slashtrace/slashtrace) provides the ability to create custom handlers which send error output to third-party services.  Handlers are avilable for many common services, however, at present, Hiraeth only has an integration package for [Sentry](https://sentry.io).
-
-        To get Sentry support enabled, install `hiraeth/sentry`{: .package} and add your `DSN` in `.env`{: .config}.
-
-        ```toml
-        [SENTRY]
-
-        	DSN = <your sentry dsn>
-        ```
-
         ## Logging {: #logging}
 
         You can enable logging by installing `hiraeth/monolog`{: .package} and updating your `.env`{: .config} to set `LOGGING` to the approriate log level.
