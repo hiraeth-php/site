@@ -1835,12 +1835,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/console.git",
-                "reference": "a1658dc4741b4b53b5aac3860bcb3080ad44af30"
+                "reference": "0b80633a1cab2c1284f03a6afc56a9d78ba82b3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/console/zipball/a1658dc4741b4b53b5aac3860bcb3080ad44af30",
-                "reference": "a1658dc4741b4b53b5aac3860bcb3080ad44af30",
+                "url": "https://api.github.com/repos/hiraeth-php/console/zipball/0b80633a1cab2c1284f03a6afc56a9d78ba82b3a",
+                "reference": "0b80633a1cab2c1284f03a6afc56a9d78ba82b3a",
                 "shasum": ""
             },
             "require": {
@@ -1855,7 +1855,7 @@
             "extra": {
                 "opus": {
                     "hiraeth/app": {
-                        "bin": "",
+                        "hiraeth": "bin/hiraeth",
                         "config": ""
                     }
                 }
@@ -1881,7 +1881,7 @@
                 "issues": "https://github.com/hiraeth-php/console/issues",
                 "source": "https://github.com/hiraeth-php/console/tree/3.0-beta"
             },
-            "time": "2024-03-15T23:25:25+00:00"
+            "time": "2024-03-16T21:24:24+00:00"
         },
         {
             "name": "hiraeth/core",
@@ -7140,7 +7140,8 @@
     "stability-flags": {
         "hiraeth/bootstrap": 10,
         "hiraeth/runner": 10,
-        "hiraeth/commonmark": 10
+        "hiraeth/commonmark": 10,
+        "hiraeth/twig-markdown": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,
