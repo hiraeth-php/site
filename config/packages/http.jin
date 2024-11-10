@@ -17,7 +17,7 @@
 	;
 
 	delegates = [
-		"Hiraeth\Routing\ResolverDelegate"
+
 	]
 
 	;
@@ -26,17 +26,15 @@
 	;
 
 	providers = [
-		"Hiraeth\Routing\ApplicationProvider"
+		"Hiraeth\Http\ActionProvider",
+		"Hiraeth\Http\ApplicationProvider"
 	]
 
-	;
-	; A template for our routes map
-	;
+[twig]
 
-	route = def(route, !target, methods) {
-		{
-			"route":   $route,
-			"target":  $target,
-			"methods": $methods
+	functions = {
+		"route": {
+			"target": "Hiraeth\Http\UrlGenerator",
+			"required": false
 		}
 	}

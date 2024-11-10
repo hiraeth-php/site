@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "065361e9d5447bf18cbc528fc210d3c2",
+    "content-hash": "e1065a46844bcdc81ceed6b571b30f3e",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -1413,6 +1413,70 @@
             "time": "2024-10-30T19:48:12+00:00"
         },
         {
+            "name": "dotink/auryn",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dotink/auryn.git",
+                "reference": "9ba605e7fef9ada871b0627e13ef07f86f89426e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dotink/auryn/zipball/9ba605e7fef9ada871b0627e13ef07f86f89426e",
+                "reference": "9ba605e7fef9ada871b0627e13ef07f86f89426e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1",
+                "fabpot/php-cs-fixer": "~1.9",
+                "phpunit/phpunit": "^4.8"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Auryn\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@gmail.com",
+                    "homepage": "https://github.com/rdlowrey",
+                    "role": "Creator / Main Developer"
+                },
+                {
+                    "name": "Levi Morrison",
+                    "email": "levim@php.net",
+                    "homepage": "http://morrisonlevi.github.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
+            "keywords": [
+                "dependency injection",
+                "dic",
+                "ioc"
+            ],
+            "support": {
+                "source": "https://github.com/dotink/auryn/tree/master"
+            },
+            "time": "2024-11-10T04:24:24+00:00"
+        },
+        {
             "name": "dotink/jin",
             "version": "4.8.0",
             "source": {
@@ -1567,24 +1631,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "6e09e86ad298599e1aea0aa3e482c630d4f2a97a"
+                "reference": "aabd6840069b5671ae00d2325d3cb424c94f48d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/6e09e86ad298599e1aea0aa3e482c630d4f2a97a",
-                "reference": "6e09e86ad298599e1aea0aa3e482c630d4f2a97a",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/aabd6840069b5671ae00d2325d3cb424c94f48d8",
+                "reference": "aabd6840069b5671ae00d2325d3cb424c94f48d8",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^3.0",
-                "hiraeth/json": "^3.0",
-                "hiraeth/routing": "^3.0",
-                "hiraeth/session": "^3.0",
-                "hiraeth/templates": "^3.0"
+                "hiraeth/json": "^3.0"
             },
             "require-dev": {
                 "hiraeth/diactoros": "^3.0",
-                "hiraeth/fastroute": "^3.0",
+                "hiraeth/routing": "^3.0",
+                "hiraeth/session": "^3.0",
+                "hiraeth/templates": "^3.0",
                 "phpstan/phpstan": "^1.0",
                 "phpunit/phpunit": "^10.0"
             },
@@ -1618,7 +1681,7 @@
                 "issues": "https://github.com/hiraeth-php/actions/issues",
                 "source": "https://github.com/hiraeth-php/actions/tree/3.0-beta"
             },
-            "time": "2024-11-10T01:53:53+00:00"
+            "time": "2024-11-10T17:59:33+00:00"
         },
         {
             "name": "hiraeth/bootstrap",
@@ -1896,22 +1959,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "fd8969dfcad8801ee2fbd7a8a9741fe5a17b12ba"
+                "reference": "998701a4c3702d9343932af51400071d0fca82ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/fd8969dfcad8801ee2fbd7a8a9741fe5a17b12ba",
-                "reference": "fd8969dfcad8801ee2fbd7a8a9741fe5a17b12ba",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/998701a4c3702d9343932af51400071d0fca82ac",
+                "reference": "998701a4c3702d9343932af51400071d0fca82ac",
                 "shasum": ""
             },
             "require": {
                 "defuse/php-encryption": "^2.2",
+                "dotink/auryn": "dev-master",
                 "dotink/jin": "^4.0",
                 "dotink/slashtrace": "^2.0",
                 "hiraeth/app": "^3.0",
                 "psr/container": "^2.0",
-                "psr/log": "^3.0",
-                "rdlowrey/auryn": "^1.0"
+                "psr/log": "^3.0"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.0",
@@ -1946,7 +2009,7 @@
                 "issues": "https://github.com/hiraeth-php/core/issues",
                 "source": "https://github.com/hiraeth-php/core/tree/3.0-beta"
             },
-            "time": "2024-03-16T15:55:45+00:00"
+            "time": "2024-11-10T17:48:01+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -2187,12 +2250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/fastroute.git",
-                "reference": "a36e9ef5af8aa76ba95d217d2240ea5255ff5535"
+                "reference": "de95b2a1cbf4ce39ebe3d630c1b24606ea6e7ed2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/fastroute/zipball/a36e9ef5af8aa76ba95d217d2240ea5255ff5535",
-                "reference": "a36e9ef5af8aa76ba95d217d2240ea5255ff5535",
+                "url": "https://api.github.com/repos/hiraeth-php/fastroute/zipball/de95b2a1cbf4ce39ebe3d630c1b24606ea6e7ed2",
+                "reference": "de95b2a1cbf4ce39ebe3d630c1b24606ea6e7ed2",
                 "shasum": ""
             },
             "require": {
@@ -2238,7 +2301,7 @@
                 "issues": "https://github.com/hiraeth-php/fastroute/issues",
                 "source": "https://github.com/hiraeth-php/fastroute/tree/3.0-beta"
             },
-            "time": "2024-03-15T23:32:10+00:00"
+            "time": "2024-11-10T17:55:06+00:00"
         },
         {
             "name": "hiraeth/harmony",
@@ -2305,12 +2368,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/http.git",
-                "reference": "6f039259b239c95f52902636767445452664b04c"
+                "reference": "a515566d89020e5c590b106b8bc2204421259847"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/http/zipball/6f039259b239c95f52902636767445452664b04c",
-                "reference": "6f039259b239c95f52902636767445452664b04c",
+                "url": "https://api.github.com/repos/hiraeth-php/http/zipball/a515566d89020e5c590b106b8bc2204421259847",
+                "reference": "a515566d89020e5c590b106b8bc2204421259847",
                 "shasum": ""
             },
             "require": {
@@ -2328,10 +2391,16 @@
             "extra": {
                 "opus": {
                     "hiraeth/app": {
-                        "bin": "",
+                        "server": "bin/",
+                        "config": "",
                         "public": ""
                     }
                 }
+            },
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2349,7 +2418,7 @@
                 "issues": "https://github.com/hiraeth-php/http/issues",
                 "source": "https://github.com/hiraeth-php/http/tree/3.0-beta"
             },
-            "time": "2024-03-16T16:09:23+00:00"
+            "time": "2024-11-10T18:03:54+00:00"
         },
         {
             "name": "hiraeth/inflector",
@@ -2832,23 +2901,22 @@
         },
         {
             "name": "hiraeth/routing",
-            "version": "3.0",
+            "version": "3.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/routing.git",
-                "reference": "f147b52ea795f21287c8daab4008dcae5fad1aa3"
+                "reference": "6cd2bc6ec3da588cd141f02e7eaaeaf363027d95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/f147b52ea795f21287c8daab4008dcae5fad1aa3",
-                "reference": "f147b52ea795f21287c8daab4008dcae5fad1aa3",
+                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/6cd2bc6ec3da588cd141f02e7eaaeaf363027d95",
+                "reference": "6cd2bc6ec3da588cd141f02e7eaaeaf363027d95",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^3.0",
                 "hiraeth/http-imp": "^3.0",
                 "hiraeth/json": "^3.0",
-                "hiraeth/routing-imp": "^3.0",
                 "hiraeth/signal": "^3.0"
             },
             "require-dev": {
@@ -2884,9 +2952,9 @@
             "description": "Router abstraction for the Hiraeth Nano Framework",
             "support": {
                 "issues": "https://github.com/hiraeth-php/routing/issues",
-                "source": "https://github.com/hiraeth-php/routing/tree/3.0"
+                "source": "https://github.com/hiraeth-php/routing/tree/3.0-beta"
             },
-            "time": "2024-11-10T01:45:15+00:00"
+            "time": "2024-11-10T17:49:58+00:00"
         },
         {
             "name": "hiraeth/runner",
@@ -3160,12 +3228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "b093cd4dd3c30271dd545889cb3661d3f0ed47b6"
+                "reference": "b44c92c069eaa818f59ba24bdeac021da4665533"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/b093cd4dd3c30271dd545889cb3661d3f0ed47b6",
-                "reference": "b093cd4dd3c30271dd545889cb3661d3f0ed47b6",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/b44c92c069eaa818f59ba24bdeac021da4665533",
+                "reference": "b44c92c069eaa818f59ba24bdeac021da4665533",
                 "shasum": ""
             },
             "require": {
@@ -3208,7 +3276,7 @@
                 "issues": "https://github.com/hiraeth-php/templates/issues",
                 "source": "https://github.com/hiraeth-php/templates/tree/3.0-beta"
             },
-            "time": "2024-03-05T23:21:17+00:00"
+            "time": "2024-11-10T17:54:36+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -3216,12 +3284,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/twig.git",
-                "reference": "74934d35eef371490a4bccd9e8b8ab22b629cdcd"
+                "reference": "9be76dba2fd9dd0c9199d6581b3b3ac5be71fd8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/twig/zipball/74934d35eef371490a4bccd9e8b8ab22b629cdcd",
-                "reference": "74934d35eef371490a4bccd9e8b8ab22b629cdcd",
+                "url": "https://api.github.com/repos/hiraeth-php/twig/zipball/9be76dba2fd9dd0c9199d6581b3b3ac5be71fd8c",
+                "reference": "9be76dba2fd9dd0c9199d6581b3b3ac5be71fd8c",
                 "shasum": ""
             },
             "require": {
@@ -3265,7 +3333,7 @@
                 "issues": "https://github.com/hiraeth-php/twig/issues",
                 "source": "https://github.com/hiraeth-php/twig/tree/3.0-beta"
             },
-            "time": "2024-03-16T13:36:57+00:00"
+            "time": "2024-11-10T17:59:53+00:00"
         },
         {
             "name": "hiraeth/twig-markdown",
@@ -5729,71 +5797,6 @@
                 }
             ],
             "time": "2024-05-27T00:00:21+00:00"
-        },
-        {
-            "name": "rdlowrey/auryn",
-            "version": "v1.4.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rdlowrey/auryn.git",
-                "reference": "dae57592229d313b59414a2c8334e61e6eb00928"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/dae57592229d313b59414a2c8334e61e6eb00928",
-                "reference": "dae57592229d313b59414a2c8334e61e6eb00928",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "athletic/athletic": "~0.1",
-                "fabpot/php-cs-fixer": "~1.9",
-                "phpunit/phpunit": "^4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Auryn\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel Lowrey",
-                    "email": "rdlowrey@gmail.com",
-                    "homepage": "https://github.com/rdlowrey",
-                    "role": "Creator / Main Developer"
-                },
-                {
-                    "name": "Levi Morrison",
-                    "email": "levim@php.net",
-                    "homepage": "http://morrisonlevi.github.com/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
-            "homepage": "https://github.com/rdlowrey/auryn",
-            "keywords": [
-                "dependency injection",
-                "dic",
-                "ioc"
-            ],
-            "support": {
-                "issues": "https://github.com/rdlowrey/auryn/issues",
-                "source": "https://github.com/rdlowrey/auryn/tree/v1.4.4"
-            },
-            "time": "2021-03-04T20:26:52+00:00"
         },
         {
             "name": "seld/cli-prompt",

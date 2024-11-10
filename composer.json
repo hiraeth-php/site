@@ -21,7 +21,8 @@
         "dotink/json": "^1.0",
         "hiraeth/runner": "^3.0@beta",
         "hiraeth/commonmark": "^3.0@beta",
-        "hiraeth/twig-markdown": "^3.0@beta"
+        "hiraeth/twig-markdown": "^3.0@beta",
+        "hiraeth/session": "^3.0@beta"
     },
     "autoload": {
         "classmap": ["local/"],
