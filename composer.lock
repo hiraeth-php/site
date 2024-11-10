@@ -2905,12 +2905,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/routing.git",
-                "reference": "124429df5d85af8e3b803897cdb404b122d5734b"
+                "reference": "1610e3c98c40bd8d0f7521eaf48fb8fcf5ec75b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/124429df5d85af8e3b803897cdb404b122d5734b",
-                "reference": "124429df5d85af8e3b803897cdb404b122d5734b",
+                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/1610e3c98c40bd8d0f7521eaf48fb8fcf5ec75b8",
+                "reference": "1610e3c98c40bd8d0f7521eaf48fb8fcf5ec75b8",
                 "shasum": ""
             },
             "require": {
@@ -2954,7 +2954,7 @@
                 "issues": "https://github.com/hiraeth-php/routing/issues",
                 "source": "https://github.com/hiraeth-php/routing/tree/3.0-beta"
             },
-            "time": "2024-11-10T18:42:44+00:00"
+            "time": "2024-11-10T18:44:23+00:00"
         },
         {
             "name": "hiraeth/runner",
