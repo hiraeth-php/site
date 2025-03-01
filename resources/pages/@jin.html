@@ -3,35 +3,35 @@
 {% set title = 'Online JIN Viewer' %}
 {% set data  = false %}
 
+
+{% block styles %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="/lib/jsonview/jsonview.bundle.css" />
+    <style>
+        #json {
+            line-height: 1.5em;
+            font-size: 15px;
+        }
+
+        #json .caret-icon i {
+            margin-top: .5em;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="/lib/jsonview/jsonview.bundle.js"></script>
+    <script>
+        JsonView.renderJSON(JSON.stringify({{ data|json_encode|raw }}), document.getElementById('json'));
+    </script>
+{% endblock %}
+
+
 {% if request.parsedBody.body is defined %}
     {% set data = 'You did not paste anything' %}
 
     {% if request.parsedBody.body|trim %}
         {% set data = request.parsedBody.body|jin %}
-
-        {% if data|type == 'array' %}
-            {% block styles %}
-                <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-                <link rel="stylesheet" href="/lib/jsonview/jsonview.bundle.css" />
-                <style>
-                    #json {
-                        line-height: 1.5em;
-						font-size: 15px;
-                    }
-
-					#json .caret-icon i {
-						margin-top: .5em;
-					}
-                </style>
-            {% endblock %}
-
-            {% block scripts %}
-                <script type="text/javascript" src="/lib/jsonview/jsonview.bundle.js"></script>
-                <script>
-                    JsonView.renderJSON(JSON.stringify({{ data|json_encode|raw }}), document.getElementById('json'));
-                </script>
-            {% endblock %}
-        {% endif %}
     {% endif %}
 {% endif %}
 

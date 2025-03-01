@@ -18,15 +18,19 @@
 		cd <path>
 		```
 
-		Hiraeth, itself, is just a nano framework.  But, a lot of time and energy has been put into creating packages that integrate widely used, well-tested, and feature rich PHP libraries available in the ecosystem.  If you're looking for a turnkey framework with lots of bells and whistles, go ahead an **bootstrap** it.  From inside your app directory:
+		## Installing Packages {: #packages}
+
+		Hiraeth, itself, is just a nano framework.  But, a lot of time and energy has been put into creating packages that integrate widely used, well-tested, and feature rich PHP libraries available in the ecosystem.  To install a package is as simple as running `composer require`.  Throughout this documentation, packages required for certain functionality will be indicated by the small giftbox icon, like: `<package>`{: .package}.
+
+		If you're looking for a turnkey framework with lots of bells and whistles, go ahead an **bootstrap** it.  From inside your app directory by requiring `hiraeth/bootstrap`{: .package}:
 
 		```bash
 		composer require hiraeth/bootstrap
 		```
 
-		### Bootstrap Requirements {: #bootstrap}
+		### Bootstrap Requirements {: #bootstrap-requirements}
 
-		In order to install `hiraeth/bootstrap`{: .package} you will need the following additional dependencies:
+		In order to install `hiraeth/bootstrap`{: .package} you will need the following PHP extensions installed as these are minimal dependencies in the downstream packages:
 
 		- PDO Sqlite3 Extension
 		- BCMath Extension
