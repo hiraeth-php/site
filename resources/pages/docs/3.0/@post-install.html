@@ -1,4 +1,4 @@
-{% extends '@layouts/docs-2.0.html' %}
+{% extends '@layouts/docs-3.0.html' %}
 
 {% set title = 'Post-Install Setup' %}
 
@@ -21,25 +21,34 @@
 		TIMEZONE = America/Los_Angeles
 		```
 
+		Once you actually go to production you'll likely want `DEBUG` set to `false` and `CACHING` set to `true`.
+
 		## Ensure Storage is Writable {: #permissions}
 
 		{: .note}
 		**If you're just testing things out and are running PHP's built in web server as the same user that you installed Hiraeth as, you probably don't need to worry too much about this.**  If not, the examples below are just examples and we assume you know enough about how to admin your own servers.
 
-		Hiraeth needs a place to write files.  Since you're _probably_ running it through a web server, you'll want to make sure that your webserver can write to `storage`{: .folder} in the application root.  On Linux systems, we strongly suggest the use of ACLs:
+		Hiraeth needs a place to write files.  Since you're _probably_ running it through a web server, you'll want to make sure that your webserver can write to `storage`{: .folder} in the application root.  On Linux systems, we strongly suggest the use of ACLs.  One common way to do this is to ensure the user your server runs as (`www-data` is common) has read, write, and execute access by default (and at present).
 
 		```bash
 		setfacl -R -dm u:www-data:rwx storage
 		setfacl -R -m u:www-data:rwx storage
+		```
+
+		As ACLs use the group permissions to define the maximal permissions for any users or groups in the ACL, you'll also want to make sure everything starts as group writable.
+
+		```
 		chmod -R g+w storage
 		```
 
-		For Linux or Unix-based systems that don't have this option, you may need to change the group:
+		For Linux or Unix-based systems that don't have this option, you may need to change the group to whatever group your system runs as:
 
 		```bash
 		chgrp -R www-data storage
 		chmod -R g+w storage
 		```
+
+		In both cases, you will likely also need to tweak your `UMASK` or server configurations to ensure when new files/folders are being created, they're created with group writable permissions.
 
 		Windows users, you're on your own.
 
@@ -52,7 +61,7 @@
 		```
 
 		{: .note}
-		Did you install `hiraeth/boostrap`{: .package}?  If not, you're not going to have an `public/index.php`{: .html}.  You'll need to write a [custom entry point](./entry-point).
+		Did you install `hiraeth/boostrap`{: .package}?  If not, you're not going to have an `public/index.php`{: .html}.  Alternatively, you can install `hiraeth/diactoros`{: .package} or anything which implicitly provides the `hiraeth/http`{: .package} implementation.  If you're trying to role your own custom solution, check out the information about creating a [custom entry point](./entry-point).
 
 		You can then visit [http://localhost:8080/](http://localhost:8080/) to hit the `public/index.php`{: .html} entry point.  Other pages throughout this documentation will use this as a reference URL for examples.
 

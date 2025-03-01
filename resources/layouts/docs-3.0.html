@@ -1,0 +1,25 @@
+{% extends '@layouts/internal.html' %}
+
+{% set pageClasses = ['docs', 'layout'] %}
+
+{% block primary %}
+    <div class="layout">
+        <nav id="menu">
+            {% include '@pages/docs/3.0/--nav.html' %}
+            <a class="open" href="#menu">☰</a>
+        </nav>
+        <main id="content">
+            {% block content %}
+
+            {% endblock %}
+        </main>
+        <script src="https://utteranc.es/client.js"
+            repo="hiraeth-php/site"
+            issue-term="pathname"
+            label="comment"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div>
+{% endblock %}

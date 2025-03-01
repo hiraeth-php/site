@@ -1,4 +1,4 @@
-{% extends '@layouts/docs-2.0.html' %}
+{% extends '@layouts/docs-3.0.html' %}
 
 {% set title = 'Packages' %}
 
@@ -20,6 +20,22 @@
 		| hiraeth/events    | Emit and listen for custom events for non-linear extensibility
 		| hiraeth/cache     | Provide PSR-6 compatible caching using Symfony components
 		| hireath/session   | Session handling support (including flash messaging) via Aura
+		| hiraeth/doctrine  | Robust Object-Relational Models built on Doctrine
+		| hiraeth/volumes   | Storage volumes supporting a variety of storage systems via League/Flysystem |
+
+
+		The packages above represent the bulk of what is in `hiraeth/bootstrap`{: .package} and represent a fairly comprehensive framework on part with other core framework functionality.  Additional commonly used packages which provide some great extended functionality include:
+
+
+		| Package               | Description
+		|-----------------------|------------------------------
+		| hiraeth/twig-tags     | Component-like abstraction for Twig (works well with Tailwind)
+		| hiraeth/markdown      | Markdown supprt via commonmark
+		| hiraeth/twig-markdown | Extend markdown support into Twig templates (used for this documentation)
+		| hiraeth/gettext       | Locale/translation support via `.po` files
+		| hiraeth/twig-i18n     | Expode gettext translations functions/filters in Twig templates
+		| hiraeth/mailer        | A simple SMTP mailing mechanism using the classic PHPMailer
+		| hiraeth/session-cache | Use PSR-6 cache pools for session storage
 
 
 		----
