@@ -1626,12 +1626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "aabd6840069b5671ae00d2325d3cb424c94f48d8"
+                "reference": "ab4321f7c81f302b76fd05899bac157d1dbde7d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/aabd6840069b5671ae00d2325d3cb424c94f48d8",
-                "reference": "aabd6840069b5671ae00d2325d3cb424c94f48d8",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/ab4321f7c81f302b76fd05899bac157d1dbde7d3",
+                "reference": "ab4321f7c81f302b76fd05899bac157d1dbde7d3",
                 "shasum": ""
             },
             "require": {
@@ -1676,7 +1676,7 @@
                 "issues": "https://github.com/hiraeth-php/actions/issues",
                 "source": "https://github.com/hiraeth-php/actions/tree/3.0-beta"
             },
-            "time": "2024-11-10T17:59:33+00:00"
+            "time": "2025-03-14T21:57:25+00:00"
         },
         {
             "name": "hiraeth/bootstrap",
