@@ -9,7 +9,7 @@
 
 		Actions are PHP classes which handle incoming web requests.  Their primary responsibility is mapping incoming requests data to your domain level services, models, repositories, etc, and then returning a result.
 
-		The only requirement of an action is that it implements the `__invoke()` method to perform the operations for which it is responsible.  One of the simplest examples of a valid action would, therefore, be the following:
+		The only requirement of an action is that it implements the `__invoke()`{: .method} method to perform the operations for which it is responsible.  One of the simplest examples of a valid action would, therefore, be the following:
 
 		```php
 		class HelloWorld
@@ -29,7 +29,7 @@
 
 		## Creating From Abstract Action {: #creating}
 
-		While the example above is valid, it's not very practical because we don't have any access to the data or tools we need to really analyze our request or generate an appropriate response.  While it's possible to add a `__construct()` method and get what we need injected, `hiraeth/bootstrap`{: .package]} provided an abstract action implementation that will cover most of the basics.
+		While the example above is valid, it's not very practical because we don't have any access to the data or tools we need to really analyze our request or generate an appropriate response.  While it's possible to add a `__construct()`{: .method} method and get what we need injected, `hiraeth/bootstrap`{: .package} provided an abstract action implementation that will cover most of the basics.
 
 		To make use of this functionality out of the box, simply make sure your action extends `AbstractAction`{: .class}:
 
@@ -41,7 +41,7 @@
 		```
 
 		{: .note}
-		The `AbstractAction`{: .class} name is an alias, by default, to `Hiraeth\Actions\AbstractAction`{: .class}.  You can use this alias to avoid more complex namespacing, however, because the alias is only regsitered if the class does not already exist, it allows you to easily add functionality to the abstract action implementation later by simply creating your own real `AbstractAction`{: .class}.
+		In previous version the `AbstractAction`{: .class} at the root namespace level was just an alias.  As of 3.0, an actual placeholder file is created in `local`{: .folder} to improve static analysis as well as code completion.  You should be able to safely modify this file to add any additional abstracted/common functionality to actions.  Be advised, if you previously created your own (especially in the same location), you'll want to ensure opus doesn't overwrite it with the empty one or make sure to merge your existing code there and remove the old file.
 
 		## Accessing Request Information {: #requet-info}
 
@@ -66,7 +66,7 @@
 
 		### Checking If Data Exists {: #checking-data}
 
-		If you need to check if a parameter has been sent (regardless of via query parameter, request body, or custom attributes), you can use the `has()` method:
+		If you need to check if a parameter has been sent (regardless of via query parameter, request body, or custom attributes), you can use the `has()`{: .method} method:
 
 		```php
 		if ($this->has('file')) {
@@ -76,7 +76,7 @@
 
 		### Getting Data {: #getting-data}
 
-		To get the data by name, you can use the `get()` method in very much the same way.
+		To get the data by name, you can use the `get()`{: .method} method in very much the same way.
 
 		```php
 		$this->get('file')

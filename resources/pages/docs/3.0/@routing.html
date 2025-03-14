@@ -15,7 +15,7 @@
 
 		## Adding Routes {: #adding-routes}
 
-		Routes are broken down into groups.  Each group is represented by a configuration collection in the `config/routing`{: .folder}.  Each collection is capable of defining a custom prefix and a series of routes routes which map to specific actions.
+		The main route map is located in `config/routes.jin`{: .config}, however, because of Hiraeth's modular configuraiton system, it's also possible to add distinct grouped route maps in a sub-folder such as `config/routing`{: .folder}.  Each collection is capable of defining a custom prefix and a series of routes routes which map to specific actions.
 
 		Routes can be added to the `routes` map, a tab separated values list defining the route, target, and methods for which the route applies:
 

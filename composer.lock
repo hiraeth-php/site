@@ -1413,21 +1413,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dotink/auryn.git",
-                "reference": "9ba605e7fef9ada871b0627e13ef07f86f89426e"
+                "reference": "9dae65d80b691766afc4cf5944824c2d3970ed76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dotink/auryn/zipball/9ba605e7fef9ada871b0627e13ef07f86f89426e",
-                "reference": "9ba605e7fef9ada871b0627e13ef07f86f89426e",
+                "url": "https://api.github.com/repos/dotink/auryn/zipball/9dae65d80b691766afc4cf5944824c2d3970ed76",
+                "reference": "9dae65d80b691766afc4cf5944824c2d3970ed76",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": "^8.0||^7.3",
+                "php-extended/polyfill-php80-str-utils": "^1.3"
             },
             "require-dev": {
-                "athletic/athletic": "~0.1",
-                "fabpot/php-cs-fixer": "~1.9",
-                "phpunit/phpunit": "^4.8"
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^7 || ^8"
             },
             "default-branch": true,
             "type": "library",
@@ -1469,7 +1469,7 @@
             "support": {
                 "source": "https://github.com/dotink/auryn/tree/master"
             },
-            "time": "2024-11-10T04:24:24+00:00"
+            "time": "2025-03-14T21:44:11+00:00"
         },
         {
             "name": "dotink/jin",
@@ -1954,12 +1954,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "998701a4c3702d9343932af51400071d0fca82ac"
+                "reference": "1c21be3ce05d806778d3ee46aaff1ce42c075be8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/998701a4c3702d9343932af51400071d0fca82ac",
-                "reference": "998701a4c3702d9343932af51400071d0fca82ac",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/1c21be3ce05d806778d3ee46aaff1ce42c075be8",
+                "reference": "1c21be3ce05d806778d3ee46aaff1ce42c075be8",
                 "shasum": ""
             },
             "require": {
@@ -1968,12 +1968,14 @@
                 "dotink/jin": "^4.0",
                 "dotink/slashtrace": "^2.0",
                 "hiraeth/app": "^3.0",
+                "php": "^8.2",
                 "psr/container": "^2.0",
                 "psr/log": "^3.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^10.0"
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^10.0",
+                "rector/rector": "^2.0"
             },
             "type": "opus-package",
             "extra": {
@@ -1981,6 +1983,9 @@
                     "hiraeth/app": {
                         "config": ""
                     }
+                },
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -2004,7 +2009,7 @@
                 "issues": "https://github.com/hiraeth-php/core/issues",
                 "source": "https://github.com/hiraeth-php/core/tree/3.0-beta"
             },
-            "time": "2024-11-10T17:48:01+00:00"
+            "time": "2025-03-14T20:40:53+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -2900,12 +2905,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/routing.git",
-                "reference": "1610e3c98c40bd8d0f7521eaf48fb8fcf5ec75b8"
+                "reference": "067eb07466f78a079d7a10059cefcc6d0993eb42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/1610e3c98c40bd8d0f7521eaf48fb8fcf5ec75b8",
-                "reference": "1610e3c98c40bd8d0f7521eaf48fb8fcf5ec75b8",
+                "url": "https://api.github.com/repos/hiraeth-php/routing/zipball/067eb07466f78a079d7a10059cefcc6d0993eb42",
+                "reference": "067eb07466f78a079d7a10059cefcc6d0993eb42",
                 "shasum": ""
             },
             "require": {
@@ -2949,7 +2954,7 @@
                 "issues": "https://github.com/hiraeth-php/routing/issues",
                 "source": "https://github.com/hiraeth-php/routing/tree/3.0-beta"
             },
-            "time": "2024-11-10T18:44:23+00:00"
+            "time": "2025-03-14T21:22:44+00:00"
         },
         {
             "name": "hiraeth/runner",
@@ -3056,12 +3061,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/session.git",
-                "reference": "e0a6d0187509bce0a4d23d096c236a0dbc2347dc"
+                "reference": "258154101474235927112afce57fafe3b782a59a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/session/zipball/e0a6d0187509bce0a4d23d096c236a0dbc2347dc",
-                "reference": "e0a6d0187509bce0a4d23d096c236a0dbc2347dc",
+                "url": "https://api.github.com/repos/hiraeth-php/session/zipball/258154101474235927112afce57fafe3b782a59a",
+                "reference": "258154101474235927112afce57fafe3b782a59a",
                 "shasum": ""
             },
             "require": {
@@ -3071,7 +3076,7 @@
             "require-dev": {
                 "hiraeth/app": "^2.0",
                 "hiraeth/twig": "^2.0",
-                "phpstan/phpstan": "^1.0",
+                "phpstan/phpstan": "^2.0",
                 "phpunit/phpunit": "^10.0",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0",
@@ -3108,7 +3113,7 @@
                 "issues": "https://github.com/hiraeth-php/session/issues",
                 "source": "https://github.com/hiraeth-php/session/tree/3.0-beta"
             },
-            "time": "2023-11-04T00:26:01+00:00"
+            "time": "2025-03-14T21:35:24+00:00"
         },
         {
             "name": "hiraeth/shell",
@@ -3116,18 +3121,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/shell.git",
-                "reference": "38cf261cd2357ae825dbd3866ca4fdc301d2630a"
+                "reference": "b5b6213e41b8c1918d58972cc7a7694b11160e2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/shell/zipball/38cf261cd2357ae825dbd3866ca4fdc301d2630a",
-                "reference": "38cf261cd2357ae825dbd3866ca4fdc301d2630a",
+                "url": "https://api.github.com/repos/hiraeth-php/shell/zipball/b5b6213e41b8c1918d58972cc7a7694b11160e2b",
+                "reference": "b5b6213e41b8c1918d58972cc7a7694b11160e2b",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^3.0",
                 "hiraeth/console": "^3.0",
-                "psy/psysh": "^0.11"
+                "psy/psysh": "^0.12"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.0",
@@ -3162,7 +3167,7 @@
                 "issues": "https://github.com/hiraeth-php/shell/issues",
                 "source": "https://github.com/hiraeth-php/shell/tree/3.0-beta"
             },
-            "time": "2023-11-04T00:46:40+00:00"
+            "time": "2025-03-14T21:24:52+00:00"
         },
         {
             "name": "hiraeth/signal",
@@ -3444,27 +3449,27 @@
         },
         {
             "name": "imarc/opus",
-            "version": "2.0-beta",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imarc/opus.git",
-                "reference": "886d54576f24c684a205f1610c29060baa6b0ce7"
+                "reference": "c54c47e5f3fdf287418ad21a2e861f1b2588f4d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imarc/opus/zipball/886d54576f24c684a205f1610c29060baa6b0ce7",
-                "reference": "886d54576f24c684a205f1610c29060baa6b0ce7",
+                "url": "https://api.github.com/repos/imarc/opus/zipball/c54c47e5f3fdf287418ad21a2e861f1b2588f4d7",
+                "reference": "c54c47e5f3fdf287418ad21a2e861f1b2588f4d7",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^2.0",
                 "jfcherng/php-diff": "^6.0",
-                "php": ">=7.4.0"
+                "php": "^7.2|^8.0"
             },
             "require-dev": {
                 "composer/composer": "^2.0",
                 "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^10.0"
+                "phpunit/phpunit": "^8.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -3492,9 +3497,9 @@
             ],
             "support": {
                 "issues": "https://github.com/imarc/opus/issues",
-                "source": "https://github.com/imarc/opus/tree/2.0-beta"
+                "source": "https://github.com/imarc/opus/tree/2.0"
             },
-            "time": "2023-11-11T01:17:22+00:00"
+            "time": "2025-03-14T21:13:53+00:00"
         },
         {
             "name": "jfcherng/php-color-output",
@@ -4925,25 +4930,27 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.19.4",
+            "version": "v5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "715f4d25e225bc47b293a8b997fe6ce99bf987d2"
+                "reference": "447a020a1f875a434d62f2a401f53b82a396e494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/715f4d25e225bc47b293a8b997fe6ce99bf987d2",
-                "reference": "715f4d25e225bc47b293a8b997fe6ce99bf987d2",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/447a020a1f875a434d62f2a401f53b82a396e494",
+                "reference": "447a020a1f875a434d62f2a401f53b82a396e494",
                 "shasum": ""
             },
             "require": {
+                "ext-ctype": "*",
+                "ext-json": "*",
                 "ext-tokenizer": "*",
-                "php": ">=7.1"
+                "php": ">=7.4"
             },
             "require-dev": {
                 "ircmaxell/php-yacc": "^0.0.7",
-                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
+                "phpunit/phpunit": "^9.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -4951,7 +4958,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.9-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -4975,9 +4982,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.19.4"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.4.0"
             },
-            "time": "2024-09-29T15:01:53+00:00"
+            "time": "2024-12-30T11:07:19+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -5028,6 +5035,64 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2020-10-15T08:29:30+00:00"
+        },
+        {
+            "name": "php-extended/polyfill-php80-str-utils",
+            "version": "1.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/php-extended/polyfill-php80-str-utils.git",
+                "reference": "0749426252e3e27c526fda939e8d3ff050bf907b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/php-extended%2Fpolyfill-php80-str-utils/repository/archive.zip?sha=0749426252e3e27c526fda939e8d3ff050bf907b",
+                "reference": "0749426252e3e27c526fda939e8d3ff050bf907b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "php-extended/placeholder-phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "PhpExtended\\Polyfill\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anastaszor",
+                    "homepage": "https://gitlab.com/Anastaszor",
+                    "role": "developer"
+                }
+            ],
+            "description": "A php implementation of string functions introduced in php8 and above",
+            "homepage": "https://gitlab.com/php-extended/polyfill-str-utils",
+            "keywords": [
+                "implementation",
+                "php",
+                "polyfill",
+                "str",
+                "string_ends_with",
+                "string_starts_with",
+                "utils"
+            ],
+            "support": {
+                "issues": "https://gitlab.com/php-extended/polyfill-str-utils/issues",
+                "source": "https://gitlab.com/php-extended/polyfill-str-utils"
+            },
+            "abandoned": "php >= 8.0",
+            "time": "2024-03-31T13:28:10+00:00"
         },
         {
             "name": "psr/cache",
@@ -5454,25 +5519,25 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.22",
+            "version": "v0.12.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "128fa1b608be651999ed9789c95e6e2a31b5802b"
+                "reference": "d73fa3c74918ef4522bb8a3bf9cab39161c4b57c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/128fa1b608be651999ed9789c95e6e2a31b5802b",
-                "reference": "128fa1b608be651999ed9789c95e6e2a31b5802b",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/d73fa3c74918ef4522bb8a3bf9cab39161c4b57c",
+                "reference": "d73fa3c74918ef4522bb8a3bf9cab39161c4b57c",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-tokenizer": "*",
-                "nikic/php-parser": "^4.0 || ^3.1",
-                "php": "^8.0 || ^7.0.8",
-                "symfony/console": "^6.0 || ^5.0 || ^4.0 || ^3.4",
-                "symfony/var-dumper": "^6.0 || ^5.0 || ^4.0 || ^3.4"
+                "nikic/php-parser": "^5.0 || ^4.0",
+                "php": "^8.0 || ^7.4",
+                "symfony/console": "^7.0 || ^6.0 || ^5.0 || ^4.0 || ^3.4",
+                "symfony/var-dumper": "^7.0 || ^6.0 || ^5.0 || ^4.0 || ^3.4"
             },
             "conflict": {
                 "symfony/console": "4.4.37 || 5.3.14 || 5.3.15 || 5.4.3 || 5.4.4 || 6.0.3 || 6.0.4"
@@ -5483,8 +5548,7 @@
             "suggest": {
                 "ext-pcntl": "Enabling the PCNTL extension makes PsySH a lot happier :)",
                 "ext-pdo-sqlite": "The doc command requires SQLite to work.",
-                "ext-posix": "If you have PCNTL, you'll want the POSIX extension as well.",
-                "ext-readline": "Enables support for arrow-key history navigation, and showing and manipulating command history."
+                "ext-posix": "If you have PCNTL, you'll want the POSIX extension as well."
             },
             "bin": [
                 "bin/psysh"
@@ -5496,7 +5560,7 @@
                     "forward-command": false
                 },
                 "branch-alias": {
-                    "dev-0.11": "0.11.x-dev"
+                    "dev-main": "0.12.x-dev"
                 }
             },
             "autoload": {
@@ -5528,22 +5592,22 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.22"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.7"
             },
-            "time": "2023-10-14T21:56:36+00:00"
+            "time": "2024-12-10T01:58:33+00:00"
         },
         {
             "name": "ramsey/collection",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/collection.git",
-                "reference": "a4b48764bfbb8f3a6a4d1aeb1a35bb5e9ecac4a5"
+                "reference": "3c5990b8a5e0b79cd1cf11c2dc1229e58e93f109"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/collection/zipball/a4b48764bfbb8f3a6a4d1aeb1a35bb5e9ecac4a5",
-                "reference": "a4b48764bfbb8f3a6a4d1aeb1a35bb5e9ecac4a5",
+                "url": "https://api.github.com/repos/ramsey/collection/zipball/3c5990b8a5e0b79cd1cf11c2dc1229e58e93f109",
+                "reference": "3c5990b8a5e0b79cd1cf11c2dc1229e58e93f109",
                 "shasum": ""
             },
             "require": {
@@ -5551,25 +5615,22 @@
             },
             "require-dev": {
                 "captainhook/plugin-composer": "^5.3",
-                "ergebnis/composer-normalize": "^2.28.3",
-                "fakerphp/faker": "^1.21",
+                "ergebnis/composer-normalize": "^2.45",
+                "fakerphp/faker": "^1.24",
                 "hamcrest/hamcrest-php": "^2.0",
-                "jangregor/phpstan-prophecy": "^1.0",
-                "mockery/mockery": "^1.5",
+                "jangregor/phpstan-prophecy": "^2.1",
+                "mockery/mockery": "^1.6",
                 "php-parallel-lint/php-console-highlighter": "^1.0",
-                "php-parallel-lint/php-parallel-lint": "^1.3",
-                "phpcsstandards/phpcsutils": "^1.0.0-rc1",
-                "phpspec/prophecy-phpunit": "^2.0",
-                "phpstan/extension-installer": "^1.2",
-                "phpstan/phpstan": "^1.9",
-                "phpstan/phpstan-mockery": "^1.1",
-                "phpstan/phpstan-phpunit": "^1.3",
-                "phpunit/phpunit": "^9.5",
-                "psalm/plugin-mockery": "^1.1",
-                "psalm/plugin-phpunit": "^0.18.4",
-                "ramsey/coding-standard": "^2.0.3",
-                "ramsey/conventional-commits": "^1.3",
-                "vimeo/psalm": "^5.4"
+                "php-parallel-lint/php-parallel-lint": "^1.4",
+                "phpspec/prophecy-phpunit": "^2.3",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-mockery": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpunit/phpunit": "^10.5",
+                "ramsey/coding-standard": "^2.3",
+                "ramsey/conventional-commits": "^1.6",
+                "roave/security-advisories": "dev-latest"
             },
             "type": "library",
             "extra": {
@@ -5607,19 +5668,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ramsey/collection/issues",
-                "source": "https://github.com/ramsey/collection/tree/2.0.0"
+                "source": "https://github.com/ramsey/collection/tree/2.1.0"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/ramsey",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/ramsey/collection",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-12-31T21:50:55+00:00"
+            "time": "2025-03-02T04:48:29+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -7134,17 +7185,17 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "hiraeth/bootstrap": 10,
-        "hiraeth/runner": 10,
         "hiraeth/commonmark": 10,
-        "hiraeth/twig-markdown": 10,
-        "hiraeth/session": 10
+        "hiraeth/runner": 10,
+        "hiraeth/session": 10,
+        "hiraeth/twig-markdown": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.2"
     },
