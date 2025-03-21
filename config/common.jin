@@ -36,3 +36,10 @@
 			"target": "TwigJin"
 		}
 	}
+
+[commonmark]
+
+	extensions = [
+		"Tempest\Highlight\CommonMark\HighlightExtension"
+
+	]

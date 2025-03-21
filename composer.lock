@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1065a46844bcdc81ceed6b571b30f3e",
+    "content-hash": "476491170cd75704f703b43682d9d841",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -1473,26 +1473,25 @@
         },
         {
             "name": "dotink/jin",
-            "version": "4.8.0",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dotink/jin.git",
-                "reference": "6526232bed0e65eb269477f2dc76c6761961a017"
+                "reference": "0223ac7ac2ead0a12388852a474ef010f0664cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dotink/jin/zipball/6526232bed0e65eb269477f2dc76c6761961a017",
-                "reference": "6526232bed0e65eb269477f2dc76c6761961a017",
+                "url": "https://api.github.com/repos/dotink/jin/zipball/0223ac7ac2ead0a12388852a474ef010f0664cfa",
+                "reference": "0223ac7ac2ead0a12388852a474ef010f0664cfa",
                 "shasum": ""
             },
             "require": {
                 "adbario/php-dot-notation": "^2.5",
-                "php": ">=5.4.0"
+                "php": ">=8.2"
             },
             "require-dev": {
-                "dotink/lab": "^1.1",
-                "dotink/sage": "^1.0",
-                "phpunit/phpunit": "^7.4"
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^10.0"
             },
             "type": "library",
             "autoload": {
@@ -1517,9 +1516,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dotink/jin/issues",
-                "source": "https://github.com/dotink/jin/tree/4.8.0"
+                "source": "https://github.com/dotink/jin/tree/5.0.0"
             },
-            "time": "2023-10-31T04:30:34+00:00"
+            "time": "2025-03-21T00:41:19+00:00"
         },
         {
             "name": "dotink/json",
@@ -1954,18 +1953,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "1c21be3ce05d806778d3ee46aaff1ce42c075be8"
+                "reference": "27884325f3f0e05ec5632614f6224431b53f4b98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/1c21be3ce05d806778d3ee46aaff1ce42c075be8",
-                "reference": "1c21be3ce05d806778d3ee46aaff1ce42c075be8",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/27884325f3f0e05ec5632614f6224431b53f4b98",
+                "reference": "27884325f3f0e05ec5632614f6224431b53f4b98",
                 "shasum": ""
             },
             "require": {
                 "defuse/php-encryption": "^2.2",
                 "dotink/auryn": "dev-master",
-                "dotink/jin": "^4.0",
+                "dotink/jin": "^5.0",
                 "dotink/slashtrace": "^2.0",
                 "hiraeth/app": "^3.0",
                 "php": "^8.2",
@@ -2009,7 +2008,7 @@
                 "issues": "https://github.com/hiraeth-php/core/issues",
                 "source": "https://github.com/hiraeth-php/core/tree/3.0-beta"
             },
-            "time": "2025-03-14T20:40:53+00:00"
+            "time": "2025-03-21T00:42:21+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -3284,12 +3283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/twig.git",
-                "reference": "9be76dba2fd9dd0c9199d6581b3b3ac5be71fd8c"
+                "reference": "6a612a091b2e3176ecc64904217497220488c422"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/twig/zipball/9be76dba2fd9dd0c9199d6581b3b3ac5be71fd8c",
-                "reference": "9be76dba2fd9dd0c9199d6581b3b3ac5be71fd8c",
+                "url": "https://api.github.com/repos/hiraeth-php/twig/zipball/6a612a091b2e3176ecc64904217497220488c422",
+                "reference": "6a612a091b2e3176ecc64904217497220488c422",
                 "shasum": ""
             },
             "require": {
@@ -3333,7 +3332,7 @@
                 "issues": "https://github.com/hiraeth-php/twig/issues",
                 "source": "https://github.com/hiraeth-php/twig/tree/3.0-beta"
             },
-            "time": "2024-11-10T17:59:53+00:00"
+            "time": "2025-03-16T16:46:22+00:00"
         },
         {
             "name": "hiraeth/twig-markdown",
@@ -3389,6 +3388,62 @@
                 "source": "https://github.com/hiraeth-php/twig-markdown/tree/3.0-beta"
             },
             "time": "2023-11-04T00:58:01+00:00"
+        },
+        {
+            "name": "hiraeth/twig-tags",
+            "version": "3.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/twig-tags.git",
+                "reference": "e30c58b455602aba4c324383c910c5c4607d6a4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/twig-tags/zipball/e30c58b455602aba4c324383c910c5c4607d6a4d",
+                "reference": "e30c58b455602aba4c324383c910c5c4607d6a4d",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/app": "^3.0",
+                "hiraeth/twig": "^3.0",
+                "ivopetkov/html5-dom-document-php": "^2.0",
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": "",
+                        "resources": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Provides Tag Components for Hiraeth Twig",
+            "support": {
+                "issues": "https://github.com/hiraeth-php/twig-tags/issues",
+                "source": "https://github.com/hiraeth-php/twig-tags/tree/3.0-beta"
+            },
+            "time": "2025-03-16T16:47:19+00:00"
         },
         {
             "name": "hiraeth/volumes",
@@ -3500,6 +3555,61 @@
                 "source": "https://github.com/imarc/opus/tree/2.0"
             },
             "time": "2025-03-14T21:13:53+00:00"
+        },
+        {
+            "name": "ivopetkov/html5-dom-document-php",
+            "version": "v2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ivopetkov/html5-dom-document-php.git",
+                "reference": "def94db52e2b8805840923454d00716d71b0f586"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ivopetkov/html5-dom-document-php/zipball/def94db52e2b8805840923454d00716d71b0f586",
+                "reference": "def94db52e2b8805840923454d00716d71b0f586",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": "8.0.*|8.1.*|8.2.*|8.3.*|8.4.*"
+            },
+            "require-dev": {
+                "ivopetkov/docs-generator": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivo Petkov",
+                    "email": "ivo@ivopetkov.com",
+                    "homepage": "http://ivopetkov.com"
+                }
+            ],
+            "description": "HTML5 DOMDocument PHP library (extends DOMDocument)",
+            "support": {
+                "issues": "https://github.com/ivopetkov/html5-dom-document-php/issues",
+                "source": "https://github.com/ivopetkov/html5-dom-document-php/tree/v2.8.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/ivopetkovcom",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/ivopetkov",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-01-04T21:46:59+00:00"
         },
         {
             "name": "jfcherng/php-color-output",
@@ -5519,16 +5629,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.12.7",
+            "version": "v0.12.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "d73fa3c74918ef4522bb8a3bf9cab39161c4b57c"
+                "reference": "85057ceedee50c49d4f6ecaff73ee96adb3b3625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/d73fa3c74918ef4522bb8a3bf9cab39161c4b57c",
-                "reference": "d73fa3c74918ef4522bb8a3bf9cab39161c4b57c",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/85057ceedee50c49d4f6ecaff73ee96adb3b3625",
+                "reference": "85057ceedee50c49d4f6ecaff73ee96adb3b3625",
                 "shasum": ""
             },
             "require": {
@@ -5592,9 +5702,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.12.7"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.8"
             },
-            "time": "2024-12-10T01:58:33+00:00"
+            "time": "2025-03-16T03:05:19+00:00"
         },
         {
             "name": "ramsey/collection",
@@ -7028,6 +7138,64 @@
             "time": "2025-02-13T10:27:23+00:00"
         },
         {
+            "name": "tempest/highlight",
+            "version": "2.11.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tempestphp/highlight.git",
+                "reference": "5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd",
+                "reference": "5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "assertchris/ellison": "^1.0.2",
+                "friendsofphp/php-cs-fixer": "^3.21",
+                "league/commonmark": "^2.4",
+                "phpstan/phpstan": "^1.10.0",
+                "phpunit/phpunit": "^10.0",
+                "symfony/var-dumper": "^6.4|^7.0"
+            },
+            "suggest": {
+                "assertchris/ellison": "Allows you to analyse sentence complexity",
+                "league/commonmark": "Adds markdown support"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tempest\\Highlight\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Roose",
+                    "email": "brendt@stitcher.io"
+                }
+            ],
+            "description": "Fast, extensible, server-side code highlighting",
+            "support": {
+                "issues": "https://github.com/tempestphp/highlight/issues",
+                "source": "https://github.com/tempestphp/highlight/tree/2.11.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/brendt",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-03-19T05:38:35+00:00"
+        },
+        {
             "name": "twig/twig",
             "version": "v3.20.0",
             "source": {
@@ -7183,21 +7351,12 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "hiraeth/bootstrap": 10,
-        "hiraeth/commonmark": 10,
-        "hiraeth/runner": 10,
-        "hiraeth/session": 10,
-        "hiraeth/twig-markdown": 10
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2"
     },
     "platform-dev": {},
-    "platform-overrides": {
-        "php": "8.2"
-    },
     "plugin-api-version": "2.6.0"
 }

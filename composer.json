@@ -15,14 +15,16 @@
     "require": {
         "php": ">=8.2",
         "imarc/opus": "^2.0",
-        "hiraeth/core": "^3.0",
-        "hiraeth/bootstrap": "^3.0@beta",
-        "hiraeth/sentry": "^3.0",
         "dotink/json": "^1.0",
-        "hiraeth/runner": "^3.0@beta",
-        "hiraeth/commonmark": "^3.0@beta",
-        "hiraeth/twig-markdown": "^3.0@beta",
-        "hiraeth/session": "^3.0@beta"
+        "hiraeth/core": "^3.0",
+        "hiraeth/bootstrap": "^3.0",
+        "hiraeth/sentry": "^3.0",
+        "hiraeth/runner": "^3.0",
+        "hiraeth/commonmark": "^3.0",
+        "hiraeth/twig-markdown": "^3.0",
+        "hiraeth/twig-tags": "^3.0",
+        "hiraeth/session": "^3.0",
+        "tempest/highlight": "^2.11"
     },
     "autoload": {
         "classmap": ["local/"],
@@ -31,9 +33,6 @@
         }
     },
     "config": {
-        "platform": {
-            "php": "8.2"
-        },
         "allow-plugins": {
             "imarc/opus": true
         }
