@@ -1,7 +1,7 @@
 <nav>
     {% apply markdown %}
-        - [home](/)
-        - [Documentation](/docs/)
-        - [Contributing](/contributing)
+        - [home]({{ route('/') }})
+        - [Documentation]({{ route('/docs/') }})
+        - [Contributing]({{ route('/contributing') }})
     {% endapply %}
 </nav>

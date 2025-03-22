@@ -40,6 +40,5 @@
 [commonmark]
 
 	extensions = [
-		"Tempest\Highlight\CommonMark\HighlightExtension"
-
+;		"Tempest\Highlight\CommonMark\HighlightExtension"
 	]

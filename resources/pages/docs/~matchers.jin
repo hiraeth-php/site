@@ -1,0 +1,8 @@
+[{{
+	app.
+	run('glob', [app.directory('resources/pages/docs') ~ '/*', constant('GLOB_ONLYDIR')])
+	|last
+	|basename
+}}]
+
+	pattern = latest
