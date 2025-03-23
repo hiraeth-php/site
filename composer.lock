@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "476491170cd75704f703b43682d9d841",
+    "content-hash": "f7d74c6b8b2137ec95cbf57d925f1958",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -1625,12 +1625,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "ab4321f7c81f302b76fd05899bac157d1dbde7d3"
+                "reference": "90e1e17318e651cc6adb42cf43b9e11762183079"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/ab4321f7c81f302b76fd05899bac157d1dbde7d3",
-                "reference": "ab4321f7c81f302b76fd05899bac157d1dbde7d3",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/90e1e17318e651cc6adb42cf43b9e11762183079",
+                "reference": "90e1e17318e651cc6adb42cf43b9e11762183079",
                 "shasum": ""
             },
             "require": {
@@ -1642,7 +1642,7 @@
                 "hiraeth/routing": "^3.0",
                 "hiraeth/session": "^3.0",
                 "hiraeth/templates": "^3.0",
-                "phpstan/phpstan": "^1.0",
+                "phpstan/phpstan": "^2.0",
                 "phpunit/phpunit": "^10.0"
             },
             "type": "opus-package",
@@ -1675,7 +1675,7 @@
                 "issues": "https://github.com/hiraeth-php/actions/issues",
                 "source": "https://github.com/hiraeth-php/actions/tree/3.0-beta"
             },
-            "time": "2025-03-14T21:57:25+00:00"
+            "time": "2025-03-23T13:19:24+00:00"
         },
         {
             "name": "hiraeth/bootstrap",
@@ -3224,12 +3224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "95a024d5f58f8fcd14baab92ebf866f174ffb7a0"
+                "reference": "4c5a074ec96853ad095717d01e07c04672d5dae1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/95a024d5f58f8fcd14baab92ebf866f174ffb7a0",
-                "reference": "95a024d5f58f8fcd14baab92ebf866f174ffb7a0",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/4c5a074ec96853ad095717d01e07c04672d5dae1",
+                "reference": "4c5a074ec96853ad095717d01e07c04672d5dae1",
                 "shasum": ""
             },
             "require": {
@@ -3272,7 +3272,7 @@
                 "issues": "https://github.com/hiraeth-php/templates/issues",
                 "source": "https://github.com/hiraeth-php/templates/tree/3.0-beta"
             },
-            "time": "2025-03-21T06:02:56+00:00"
+            "time": "2025-03-22T18:33:29+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -4683,30 +4683,30 @@
         },
         {
             "name": "middlewares/client-ip",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/middlewares/client-ip.git",
-                "reference": "466c38388a5efa65f5da4d897adfeb09a4fb44cd"
+                "reference": "f77798d93f7668ce6fd95261fbc9f20094daedc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/client-ip/zipball/466c38388a5efa65f5da4d897adfeb09a4fb44cd",
-                "reference": "466c38388a5efa65f5da4d897adfeb09a4fb44cd",
+                "url": "https://api.github.com/repos/middlewares/client-ip/zipball/f77798d93f7668ce6fd95261fbc9f20094daedc6",
+                "reference": "f77798d93f7668ce6fd95261fbc9f20094daedc6",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2 || ^8.0",
-                "psr/http-server-middleware": "^1.0"
+                "psr/http-server-middleware": "^1"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "laminas/laminas-diactoros": "^2.2",
-                "middlewares/utils": "^3.1",
-                "oscarotero/php-cs-fixer-config": "^1.0",
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^8|^9",
-                "squizlabs/php_codesniffer": "^3.0"
+                "friendsofphp/php-cs-fixer": "^3",
+                "laminas/laminas-diactoros": "^2 || ^3",
+                "middlewares/utils": "^2 || ^3 || ^4",
+                "oscarotero/php-cs-fixer-config": "^2",
+                "phpstan/phpstan": "^1 || ^2",
+                "phpunit/phpunit": "^8 || ^9",
+                "squizlabs/php_codesniffer": "^3"
             },
             "type": "library",
             "autoload": {
@@ -4730,9 +4730,9 @@
             ],
             "support": {
                 "issues": "https://github.com/middlewares/client-ip/issues",
-                "source": "https://github.com/middlewares/client-ip/tree/v2.0.1"
+                "source": "https://github.com/middlewares/client-ip/tree/v2.1.0"
             },
-            "time": "2020-12-02T00:05:31+00:00"
+            "time": "2025-03-23T10:43:07+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7209,64 +7209,6 @@
                 }
             ],
             "time": "2025-02-13T10:27:23+00:00"
-        },
-        {
-            "name": "tempest/highlight",
-            "version": "2.11.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tempestphp/highlight.git",
-                "reference": "5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd",
-                "reference": "5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.3"
-            },
-            "require-dev": {
-                "assertchris/ellison": "^1.0.2",
-                "friendsofphp/php-cs-fixer": "^3.21",
-                "league/commonmark": "^2.4",
-                "phpstan/phpstan": "^1.10.0",
-                "phpunit/phpunit": "^10.0",
-                "symfony/var-dumper": "^6.4|^7.0"
-            },
-            "suggest": {
-                "assertchris/ellison": "Allows you to analyse sentence complexity",
-                "league/commonmark": "Adds markdown support"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Tempest\\Highlight\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brent Roose",
-                    "email": "brendt@stitcher.io"
-                }
-            ],
-            "description": "Fast, extensible, server-side code highlighting",
-            "support": {
-                "issues": "https://github.com/tempestphp/highlight/issues",
-                "source": "https://github.com/tempestphp/highlight/tree/2.11.4"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/brendt",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-03-19T05:38:35+00:00"
         },
         {
             "name": "twig/twig",

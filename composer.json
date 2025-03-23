@@ -23,8 +23,7 @@
         "hiraeth/commonmark": "^3.0",
         "hiraeth/twig-markdown": "^3.0",
         "hiraeth/twig-tags": "^3.0",
-        "hiraeth/session": "^3.0",
-        "tempest/highlight": "^2.11"
+        "hiraeth/session": "^3.0"
     },
     "autoload": {
         "classmap": ["local/"],
