@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelectorAll('pre').forEach(function(node) {
+    document.querySelectorAll('pre:not(.codeflask):not(.codeflask__pre)').forEach(function(node) {
         let copy  = document.createElement('a');
         copy.clpb = document.createElement('textarea');
 

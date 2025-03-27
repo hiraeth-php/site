@@ -15,7 +15,14 @@ class TwigJin
 	 */
 	public function __construct(Parser $parser)
 	{
-		$this->parser = $parser;
+		$this->parser = new Parser(
+			[],
+			[
+				'run!' => function() {
+					return '<nice try>';
+				}
+			]
+		);
 	}
 
 
@@ -26,7 +33,7 @@ class TwigJin
 	{
 		try {
 			return $this->parser->parse($string)->get();
-		} catch (Exception $e) {
+		} catch (Exception|ErrorException $e) {
 			return $e->getMessage();
 		}
 	}

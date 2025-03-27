@@ -1120,16 +1120,16 @@
         },
         {
             "name": "doctrine/migrations",
-            "version": "3.8.3",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "6af8dffde46a67f2a60906b6a28973e5a3670405"
+                "reference": "325b61e41d032f5f7d7e2d11cbefff656eadc9ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/6af8dffde46a67f2a60906b6a28973e5a3670405",
-                "reference": "6af8dffde46a67f2a60906b6a28973e5a3670405",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/325b61e41d032f5f7d7e2d11cbefff656eadc9ab",
+                "reference": "325b61e41d032f5f7d7e2d11cbefff656eadc9ab",
                 "shasum": ""
             },
             "require": {
@@ -1149,7 +1149,7 @@
             "require-dev": {
                 "doctrine/coding-standard": "^12",
                 "doctrine/orm": "^2.13 || ^3",
-                "doctrine/persistence": "^2 || ^3",
+                "doctrine/persistence": "^2 || ^3 || ^4",
                 "doctrine/sql-formatter": "^1.0",
                 "ext-pdo_sqlite": "*",
                 "fig/log-test": "^1",
@@ -1203,7 +1203,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/migrations/issues",
-                "source": "https://github.com/doctrine/migrations/tree/3.8.3"
+                "source": "https://github.com/doctrine/migrations/tree/3.9.0"
             },
             "funding": [
                 {
@@ -1219,7 +1219,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-03-10T23:43:55+00:00"
+            "time": "2025-03-26T06:48:45+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -1575,12 +1575,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dotink/slashtrace.git",
-                "reference": "89be1a440d0857725ff3ab8f176dd3afb1ac974d"
+                "reference": "66c9e6881c413d4302fced0e5a8532a1eb7cb842"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dotink/slashtrace/zipball/89be1a440d0857725ff3ab8f176dd3afb1ac974d",
-                "reference": "89be1a440d0857725ff3ab8f176dd3afb1ac974d",
+                "url": "https://api.github.com/repos/dotink/slashtrace/zipball/66c9e6881c413d4302fced0e5a8532a1eb7cb842",
+                "reference": "66c9e6881c413d4302fced0e5a8532a1eb7cb842",
                 "shasum": ""
             },
             "require": {
@@ -1617,7 +1617,7 @@
             "support": {
                 "source": "https://github.com/dotink/slashtrace/tree/3.0-beta"
             },
-            "time": "2025-03-22T16:13:58+00:00"
+            "time": "2025-03-23T15:39:52+00:00"
         },
         {
             "name": "hiraeth/actions",
@@ -1841,12 +1841,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/commonmark.git",
-                "reference": "a720adabbc3142ab6b705f766bc9cc18c2f8a099"
+                "reference": "8ce10631d19d0781c5a6f9dbcf5d8077edb8f73f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/commonmark/zipball/a720adabbc3142ab6b705f766bc9cc18c2f8a099",
-                "reference": "a720adabbc3142ab6b705f766bc9cc18c2f8a099",
+                "url": "https://api.github.com/repos/hiraeth-php/commonmark/zipball/8ce10631d19d0781c5a6f9dbcf5d8077edb8f73f",
+                "reference": "8ce10631d19d0781c5a6f9dbcf5d8077edb8f73f",
                 "shasum": ""
             },
             "require": {
@@ -1891,7 +1891,7 @@
                 "issues": "https://github.com/hiraeth-php/commonmark/issues",
                 "source": "https://github.com/hiraeth-php/commonmark/tree/3.0-beta"
             },
-            "time": "2024-03-15T19:15:14+00:00"
+            "time": "2025-03-23T13:23:02+00:00"
         },
         {
             "name": "hiraeth/console",
@@ -1953,12 +1953,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "25453b05dd734f14fdc21ffb06cdda8bb897a870"
+                "reference": "c1d0bafc276d6adf9e79c34f74ec689486fa7197"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/25453b05dd734f14fdc21ffb06cdda8bb897a870",
-                "reference": "25453b05dd734f14fdc21ffb06cdda8bb897a870",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/c1d0bafc276d6adf9e79c34f74ec689486fa7197",
+                "reference": "c1d0bafc276d6adf9e79c34f74ec689486fa7197",
                 "shasum": ""
             },
             "require": {
@@ -2005,7 +2005,7 @@
                 "issues": "https://github.com/hiraeth-php/core/issues",
                 "source": "https://github.com/hiraeth-php/core/tree/3.0-beta"
             },
-            "time": "2025-03-22T16:46:27+00:00"
+            "time": "2025-03-23T23:52:13+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -2364,12 +2364,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/http.git",
-                "reference": "2caf0bd94e05ffa816b592ad15308e67757d9429"
+                "reference": "f4cfac8eea952d9764d5dd0dae29abfc076e4566"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/http/zipball/2caf0bd94e05ffa816b592ad15308e67757d9429",
-                "reference": "2caf0bd94e05ffa816b592ad15308e67757d9429",
+                "url": "https://api.github.com/repos/hiraeth-php/http/zipball/f4cfac8eea952d9764d5dd0dae29abfc076e4566",
+                "reference": "f4cfac8eea952d9764d5dd0dae29abfc076e4566",
                 "shasum": ""
             },
             "require": {
@@ -2414,7 +2414,7 @@
                 "issues": "https://github.com/hiraeth-php/http/issues",
                 "source": "https://github.com/hiraeth-php/http/tree/3.0-beta"
             },
-            "time": "2025-03-22T17:01:07+00:00"
+            "time": "2025-03-25T05:42:23+00:00"
         },
         {
             "name": "hiraeth/inflector",
@@ -3224,12 +3224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "4c5a074ec96853ad095717d01e07c04672d5dae1"
+                "reference": "f00e34a96034b30b4331e2484ac2230119310f8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/4c5a074ec96853ad095717d01e07c04672d5dae1",
-                "reference": "4c5a074ec96853ad095717d01e07c04672d5dae1",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/f00e34a96034b30b4331e2484ac2230119310f8c",
+                "reference": "f00e34a96034b30b4331e2484ac2230119310f8c",
                 "shasum": ""
             },
             "require": {
@@ -3272,7 +3272,7 @@
                 "issues": "https://github.com/hiraeth-php/templates/issues",
                 "source": "https://github.com/hiraeth-php/templates/tree/3.0-beta"
             },
-            "time": "2025-03-22T18:33:29+00:00"
+            "time": "2025-03-26T03:51:34+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -3392,18 +3392,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/twig-tags.git",
-                "reference": "d450a55228ff989c1e15eed314d67616521382f3"
+                "reference": "3df00cc35f55410ec47f1e268341f6322696d9bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/twig-tags/zipball/d450a55228ff989c1e15eed314d67616521382f3",
-                "reference": "d450a55228ff989c1e15eed314d67616521382f3",
+                "url": "https://api.github.com/repos/hiraeth-php/twig-tags/zipball/3df00cc35f55410ec47f1e268341f6322696d9bb",
+                "reference": "3df00cc35f55410ec47f1e268341f6322696d9bb",
                 "shasum": ""
             },
             "require": {
                 "hiraeth/app": "^3.0",
                 "hiraeth/twig": "^3.0",
-                "ivopetkov/html5-dom-document-php": "^2.0",
+                "masterminds/html5": "^2.9",
                 "php": ">=8.2"
             },
             "require-dev": {
@@ -3440,7 +3440,7 @@
                 "issues": "https://github.com/hiraeth-php/twig-tags/issues",
                 "source": "https://github.com/hiraeth-php/twig-tags/tree/3.0-beta"
             },
-            "time": "2025-03-22T04:21:56+00:00"
+            "time": "2025-03-26T22:41:21+00:00"
         },
         {
             "name": "hiraeth/volumes",
@@ -3552,61 +3552,6 @@
                 "source": "https://github.com/imarc/opus/tree/2.0"
             },
             "time": "2025-03-14T21:13:53+00:00"
-        },
-        {
-            "name": "ivopetkov/html5-dom-document-php",
-            "version": "v2.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ivopetkov/html5-dom-document-php.git",
-                "reference": "def94db52e2b8805840923454d00716d71b0f586"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ivopetkov/html5-dom-document-php/zipball/def94db52e2b8805840923454d00716d71b0f586",
-                "reference": "def94db52e2b8805840923454d00716d71b0f586",
-                "shasum": ""
-            },
-            "require": {
-                "ext-dom": "*",
-                "php": "8.0.*|8.1.*|8.2.*|8.3.*|8.4.*"
-            },
-            "require-dev": {
-                "ivopetkov/docs-generator": "1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "autoload.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ivo Petkov",
-                    "email": "ivo@ivopetkov.com",
-                    "homepage": "http://ivopetkov.com"
-                }
-            ],
-            "description": "HTML5 DOMDocument PHP library (extends DOMDocument)",
-            "support": {
-                "issues": "https://github.com/ivopetkov/html5-dom-document-php/issues",
-                "source": "https://github.com/ivopetkov/html5-dom-document-php/tree/v2.8.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/ivopetkovcom",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/ivopetkov",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-01-04T21:46:59+00:00"
         },
         {
             "name": "jfcherng/php-color-output",
@@ -4682,6 +4627,73 @@
             "time": "2024-11-02T15:03:35+00:00"
         },
         {
+            "name": "masterminds/html5",
+            "version": "2.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Masterminds/html5-php.git",
+                "reference": "f5ac2c0b0a2eefca70b2ce32a5809992227e75a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/f5ac2c0b0a2eefca70b2ce32a5809992227e75a6",
+                "reference": "f5ac2c0b0a2eefca70b2ce32a5809992227e75a6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7.21 || ^6 || ^7 || ^8 || ^9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Masterminds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Butcher",
+                    "email": "technosophos@gmail.com"
+                },
+                {
+                    "name": "Matt Farina",
+                    "email": "matt@mattfarina.com"
+                },
+                {
+                    "name": "Asmir Mustafic",
+                    "email": "goetas@gmail.com"
+                }
+            ],
+            "description": "An HTML5 parser and serializer.",
+            "homepage": "http://masterminds.github.io/html5-php",
+            "keywords": [
+                "HTML5",
+                "dom",
+                "html",
+                "parser",
+                "querypath",
+                "serializer",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/Masterminds/html5-php/issues",
+                "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
+            },
+            "time": "2024-03-31T07:05:07+00:00"
+        },
+        {
             "name": "middlewares/client-ip",
             "version": "v2.1.0",
             "source": {
@@ -4736,16 +4748,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "3.8.1",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "aef6ee73a77a66e404dd6540934a9ef1b3c855b4"
+                "reference": "10d85740180ecba7896c87e06a166e0c95a0e3b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/aef6ee73a77a66e404dd6540934a9ef1b3c855b4",
-                "reference": "aef6ee73a77a66e404dd6540934a9ef1b3c855b4",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/10d85740180ecba7896c87e06a166e0c95a0e3b6",
+                "reference": "10d85740180ecba7896c87e06a166e0c95a0e3b6",
                 "shasum": ""
             },
             "require": {
@@ -4823,7 +4835,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.8.1"
+                "source": "https://github.com/Seldaek/monolog/tree/3.9.0"
             },
             "funding": [
                 {
@@ -4835,7 +4847,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-05T17:15:07+00:00"
+            "time": "2025-03-24T10:02:05+00:00"
         },
         {
             "name": "nette/schema",

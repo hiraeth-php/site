@@ -226,7 +226,7 @@ code
 	font-size: .95em
 	line-height: 1.75em
 
-pre
+pre:not(.codeflask__pre):not(.codeflask)
 	@mixin -pad
 	@mixin -fill
 	@mixin -round-less
@@ -255,7 +255,7 @@ pre
 			--icon-size: 2rem
 			--icon-content: url('https://api.iconify.design/mdi:content-copy.svg?color=%23ffffff&height=20')
 
-code:not(.hljs)
+code:not(.hljs):not(.codeflask__code)
 	@mixin -outline
 
 	--line-color: var(--cloud)
@@ -369,3 +369,6 @@ code:not(.hljs)
 
 	max-width: none !important
 	margin: 0
+
+[x-cloak]
+	display: none !important

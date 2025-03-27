@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/nord.min.css" />
     <link rel="stylesheet" href="/styles/main.css" />
 
+	<script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+	<style type="text/tailwindcss">
+		@layer theme, base, components, utilities;
+
+		@import "tailwindcss/theme.css" layer(theme);
+		@import "tailwindcss/utilities.css" layer(utilities);
+	</style>
+
 	{% block styles %}
 
 	{% endblock %}
@@ -28,7 +38,9 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/twig.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
 
 <script>((window.gitter = {}).chat = {}).options = { room: 'hiraeth-php/Lobby' };</script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>

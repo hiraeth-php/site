@@ -34,6 +34,12 @@
 	filters = {
 		"jin": {
 			"target": "TwigJin"
+		},
+		"pretty": {
+			"target": "print_r"
+		},
+		"content": {
+			"target": "file_get_contents"
 		}
 	}
 
