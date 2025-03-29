@@ -5,107 +5,57 @@
 {% block content %}
 	{% apply markdown %}
 		{: .note}
-		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package} and `hiraeth/actions`{: .package} (at minimum).  For routed actions you'll also want `hiraeth/fastroute`{: .package}. See the [installation docs](./installation) for more information.
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/actions`{: .package} as well as either a template and middleware (`hiraeth/twig`{: .package} and `hiraeth/harmony`{: .package}) provider.
 
-		Actions are PHP classes which perform the control logic for incoming requests.  Their primary responsibility is usually determining which services need to be used, and how to map incoming route parameters to those services to get data to your templates.  Additionally, they may perform highly specific request control operations like authentication, validation, etc (even if only by calling other services).
+		Actions are PHP classes which perform the control logic for incoming requests.  Their primary responsibility is usually determining appropriate services and how to map incoming route parameters to those services to get or modify data.  Additionally, they may perform specific request control operations like authentication, validation, etc (even if only by calling other services).
 
-		The only requirement of an action is that it implements the `__invoke()`{: .method} method to perform the operations for which it is responsible.  One of the simplest examples of a valid action would, therefore, be the following:
+		Actions are like controllers in other frameworks, but they only perform a single action.  Traits, abstraction and depdencency injection are all better ways to provide re-usability than loading large / complex controllers that handle lots of requests.  Continuing with our dictionary example, let's create an action that returns an actual `404` response in `local/actions/GetWord.php`{: .file}.
 
 		```php
-		class HelloWorld
+		<?php
+
+		namespace Words;
+
+		class Get extends \AbstractAction
 		{
-			public function __invoke($name = 'World')
+			public function __invoke($word)
 			{
-				return sprintf(
-					'Hello %s!',
-					ucwords($name)
-				);
+				$template = sprintf('@pages/words/%s.html', $word);
+
+				if (!$this->templates->has($template)) {
+					return $this->response(
+						404,
+						$this->template('@pages/words/404.html', [
+							'word' => $word
+						])
+					);
+				}
+
+				return [];
 			}
 		}
 		```
 
-		The suggested directory for actions is `local/actions`{: .folder}.  However, since Hiraeth uses class mapping you can generally put them wherever.  In either case, you will want to regenerate autoloading:
-
-		```php
-		composer dump
-		```
+		{: .note}
+		Hiraeth uses class mapping for all autoloading, so in order to find our new action you want to make sure you run `composer dump`
 
 		## Calling Actions
 
-		Actions are generally called in one of two ways.  A routing based system will map an incoming route to a corresponding action in the `routes.jin`{: .config} (or equivalent routing configuration) file.
+		To call an action from a [page](./page), you can use Twig's `do` tag along with the `action()` function provided by `hiraeth/actions`{: .package}.  Let's update our hypothetical dictionary application's `resources/pages/words/@get.html`{: .html} file to the following:
 
-		```toml
-		routes = map(application.route) {
-			/hello/[{name}]	HelloWorld	["*"]
-		}
-		```
+		```twig{% verbatim %}
+		{% extends '@layouts/main.html' %}
 
-		If you're using static templates or routed templates, you can call an action to get additional template context or to interrupt the request (such as with a `404` response).  This allows for a view-first approach.  However, in order to do this we'll need to make use of some additional functionality provided by `AbstractAction`{: .class}.
+		{% do action('Words:Get') %}
 
+		{% block body %}
+			{% include '@pages/words/' ~ parameters.word ~ '.html' %}
+		{% endblock %}
+		{% endverbatim %}```
 
-		## Creating From Abstract Action {: #creating}
+		## Accessing the Request {: #request}
 
-		The `AbstractAction`{: .class} which, by default is added by [Opus](https://github.com/imarc/opus) and by default extends `Hiraeth\AbstractAction`{: .class} provides flexible and modular helpers that enable additional functionality.  Specifically it provides:
-
-		- Request / Respone access and wrappers
-		- Session access and wrappers (if installed)
-		- Template access and wrappers (if installed)
-		- Indirect call logic (needed when invoked from a template)
-
-		To make use of this functionality out of the box, simply make sure your action extends `AbstractAction`{: .class}:
-
-		```php
-		class HelloWorld extends \AbstractAction
-		{
-			...
-		}
-		```
-
-		{: .note}
-		In previous version the `AbstractAction`{: .class} at the root namespace level was just an alias.  As of 3.0, an actual placeholder file is created in `local`{: .folder} to improve static analysis as well as code completion.  You should be able to safely modify this file to add any additional abstracted/common functionality to actions.  Be advised, if you previously created your own (especially in the same location), you'll want to ensure opus doesn't overwrite it with the empty one or make sure to merge your existing code there and remove the old file.
-
-		With the above in place we can now modify our action to provide our template with the needed context.  Since our template now handles rendering the response body, we return the context as an associative array, not the string:
-
-		```php
-		public function __invoke($name = 'World')
-		{
-			return [
-				'name' => ucwords($name)
-			];
-		}
-		```
-
-		Now add our template `resources/pages/hello/index.html`{: .html}:
-
-		```twig
-		{% verbatim %}{% do action('HelloWorld') %}{% endverbatim %}
-
-		Hello {% verbatim %}{{ name }}!{% endverbatim %}
-		```
-
-		From here we can modify our route to go directly to the template:
-
-		```
-		/hello[/{name}]	@pages/hello/index.html	["*"]
-		```
-
-		We can avoid routing altogether with a very similar approach by renaming our template to `resources/pages/hello/@index.html`{: .html} and adding a `~matchers.jin` inside the `resources/pages/hello`{: .folder} directory to perform our parameter matching:
-
-		```toml
-		[index]
-
-			pattern = .*
-			mapping = [
-				"name"
-			]
-		```
-
-		{: .note}
-		Don't forget to remove the original route!  Or, if you prefer the view-first approach, remove your router altogether!
-
-		## Accessing Request Information {: #requet-info}
-
-		Once you have extended the `AbstractAction`{: .class}, it's now possible to easily access the [PSR-7](https://www.php-fig.org/psr/psr-7/) server request object that represents the incoming client request via `$this->request`:
+		Although not strictly necessary, by extending the `AbstractAction`{: .class} class, our actions can easily access the [PSR-7](https://www.php-fig.org/psr/psr-7/) server request object (among other things) that represents the incoming server request:
 
 		```php
 		public function __invoke()
@@ -118,7 +68,7 @@
 
 		For a full list of available methods, their arguments, and returned data types available on the request object, see [the PSR-7 server request interface documentation](https://www.php-fig.org/psr/psr-7/#321-psrhttpmessageserverrequestinterface).
 
-		## Accessing Request Data {: #request-data}
+		## Accessing the Request Data {: #request-data}
 
 		It is 100% possible to access all request data via the server request object through standard PSR-7 interfaces.  Depending on the complexity of the incoming data, this may actually be necessary at time to distinguish between query parameters, post data, files, etc.  However, more common is the need to have this information easily combined together and/or to get default values if it hasn't been sent.
 
@@ -148,98 +98,63 @@
 		$this->get('page', 1)
 		```
 
-		## Returning Data {: #returning-data}
+		## Returning {: #returning}
 
-		Hiraeth does not require actions to return a particular object or type of data.  Rather, it uses a system of responders which are registered in the configuration and which, in turn will be matched against your action's return value to convert it into a proper response.  That said, the `Hiraeth\Actions\AbstractAction`{: .class} provides a number of helpers to create the most common return types.
+		When actions are called they are expected to return either data (which will be added to the page's context) or a response which will interrupt the page rendering and provide some alternative.
 
-		### Basic Responses {: #responses}
+		In the case of the former, you simply return an associative array of the data you want to make available to the template after calling the action:
 
-		```php
-		return $this->response(404);
 		```
+		return [
+			'foo' => 'bar'
+		];
+		```
+
+		In the case of the latter, there are several helpers which enable you to return alternative responses.
 
 		### Redirects (With Parameters) {: #redirects }
 
 		```php
-		return $this->redirect('/people', ['page' => 1])
+		return $this->redirect(
+			'/people',
+			[
+				'page' => 1
+			]
+		);
 		```
 
 		The default status code on a redirect will be a `303`, to change it, just wrap it:
 
 		```
-		return $this->response(302, $this->redirect('/people', ['page' => 1]));
+		return $this->response(
+			302,
+			$this->redirect(
+				'/people',
+				[
+					'page' => 1
+				]
+			)
+		);
 		```
 
-		### Templates (HTML/XML/Txt) {: #templates }
+		### Templates {: #templates }
+
+		You can return an alternative template with their own response code (as seen in our opening example) like so:
 
 		```php
-		return $this->template('@pages/profile.html', [
-			'firstName' => 'John',
-			'lastName'  => 'Doe'
-		])
+		return $this->response(
+			404,
+			$this->template('@pages/not-found.html')
+		);
 		```
 
-		The default status code on a template is `200`, and its content type will be inferred from its content.  Just like redirects, you can set the status code or supply custom headers by wrapping it:
+		## Routing
 
-		```php
-		return $this->response(400, $this->template('@pages/error.html'), [
-			'Content-Type' => 'application/xhtml+xml'
-		]);
-		```
-
-		It is often the case that you may return the same content with different status codes.  One way to do this is to set your template to a variable:
-
-		```php
-		$template = $this->template('@pages/organization/detail.html');
-
-		if ($this->request->getMethod() == 'POST') {
-			try {
-				// Update the record
-			} catch (Exception $e) {
-				return $this->response(400, $template);
-			}
-		}
-
-		return $this->response(200, $template);
-		```
-
-		However, another approach is to always return the template directly instead of a response and to use the `init()` method to initialize the resolver's response:
-
-		```php
-		if ($this->request->getMethod() == 'POST') {
-			try {
-				// Update the record
-			} catch (Exception $e) {
-				$this->init(400);
-			}
-		}
-
-		return $this->template('@pages/organization/detail.html', $data);
-		```
-
-		The response is always initialized at `200`, so you only need to call it to change the value.
-
-
-		### Objects (JSON) {: #objects }
-
-		```php
-		return $this->object([
-			'title' => 'A nice JSON response',
-			'body'  => 'Nothing to see here'
-		])
-		```
-
-		The default status code on an object is `200`, and its content type will be `application/json`.  If you need to change these you can
-
-		```php
-		return $this->response(201, $this->object($new_entity));
-		```
-
-		Now that you've got your action in place, you're going to need to add a route in order to map a URL to your action.
+		While Hireath promotes the view-first paradigm, many people may prefer a more traditional approach where controllers (or actions in our case) are the entry point for handling a given URL.  It may also be the case, that you want to use Twig to template non-traditional formats like JSON.  For this, Hiraeth provides more traditional routing functionality that can route directly to actions or other templates.
 
 		----
 
-		[Add a Route](./routing){: .action} [No, I want to learn more about responders](./responders)
+		[Add a Route](./routing){: .action}
 
 	{% endapply %}
 {% endblock %}

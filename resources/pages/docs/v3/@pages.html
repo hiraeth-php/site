@@ -5,26 +5,18 @@
 {% block content %}
 	{% apply markdown %}
 		{: .note}
-		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/harmony`{: .package}, and `hiraeth/twig`{: .package} for static templates, additionally `hiraeth/fasteroute`{: .package} for routed templates, and `hiraeth/actions`{: .package} for more traditional controller-like template responses.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/harmony`{: .package}, and `hiraeth/twig`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
-		Hiraeth provides three primary ways to add a page to your website or web applicaton via common packages:
-
-		- [Static Templates](#static-templates)
-		- [Routed Templates](#routed-templates)
-		- [Actions](#actions)
-
-		## Static Templates {: #static-templates}
-
-		To create a page using static templates you don't need to do much more than add an `.html` file to `resources/pages`{: .folder}.  For example, if you don't already have a homepage, simply create a file at `resources/pages/@index.html`{: .html} and paste in the following:
+		To add a page to your website or application in Hiraeth is as simple as adding a file to `resources/pages`{: .folder}.  For example, you can add your homepage, by simply create a file at `resources/pages/@index.html`{: .html} and paste in the following:
 
 		```html
 		<!doctype html>
 		<html>
 			<head>
-				<title>My New Website</title>
+				<title>Fast Dictionary</title>
 			</head>
 			<body>
-				<h1>Hello World!</h1>
+				<h1>The Fastest Dictionary On the Web</h1>
 			</body>
 		</html>
 		```
@@ -32,26 +24,51 @@
 		Now reload [http://localhost:8080/](http://localhost:8080/) to see the result.
 
 		{: .note}
-		If you're having trouble seeing the page, it may be that you forgot to add the **`@`** symbol at the beginning of it.  Hiraeth uses this character at the beginning of a file name to know when its safe to render it directly without a corresponding action.
+		If you're having trouble seeing the page, it may be that you forgot to add the **`@`** symbol at the beginning of the filename.
 
-		Although Hiraeth calls these direct to file pages "static templates", this along with any other `.html` file you add to `resources/pages`{: .folder} have the full power of [Twig](https://twig.symfony.com/) behind them.  So feel free to create parent templates and extend them (what Hiraeth calls "layouts"), include partials, etc.  See the [templating documentation](./templating) for more details.
+		Just because the example above is completely static, however, doesn't mean you don't have the full power of twig available to you.  A more common approach might be to add the "shell" of your page as a layout in `resources/layouts/main.html`{: .folder}:
 
-		### Path Resolution {: #paths}
+		```twig{% verbatim %}
+		<!doctype html>
+		<html>
+			<head>
+				<title>Fast Dictionary</title>
+			</head>
+			<body>
+				{% block body %}
+				{% endblock %}
+			</body>
+		</html>
+		{% endverbatim %}```
 
-		Additional static templates can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .html} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .html}.
+		Now update the `resources/pages/@index.html`{: .html} file accordingly:
 
-		If the URL's corresponding static template cannot be found it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .html} in the example above.  If the URL does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .html} file within.
+		```twig{% verbatim %}
+		{% extends '@layouts/main.html' %}
 
-		In the event an alternate static template path is found, an HTTP `301` status code will be returned automatically with the more direct URL location for the path, thus preserving canonical URLs.
+		{% block body %}
+			<h1>The Fastest Dictionary On the Web</h1>
+		{% endblock %}
+		{% endverbatim %}```
 
-		### Matchers {: #matchers}
+		Reference [twig documentation](https://twig.symfony.com/) to understand more about its features.
 
-		Matchers provide a way for static templates to be mapped to URL parameterized URL segments.  For example, let's say you're writing a simple dictionary application and you want to handle something like `/words/{word}` without installing a full blown router and using routed templates.
+		## Path Resolution {: #paths}
 
-		Create a file `~matchers.jin`{: .config} in the `resources/pages/words`{: .folder} directory with the following content:
+		Additional pages can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .html} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .html}.
+
+		If the URL's corresponding page cannot be found at the canonical location it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .html} in the example above.  If the URL does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .html} file within.
+
+		In the event an alternative path is found, an HTTP `301` status code will be returned automatically with the canonical URL location for the path.
+
+		## Matchers {: #matchers}
+
+		Matchers provide a way for pages to be mapped to parameterized URL segments.  For example, let's say you're writing a simple dictionary application and you want to handle something like `/words/{word}`.
+
+		Create a file in the `words` folder such as`resources/pages/words/~matchers.jin`{: .config} with the following content:
 
 		```toml
-		[detail]
+		[get]
 
 			pattern = (.+)
 			mapping = [
@@ -59,58 +76,33 @@
 			]
 		```
 
-		This tells the template middleware to use the `@detail.html`{: .html} as specified in the section (`[]`) if the pattern matches.  The pattern is a standard regex (implicitly delimited by `#`), and each captured group must correspond to an indexed parameter name in the `mapping` setting.
+		This tells the template middleware to use the `@get.html`{: .html} as specified in the section (`[]`) if the defined `pattern` expression matches.  The pattern expression is a standard regex (implicitly delimited by `#`), and each captured group must correspond to an indexed parameter name in the `mapping` setting.
+
+		{: .note}
+		The first section whose pattern matches will be selected.
 
 		You can then access the paramter in your Twig template via the `parameters` variable:
 
-		{% verbatim %}
-		```twig
-		{% if parameters.word == 'framework' %}
-			A "framework" is a collection of libraries that have been
-			integrated via some additional code as a cohesive platform
-			for rapidly developing an application.
-		{% else %}
-			We don't know anything about this word.
-		{% endif %}
-		```
-		{% endverbatim %}
+		```twig{% verbatim %}
+		{% extends '@layouts/main.html' %}
 
-		{: .note}
-		The first matching pattern will determine the static template which is used.
+		{% block body %}
+			{% include [
+				'@pages/words/' ~ parameters.word ~ '.html',
+				'@pages/words/404.html'
+			] %}
+		{% endblock %}
+		{% endverbatim %}```
 
-		Matchers will be used to "replace" path segments along the entire request URI's path.  Accordingly it's possible, using the above matcher to also handle a url such as `/words/{word}/synonyms` by simply creating a new page template at `resources/pages/words/detail/@synonyms.html`{: .html}.  The `parameters.word` will be available in this template as well.
-
-		## Routed Templates {: #routed-templates}
-
-		Routed templates are similar to static templates in that the request is short circuited and goes directly to loading a template (not through an action).  Unlike static templates, however, routed templates add the ability to have some variability in the template location (that includes the extension).  The `hiraeth/routing`{: .package} package will attempt to route directly to a template when the target starts with `@'.
-
-		```toml
-		routes = map(application.route) {
-			/schema/{version}		@pages/schema/{version}.json		["GET"]
-		}
-		```
-
-		In the above example we provide a route to multiple JSON schema versions.  This allows us to route to a `.json` file rather than the default `.html`.  Similarly, we can access the parameter inside the template:
-
-		```json
-		{
-			"version": {% verbatim %}{{ route.parameters.version }}{% endverbatim %}
-		}
-		```
-
-		{: .note}
-		Note, that unlike static templates, the parameters are now carried on the `route`.
+		Matchers will be used to "replace" path segments along the entire request URI's path.  Accordingly it's possible, using the above matcher to also handle a url such as `/words/{word}/synonyms` by simply creating a new page template at `resources/pages/words/get/@synonyms.html`{: .html}.  The `parameters.word` will be available in this template as well.
 
 		## Actions {: #actions}
 
-		Actions are PHP classes which are invoked to perform control logic.  You may already be familiar with the concept, but only know them as "controllers."  While Hiraeth supports more traditional controller paradigms, it strongly encourages the use of "single action controllers" or simply "actions" to reduce the complexity that may occur in monolithic controller classes.  Shared behaviors and logic are generally better served by traits or abstraction.
-
-		{: .note}
-		An action that is routed to will always supersede static templates, as the template middleware actually only handles lookups on the response flow and only in the event the response is a `404`.  Accordingly, static templates will act as a fallback for any route that cannot resolve an action or where an action explicitly returns a `404`.
+		While Twig templating is extremely powerful and can be an elegant solution when paired with pages and matchers, inevitably you should not be relying on Twig to replace complex PHP logic or accessing your service layer.  You're likly familiar with this from other frameworks that include the concept of "controllers."  Hiraeth, by contrast uses single method controllers called "actions."
 
 		----
 
-		[How Do I Create Actions?](./actions){: .action}
+		[How Do I Use Actions?](./actions){: .action}
 
 	{% endapply %}
 {% endblock %}

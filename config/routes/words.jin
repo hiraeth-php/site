@@ -4,7 +4,7 @@
 	; The prefix for all the routes in this group, changing this will change the base path.
 	;
 
-	prefix = /
+	prefix = /words
 
 	;
 	; Route definitions in this group.  Add tab separate lines for each route in the format:
@@ -17,6 +17,11 @@
 	;
 
 	routes = map(application.route) {
-		/test/{action:c}	{action}				["*"]
-		/hello/[{name}]		HelloWorld				["*"]
+		/{word:lower}	@pages/words/get.html	["GET"]
+	}
+
+[fastroute]
+
+	patterns = {
+		"lower": "[a-z]+"
 	}

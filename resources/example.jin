@@ -8,29 +8,37 @@
 
 	; Strings
 
-	field1 = A string value.
+	field1 = A string value. ; comment is stripped
 
-	field2 = (
+	field2 = "A quoted string value ; no stripping"
+
+	field3 = <
 		A multi-line
-		string value is also
-		possible.
-	)
+		string value is also ; but remember
+		possible. ; comments are stripped
+	>
+
+	field4 = <"
+		Quote the multi-line
+		string to ; ensure comments
+		aren't stripped
+	">
 
 	; Integers become native integer
 
-	field3 = 1
+	field5 = 1
 
 	; Floats become native floats
 
-	field4 = 3.14
+	field6 = 3.14
 
 	; Booleans become native booleans
 
-	field5 = true
+	field7 = true
 
 	; Arrays, note: trailing commas are fine
 
-	field6 = [
+	field8 = [
 		"item1",
 		"item2",
 		"item3",
@@ -38,7 +46,7 @@
 
 	; Objects, note: trailing commas are fine
 
-	field7 = {
+	field9 = {
 		"key1": "item1",
 		"key2": "item2",
 	}
@@ -47,7 +55,7 @@
 
 	[&.subsection]
 
-		field8 = "quoted strings can have semicolons (;)"
+		field1 = true
 
 		; Add more &s to keep going
 
@@ -56,35 +64,35 @@
 			; Functions, note run() is sandboxed for safety
 			; Returns result eval'd in host language (PHP)
 
-			field9 = env(TIMEZONE)
+			field1 = env(TIMEZONE)
 
-			field10 = run($app->getEnvironment('TIMEZONE'))
+			field2 = run($app->getEnvironment('TIMEZONE'))
 
 [classes]
 
 	; No need to escape a slash in JSON values
 	; But... you can't do other escapes, e.g. \n, \t
 
-	field11 = ["My\Namespaced\Class"]
+	field1 = ["My\Namespaced\Class"]
 
 [templates]
 
 	; Definitions a template for use with map() and inc()
 
-	field12 = def(var1, var2, var3) {
+	field1 = def(var1, var2, var3) {
 		[$var1, $var2, $var3]
 	}
 
 	; For multiple entries, each line maps to template
 
-	field13 = map(templates.field12) {
+	field2 = map(templates.field1) {
 		Tab		Separated	Array
 		Of		Other		Arrays
 	}
 
 	; For a single entry, each line maps to arg
 
-	field14 = inc(templates.field12) {
+	field3 = inc(templates.field1) {
 		New Line
 		Separated
 		Templating

@@ -5,7 +5,7 @@
 {% block content %}
 	{% apply markdown %}
 		{: .note}
-		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package} and `hiraeth/fastroute`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of an HTTP (`hiraeth/diactoros`{: .package}) provider and `hiraeth/fastroute`{: .package}.
 
 		Hiraeth's bootstrap uses [FastRoute](https://github.com/nikic/FastRoute) with a custom "transformation layer" on top to provide some much needed missing features like:
 
@@ -15,84 +15,58 @@
 
 		## Adding Routes {: #adding-routes}
 
-		The main route map is located in `config/routes.jin`{: .config}, however, because of Hiraeth's modular configuraiton system, it's also possible to add distinct grouped route maps in a sub-folder such as `config/routing`{: .folder}.  Each collection is capable of defining a custom prefix and a series of routes routes which map to specific actions.
+		The main route map is located in `config/routes.jin`{: .config}.  Routes can be added to the `routes` map, a one-or-more tab separated values list defining the route, target, and methods for which the route applies.  The target on a route, by default, can be either a templates or actions.  Unlike pages, routes allow you finer control in that you can define distinct entry points depending on the method, load templates other than `.html`, and make use of pattern aliases, transformers, and other advanced features.  To change this:
 
-		Routes can be added to the `routes` map, a tab separated values list defining the route, target, and methods for which the route applies:
+		1. We'll rename our template to exclude the `@` on the file name portion.  The `@` signifies that a template is directly available as a page, but since we're now going to route directly to it, it can simply be `resources/pages/words/get.html`{: .html}.
+		2. We'll remove our `resources/pages/words/~matchers.jin`{: .config}.  The router will now handle all URL parameterization.
+		3. Finally, we'll add the route in `config/routes.jin`{: .config}:
 
 		```toml
 		[routing]
-
-			;
-			; Route definitions in this group.  Add tab separate lines
-			; for each route in the format:
-			;
-			; {route}	{target}	{methods}
-			;
-
 			routes = map(application.route) {
-				/	ViewHome	["GET"]
+				/words/{word}	@pages/words/get.html	["GET"]
 			}
 		```
 
+		{: .note}
 		If you need to match all possible methods, you can use `["*"]` as the methods value.
-
 
 		## Prefixes {: #prefixes}
 
-		If you need to move all your routes under a specific path, you can use `prefix` to define the leading URL segment for all the routes in the group.  Multiple groups can have the same prefix as well, so feel free to break up your route collections in more specific groups if you like.
+		If you need to move all your routes under a specific path, you can use `prefix` to define the leading URL segment for all the routes in the group.  Multiple groups can have the same prefix as well, so feel free to break up your route collections in more specific groups if you like.  For example we could update our routing config as follows:
 
 		```toml
 		[routing]
+			prefix = /words
 
-			prefix = /blog
+			routes = map(application.route) {
+				/{word}		@pages/words/get.html	["GET"]
+			}
 		```
 
 		## Parameters {: #parameters}
 
-		Parameters are a way to take in pieces of your route as values to be passed to your action.  The basic style of a parameter is simply the parameter name surrounded by curly braces, e.g. `{id}`.
+		Parameters in routing provide much more advanced features than what's available in matcher configuration.  The basic style of a route parameter has already been shown, however, it's also possible to add custom pattern matching as well as transformers.
 
-
-		```toml
-		routes = map(application.route) {
-			/articles/{id}-{title}	ViewArticle	["GET"]
-		}
-		```
-
-		Parameters will be injected into your action using the same names as defined in the route.  You can receive as many or as few as you like.  In the example below, despite defining both the `{id}` and the `{title}` in the route, we only really need the id for lookup:
-
-		```php
-		class ViewArticle extends AbstractAction
-		{
-			public function __invoke($id)
-			{
-				//
-				// Find article with the $id
-				//
-			}
-		}
-		```
-
-		Although it's possible to add multiple simple parameters to your routes, to prevent mismatching and ambiguities in which parts of the URL belong to which parameters you will want to further restrict what constitutes a valid value for the parameter using patterns.
+		In the case of words, we may want to make sure that our words are always lowercase to enforce canonical URLs.
 
 		### Patterns {: #patterns}
 
 		To match parameters more precisely, you can follow the parameter name in the route with a `:` and add a RegEx or a pattern alias (a simple character or string used as a shorthand):
 
 		```toml
-		routes = map(application.route) {
-			/articles/{id:+}-{title:!}	ViewArticle	["GET"]
-		}
+			routes = map(application.route) {
+				/{word:lower}	@pages/words/get.html	["GET"]
+			}
 		```
 
-		Given the above, the `id` will now be constrained to matching the `+` pattern, which translates to `\d+` while the `title` will be constrained to `!` which translates to `[a-z0-9-]+`.
-
-		To add your own patterns, you can add a `[fastroute]` section to any configuration collection and set a `patterns` key equal to an object mapping the pattern alias (the key) to the regular expression (the value).  An example date pattern might look like the following:
+		Given the above, the `word` will now be constrained to matching the `lower` pattern.  To add our own pattern, we can add a `[fastroute]` section to any configuration collection and set a `patterns` key equal to an object mapping the pattern alias (the key) to the regular expression (the value).  An example date pattern might look like the following:
 
 		```toml
 		[fastroute]
 
 			patterns = {
-				"d": "[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]"
+				"lower": "[a-z]+"
 			}
 		```
 

@@ -114,16 +114,16 @@
 		Strings can be unquoted or quoted as we saw in the comments section above.  Quoted strings are only particularly useful in the case you need to include a semi-colon (rare).  You can also do multi-line strings, however, multi-line strings using `()`:
 
 		```toml
-		quoted = ("
+		quoted = <"
 			This is a quoted multi-line string
 			containing a semi-colon (;) that
 			will not be interpreted as a comment.
-		")
+		">
 
-		unquoted = (
+		unquoted = <
 			This is a multi-line string
-			but as you can see...; this is a a comment
-		)
+			but as you can see... ; this is a a comment
+		>
 		```
 
 		As promised, values can also be JSON-like.  JIN uses its host language's native JSON parsing abilities.  Since in our case that's PHP, this means that valid JSON values will generally need to be _strict_ JSON with quoted keys (for objects).  The only two exceptions which are part of standard JIN are:
