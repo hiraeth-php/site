@@ -18,4 +18,5 @@
 
 	routes = map(application.route) {
 		/test/{action:c}	{action}	["*"]
+		/hello/[{name}]		HelloWorld	["*"]
 	}

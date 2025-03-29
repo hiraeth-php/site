@@ -48,17 +48,18 @@
 
 		Matchers provide a way for static templates to be mapped to URL parameterized URL segments.  For example, let's say you're writing a simple dictionary application and you want to handle something like `/words/{word}` without installing a full blown router and using routed templates.
 
-		Create a file `~matchers.jin`{: .config} with the following content:
+		Create a file `~matchers.jin`{: .config} in the `resources/pages/words`{: .folder} directory with the following content:
 
 		```toml
 		[detail]
+
 			pattern = (.+)
 			mapping = [
 				"word"
 			]
 		```
 
-		This tells the template middleware to use the `@detail.html`{: .html} as specified in the square brackets (`[]`) if the pattern matches.  The pattern is a standard regex, and each captured group must correspond to an indexed parameter name in the `mapping` setting.
+		This tells the template middleware to use the `@detail.html`{: .html} as specified in the section (`[]`) if the pattern matches.  The pattern is a standard regex (implicitly delimited by `#`), and each captured group must correspond to an indexed parameter name in the `mapping` setting.
 
 		You can then access the paramter in your Twig template via the `parameters` variable:
 
@@ -77,12 +78,11 @@
 		{: .note}
 		The first matching pattern will determine the static template which is used.
 
-		While matchers are extremely convenient and a light weight alternative to a complete routing solution, they have limitations. Specifically, matchers only work for the URL segment for the corresponding directory they're in.  There's no way to match patterns from other URL segments, or compound `~matchers.jin`{: .config} settings across multiple segments.  For that, you'll want routed templates.
-
+		Matchers will be used to "replace" path segments along the entire request URI's path.  Accordingly it's possible, using the above matcher to also handle a url such as `/words/{word}/synonyms` by simply creating a new page template at `resources/pages/words/detail/@synonyms.html`{: .html}.  The `parameters.word` will be available in this template as well.
 
 		## Routed Templates {: #routed-templates}
 
-		Routed templates are similar to static templates in that the request is short circuited and goes directly to loading a template.  Unlike static templates, however, routed templates add the ability to have some variability in the template location (and therefore extension) and can additionally get parameters across segments.  To route directly to a template, simply add your route (with optional parameters) to the `routes.jin` file.
+		Routed templates are similar to static templates in that the request is short circuited and goes directly to loading a template (not through an action).  Unlike static templates, however, routed templates add the ability to have some variability in the template location (that includes the extension).  The `hiraeth/routing`{: .package} package will attempt to route directly to a template when the target starts with `@'.
 
 		```toml
 		routes = map(application.route) {
@@ -98,12 +98,15 @@
 		}
 		```
 
+		{: .note}
+		Note, that unlike static templates, the parameters are now carried on the `route`.
+
 		## Actions {: #actions}
 
-		Actions are PHP classes which are invoked when a URL mapped explicitly to them via a route is requested by a web client.  You may already be familiar with the concept, but only know them as "controllers."  While Hiraeth supports more traditional controller paradigms, it strongly encourages the use of "single action controllers" or simply "actions" to reduce the complexity that may occur in monolithic controller classes.  Shared behaviors and logic are generally better served by traits.
+		Actions are PHP classes which are invoked to perform control logic.  You may already be familiar with the concept, but only know them as "controllers."  While Hiraeth supports more traditional controller paradigms, it strongly encourages the use of "single action controllers" or simply "actions" to reduce the complexity that may occur in monolithic controller classes.  Shared behaviors and logic are generally better served by traits or abstraction.
 
 		{: .note}
-		Actions **always** supersede static templates.  Although it is possible for static templates to serve as fallbacks in the event the action returns an HTTP `404` response, we generally suggest not mixing the two for a single URL path in order to avoid confusion.
+		An action that is routed to will always supersede static templates, as the template middleware actually only handles lookups on the response flow and only in the event the response is a `404`.  Accordingly, static templates will act as a fallback for any route that cannot resolve an action or where an action explicitly returns a `404`.
 
 		----
 

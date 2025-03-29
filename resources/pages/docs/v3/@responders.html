@@ -9,6 +9,8 @@
 
 		Responders take the return result of an [action](./actions) and convert it to a [PSR-7](https://www.php-fig.org/psr/psr-7/) response object.  In most cases this will be totally transparent to the user as `hiraeth/bootstrap`{: .package} comes with a number of common responders out of the box.  However, if you're writing an API, creating custom responders is an extremely powerful way to handle conversion of data transfer objects, models, collections, etc, to the client.
 
+		Responders are only available for routed actions, as template-based routing or static templates are implicitly responding with the rendered template.  However, actions that respond with a native PSR-7 response will interrupt the template rendering in favor of the response.
+
 		By default `hiraeth/bootstrap`{: .package} comes with the following responders:
 
 		| Responder                | Description

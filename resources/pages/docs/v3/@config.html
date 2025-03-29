@@ -1,168 +1,96 @@
 {% extends '@layouts/docs-3.0.html' %}
 
-{% set title = 'Configuration' %}
+{% set title = 'Configuration Querying' %}
 
 {% block content %}
 	{% apply markdown %}
-		Hiraeth uses [Jsonified Ini Notation](https://github.com/dotink/jin) (JIN) for all configuration files and its `.env`{: .config}.  Without going into too much detail, these files use an INI structure with JSON-like values.  The language is extremely similar to [TOML](https://github.com/toml-lang/toml), but does not attempt to be compatible or maintain feature parity.  For example:
+		While [understanding JIN](./jin) and how to write configurations is import, it's equally important to understand how to use those configurations.  A single instantiation of the JIN parser allows for collecting (by key) any number of files it parses.  Hiraeth shares a single parser instantiation for its entire application run, accordingly, all configuration files when parsed are collected and keyed for reference later.
 
-		```toml
-		[middleware]
+		Configuration files are found in the `config`{: .folder} directory and are keyed by their relative path, minus the extension.  So for example the key for `config/app.jin`{: .config} is simply `app`, while the key for `config/packages/hyfryd.jin`{: .config} would be `packages/hyfrid`.
 
-			disabled = false
-
-			class = Acme\Middleware
-		```
-
-		Want to test some JIN?  You can use our simple online JIN parser to check for errors, play with the language, and see what it looks like converted to JSON.
-
-		[Try JIN](/jin){: .action}
-
-		## Functions
-
-		JIN supports mapping functions for configuration values.  These are useful to get information that requires some logic in order to generate or retrieve.  Hiraeth registers three important functions that allow you to write more flexible configs.
-
-		### The env() Function
-
-		Get environment variables value, including those set in your `.env`{: .config}.
-
-		```toml
-		[config]
-
-			setting = env(VALUE)
-		```
-
-		With a default value if not found:
-
-		```toml
-		[config]
-
-			setting = env(VALUE, true)
-		```
-
-		### The dir() Function
-
-		If you need to get an "application root" relative directory, you can use the `dir()` function.  This is equivalent to `$app->getDirectory()` (See: [Files and Directories](./files)).
-
-		```toml
-		[config]
-
-			directory = dir(storage/cache/acme)
-		```
-
-		{: .note}
-		Using the `dir()` function will always create the directory if it does not exist.
-
-		### The file() Function
-
-		If you need to get an "application root" relative file, you can use the `file()` function.  This is equivalent to `$app->getFile()` (See: [Files and Directories](./files)).
-
-		```toml
-		[config]
-
-			file = file(storage/example.txt)
-		```
-
-		{: .note}
-		Using the `file()` function will not create the file if it does not exist.
-
-		## Getting Configuration Information {: #getting-info}
-
-		A configuration collection is just an object containing information from a file somewhere in `config`{: .folder}.  The collection "path" refers to the relative file path minus the `.jin` extension.  For example, the collection path for `config/common.jin`{: .config} is simply `common`.
-
-		To get specific configuration information you can use the `$app->getConfig()` method by passing it the path, the key to the setting, and a default value in the event that it's not set.  The following example shows how we might determine if an `Acme\Middleware`{: .class} is disabled for the previous example JIN code:
+		You can query configurations by passing the key and path to the value you want using `getConfig()`{: .method} on Hiraeth's application instance:
 
 		```php
-		$app->getConfig('middleware/acme', 'middleware.disabled', FALSE)
+		$app->getConfig('routes', 'routing.prefix')
 		```
 
-		The "dot notation" for the second parameter allows you to access information nested at any depth of the collection, including retrieving from object / array values set in the configuration.
-
-		### Default Values and Inferred Typing {: #inferred-typing}
-
-		When retrieving information from a specific collection, the default value will first and foremost be returned if:
-
-		1. The path does not refer to a valid collection
-		2. The the collection does not have a value set for the provided key
-
-		However, the default value is additionally used to infer and set the data type on any data retrieved.  JIN supports typing natively, so this functionality is primarily used to convert scalar values to arrays at the time of retrieval or to typecast mixed values into booleans for simple checks.
-
-		For example, given the following config:
-
-		```toml
-		[config]
-
-			setting = value
-		```
-
-		Retrieving with `$app->getConfig('path', 'config.value', [])` will result in `[value]`.  This will allow you to create settings that can be optionally scalar values or arrays and safely `foreach` over them:
+		Accordingly, since configurations can house many different native types, including scalars, strings, and arrays, the return value type will depend on the type in the configuration.  Similar to the `env()` function in Hiraeth's JIN implementation, however, you can and generally should pass a default value, from which the return value can be implicitly casted.
 
 		```php
-		foreach ($app->getConfig('path', 'config.value', []) as $value) {
+		$app->config('custom/config', 'fruit', []);
+		```
+
+		The above would allow `fruit` to be a string, but when querying, would be returned as an array with only the single string value.
+
+		For scalars and strings, the default value will always be returned if no value is set.  For associative arrays, the default value will fill in any missing keys.  You can see more of this below with wildcard queries.
+
+		### Wildcard Queries {: #wildcards}
+
+		In some cases you want to get a lot of similar configuration information across the entire set of collections.  To perform this, you can specify a `*` as the key and result will be an array of config values keyed by the collection path they're found in.
+
+		This is used to enable configuration information for a single "system" to be modularized and spread across multiple configuration files.  For example, Hiraeth's middleware implementations use a `[middleware]` section to identify the configuration of an individual middlware handler.  Each middleware handler, therefore has its own config with its own `[middleware]` section, but we need a simple way to get **all** middleware configurations:
+
+		```php
+		$middleware = $app->getConfig('*', 'middleware', [
+			'class'    => NULL,  /* Ensure NULL if missing */
+			'disabled' => FALSE,
+			'priority' => 50
+		])
+
+		uasort($middleware, function($a, $b) {
+			return $a['priority'] - $b['priority'];
+		});
+
+		foreach ($middleware as $path => $collection) {
+			if (!$middleware['class']) {
+				throw new RuntimeException(sprintf(
+					'Invalid middleware configured in path "%s", no class',
+					$path
+				))
+			}
+
+			if ($middleware['disabled']) {
+				continue;
+			}
+
 			...
 		}
 		```
 
-		Additionally, if the retrieved value is an array (natively or by inference) and the default value is an array, then any keys/values which exist in the default that don't exist in the retrieved value will be added to the result.
-
-		For example, given the following config:
-
-		```toml
-		[config]
-
-			setting = {
-				"foo": "bar"
-			}
-		```
-
-		Retrieving with `$app->getConfig('path', 'config.value', ['bar' => 'foo'])` will result in:
-
-		```php
-		[
-			'foo' => 'bar',
-			'bar' => 'foo'
-		]
-		```
-
-		### Querying Information {: #querying}
-
-		In some cases you want to get a lot of similar configuration information across the entire set of collections.  To perform this, you can specify a `*` as the first parameter and the `$app->getconfig()` method will return an array of values keyed by the collection path they're found in.
-
-		```php
-		$defaults = [
-			'class'    => NULL,
-			'disabled' => FALSE,
-			'priority' => 50
-		];
-
-		foreach ($app->getConfig('*', 'middleware', $defaults) as $path => $collection) {
-			if (!$middleware['class'] || $middleware['disabled']) {
-				continue;
-			}
-
-			//
-			// do middleware things
-			//
-		}
-		```
-
 		{: .note}
-		Unlike when getting specific configuration information, querying information will only return values from collections where the key exists.  That is, the default value will _not_ be returned for collections which don't have the value, but will still be used to infer data types and provide defaults within a retreived array.
+		Unlike when getting specific configuration information, querying information will only return values from collections where the key exists.  That is, the default value will _not_ be returned for collections which don't have the value at all.  The default, however, will still be used to infer data types and provide defaults in the case of objects within a retreived array.
 
 		## Getting Environment Variables {: #environment}
 
-		Hiraeth, like many other popular frameworks, provides a `.env` file for setting environment specific data.  Unlike other popular frameworks, the `.env` file also contains JIN.  Although the source for the environment is JIN, because the environment cannot contain rich data types only simple key names and strings, the structure of the environment is flattened with the keys of nested information separated by an `_` (underscore).  **Use arrays at your own risk!**
+		Hiraeth, like many other popular frameworks, provides a `.env`{: .config} file for setting environment specific data.  Unlike other popular frameworks, this file also contains JIN.  Although the source for the environment is JIN, because the environment cannot contain rich data types only simple key names and strings, the structure of the environment is flattened with the keys of nested information separated by an `_` (underscore).
 
-		To get an environment value, you can use the `$app->getEnvironment()` method:
+		{: .note}
+		The flattening to underscore separated names means that using arrays in the `.env`{: .config} file is not good practice, as they'll have names like `ITEMS_0`, `ITEMS_2`, etc.
+
+		To get an environment value, you can use the `$app->getEnvironment()`{: .method} method:
 
 		```php
-		$app->getEnvironment('CONFIG_DIR', 'config')
+		$app->getEnvironment('SERVER_PORT', 8080)
 		```
 
 		{: .note}
-		When accessing environment variables through `$app->getEnvironment()`, Hiraeth will perform the same default value and inferred typing as [described above](#inferred-typing) and will be accessing the data in its original data types.
+		When accessing environment variables through this method, Hiraeth will perform the same default value and inferred typing as [described above](#inferred-typing) and will be accessing the data in its original data types.
 
-		You also access data using PHP's built-in `getenv()` and the `$_ENV` superglobal.  Though in the case of the former the data will only be available as a string.
+		Due to the flattening, this allows your environment file to be written such as:
+
+		```toml
+		[SERVER]
+
+			PORT = 8080
+		```
+
+		Similarly, if you need to retain BASH or other compatibility to share this file with other systems, you can simply write it as:
+
+		```bash
+		SERVER_PORT=8080
+		```
+
+		You also access data using PHP's built-in `getenv()` and the `$_ENV` superglobal.  Though in the case of the former the data will only be available as a string and will not enable inferred types.
 
 		Once you've got the basics down, you'll probably want to modify your `.env`{: .config} and get some basic error handling in place.
 

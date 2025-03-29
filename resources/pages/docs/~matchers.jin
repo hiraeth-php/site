@@ -6,3 +6,6 @@
 }}]
 
 	pattern = latest
+	mapping = [
+		"alias"
+	]
