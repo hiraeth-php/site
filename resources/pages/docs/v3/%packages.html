@@ -1,0 +1,53 @@
+{% extends '@layouts/docs-3.0.html' | proxy('header', 'content') %}
+
+{% set title = "Packages" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+
+		As an alternative to `hiraeth/bootstrap`{: .package}, you can install individual packages for common components in an à la carte fashion.  Below is a list of official and well-supported packages and their use cases.
+
+		| Package           | Description
+		|-------------------|------------------------------
+		| hiraeth/monolog   | Provides application level logging via multiple channels through Monolog
+		| hiraeth/diactoros | PSR-7 HTTP response/request handling with Laminas components
+		| hiraeth/harmony   | PSR-15 middlware support via Harmony
+		| hiraeth/twig      | Twig template engine and direct to page rendering via middleware
+		| hiraeth/console   | Easily create CLI application commands using Symfony console
+		| hiraeth/shell     | REPL (Interactive PHP Shell) support via the PsySH library
+		| hiraeth/fastroute | Fastroute based routing with add-ons for parameter pattern matching and transformations
+		| hiraeth/actions   | Baseline components for single action controllers providing easy abstractions
+		| hiraeth/events    | Emit and listen for custom events for non-linear extensibility
+		| hiraeth/cache     | Provide PSR-6 compatible caching using Symfony components
+		| hireath/session   | Session handling support (including flash messaging) via Aura
+		| hiraeth/doctrine  | Robust Object-Relational Models built on Doctrine
+		| hiraeth/volumes   | Storage volumes supporting a variety of storage systems via League/Flysystem |
+
+
+		The packages above represent the bulk of what is in `hiraeth/bootstrap`{: .package} and represent a fairly comprehensive framework on part with other core framework functionality.  Additional commonly used packages which provide some great extended functionality include:
+
+
+		| Package               | Description
+		|-----------------------|------------------------------
+		| hiraeth/twig-tags     | Component-like abstraction for Twig (works well with Tailwind)
+		| hiraeth/markdown      | Markdown supprt via commonmark
+		| hiraeth/twig-markdown | Extend markdown support into Twig templates (used for this documentation)
+		| hiraeth/gettext       | Locale/translation support via `.po` files
+		| hiraeth/twig-i18n     | Expode gettext translations functions/filters in Twig templates
+		| hiraeth/mailer        | A simple SMTP mailing mechanism using the classic PHPMailer
+		| hiraeth/session-cache | Use PSR-6 cache pools for session storage
+
+
+		----
+
+		[Finalize Installation](./post-install){: .action}
+	{% endapply %}
+{% endblock %}

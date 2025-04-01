@@ -1,7 +1,0 @@
-{% extends '@layouts/dictionary.html' %}
-
-{% do action('Words:Get') %}
-
-{% block body %}
-	{% include '@pages/words/' ~ parameters.word ~ '.html' %}
-{% endblock %}

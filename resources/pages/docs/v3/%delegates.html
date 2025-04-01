@@ -1,0 +1,97 @@
+{% extends '@layouts/docs-3.0.html' | proxy('header', 'content') %}
+
+{% set title = "Delegates" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		Delegates are responsible for telling Hiraeth how to configure and create dependencies for the dependency injector.  Think of them as an isolated factory class which can use `Hiraeth\Application`{: .class} to query configuration information, retrieve related dependencies and return a working object.  The core of Hiraeth integration is performed by creating delegates and registering those delegates through the configuration.
+
+		Delegates are the primary mechanism by which the service locator anti-pattern is avoided.  They are one part of the "glue" between the configuration layer and the actual services your application depends on.  Delegates are always bound to a **concrete** class for which that delegate is responsible for _constructing_.  When the dependency injector is called upon to create an instance of a class to inject into another, it will determine if there's a delegate for that class, and use the delegate to construct the dependency.
+
+		Delegates implement `Hiraeth\Delegate`{: .interface} which has two methods:
+
+		| Method         | Description
+		|----------------|----------------------------
+		| `getClass()`   | Returns the class name for which the delegate is responsible for constructing
+		| `__invoke()`   | Handles the construction of the class and returns the instance
+
+
+		## Creating a Delegate {: #creating-delegates}
+
+		A contrived example in which we need to build our `Bar` class with a particular setting from our configuration might look as follows:
+
+		```php
+		namespace Acme\Foo;
+
+		use Hiraeth;
+
+		class BarDelegate implements Hiraeth\Delegate
+		{
+			static public function getClass(): string
+			{
+				return Bar::class
+			}
+
+			public function __invoke(Hiraeth\Application $app): object
+			{
+				return new Bar($app->getConfig('packages/bar', 'setting', NULL));
+			}
+		}
+		```
+
+		{: .note}
+		The `__invoke()` method receives the application instance which can be used to get configuration or environment information as well as to construct subsequent dependencies via `$app->get()`.  See the [PSR-11 documentation](https://www.php-fig.org/psr/psr-11/) for a complete description of DI related methods.
+
+		## Registering a Delegate {: #registering-delegates}
+
+		Once our class is added and our autoloader is aware of it, we can register the delegate in any config file under the `[application]` section.  Hiraeth scans all `[application]` sections on startup and registers the delegates as factories for the class they identify.
+
+		```toml
+		[application]
+
+			delegates = [
+				"Acme\Foo\BarDelegate"
+			]
+		```
+
+		Now, anywhere that dependency injection is used, if we were to typhint our `Bar` class, Hiraeth will use the delegate to construct and return the object as built by the delegate.
+
+		```php
+		class MyAction
+		{
+			public function __construct(Bar $bar)
+			{
+				$this->bar = $bar;
+			}
+		}
+		```
+
+		## Singletons {: #singletons}
+
+		If you always need the same instance of a given class, you can share the constructed instance of that class inside the delegate.  Once shared, the dependency injector will no longer construct a new instance when injecting, but will always return the previously constructed instance.  We can modify the original delegate accordingly to see how this behavior is achieved:
+
+		```php
+		public function __invoke(Hiraeth\Application $app): object
+		{
+			$instance = new Bar($app->getConfig('packages/bar', 'setting', NULL));
+
+			return $app->share($instance);
+		}
+		```
+
+		{: .note}
+		Although you can also use delegates to provide dependencies and additional configuration of classes beyond their construction, if you only need to call configuration methods **or** if you need to configure various dependencies which share a common interface you can use a [provider](./providers) instead.
+
+		[Learn About Providers](./providers){: .action}
+	{% endapply %}
+
+	{% include '@layouts/giscus.html' %}
+{% endblock %}

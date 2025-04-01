@@ -139,6 +139,12 @@
 		},
 		"if": {
 			"target": "Hiraeth\Twig\IfFilter"
+		},
+		"mock": {
+			"target": "Hiraeth\Twig\MockFilter",
+			"options": {
+				"needs_context": true
+			}
 		}
 	}
 
@@ -148,9 +154,13 @@
 	;
 
 	functions = {
-
+		"mock": {
+			"target": "Hiraeth\Twig\MockFunction",
+			"options": {
+				"needs_environment": true
+			}
+		}
 	}
-
 	;
 	; Globals - A list of global variables to class names.  Instances will be constructed using the
 	; depency injector / broker.

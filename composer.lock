@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7d74c6b8b2137ec95cbf57d925f1958",
+    "content-hash": "0be6e7f6d1e32f01d88fd35f3ede4626",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -2415,6 +2415,64 @@
                 "source": "https://github.com/hiraeth-php/http/tree/3.0-beta"
             },
             "time": "2025-03-25T05:42:23+00:00"
+        },
+        {
+            "name": "hiraeth/hyfryd",
+            "version": "3.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/hyfryd.git",
+                "reference": "c1c3525181e5e574d1d71c9e73e037d2efeae587"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/hyfryd/zipball/c1c3525181e5e574d1d71c9e73e037d2efeae587",
+                "reference": "c1c3525181e5e574d1d71c9e73e037d2efeae587",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/actions": "^3.0",
+                "hiraeth/app": "^3.0",
+                "hiraeth/diactoros": "^3.0",
+                "hiraeth/harmony": "^3.0",
+                "hiraeth/twig-tags": "^3.0"
+            },
+            "require-dev": {
+                "hiraeth/diactoros": "^3.0",
+                "hiraeth/harmony": "^3.0",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "A view-first component-based application framework",
+            "support": {
+                "issues": "https://github.com/hiraeth-php/hyfryd/issues",
+                "source": "https://github.com/hiraeth-php/hyfryd/tree/3.0-beta"
+            },
+            "time": "2025-03-26T22:57:10+00:00"
         },
         {
             "name": "hiraeth/inflector",
@@ -7378,7 +7436,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "hiraeth/hyfryd": 10
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

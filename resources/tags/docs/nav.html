@@ -1,0 +1,56 @@
+{% set items = items ?? [] %}
+
+<script>
+	function DocsNav() {
+		return {
+			open: null,
+			load: null,
+			select(group) {
+				if (this.open == group) {
+					this.open = null;
+				} else {
+					this.open = group;
+				}
+			},
+			visit(page) {
+				this.load = page;
+			},
+			activate() {
+				if (document.location.pathname == this.$el.querySelector('a').pathname) {
+					this.visit(this.page);
+				}
+			}
+		}
+	}
+</script>
+
+<nav x-data="DocsNav" class="bg-gray-200/50">
+	<button class="w-full text-center lg:hidden" href="#menu">☰</button>
+	<ol class="list-none">
+		{% for item in items %}
+			<li x-data="{group: $id('nav-group')}">
+				<div x-on:click="select(group)" class="cursor-pointer px-4 py-2" href="{{ route(item.link|default('#')) }}">
+					{{ item.name|default('Uknown Name') }}
+					<button class="float-right inline-block w-4 text-center">
+						<span x-show="open == group">-</span>
+						<span x-show="open != group">+</span>
+					</button>
+				</div>
+				{% if item.list is defined %}
+					<ol x-show="open == group" class="list-none bg-zinc-700 text-white py-2 relative">
+						{% for child in item.list ?? [] %}
+							<li x-init="activate()" x-data="{page: $id('nav-page')}">
+								<a data-page x-on:click="visit(page)" class="block px-8 py-1" href="{{ route(child.link|default('#')) }}">
+									<span class="absolute inline-block w-2 h-2 left-3 mt-2 text-transparent rounded-full bg-emerald-400" x-show="load == page">
+										( active )
+									</span>
+									{{ child.name|default('Uknown Name') }}
+								</a><
+							</li>
+						{% endfor %}
+					</ol>
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ol>
+</nav>

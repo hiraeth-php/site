@@ -1,0 +1,57 @@
+{% extends '@layouts/docs-3.0.html' | proxy('header', 'content') %}
+
+{% set title = "Volumes" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+    {% apply markdown %}
+        {: .note}
+        This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/volumes`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+        A volume is a local or remote file storage system which can be accessed and worked with using an abstracted URL via a stream wrapper.  By default, Hiraeth only comes with a single volume set up: `vol://public`.  The "public" volume maps to `storage/public`{: .folder} and is designed to allow you to easily access file storage that is available to the public via the `/storage` base URL.
+
+        Additional volumes can be created as you wish.  Hiraeth's volumes are backed by League's [Flysystem](https://github.com/thephpleague/flysystem) library with a modified/overloaded [streamwrapper](https://github.com/twistor/flysystem-stream-wrapper) for abstraction, so there is an extensive list of supported storage mechanisms.
+
+        ## Accessing Volumes
+
+        In principle, volumes should work as any other file location would with standard PHP file operations.  The structure of a volume path is broken down into 3 parts: `[scheme]://[volume]/[target]`.  The default `[scheme]` is `vol`, though can be modified in `config/packages/volumes.jin`{: .config}.  The `[volume]` component is derived from the name of the volume configuration file, so for example "public" volume's configuraton is in `config/volumes/public.jin`{: .config}.  Lastly, the `[target]` is the actual path to the directory or file you want to work with on that volume.
+
+        Using cues from our [files and directories docs](./files), we can see how we might create a new file:
+
+        ```php
+        $app->getFile('vol://public/test.txt', TRUE)
+        ```
+
+        In addition to Hiraeth's application methods, you should be able to use standard PHP functions like `file_exists()`, `copy()`, `rename()`, `fopen()`, `file_put_contents()`, etc.
+
+        ## Adding a Volume
+
+        To create a new volume, you will need to add a `[volume]` configuration, usually in `config/volumes/[name].jin`{: .file}.  The basic structure of this file looks something like the following:
+
+        ```toml
+        [volume]
+
+            disabled = false
+
+            class = League\Flysystem\Adapter\Example
+
+            [&.options]
+
+            ;    argument = value
+        ```
+
+        On boot, the application provider which creates the volumes and registers them with the stream wrapper will look for configured `[volume]` instances and instantiate their configured `class` with the arguments provided under `[&.options]`.
+
+        {: .note}
+        Options for the class are named arguments.  That is to say, the key for each option must match the parameter name on the class.  These options should only contain non-object dependency information for the injector.  If your adapter requires additional object dependencies, the dependency injector will attempt to instantiate them automatically and use any [delegates](./delegates) for those classes.
+
+
+    {% endapply %}
+{% endblock %}

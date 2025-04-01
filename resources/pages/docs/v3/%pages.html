@@ -1,0 +1,116 @@
+{% extends '@layouts/docs-3.0.html' | proxy('header', 'content') %}
+
+{% set title = "Pages" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		{: .note}
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/harmony`{: .package}, and `hiraeth/twig`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+		To add a page to your website or application in Hiraeth is as simple as adding a file to `resources/pages`{: .folder}.  For example, you can add your homepage, by simply create a file at `resources/pages/@index.html`{: .html} and paste in the following:
+
+		```html
+		<!doctype html>
+		<html>
+			<head>
+				<title>Fast Dictionary</title>
+			</head>
+			<body>
+				<h1>The Fastest Dictionary On the Web</h1>
+			</body>
+		</html>
+		```
+
+		Now reload [http://localhost:8080/](http://localhost:8080/) to see the result.
+
+		{: .note}
+		If you're having trouble seeing the page, it may be that you forgot to add the **`@`** symbol at the beginning of the filename.
+
+		Just because the example above is completely static, however, doesn't mean you don't have the full power of twig available to you.  A more common approach might be to add the "shell" of your page as a layout in `resources/layouts/main.html`{: .folder}:
+
+		```twig{% verbatim %}
+		<!doctype html>
+		<html>
+			<head>
+				<title>Fast Dictionary</title>
+			</head>
+			<body>
+				{% block body %}
+				{% endblock %}
+			</body>
+		</html>
+		{% endverbatim %}```
+
+		Now update the `resources/pages/@index.html`{: .html} file accordingly:
+
+		```twig{% verbatim %}
+		{% extends '@layouts/main.html' %}
+
+		{% block body %}
+			<h1>The Fastest Dictionary On the Web</h1>
+		{% endblock %}
+		{% endverbatim %}```
+
+		Reference [twig documentation](https://twig.symfony.com/) to understand more about its features.
+
+		## Path Resolution {: #paths}
+
+		Additional pages can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .html} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .html}.
+
+		If the URL's corresponding page cannot be found at the canonical location it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .html} in the example above.  If the URL does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .html} file within.
+
+		In the event an alternative path is found, an HTTP `301` status code will be returned automatically with the canonical URL location for the path.
+
+		## Matchers {: #matchers}
+
+		Matchers provide a way for pages to be mapped to parameterized URL segments.  For example, let's say you're writing a simple dictionary application and you want to handle something like `/words/{word}`.
+
+		Create a file in the `words` folder such as`resources/pages/words/~matchers.jin`{: .config} with the following content:
+
+		```toml
+		[get]
+
+			pattern = (.+)
+			mapping = [
+				"word"
+			]
+		```
+
+		This tells the template middleware to use the `@get.html`{: .html} as specified in the section (`[]`) if the defined `pattern` expression matches.  The pattern expression is a standard regex (implicitly delimited by `#`), and each captured group must correspond to an indexed parameter name in the `mapping` setting.
+
+		{: .note}
+		The first section whose pattern matches will be selected.
+
+		You can then access the paramter in your Twig template via the `parameters` variable:
+
+		```twig{% verbatim %}
+		{% extends '@layouts/main.html' %}
+
+		{% block body %}
+			{% include [
+				'@pages/words/' ~ parameters.word ~ '.html',
+				'@pages/words/404.html'
+			] %}
+		{% endblock %}
+		{% endverbatim %}```
+
+		Matchers will be used to "replace" path segments along the entire request URI's path.  Accordingly it's possible, using the above matcher to also handle a url such as `/words/{word}/synonyms` by simply creating a new page template at `resources/pages/words/get/@synonyms.html`{: .html}.  The `parameters.word` will be available in this template as well.
+
+		## Actions {: #actions}
+
+		While Twig templating is extremely powerful and can be an elegant solution when paired with pages and matchers, inevitably you should not be relying on Twig to replace complex PHP logic or accessing your service layer.  You're likly familiar with this from other frameworks that include the concept of "controllers."  Hiraeth, by contrast uses single method controllers called "actions."
+
+		----
+
+		[How Do I Use Actions?](./actions){: .action}
+
+	{% endapply %}
+{% endblock %}

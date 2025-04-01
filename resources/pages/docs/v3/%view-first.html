@@ -1,0 +1,56 @@
+{% extends '@layouts/docs-3.0.html' | proxy('header', 'content') %}
+
+{% set title = "Benefits of View-First" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		Hiraeth 3.0 will promote a view-first approach.  We contrast this to what we call a "controller-first" approach which has dominated back-end web development since the dawn of Ruby on Rails.  While technically the controller is not first (just as technically the view is not first) it is request specific entry-point for most modern web applications.  Middleware, by contrast, is generally _not_ request specific and may handle large groupings of URLs requested or even _all_ URLs requested.  The front-controller, while ever-present in any modern back-end application, is too minimal to mention, it'd be like saying the Linux-based operating systems actually center around the GRUB bootloader.
+
+		The view-first approach does not entail violating separation of concerns.
+
+		Practically, view-first means:
+
+		- The absolute first lines of code you write must be able to show you something in the client.
+		- The view determines its control logic as opposed to a controller determining the view.
+			- Control logic is optional.
+			- Control logic is re-usable and stackable.
+		- Partial views are request-ready and able to be rendered independently
+
+		## Pages and Components
+
+		Hiraeth's pages and component system are the quintessential expression of the view-first approach.  Creating a page is as simple as creating a file, e.g. `resources/pages/users/@edit.html`{: .html}
+
+		{% verbatim %}
+		```twig
+		{% do action('Users:Get') | mock(
+			{
+				user: {
+					id: 1,
+					username: 'poweruser'
+				}
+			}
+		) %}
+
+		<h1>Edit User</h1>
+		<h2>{{ user.username }}</h2>
+
+		<x::form
+			method="patch"
+			action="{{ route('/users/{id}/form', {id: user.id}) }}"
+		>
+			{% include '@pages/users/detail/%form.html' %}
+		</x::form>
+		```
+		{% endverbatim %}
+
+
+	{% endapply %}
+{% endblock %}

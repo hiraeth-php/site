@@ -1,0 +1,8 @@
+{% set text = text|default(null) %}
+{% set full = full|default(false)|int %}
+
+{% if full %}
+	<title>{{ text }}</title>
+{% else %}
+	<title>{{ text }} - Hiraeth</title>
+{% endif %}

@@ -1,0 +1,11 @@
+<header
+	id="header"
+	class="contain text-slate-800 text-center"
+	{% if proxy() %}
+		hx-swap-oob="true"
+	{% endif %}
+>
+	{{ children|raw }}
+
+	<hr class="text-stone-300 mt-8 mb-0" />
+</header>

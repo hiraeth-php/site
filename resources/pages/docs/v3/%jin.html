@@ -1,0 +1,242 @@
+{% extends '@layouts/docs-3.0.html' | proxy('header', 'content') %}
+
+{% set title = "Introduction to JIN" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		Hiraeth uses [Jsonified Ini Notation](https://github.com/dotink/jin) (JIN) for all configuration files and its `.env`{: .config}.  Without going into too much detail, these files use an INI structure with **JSON-like** values.  The language is extremely similar to [TOML](https://github.com/toml-lang/toml), but does not attempt to be compatible or maintain feature parity.  Like TOML, it's also quite intuitive, so while it's probably quite easy to pick up, there are some things you should be aware of.
+
+		A simple example of a configuration might look like the following:
+
+		```toml
+		[middleware]
+
+			disabled = false
+
+			class = Acme\Middleware
+		```
+
+		Want to test some JIN?  You can use our simple online JIN parser to check for errors, play with the language, and see what it looks like converted to JSON.
+
+		[Try JIN](/jin){: .action hx-boost=false}
+
+		## Basic Structures
+
+		JIN ultimately compiles down to a nested associative array.  How the keys/values depends on how you express it.  Let's cover the basics.
+
+		### Comments
+
+		Comments are preceded with a semi-colon (`;`).  Unless part of a quoted string, everything after the semi-colon will be part of the comment:
+
+		```toml
+		field1 = This is a simple string ; but this is a comment
+		```
+
+		In contrast:
+
+		```toml
+		field2 = "This is also a string ; but it contains a semi-colon"
+		```
+
+		### Sections
+
+		Sections, as in the above example use square brackets (`[]`).  This is a common feature of INI files, and since JIN uses both JSON and INI notation, it is the most common way to create a keyed array structure.
+
+		```TOML
+		[foo]
+		```
+
+		Compiles to:
+
+		```php
+		[
+			"foo" => []
+		]
+		```
+
+		You can also use the common JavaScript/JSON dot notation for nested keys:
+
+		```toml
+		[foo]
+
+			[foo.bar]
+		```
+
+		Compiles to:
+
+		```php
+		[
+			"foo" => [
+				"bar" => []
+			]
+		]
+		```
+
+		It is very common to use section headers to create deeply nested structures.  In order to make those structures easier to maintain, you can reference parent levels using an ampersand (`&`) so if you change the name of parent sections, child sections don't need to be updated
+
+		```toml
+		[root]
+
+			[&.level-1-1]
+
+				[&&.level-2-1]
+
+			[&.level-1-2]
+		```
+
+		From this, we get:
+
+		```php
+		[
+			"root" => [
+				"level-1-1" => [
+					"level-2-1" => []
+				],
+				"level-1-2" => []
+			]
+		]
+		```
+
+		{: .note}
+		The indentation is optional and does not affect the level parsing.  Only the `&` determines  the level in relation to the nearest root section.
+
+		### Keys and Values
+
+		Values are converted to their implicit native types.  So setting `key = 2` will not result in a string of "2", but an actual integer.  Here's a quick look at all the scalar types:
+
+		```toml
+		null    = null
+		integer = 1
+		float   = 3.14159
+		boolean = true
+		```
+
+		Strings can be unquoted or quoted as we saw in the comments section above.  Quoted strings are only particularly useful in the case you need to include a semi-colon (rare).  You can also do multi-line strings, however, multi-line strings using `()`:
+
+		```toml
+		quoted = <"
+			This is a quoted multi-line string
+			containing a semi-colon (;) that
+			will not be interpreted as a comment.
+		">
+
+		unquoted = <
+			This is a multi-line string
+			but as you can see... ; this is a a comment
+		>
+		```
+
+		As promised, values can also be JSON-like.  JIN uses its host language's native JSON parsing abilities.  Since in our case that's PHP, this means that valid JSON values will generally need to be _strict_ JSON with quoted keys (for objects).  The only two exceptions which are part of standard JIN are:
+
+		1. The slash character (`\`) is not escaped. Consequently, escaped characters, e.g. `\n` and `\t` are not supported in ay strings embedded in JSON structures.
+		2. You can always have trailing commas for arrays and objects which will be clipped before the JSON is parsed by the native library.
+
+		Here's a simple array example:
+
+		```toml
+		array = [
+			"apple",
+			"orange",
+			"cherry",
+		]
+		```
+
+		And an object (associative array):
+
+		```toml
+		assoc = {
+			"fruits": [
+				"apple",
+				"orange",
+				"cherry",
+			],
+			"classes": [
+				"Acme\User\Entity",
+				"Acme\User\Repository",
+			],
+		}
+		```
+
+		There are many more advanced concepts in JIN, including functions, some of which are specific to Hiraeth, some of which are built in to JIN.  Check out the example JIN file in the [playground](/jin) to get a better understand of how templates, maps, and includes work.
+
+		## Functions {: #functions}
+
+		JIN has a number of built in functions and also supports mapping functions in the host language to custom JIN functions.  These can be useful to get information that requires some logic in order to generate or retrieve.  Hiraeth registers three important functions that allow you to write more flexible configs.
+
+		### The env() Function
+
+		While JIN has a standard `env()` function, it's overloaded in Hiraeth in order to allow implicit type casting based on the default value.  Get environment variables value, including those set in your `.env`{: .config} file.
+
+		{: .note}
+		See [the documentation on querying](./config#environment) to understand how environment variable references are flattened for compatibility.
+
+
+		```toml
+		[config]
+
+			setting = env(VALUE)
+		```
+
+		With a default value if not found:
+
+		```toml
+		[config]
+
+			setting = env(VALUE, true)
+		```
+
+		As mentioned at the start, by providing a default value which is a boolean, the value will be implicitly casted to a boolean, so a string of "true" or "1" becomes an actual boolean `true`.
+
+		### The dir() Function
+
+		If you need to get an "application root" relative directory, you can use the `dir()` function.  This is equivalent to `$app->getDirectory()` (See: [Files and Directories](./files)), however, the full path name is resolved back down to a string (as opposed to an `SplFileInfo` object).
+
+		```toml
+		[config]
+
+			directory = dir(storage/cache/acme)
+		```
+
+		You can also pass an array of strings to get back an array of directory paths:
+
+		```toml
+			directories = dir([
+				"storage/dir1",
+				"storage/dir2",
+			])
+		```
+
+		{: .note}
+		Using the `dir()` function will always try to create the directory if it does not exist, so you shouldn't use it as a fallback for referencing directories outside of storage that aren't yet created.
+
+		### The file() Function
+
+		If you need to get an "application root" relative file, you can use the `file()` function.  This is equivalent to `$app->getFile()` (See: [Files and Directories](./files)), however, the full path name is resolved back down to a string (as opposed to an `SplFileInfo` object.)
+
+		```toml
+		[config]
+
+			file = file(storage/example.txt)
+		```
+
+		You can also pass an array of strings to get back an array of file paths:
+
+		```toml
+			files = file([
+				"storage/file1",
+				"storage/file2",
+			])
+		```
+
+		{: .note}
+		Using the `file()` function will not create the file if it does not exist, so you shouldn't use it as a fallback for referencing directories outside of storage that aren't yet created.
+	{% endapply %}
+{% endblock %}

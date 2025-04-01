@@ -1,0 +1,35 @@
+{% extends '@layouts/main.html' | proxy('body') %}
+
+{% block body %}
+	<header class="contain">
+		<hgroup class="text-center">
+			<h1 class="text-6xl">
+				<div class="logo w-64 mx-auto pb-4">
+					{% include 'public/images/logo.svg' %}
+				</div>
+				HIRAETH
+			</h1>
+			<h2 class="text-4xl">
+				A PHP Nano Framework
+			</h2>
+		</hgroup>
+	</header>
+	<main hx-boost="false">
+		<section class="contain bg-slate-700 py-8">
+			<nav class="text-center">
+				<x::button ghost class:="brightness-150 border-2" url="{{ route('/docs/latest/') }}">
+					Documentation
+				</x::button>
+			</nav>
+		</section>
+		<section class="contain">
+			{% apply markdown %}
+				Hiraeth is the product of 10+ years of PHP framework development. Over those 10+ years, the PHP ecosystem has grown and developed to include some truly great libraries and components. At the beginning of that journey, developers who were concerned with ease of use, stability, or flexibility encountered many barriers in the course of application or website development.
+
+				These barriers no longer exist. Hiraeth is designed to let you use and re-use the packages you love without locking you in.
+
+				> Hiraeth (pronounced [hiraɪ̯θ]) is a Welsh word for which there is no direct English translation. The online Welsh-English dictionary of the University of Wales, Lampeter likens it to homesickness tinged with grief or sadness over the lost or departed. -- Wikipedia
+			{% endapply %}
+		</section>
+	</main>
+{% endblock %}
