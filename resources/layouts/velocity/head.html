@@ -1,0 +1,83 @@
+{% include '@vendor/hiraeth/hyfryd/resources/layouts/velocity/head.html' %}
+
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/nord.min.css" />
+
+<style type="text/tailwindcss">
+	@layer utilities {
+		.action {
+			@apply inline-block py-2 px-4 mr-4 border-2 text-amber-700 rounded-lg;
+		}
+	}
+
+	code {
+		&::before {
+			@apply inline-block border-r border-gray-400 text-center -ml-1 mr-1 py-0.75 px-1 align-[-.15rem] h-[1.25rem] mb-0;
+		}
+
+		&.package::before {
+			content: url('https://api.iconify.design/octicon:gift.svg')
+		}
+
+		&.config::before {
+			content: url('https://api.iconify.design/octicon:gear.svg')
+		}
+
+		&.html::before {
+			content: url('https://api.iconify.design/octicon:code.svg')
+		}
+
+		&.class::before {
+			content: url('https://api.iconify.design/mdi:alpha-c-box-outline.svg')
+		}
+
+		&.method::before {
+			content: url('https://api.iconify.design/mdi:alpha-m-box-outline.svg')
+		}
+
+		&.interface::before {
+			content: url('https://api.iconify.design/mdi:alpha-i-box-outline.svg')
+		}
+
+		&.file::before {
+			content: url('https://api.iconify.design/octicon:file.svg')
+		}
+
+		&.folder::before {
+			content: url('https://api.iconify.design/octicon:file-directory.svg')
+		}
+	}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/twig.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.20/autosize.min.js"></script>
+<script>
+	document.addEventListener('htmx:afterSwap', function (e) {
+		autosize(document.querySelectorAll('textarea'));
+
+		e.target.querySelectorAll('pre > code[class^="language-"]').forEach(function(node) {
+			hljs.highlightElement(node)
+		});
+
+		e.target.querySelectorAll('pre').forEach(function(node) {
+			if (!node.querySelector('code[class^="language-"]')) {
+				return;
+			}
+
+			let button = document.createElement('button');
+
+			button.innerText = 'copy';
+			button.classList.add('copy');
+
+			node.prepend(button);
+
+			button.addEventListener('click', function(e) {
+				navigator.clipboard.writeText(e.target.nextSibling.innerText);
+
+				e.stopPropagation();
+			});
+		});
+	});
+</script>

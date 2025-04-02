@@ -14,4 +14,6 @@
 	{% apply markdown %}
 		While we strongly suggest Twig as a templating engine, it is very possible to integrate other templating engines into Hiraeth with a fairly limited amount of "glue code."  For the purposes of this article, we'll cover some basic principles using the Twig integration as an example, but it should be fairly easy to see how these concepts would map to something like [plates](https://platesphp.com/) if you prefer that.
 	{% endapply %}
+
+	{% include '@layouts/chat.html' %}
 {% endblock %}

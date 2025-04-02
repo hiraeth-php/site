@@ -1,13 +1,13 @@
-{% extends '@layouts/main.html' | proxy('body') %}
+{% extends '@layouts/velocity/body.html' | proxy('canvas') %}
 
-{% block body %}
+{% block canvas %}
 	{% block header %}
 
 	{% endblock %}
 
-	<div class="contain lg:flex gap-8" hx-target="#content">
+	<div class="contain lg:flex gap-12" hx-target="#content">
 		<x:docs:nav
-			class:="min-w-64"
+			class:="min-w-64 bg-gray-200/50 mb-8 py-2 lg:mb-0"
 			items={% v: mock('@mocks/nav-3.0.twig') %}
 		/>
 		<main id="content" class="min-w-0">

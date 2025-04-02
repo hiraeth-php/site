@@ -11,59 +11,61 @@
 {% endblock %}
 
 {% block content %}
-    {% apply markdown %}
-        {: .note}
-        This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/monolog`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+	{% apply markdown %}
+		{: .note}
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/monolog`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
 
-        Logging in Hiraeth is performed generally performed using [Monolog](https://github.com/Seldaek/monolog) which adhere's to the [PSR-3](https://www.php-fig.org/psr/psr-3/) FIG standard.  You can receive an instance of the logger by typehinting `Psr\Log\LoggerInterface`{: .interface}.  While this will inject the Monolog logger instance directly, it's also possible to use the `Hiraeth\Application`{: .class} instance which will proxy log related method calls to the logger, if registered, via the `log()` method.
+		Logging in Hiraeth is performed generally performed using [Monolog](https://github.com/Seldaek/monolog) which adhere's to the [PSR-3](https://www.php-fig.org/psr/psr-3/) FIG standard.  You can receive an instance of the logger by typehinting `Psr\Log\LoggerInterface`{: .interface}.  While this will inject the Monolog logger instance directly, it's also possible to use the `Hiraeth\Application`{: .class} instance which will proxy log related method calls to the logger, if registered, via the `log()` method.
 
-        ## Setting Log Level
+		## Setting Log Level
 
-        The minimum log level can be set in the `.env`{: .config} with the `LOGGING` key:
+		The minimum log level can be set in the `.env`{: .config} with the `LOGGING` key:
 
-        ```toml
-        LOGGING = error
-        ```
+		```toml
+		LOGGING = error
+		```
 
-        {: .note}
-        If no `.env`{: .config} exists or if the `LOGGING` key is missing, the default log level will be `warning`.  Log level names are not case sensitive in the config, however, should represent one of the constant names on `Psr\Log\Loglevel`{: .class}.
+		{: .note}
+		If no `.env`{: .config} exists or if the `LOGGING` key is missing, the default log level will be `warning`.  Log level names are not case sensitive in the config, however, should represent one of the constant names on `Psr\Log\Loglevel`{: .class}.
 
-        ## Handlers
+		## Handlers
 
-        By default, `hiraeth/monolog`{: .package} will configure a single `Monolog\Handler\RotatingFileHandler`{: .class} which writes to `storage/logs`{: .folder}.  Handlers can be modified or added in `config/loggers`{: .folder}.  The basic structure of this file is as follows:
+		By default, `hiraeth/monolog`{: .package} will configure a single `Monolog\Handler\RotatingFileHandler`{: .class} which writes to `storage/logs`{: .folder}.  Handlers can be modified or added in `config/loggers`{: .folder}.  The basic structure of this file is as follows:
 
-        ```toml
-        [logger]
+		```toml
+		[logger]
 
-            disabled = false
+			disabled = false
 
-            class = Acme\Logger\Handler
+			class = Acme\Logger\Handler
 
-            [&.options]
+			[&.options]
 
-            ;    argument = value
-        ```
+			;    argument = value
+		```
 
-        On boot, the delegate which creates the logger will look for configured `[logger]` instances and instantiate their configured `class` with the arguments provided under `[&.options]` via [dependency injection](./dependencies).
+		On boot, the delegate which creates the logger will look for configured `[logger]` instances and instantiate their configured `class` with the arguments provided under `[&.options]` via [dependency injection](./dependencies).
 
-        {: .note}
-        Options for the class are named arguments.  That is to say, the key for each option must match the parameter name on the class.  These options should only contain non-object dependency information for the injector.  If your handler requires additional object dependencies, the dependency injector will attempt to instantiate them automatically and use any [delegates](./delegates) for those classes.
+		{: .note}
+		Options for the class are named arguments.  That is to say, the key for each option must match the parameter name on the class.  These options should only contain non-object dependency information for the injector.  If your handler requires additional object dependencies, the dependency injector will attempt to instantiate them automatically and use any [delegates](./delegates) for those classes.
 
-        ## Using the Logger
+		## Using the Logger
 
-        To use the logger, you can typhint either `Psr\Log\LoggerInterface`{: .interface} or `Hiraeth\Application`{: .class}.  Each log level has its own method for logging at that log level:
+		To use the logger, you can typhint either `Psr\Log\LoggerInterface`{: .interface} or `Hiraeth\Application`{: .class}.  Each log level has its own method for logging at that log level:
 
-        ```php
-        $logger->error('This goes to handlers handling the error level')
-        ```
+		```php
+		$logger->error('This goes to handlers handling the error level')
+		```
 
-        ### Adding Context
+		### Adding Context
 
-        You can add context to the logged error by providing an array as the second argument:
+		You can add context to the logged error by providing an array as the second argument:
 
-        ```php
-        $logger->error('Failed updating user', ['id' => $user_id])
-        ```
+		```php
+		$logger->error('Failed updating user', ['id' => $user_id])
+		```
 
-    {% endapply %}
+	{% endapply %}
+
+	{% include '@layouts/chat.html' %}
 {% endblock %}
