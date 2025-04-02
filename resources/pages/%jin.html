@@ -1,53 +1,127 @@
-<title>Online JIN Playground</title>
+{% extends '@layouts/velocity/body.html' | proxy('canvas') %}
 
-{% if request.parsedBody.body is defined %}
-	{% set data = 'You did not paste anything' %}
+{% block canvas %}
+	<title>Online JIN Playground</title>
 
-	{% if request.parsedBody.body|trim %}
-		{% set data = request.parsedBody.body|jin %}
+	{% if request.parsedBody.body is defined %}
+		{% set data = 'You did not paste anything' %}
+
+		{% if request.parsedBody.body|trim %}
+			{% set data = request.parsedBody.body|jin %}
+		{% endif %}
+	{% else %}
+		{% set data = false %}
 	{% endif %}
-{% else %}
-	{% set data = false %}
-{% endif %}
 
-<main class="contain">
-	{% if data %}
-		<section x-data="{
-			show: false
-		}">
-			{% if data|type == 'array' %}
-				<p class="!p-1 rounded-md text-center !bg-emerald-300">
-					Success, your JIN is valid! ( <span class="cursor-pointer underline" x-on:click="show = true">Show as JSON</span> )
-				</p>
+	<main class="bg-zinc-600 pb-24 min-h-[100dvh]" hx-target="this">
+		<header class="contain">
+			<h1 class="text-center text-white">Online JIN Playground</h1>
 
-				<div class="!mt-1" x-cloak x-show="show">
-					{% apply markdown %}
-						```json
-						{{ data|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}
-						```
-					{% endapply %}
-				</div>
-			{% else %}
-				<p class="!p-1 rounded-md text-center !bg-rose-300">
-					Failed, {{ data }}
-				</p>
+			{% if data %}
+				<section x-data="{
+					show: false
+				}">
+					{% if data|type == 'array' %}
+						<p class="p-4 mb-0 rounded-md text-center !bg-emerald-300 text-black">
+							Success, your JIN is valid! ( <span class="cursor-pointer underline" x-on:click="show = !show" x-text="show ? 'Hide JSON' : 'Show as JSON'"></span> )
+						</p>
+
+						<div x-cloak x-show="show">
+							<pre class="mt-4 drop-shadow-none bg-zinc-800">
+								<code class="language-json">{{
+									data|json_encode(constant('JSON_PRETTY_PRINT'))
+								}}</code>
+							</pre>
+						</div>
+					{% else %}
+						<p class="!p-1 rounded-md text-center !bg-rose-300">
+							Failed, {{ data }}
+						</p>
+					{% endif %}
+				</section>
 			{% endif %}
-		</section>
-	{% endif %}
+		</header>
 
-	<section>
-		<form method="POST" x-data="{
-			clear() {
-				document.getElementById('body').value = '';
-				document.getElementById('body').style.height = 'auto';
+		<script>
+			function CodeEditor() {
+				return {
+					code: null,
+					editor: null,
+					field: null,
+					init() {
+						this.code   = this.$el.querySelector('[data-code]');
+						this.editor = this.$el.querySelector('[data-editor]');
+						this.field  = this.$el.querySelector('[data-field]');
+
+						this.editor.focus();
+
+						this.render(null);
+					},
+					tab(e) {
+						e.preventDefault();
+						var start = this.editor.selectionStart;
+						var end   = this.editor.selectionEnd;
+
+						this.editor.value =
+							this.editor.value.substring(0, start)
+							+ "\t"
+							+ this.editor.value.substring(end)
+						;
+
+						this.editor.selectionStart =
+						this.editor.selectionEnd   = start + 1;
+					},
+					render(e) {
+						this.code.innerHTML = this.editor.value;
+
+						this.code.removeAttribute('data-highlighted');
+						hljs.highlightElement(this.code);
+					},
+					run() {
+						this.field.value = this.editor.value;
+					},
+					clear() {
+						this.editor.value = '';
+
+						this.render(null);
+
+						this.editor.focus();
+					}
+				}
 			}
-		}">
-			<label for="body">Paste Some JIN ( <a href="#" x-on:click="clear()">clear</a> )</label>
-			<textarea id="body" class="mb-1 w-full text-zinc-700" style="field-sizing: content" name="body">{{ request.parsedBody.body|default(app.getFile('resources/example.jin')|content)|default('') }}</textarea>
-			{% if session is defined %}
-				<input type="hidden" name="csrf::token" value="{{ session.csrfToken.value }}" />
-			{% endif %}
-			<button class="action !bg-transparent" type="submit">Submit</button>
-		</form>
-	</section>
-</main>
+
+		</script>
+
+		<div x-data="CodeEditor">
+			<form method="post" hx-swap="outerHTML scroll:top" class="fixed bottom-0 z-12 bg-zinc-800 w-full p-4 text-center">
+				{% if session is defined %}
+					<input type="hidden" name="csrf::token" value="{{ session.csrfToken.value }}" />
+				{% endif %}
+
+				<textarea data-field name="body" class="hidden"></textarea>
+				<button x-on:click="run()" type="submit" class="action !text-emerald-400">Run</button>
+				<a class="text-white cursor-pointer" x-on:click="clear()">Clear Buffer</a>
+			</form>
+
+			<div class="contain">
+				<div class="relative">
+					<pre class="mb-0 p-4 w-full drop-shadow-none rounded-none"><code data-nocopy data-code class="language-toml !p-0"></code></pre>
+					<textarea
+						data-editor
+						contenteditable
+						x-on:keydown.tab="tab($event)"
+						x-on:keyup="render($event)"
+						autocomplete="off"
+						autocorrect="off"
+						autocapitalize="off"
+						spellcheck="false"
+						wrap="hard"
+						class="absolute top-4 left-4 right-4 bottom-0 font-mono text-transparent caret-amber-400 overflow-hidden resize-none"
+					>{{
+						request.parsedBody.body|default(app.getFile('resources/example.jin')|content)|default('')
+					}}</textarea>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}

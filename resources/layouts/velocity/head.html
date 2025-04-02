@@ -6,7 +6,7 @@
 <style type="text/tailwindcss">
 	@layer utilities {
 		.action {
-			@apply inline-block py-2 px-4 mr-4 border-2 text-amber-700 rounded-lg;
+			@apply inline-block py-2 px-4 mr-4 border-2 text-amber-700 rounded-lg cursor-pointer;
 		}
 	}
 
@@ -52,17 +52,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/twig.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.20/autosize.min.js"></script>
 <script>
 	document.addEventListener('htmx:afterSwap', function (e) {
-		autosize(document.querySelectorAll('textarea'));
-
-		e.target.querySelectorAll('pre > code[class^="language-"]').forEach(function(node) {
+		e.target.querySelectorAll('pre > code').forEach(function(node) {
 			hljs.highlightElement(node)
 		});
 
 		e.target.querySelectorAll('pre').forEach(function(node) {
-			if (!node.querySelector('code[class^="language-"]')) {
+			if (!node.querySelector('code:not([data-nocopy])')) {
 				return;
 			}
 
