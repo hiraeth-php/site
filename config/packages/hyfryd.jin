@@ -50,7 +50,7 @@
 		"proxy": {
 			"target": "Hiraeth\Velocity\ProxyFunction",
 			"options": {
-				"needs_context": true
+				"needs_context": true,
 			}
 		}
 	}
@@ -64,3 +64,4 @@
 			}
 		}
 	}
+

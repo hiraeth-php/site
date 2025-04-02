@@ -161,6 +161,7 @@
 			}
 		}
 	}
+
 	;
 	; Globals - A list of global variables to class names.  Instances will be constructed using the
 	; depency injector / broker.

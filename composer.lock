@@ -1473,16 +1473,16 @@
         },
         {
             "name": "dotink/jin",
-            "version": "5.1.0",
+            "version": "5.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dotink/jin.git",
-                "reference": "2842e61fea87f2a156617acaa794ff8cd2acfbe5"
+                "reference": "ef55fd72340685cacacc2a73fa041523526514c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dotink/jin/zipball/2842e61fea87f2a156617acaa794ff8cd2acfbe5",
-                "reference": "2842e61fea87f2a156617acaa794ff8cd2acfbe5",
+                "url": "https://api.github.com/repos/dotink/jin/zipball/ef55fd72340685cacacc2a73fa041523526514c0",
+                "reference": "ef55fd72340685cacacc2a73fa041523526514c0",
                 "shasum": ""
             },
             "require": {
@@ -1516,9 +1516,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dotink/jin/issues",
-                "source": "https://github.com/dotink/jin/tree/5.1.0"
+                "source": "https://github.com/dotink/jin/tree/5.6.1"
             },
-            "time": "2025-03-21T07:43:04+00:00"
+            "time": "2025-03-29T16:56:51+00:00"
         },
         {
             "name": "dotink/json",
@@ -1625,12 +1625,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "90e1e17318e651cc6adb42cf43b9e11762183079"
+                "reference": "a9d72759330756753cc917cb36595e59568d385f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/90e1e17318e651cc6adb42cf43b9e11762183079",
-                "reference": "90e1e17318e651cc6adb42cf43b9e11762183079",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/a9d72759330756753cc917cb36595e59568d385f",
+                "reference": "a9d72759330756753cc917cb36595e59568d385f",
                 "shasum": ""
             },
             "require": {
@@ -1675,7 +1675,7 @@
                 "issues": "https://github.com/hiraeth-php/actions/issues",
                 "source": "https://github.com/hiraeth-php/actions/tree/3.0-beta"
             },
-            "time": "2025-03-23T13:19:24+00:00"
+            "time": "2025-03-30T20:51:31+00:00"
         },
         {
             "name": "hiraeth/bootstrap",
@@ -1953,12 +1953,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/core.git",
-                "reference": "c1d0bafc276d6adf9e79c34f74ec689486fa7197"
+                "reference": "4b0c669ff4c4f53119cc97d0bd01adecdc6ac928"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/c1d0bafc276d6adf9e79c34f74ec689486fa7197",
-                "reference": "c1d0bafc276d6adf9e79c34f74ec689486fa7197",
+                "url": "https://api.github.com/repos/hiraeth-php/core/zipball/4b0c669ff4c4f53119cc97d0bd01adecdc6ac928",
+                "reference": "4b0c669ff4c4f53119cc97d0bd01adecdc6ac928",
                 "shasum": ""
             },
             "require": {
@@ -2005,7 +2005,7 @@
                 "issues": "https://github.com/hiraeth-php/core/issues",
                 "source": "https://github.com/hiraeth-php/core/tree/3.0-beta"
             },
-            "time": "2025-03-23T23:52:13+00:00"
+            "time": "2025-03-31T09:29:02+00:00"
         },
         {
             "name": "hiraeth/dbal",
@@ -2422,12 +2422,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/hyfryd.git",
-                "reference": "c1c3525181e5e574d1d71c9e73e037d2efeae587"
+                "reference": "d2baaa5f9d8f2dd0ff07a3d5731b8e6ac8216783"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/hyfryd/zipball/c1c3525181e5e574d1d71c9e73e037d2efeae587",
-                "reference": "c1c3525181e5e574d1d71c9e73e037d2efeae587",
+                "url": "https://api.github.com/repos/hiraeth-php/hyfryd/zipball/d2baaa5f9d8f2dd0ff07a3d5731b8e6ac8216783",
+                "reference": "d2baaa5f9d8f2dd0ff07a3d5731b8e6ac8216783",
                 "shasum": ""
             },
             "require": {
@@ -2472,7 +2472,7 @@
                 "issues": "https://github.com/hiraeth-php/hyfryd/issues",
                 "source": "https://github.com/hiraeth-php/hyfryd/tree/3.0-beta"
             },
-            "time": "2025-03-26T22:57:10+00:00"
+            "time": "2025-04-02T02:01:50+00:00"
         },
         {
             "name": "hiraeth/inflector",
@@ -3282,12 +3282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "f00e34a96034b30b4331e2484ac2230119310f8c"
+                "reference": "e91a40650b6e3eb20e06bfe1d7418b62c902b828"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/f00e34a96034b30b4331e2484ac2230119310f8c",
-                "reference": "f00e34a96034b30b4331e2484ac2230119310f8c",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/e91a40650b6e3eb20e06bfe1d7418b62c902b828",
+                "reference": "e91a40650b6e3eb20e06bfe1d7418b62c902b828",
                 "shasum": ""
             },
             "require": {
@@ -3330,7 +3330,7 @@
                 "issues": "https://github.com/hiraeth-php/templates/issues",
                 "source": "https://github.com/hiraeth-php/templates/tree/3.0-beta"
             },
-            "time": "2025-03-26T03:51:34+00:00"
+            "time": "2025-04-01T11:52:04+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -3338,12 +3338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/twig.git",
-                "reference": "9f4fedbde496f45aa2472349c841974d493f789d"
+                "reference": "2df8457d59366262011d95d2e949c261fc9c95be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/twig/zipball/9f4fedbde496f45aa2472349c841974d493f789d",
-                "reference": "9f4fedbde496f45aa2472349c841974d493f789d",
+                "url": "https://api.github.com/repos/hiraeth-php/twig/zipball/2df8457d59366262011d95d2e949c261fc9c95be",
+                "reference": "2df8457d59366262011d95d2e949c261fc9c95be",
                 "shasum": ""
             },
             "require": {
@@ -3387,7 +3387,7 @@
                 "issues": "https://github.com/hiraeth-php/twig/issues",
                 "source": "https://github.com/hiraeth-php/twig/tree/3.0-beta"
             },
-            "time": "2025-03-22T16:34:17+00:00"
+            "time": "2025-04-01T11:52:33+00:00"
         },
         {
             "name": "hiraeth/twig-markdown",
@@ -3450,12 +3450,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/twig-tags.git",
-                "reference": "3df00cc35f55410ec47f1e268341f6322696d9bb"
+                "reference": "3518ffb83b6202bb9c4d364b6ec2333aecbb428a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/twig-tags/zipball/3df00cc35f55410ec47f1e268341f6322696d9bb",
-                "reference": "3df00cc35f55410ec47f1e268341f6322696d9bb",
+                "url": "https://api.github.com/repos/hiraeth-php/twig-tags/zipball/3518ffb83b6202bb9c4d364b6ec2333aecbb428a",
+                "reference": "3518ffb83b6202bb9c4d364b6ec2333aecbb428a",
                 "shasum": ""
             },
             "require": {
@@ -3498,7 +3498,7 @@
                 "issues": "https://github.com/hiraeth-php/twig-tags/issues",
                 "source": "https://github.com/hiraeth-php/twig-tags/tree/3.0-beta"
             },
-            "time": "2025-03-26T22:41:21+00:00"
+            "time": "2025-04-02T02:09:16+00:00"
         },
         {
             "name": "hiraeth/volumes",
@@ -3506,12 +3506,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/volumes.git",
-                "reference": "8a5c950f85dbdfecb309e64675ef36d51702992d"
+                "reference": "3d8054aae3e55beca4eac159a237585c874b90c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/volumes/zipball/8a5c950f85dbdfecb309e64675ef36d51702992d",
-                "reference": "8a5c950f85dbdfecb309e64675ef36d51702992d",
+                "url": "https://api.github.com/repos/hiraeth-php/volumes/zipball/3d8054aae3e55beca4eac159a237585c874b90c3",
+                "reference": "3d8054aae3e55beca4eac159a237585c874b90c3",
                 "shasum": ""
             },
             "require": {
@@ -3555,7 +3555,7 @@
                 "issues": "https://github.com/hiraeth-php/volumes/issues",
                 "source": "https://github.com/hiraeth-php/volumes/tree/3.0-beta"
             },
-            "time": "2024-03-16T16:14:57+00:00"
+            "time": "2025-03-29T07:14:54+00:00"
         },
         {
             "name": "imarc/opus",
@@ -4971,16 +4971,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "736c567e257dbe0fcf6ce81b4d6dbe05c6899f96"
+                "reference": "ce708655043c7050eb050df361c5e313cf708309"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/736c567e257dbe0fcf6ce81b4d6dbe05c6899f96",
-                "reference": "736c567e257dbe0fcf6ce81b4d6dbe05c6899f96",
+                "url": "https://api.github.com/repos/nette/utils/zipball/ce708655043c7050eb050df361c5e313cf708309",
+                "reference": "ce708655043c7050eb050df361c5e313cf708309",
                 "shasum": ""
             },
             "require": {
@@ -5051,9 +5051,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v4.0.5"
+                "source": "https://github.com/nette/utils/tree/v4.0.6"
             },
-            "time": "2024-08-07T15:39:19+00:00"
+            "time": "2025-03-30T21:06:30+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -6082,16 +6082,16 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v6.4.19",
+            "version": "v6.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "342e87b15ac02e4b4f0924ddc368e75d5262aab3"
+                "reference": "95af448bb7c3d8db02f7b4f5cbf3cb7a6ff1e432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/342e87b15ac02e4b4f0924ddc368e75d5262aab3",
-                "reference": "342e87b15ac02e4b4f0924ddc368e75d5262aab3",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/95af448bb7c3d8db02f7b4f5cbf3cb7a6ff1e432",
+                "reference": "95af448bb7c3d8db02f7b4f5cbf3cb7a6ff1e432",
                 "shasum": ""
             },
             "require": {
@@ -6158,7 +6158,7 @@
                 "psr6"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache/tree/v6.4.19"
+                "source": "https://github.com/symfony/cache/tree/v6.4.20"
             },
             "funding": [
                 {
@@ -6174,7 +6174,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-26T09:12:57+00:00"
+            "time": "2025-03-08T15:51:34+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -6254,16 +6254,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v6.4.17",
+            "version": "v6.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "799445db3f15768ecc382ac5699e6da0520a0a04"
+                "reference": "2e4af9c952617cc3f9559ff706aee420a8464c36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/799445db3f15768ecc382ac5699e6da0520a0a04",
-                "reference": "799445db3f15768ecc382ac5699e6da0520a0a04",
+                "url": "https://api.github.com/repos/symfony/console/zipball/2e4af9c952617cc3f9559ff706aee420a8464c36",
+                "reference": "2e4af9c952617cc3f9559ff706aee420a8464c36",
                 "shasum": ""
             },
             "require": {
@@ -6328,7 +6328,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v6.4.17"
+                "source": "https://github.com/symfony/console/tree/v6.4.20"
             },
             "funding": [
                 {
@@ -6344,7 +6344,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-07T12:07:30+00:00"
+            "time": "2025-03-03T17:16:38+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -7206,16 +7206,16 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v7.2.4",
+            "version": "v7.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "4ede73aa7a73d81506002d2caadbbdad1ef5b69a"
+                "reference": "c37b301818bd7288715d40de634f05781b686ace"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/4ede73aa7a73d81506002d2caadbbdad1ef5b69a",
-                "reference": "4ede73aa7a73d81506002d2caadbbdad1ef5b69a",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/c37b301818bd7288715d40de634f05781b686ace",
+                "reference": "c37b301818bd7288715d40de634f05781b686ace",
                 "shasum": ""
             },
             "require": {
@@ -7262,7 +7262,7 @@
                 "serialize"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-exporter/tree/v7.2.4"
+                "source": "https://github.com/symfony/var-exporter/tree/v7.2.5"
             },
             "funding": [
                 {
@@ -7278,7 +7278,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-13T10:27:23+00:00"
+            "time": "2025-03-13T12:21:46+00:00"
         },
         {
             "name": "twig/twig",
