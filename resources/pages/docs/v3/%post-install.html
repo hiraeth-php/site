@@ -1,6 +1,6 @@
 {% extends '@layouts/docs-3.0.html' | proxy('header', 'content') %}
 
-{% set title = "Post Install Setup" %}
+{% set title = "Post-Install Setup" %}
 
 {% block header %}
 	<x::title text="{{ title }}" />
@@ -34,7 +34,7 @@
 		## Ensure Storage is Writable {: #permissions}
 
 		{: .note}
-		**If you're just testing things out and are running PHP's built in web server as the same user that you installed with, you probably don't need to worry too much about this.**  If not, the examples below are just examples and we assume you know enough about how to admin your own servers.
+		**If you're just testing things out and are running PHP's built-in web server as the same user that you installed with, you probably don't need to worry too much about this.**  If not, the examples below are just examples and we assume you know enough about how to admin your own servers.
 
 		Hiraeth needs a place to write files.  Since you're _probably_ running it through an HTTP or PHP-FPM server, you'll want to make sure that server can write to `storage`{: .folder} in the application root.  On Linux systems, we strongly suggest the use of ACLs.  One common way to do this is to ensure the user your server runs as (`www-data` is common) has read, write, and execute access by default (and at present).
 
@@ -60,9 +60,9 @@
 
 		Non-Linux users, you're on your own.
 
-		## Using PHP's Built In Web Server {: #server}
+		## Using PHP's Built-In Web Server {: #server}
 
-		Hiraeth provides a passthru call to PHP's built in web server that allows you to quickly start a local development server.  To start this local server with your application's `public`{: .folder} as the document root, simply execute (from your application root):
+		Hiraeth provides a passthru call to PHP's built-in web server that allows you to quickly start a local development server.  To start this local server with your application's `public`{: .folder} directory as the document root, simply execute (from your application root):
 
 		```bash
 		php bin/server

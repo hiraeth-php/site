@@ -3,8 +3,19 @@
 <script>
 	function DocsNav() {
 		return {
+			button: null,
 			collapse: true,
 			selected: null,
+			setButton(node) {
+				this.button = node;
+			},
+			close(active) {
+				if (this.button && getComputedStyle(this.button).display == 'block') {
+					this.collapse = true;
+				} else {
+					this.collapse = false;
+				}
+			},
 			select(group) {
 				if (this.selected == group) {
 					this.selected = null;
@@ -18,10 +29,12 @@
 	function DocsNavItem() {
 		return {
 			active: false,
-			check() {
-				this.active = document.location.pathname == this.$el.pathname;
-				if (this.active) {
+			check(node) {
+				if (document.location.pathname == node.pathname) {
+					this.active = true;
 					this.select(this.group);
+				} else {
+					this.active = false;
 				}
 			}
 		}
@@ -29,7 +42,12 @@
 </script>
 
 <nav x-data="DocsNav">
-	<button x-on:click="collapse = !collapse" class="w-full text-center p-2 lg:hidden cursor-pointer" href="#menu">☰</button>
+	<button
+		x-init="setButton($el)";
+		x-on:click="collapse = !collapse"
+		class="block w-full text-center p-2 lg:hidden cursor-pointer"
+	>☰</button>
+
 	<ol class="list-none lg:block" x-bind:class="{ 'hidden': collapse }">
 		{% for group in items %}
 			<li x-data="{group: $id('nav-group')}">
@@ -46,12 +64,12 @@
 							<li>
 								<a
 									x-data="DocsNavItem"
-									x-on:load.window="check()"
-									x-on:htmx:after-swap.window="check()"
+									x-on:load.window="check($el)"
+									x-on:htmx:after-swap.window="check($el)"
 									class="block px-8 py-1"
 									href="{{ route(item.link|default('#')) }}"
 								>
-									<span class="absolute inline-block w-2 h-2 left-3 mt-2 text-transparent rounded-full bg-emerald-400" x-show="active">
+									<span class="absolute inline-block w-2 h-2 left-3 mt-3 text-transparent rounded-full bg-emerald-400" x-show="active" x-effect="close(active)">
 										( active )
 									</span>
 									{{ item.name|default('Uknown Name') }}

@@ -13,11 +13,13 @@
 {% block content %}
 	{% apply markdown %}
 		{: .note}
-		This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/actions`{: .package} as well as either a template and middleware (`hiraeth/twig`{: .package} and `hiraeth/harmony`{: .package}) provider.
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/actions`{: .package} in addition to the selective package recommendations at the top of the [pages](./pages) page.
 
-		Actions are PHP classes which perform the control logic for incoming requests.  Their primary responsibility is usually determining appropriate services and how to map incoming route parameters to those services to get or modify data.  Additionally, they may perform specific request control operations like authentication, validation, etc (even if only by calling other services).
+		Actions are PHP classes which perform the control logic for incoming requests.  Their primary responsibility is usually determining appropriate services and how to map incoming request data like route parameters and the request body to those services to get or modify data.  Additionally, they may perform specific request control operations like authentication, validation, etc (even if only by calling other services) and returning appropriate responses.
 
-		Actions are like controllers in other frameworks, but they only perform a single action.  Traits, abstraction and depdencency injection are all better ways to provide re-usability than loading large / complex controllers that handle lots of requests.  Continuing with our dictionary example, let's create an action that returns an actual `404` response in `local/actions/Words/Get.php`{: .file}.
+		Actions are like controllers in other frameworks, but while most controllers may contain a whole collection entry methods, actions are only a single method (`__invoke()`).  In principle, any callable can therefore be an action.  As calsses, however, traits, abstraction and dependency injection are all better ways to provide re-usability than loading large / complex controllers that handle lots of requests.
+
+		Continuing with our dictionary example, let's create an action that returns an actual `404` response in `local/actions/Words/Get.php`{: .file}.
 
 		```php
 		namespace Words;
@@ -29,12 +31,7 @@
 				$template = sprintf('@pages/words/%s.html', $word);
 
 				if (!$this->templates->has($template)) {
-					return $this->response(
-						404,
-						$this->template('@pages/words/404.html', [
-							'word' => $word
-						])
-					);
+					return $this->response(404);
 				}
 
 				return [];
@@ -43,13 +40,14 @@
 		```
 
 		{: .note}
-		Hiraeth uses class mapping for all autoloading, so in order to find our new action you want to make sure you run `composer dump`
+		Although Hiraeth provides PSR-0 loading on the `local`{: .folder}, we strongly discourage PSR style class loading as we don't think the organizaton of code structure should dictate the organization of file structure.  It is common for Hiraeth libraries and projects to organize files by type, e.g. actions, entities, repositories, etc and code by "module."  As we've done above, we put this in the `actions`{: .folder} sub-directory, so go ahead and do that `composer dump` to **find new classes**, it takes less than a second.
 
 		## Calling Actions
 
-		To call an action from a [page](./page), you can use Twig's `do` tag along with the `action()` function provided by `hiraeth/actions`{: .package}.  Let's update our hypothetical dictionary application's `resources/pages/words/@get.html`{: .html} file to the following:
+		To call an action from a [page](./pages), you can use Twig's `do` tag along with the `action()` function provided by `hiraeth/actions`{: .package}.  Let's update our hypothetical dictionary application's `resources/pages/words/@get.html`{: .html} file to the following:
 
-		```twig{% verbatim %}
+		{% verbatim %}
+		```twig
 		{% extends '@layouts/main.html' %}
 
 		{% do action('Words:Get') %}
@@ -57,14 +55,36 @@
 		{% block body %}
 			{% include '@pages/words/' ~ parameters.word ~ '.html' %}
 		{% endblock %}
-		{% endverbatim %}```
+		```
+		{% endverbatim %}
 
 		{: .note}
-		There's no need to pass parameters explicity to an action so long as the arguments for the action name match the parameter name.  You can, however, pass them explicitly or overload them as a second object argument to action `{word: ...}`
+		There's no need to pass parameters explicity to an action so long as the arguments for the action name match the parameter name.
 
-		## Accessing the Request {: #request}
+		If you need to map parameters explicitly either due to naming differences or to pass options not present in URL parameterization, you can pass an associative array as the second argument to the call.  This contrived example shows effectively what the default mapping would be:
 
-		Although not strictly necessary, by extending the `AbstractAction`{: .class} class, our actions can easily access the [PSR-7](https://www.php-fig.org/psr/psr-7/) server request object (among other things) that represents the incoming server request:
+		{% verbatim %}
+		```twig
+		{% do action('Words:Get', {
+			word: parameters.word
+		}) %}
+		```
+		{% endverbatim %}
+
+		## Working In Actions
+
+		Although not strictly necessary, by extending the `AbstractAction`{: .class} class, your actions will have a lot of additional context and features available to them that make working with requests and responses easier.  Keep in mind **actions are fully dependency injected**, so you can always typehint `__construct()` parameters to get additional dependencies:
+
+		```php
+		__construct(
+			protected Repository $words
+		) {}
+		```
+
+		### Accessing the Request {: #request}
+
+		You can easily access the [PSR-7](https://www.php-fig.org/psr/psr-7/) server request object (among other things) that represents the incoming server request via the `request` property:
+
 
 		```php
 		public function __invoke()
@@ -77,13 +97,13 @@
 
 		For a full list of available methods, their arguments, and returned data types available on the request object, see [the PSR-7 server request interface documentation](https://www.php-fig.org/psr/psr-7/#321-psrhttpmessageserverrequestinterface).
 
-		## Accessing the Request Data {: #request-data}
+		### Accessing the Request Data {: #request-data}
 
-		It is 100% possible to access all request data via the server request object through standard PSR-7 interfaces.  Depending on the complexity of the incoming data, this may actually be necessary at time to distinguish between query parameters, post data, files, etc.  However, more common is the need to have this information easily combined together and/or to get default values if it hasn't been sent.
+		It is 100% possible to access all request data via the server request object through standard PSR-7 interfaces.  Depending on the complexity of the incoming data, this may actually be necessary at times to distinguish between query parameters, post data, files, etc.  However, more common is the need to have this information easily combined together or to get default values if it hasn't been sent.
 
 		Hiraeth's `AbstractAction`{: .class} provides two methods for easily accomplishing these tasks.
 
-		### Checking If Data Exists {: #checking-data}
+		#### Checking If Data Exists {: #checking-data}
 
 		If you need to check if a parameter has been sent (regardless of via query parameter, request body, or custom attributes), you can use the `has()`{: .method} method:
 
@@ -93,7 +113,7 @@
 		}
 		```
 
-		### Getting Data {: #getting-data}
+		#### Getting Data {: #getting-data}
 
 		To get the data by name, you can use the `get()`{: .method} method in very much the same way.
 
@@ -101,11 +121,32 @@
 		$this->get('file')
 		```
 
+		{: .note}
+		If different data sources (e.g. query parameters vs. request body) define the same name for a piece of data, Hiraeth will defer depending on the request method.  Query parameters will overload request body on a GET, for example, while the request body will overload query paremters on all other methods.  In both case, attributes added to the request object will overload anything (as these are only assigned internally).
+
 		In addition to being able to get data that has been sent, you can also provide a default in the event it hasn't.  This is common, for example, in the case of pagination, where you likely want to default to a value of `1` if a specific page has not been requested:
 
 		```php
 		$this->get('page', 1)
 		```
+
+		Similar to Hiraeth's environment data access methods, the `get()`{: .method} will also implicitly cast the data (which is a string if coming from query parameters) based on a default provided.  If the default is an object, but the parameter has been supplied, it will try to create a new instance of that object and pass the parameter as the first argument, for example:
+
+		```
+		$start_date = $this->get('start_date', new \DateTime('-30 Days'));
+		```
+
+		If the start date it was provided in the request then `$start_date` will be a `DateTime` object.  Finally, if you want to get all data, just don't pass any arguments at all, keeping in mind it's then on you to cast it if necessary.
+
+		##### Security
+
+		The functionality of `get()` is extremely useful, however, it should be noted that whenever working with user entered data that you **must** be security cautious.  If you want to prevent, for example, any query parameters from leaking into POST data when using this method, you can do the following **before** all calls to `get()` or `has()`:
+
+		```
+		$this->load(TRUE);
+		```
+
+		This will prevent the request method based overloading and completely exclude data not applicable to the request method.  Note, excluded data is still accessible via the `request` property as the full PSR-7 representation of the request.
 
 		## Returning {: #returning}
 
@@ -159,7 +200,7 @@
 
 		## Routing
 
-		While Hireath promotes the view-first paradigm, many people may prefer a more traditional approach where controllers (or actions in our case) are the entry point for handling a given URL.  It may also be the case, that you want to use Twig to template non-traditional formats like JSON.  For this, Hiraeth provides more traditional routing functionality that can route directly to actions or other templates.
+		While Hireath promotes the view-first approach, many people may prefer a more traditional approach where controllers (or actions in our case) are the entry point for handling a given URL.  It may also be the case, that you want to use Twig to template non-HTML formats like JSON.  For this, Hiraeth provides more traditional routing functionality that can route directly to actions or arbitrary templates.
 
 		----
 

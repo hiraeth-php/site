@@ -13,31 +13,44 @@
 {% block content %}
 	{% apply markdown %}
 		{: .note}
-		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of an HTTP (`hiraeth/diactoros`{: .package}) provider and `hiraeth/fastroute`{: .package}.
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of an HTTP implementation such as `hiraeth/diactoros`{: .package} and `hiraeth/fastroute`{: .package}.
 
 		Hiraeth's bootstrap uses [FastRoute](https://github.com/nikic/FastRoute) with a custom "transformation layer" on top to provide some much needed missing features like:
 
 		- [Parameter Pattern Aliases](#patterns)
 		- [Parameter Transformers](#transformers)
-		- [Route Masking](#masking)
+		- [URL Generation](#generating)
 
 		## Adding Routes {: #adding-routes}
 
-		The main route map is located in `config/routes.jin`{: .config}.  Routes can be added to the `routes` map, a one-or-more tab separated values list defining the route, target, and methods for which the route applies.  The target on a route, by default, can be either a templates or actions.  Unlike pages, routes allow you finer control in that you can define distinct entry points depending on the method, load templates other than `.html`, and make use of pattern aliases, transformers, and other advanced features.  To change this:
+		The main route map is located in `config/routes.jin`{: .config}.  Routes can be added to the `routes` map, a one-or-more tab separated values list defining the route, target, and methods for which the route applies.  The target on a route, by default, can be either a templates or actions.  Unlike pages, routes allow you finer control in that you can define distinct entry points depending on the method, load templates other than those with a `.html` extension, and make use of pattern aliases, transformers, and other advanced features.
 
-		1. We'll rename our template to exclude the `@` on the file name portion.  The `@` signifies that a template is directly available as a page, but since we're now going to route directly to it, it can simply be `resources/pages/words/get.html`{: .html}.
+		To change this in our working dictionary example:
+
+		1. We'll move and rename our template to avoid conflict with the actual word "get" and exclude the `@` on the file name portion.  The `@` signifies it as available for direct pages which is no longer the case since we're routing to it.
 		2. We'll remove our `resources/pages/words/~matchers.jin`{: .config}.  The router will now handle all URL parameterization.
 		3. Finally, we'll add the route in `config/routes.jin`{: .config}:
 
 		```toml
 		[routing]
 			routes = map(application.route) {
-				/words/{word}	@pages/words/get.html	["GET"]
+				/words/{word}	@pages/get-word.html	["GET"]
 			}
 		```
 
 		{: .note}
-		By adding this route, we explicitly make it available only on a `GET` request.  If you need to match all possible methods, you can use `["*"]` as the methods value, or simply add additional methods to the array.
+		By adding this route, we explicitly make it available only on a `GET` request.  If you need to match all possible methods, you can use `["*"]` as the methods value, or simply add additional methods to the array.  Remember too, the `map()` body is **one-or-more tab separated** (leading space doesn't matter).
+
+		It's also possible to route directly to a word's page using immediate parameter replacement in the target.  This assumes we change more about our previous pages/implemenation though like every word page extending our main layout and not needing additional common wrapping:
+
+		```toml
+		[routing]
+			routes = map(application.route) {
+				/words/{word}	@pages/words/{word}.html	["GET"]
+			}
+		```
+
+		But let's keep focused and move on as we were.
 
 		## Prefixes {: #prefixes}
 
@@ -48,45 +61,46 @@
 			prefix = /words
 
 			routes = map(application.route) {
-				/{word}		@pages/words/get.html	["GET"]
+				/{word}		@pages/get-word.html	["GET"]
 			}
 		```
 
 		## Parameters {: #parameters}
 
-		Parameters in routing provide much more advanced features than what's available in matcher configuration.  The basic style of a route parameter has already been shown, however, it's also possible to add custom pattern matching as well as transformers.
+		Parameters in routing provide much more advanced features than what's available in matcher configurations.  The basic style of a route parameter has already been shown (`{param}`), however, it's also possible to add custom pattern matching as well as transformers.
 
-		In the case of words, we may want to make sure that our words are always lowercase to enforce canonical URLs.
+		In the case of words, for example, we may want to make sure that our words are always lowercase to enforce canonical URLs.  Or if we actually want to store our words in a database, we might want to try and transform it into the entity object before it is passed to our template or action.
 
 		### Patterns {: #patterns}
 
-		To match parameters more precisely, you can follow the parameter name in the route with a `:` and add a RegEx or a pattern alias (a simple character or string used as a shorthand).  Let's update our route and change:
+		To match parameters more precisely, you can follow the parameter name in the route with a `:` and add a RegEx after it.  Better yet, you can add a pattern alias.  A pattern alias is a simple symbol, character, or word that is configured to map to the corresponding regular expression.  Let's update our route and change:
 
-		1. The name of the parameter to be clearer
-		2. The pattern that it must match
+		1. The name of the parameter, to be clearer to what it will become
+		2. The pattern that it must match, via an alias
 
 		```toml
 			routes = map(application.route) {
-				/{record:word}	@pages/words/get.html	["GET"]
+				/{record:word}	@pages/get-word.html	["GET"]
 			}
 		```
 
-		Given the above, the parameter `record` will now be constrained to matching the `word` pattern.  To add our own pattern, we can add a `[fastroute]` section to any configuration collection and set a `patterns` key equal to an object mapping the pattern alias (the key) to the regular expression (the value).  An example date pattern might look like the following:
+		Given the above, the parameter `record` will now be constrained to matching the `word` pattern.  To add our own pattern, we can add a `[fastroute]` section to any configuration collection and set a `patterns` key equal to an object mapping the pattern aliases (the keys) to regular expressions (the values):
 
 		```toml
 		[fastroute]
-
 			patterns = {
 				"word": "[a-z]+"
 			}
 		```
 
 		{: .note}
-		Don't forget to update your action's `__invoke()` method arguments as well as anywhere `{% verbatim %}{{ parameters.word }}{% endverbatim %}` was used in the templates.  In these contrived examples we're choosing names for temporary demonstration purposes, but in most cases where you know how you're going to handle requests up front, this is not an issue.
+		Don't forget to update your action's `__invoke()` method arguments as well as anywhere `{% verbatim %}{{ parameters.word }}{% endverbatim %}` was used in the templates since it's now called "record."  In these contrived examples we're choosing names for temporary demonstration purposes, but in most cases where you know how you're going to handle requests up front, this is not an issue.
+
+		Now that we know that our word is one or more lowercase letters any non-conforming URLs, it might be useful to think about a [middleware](./middleware) that normalizes URLs and auto-redirects.  But before that, let's turn our parameter into a full-fledged record, no controller required.
 
 		### Transformers {: #transformers}
 
-		Transformers are a way to convert parameters to native PHP types before they're passed to your actions.  Since URLs are ultimately only string, if you want, for example, to convert your parameter to a database record before being injected into the action, you can use a transformer.
+		Transformers are a way to convert parameters to native PHP types before they're passed to your templates or actions.  Since URLs are ultimately only a string, if you want, for example, to convert your parameter to a database record before being injected, you can use a transformer.
 
 		In order to create a transformer we create a new class that implements the `Hiraeth\FastRoute\Transformer`{: .interface} interface.  This interface requires two methods:
 
@@ -106,12 +120,12 @@
 				public Repository $words
 			) {}
 
-			public function fromUrl($name, $value, array $context = array())
+			public function fromUrl(string $name, string $value, array $context = array()): mixed
 			{
 				return $this->words->find($value);
 			}
 
-			public function toUrl($name, $value, array $context = array()): string
+			public function toUrl(string $name, mixed $value, array $context = array()): string
 			{
 				if (!$value instanceof Entity) {
 					throw new \InvalidArgumentException(sprintf(
@@ -126,45 +140,86 @@
 		}
 		```
 
-		We then register the transformer based on the same pattern name it matches.
+		We then register the transformer based on the same pattern alias, but this time the field is transformers and the object maps the alias to the transformer class (which, yes, is dependency injected for construction):
 
 		```toml
 		[fastroute]
-
 			transformers = {
 				"word": "Words\Transformer"
 			}
 		```
 
-		After the addition of both the pattern and our transormer, our new action will look something like this:
+		After the addition of both the pattern and our transformer, we'll want to update our action again because now instead of receiving a string, we're getting our actual database entity.  Our new action will look something like this:
 
 		```php
 		namespace Words;
 
 		class Get extends \AbstractAction
 		{
-			public function __invoke(Entity $record)
+			public function __invoke(?Entity $record)
 			{
-				$template = sprintf('@pages/words/%s.html', $record->getId());
-				$data     = [
-					'record' => $record
-				];
-
-				if (!$this->templates->has($template)) {
-					return $this->response(
-						404,
-						$this->template('@pages/words/404.html', $data)
-					);
+				if (!$record) {
+					return $this->response(404);
 				}
 
-				return $data;
+				return [];
 			}
 		}
 		```
 
-		## Route Generation
+		Again, our example is a bit contrived, as we more than likely will no longer have separate pages for each word since the data about each word will be in the database, but let's imagine we're in the process of migrating from static word pages and we've not yet populated all the records so we're still using indivdiual pages.
 
-		Whenever you generate link or url to a route you should be using an instance of a `Hiraeth\Routing\UrlGenerator` to account for various transformations.  While it's possible to typehint this and have it injected directly into your classes, there are existing helpers for both actions and inside Twig.
+		Things we changed:
+
+		1. Updated the argument for `__invoke()` to update our parameter name `$record`
+		2. Updated the argument for `__invoke()` to ensure it's typed as Entity (or NULL, if it's not found)
+		3. Updated our 404 response to check directly for the record not being null
+
+		Keep in mind, we'll also have to go back an update our template:
+
+		{% verbatim %}
+		```twig
+		{% include '@pages/words/' ~ parameters.record.id ~ '.html' %}
+		```
+		{% endverbatim %}
+
+		## Routing to Actions
+
+		Up to this point, we have maintained a strictly view-first approach to our hypothetical application development.  This has lead us to some contrived examples and a lot of context switching to show a migration path from the preferred view-first appraoch to a more traditional one.  Since old habits die hard, let's bite the bullet and go fully traditional.
+
+		Routing directly to an action is quite simple.  Simply replace the template path in the `config/routes.jin`{: .config} file with the class name of the action:
+
+		```toml
+		/words/{record:word}	Words\Get	["GET"]
+		```
+
+		Now, instead, our action can return the template:
+
+		```php
+		return $this->template('@pages/get-word.html', get_defined_vars());
+		```
+
+		Lastly, we'll update our template again to no longer call the `action()` function and change it to that which was provided directly to it's context in the action:
+
+		{% verbatim %}
+		```twig
+		{% extends '@layouts/main.html' %}
+
+		{% block body %}
+			{% include '@pages/words/' ~ record.id ~ '.html' %}
+		{% endblock %}
+		```
+		{% endverbatim %}
+
+		Recapping, we started with a view-first approach (that called our action), went to a route template approach (somewhere in the middle), then finally to an action-first (traditional controller) approach that returns the template.
+
+		In any of these cases, another common thing that will be necessary will be generating links back to our routes.  Since that's a much lighter topic for discussion, let's get into it.
+
+		## URL Generation
+
+		Whenever you generate link or url to a route you should be using an instance of a `Hiraeth\Routing\UrlGenerator` interface to account for various transformations.  The baseline `hiraeth\routing`{: .package} provides a generic URL generator as well as a proxy for that which might be registered by a specific implementation like `hiraeth\fastroute`:{. package}.
+
+		While it's possible to typehint this and have it injected directly into your classes, there are existing helpers for on `AbstractAction`{: .class} and a function for inside Twig.
 
 		From an Action:
 
@@ -174,42 +229,20 @@
 
 		From inside a Twig template:
 
-		```twig{% verbatim %}
+		{% verbatim %}
+		```twig
 		{{ route('/words/{record:word}', {record: record}) }}
-		{% endverbatim %}```
+		```
+		{% endverbatim %}
 
 		This will allow you to tranform the native objects back to their parameter's string representation.  Additionally, it will allow you to make use of other features like the `hiraeth/http`{: .package} package's `BASE_URL` option, and route masking, which we'll go over now:
 
 		{: .note}
 		The `redirect()` method available on classes extending `AbstractAction`{: .class} will proxy this method automatically.
 
-		### Route Masking {: #masking}
+		## Adapters and Responders
 
-		On occasion, you may be working in a code base that serves multiple clients with very particular branding or needs.  Route masking is a form of transparent URL rewriting that perform a simple search and replace.  Accordingly, it's primarily intended only for static segments of the URL.
-
-		Let's say you sold your dictionary app to Webster, but they want to change the `/words/` URL to `terms` without changing the internal domain language:
-
-		```toml
-		[fastroute]
-
-			masks = {
-				"/words/": "/terms/"
-			}
-		```
-
-		Now an incoming request to say `/terms/hiraeth` will be rewritten as `/words/hiraeth` and will continue matching the routes for `/words/...`, similarly when you use the URL generator or the associated `route()` helpers, the URL produced will be translated back.
-
-		## Routing to Actions
-
-		Up to this point, we have maintained a strictly view-first approach to our hypothetical application development.  While we believe there are [many benefits to this approach](./view-first), inevitably old habits die hard and someone wants to go the more "traditional" MVC route (no pun intended).
-
-		Routing to an action is quite simple.  Simply replace the template path with the class name of the action:
-
-		```toml
-			/words/{id:word}	Words\Get	["GET"]
-		```
-
-		Critically, however, if you want to continue returning templates as a response (i.e. if you're not just add/writing an API), you'll need to get a better understanding of responders.
+		Part of Hiraeth's ability to route to different targets template vs. actions, and soon, directly to redirects, is that the implenting router just needs to return a matching route with information.  So long as its target can be anything, the routing sub-system will then look for corresponding adapters to handle it.  While the adapter documention is still too early to release, the inverse of the adapter is the responder.
 
 		----
 

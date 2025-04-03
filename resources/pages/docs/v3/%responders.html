@@ -13,25 +13,21 @@
 {% block content %}
 	{% apply markdown %}
 		{: .note}
-		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/fastroute`{: .package}, and `hiraeth/actions`{: .package}..  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or a combination of `hiraeth/diactoros`{: .package}, `hiraeth/fastroute`{: .package}.
 
-		Responders take the return result of an [Action](./actions) and convert it to a [PSR-7](https://www.php-fig.org/psr/psr-7/) response object.  In most cases this will be totally transparent to the user as `hiraeth/bootstrap`{: .package} comes with a number of common responders out of the box.  However, if you're writing an API, creating custom responders is an extremely powerful way to handle conversion of data transfer objects, models, collections, etc, to the client.
+		Responders take the result of an adapter, which in turn _usually_ takes the return result of an [action](./actions) and converts it to a [PSR-7](https://www.php-fig.org/psr/psr-7/) response object.  In most cases this will be totally transparent to the user as `hiraeth/bootstrap`{: .package} comes with a number of common responders out of the box.  However, if you're writing an API, creating custom responders is an extremely powerful way to handle conversion of data transfer objects, models, collections, etc, to the client.
 
-		Responders are only available for routed actions, as template-based routing or pages are implicitly responding with the rendered template.  There is some overlap in the case of returning native responses, redirects, etc, but the critical difference is that actions designed for the view-first approach generally return template data in an associative array, while an routed action will usually be returning a template to be rendered.
+		Responders are only used in the routing system, so none of this applies to [pages](./pages) which are handled by a separate middleware that steps in when a router doesn't exist or a route can't be found.  When routing to a template, however, that is actually a template adapter loading the template, and a template responder converting it.  The same template responder is used when an action return a template and the adapter that loaded/called the action returns that result.
 
-		By default `hiraeth/bootstrap`{: .package} comes with the following responders:
+		By default `hiraeth/bootstrap`{: .package} comes with the following responders, though they may be part of different included packages:
 
 		| Responder                | Description
 		|--------------------------|------------------------------------------------
 		| NativeResponder          | Handles a returned PSR-7 Response object, makes no modifications
 		| JsonResponder            | Handles a returned array, stdClass, or JsonSerializable, converts to JSON
-		| FileResponder            | Handles a returned SplFileINfo object, discerns content type via extension
+		| FileResponder            | Handles a returned SplFileInfo object, discerns content type via extension
 		| StringResponder          | Handles a returned string, discerns content type based on content
 		| TemplateResponder        | Handles a returned template, discerns content type via the template extension
-
-		{: .note}
-		Before abandoning the view-first approach, take a look at [our reasoning](./view-first), and pay close attention to the fact that the `JsonResponder` listed above will convert arrays returned from actions to JSON responses.
-
 
 		## Creating a Responder
 

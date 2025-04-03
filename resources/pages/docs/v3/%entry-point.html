@@ -40,11 +40,11 @@
 		```
 
 		{: .note}
-		In addition to the `$root_path` you can also specify an environment file path and a release file path as the second and third argument respectively.
+		In addition to the `$root_path` you can also specify an environment file path and a release file path as the second and third argument respectively, but these are niche use cases.
 
 		## Handling Static Files {: #static-files}
 
-		If you intend to use Hiraeth's provided `bin/server` command which just wraps the PHP built-in server, you'll also want to handle some static file look-ups.  The following code just checks to see if a file exists in the current `public`{: .folder} folder corresponding to the request path and returns fault if we're running the PHP built-in development server:
+		If you intend to use Hiraeth's provided `bin/server` command which just wraps the PHP built-in server, you'll also want to handle some static file look-ups.  The following code just checks to see if a file exists in the current `public`{: .folder} folder corresponding to the request path and returns `false` if we're running the PHP built-in development server.  Returning `false` tells the built-in server that the request is not handled by PHP:
 
 		```php
 		$req_path = parse_url($_SERVER['REQUEST_URI'])['path'] ?? '/';
@@ -54,7 +54,7 @@
 		}
 		```
 
-		## Execute Hiraeth {: #executing}
+		## Executing Hiraeth {: #executing}
 
 		Finally, once we have our application instance, we can execute Hiraeth:
 
@@ -76,9 +76,9 @@
 		And, finally `Laminas\HttpHandlerRunner\Emitter\SapiEmitter`, which is provided by `laminas/laminas-httphandlerrunner`{: .package} to emit PSR-7 response objects.
 
 		{: .note}
-		The `hiraeth/http`{: .package} package does not require or provide implementations for the first two mentioned interfaces, rather it is up to an integration package to alias these interfaces to whatever concrete implementation it uses.  The `hiraeth/diactoros`{: .package} package provides such implementation via `laminas/laminas-diactoros`{: .package}.
+		The `hiraeth/http`{: .package} package does not require or provide implementations for the first two mentioned interfaces, rather it is up to an implementation package to alias these interfaces to whatever concrete implementation it uses.  The `hiraeth/diactoros`{: .package} package provides such implementation via `laminas/laminas-diactoros`{: .package}.
 
-		The default executed code, therefore is simply:
+		The default executed code where `$emmitter`, `$handler`, and `$request` are our injected instances, therefore, is simply:
 
 		```php
 		return $emitter->emit($handler->handle($request)) ? 0 : 1;

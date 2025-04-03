@@ -1,25 +1,19 @@
-{% extends '@layouts/internal.html' %}
+{% extends '@layouts/velocity/body.html' | proxy('canvas') %}
 
-{% set pageClasses = ['docs', 'layout'] %}
+{% block canvas %}
+	{% block header %}
 
-{% block primary %}
-    <div class="layout">
-        <nav id="menu">
-            {% include '@pages/docs/v2/~nav.html' %}
-            <a class="open" href="#menu">☰</a>
-        </nav>
-        <main id="content">
-            {% block content %}
+	{% endblock %}
 
-            {% endblock %}
-        </main>
-        <script src="https://utteranc.es/client.js"
-            repo="hiraeth-php/site"
-            issue-term="pathname"
-            label="comment"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-        </script>
-    </div>
+	<div class="contain lg:flex gap-12" hx-target="#content">
+		<x:docs:nav
+			class:="min-w-64 bg-gray-200/50 mb-8 py-2 lg:mb-0"
+			items={% v: mock('@mocks/nav-2.0.twig') %}
+		/>
+		<main id="content" class="min-w-0">
+			{% block content %}
+
+			{% endblock %}
+		</main>
+	</div>
 {% endblock %}

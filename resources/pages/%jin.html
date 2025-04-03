@@ -13,7 +13,7 @@
 		{% set data = false %}
 	{% endif %}
 
-	<main class="bg-zinc-600 pb-24 min-h-[100dvh]" hx-target="this">
+	<main class="bg-zinc-600 pb-24 min-h-[100dvh]">
 		<header class="contain">
 			<h1 class="text-center text-white">Online JIN Playground</h1>
 
@@ -93,7 +93,7 @@
 		</script>
 
 		<div x-data="CodeEditor">
-			<form method="post" hx-swap="outerHTML scroll:top" class="fixed bottom-0 z-12 bg-zinc-800 w-full p-4 text-center">
+			<form method="post" hx-swap="outerHTML scroll:top" v-proxy="false" class="fixed bottom-0 z-12 bg-zinc-800 w-full p-4 text-center">
 				{% if session is defined %}
 					<input type="hidden" name="csrf::token" value="{{ session.csrfToken.value }}" />
 				{% endif %}
@@ -116,7 +116,7 @@
 						autocapitalize="off"
 						spellcheck="false"
 						wrap="hard"
-						class="absolute top-4 left-4 right-4 bottom-0 font-mono text-transparent caret-amber-400 overflow-hidden resize-none"
+						class="absolute top-4 left-4 right-4 bottom-0 font-mono text-transparent caret-amber-400 overflow-hidden resize-none whitespace-pre"
 					>{{
 						request.parsedBody.body|default(app.getFile('resources/example.jin')|content)|default('')
 					}}</textarea>
