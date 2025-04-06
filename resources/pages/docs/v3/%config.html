@@ -14,7 +14,7 @@
 	{% apply markdown %}
 		While [understanding JIN](./jin) and how to write configurations is import, it's equally important to understand how to use those configurations.  A single instantiation of the JIN parser allows for collecting (by key) any number of files it parses.  Hiraeth shares a single parser instantiation for its entire application run, accordingly, all configuration files when parsed are collected and keyed for reference later.
 
-		Configuration files are found in the `config`{: .folder} directory and are keyed by their relative path, minus the extension.  So for example the key for `config/app.jin`{: .config} is simply `app`, while the key for `config/packages/hyfryd.jin`{: .config} would be `packages/hyfrid`.
+		Configuration files are found in the `config`{: .folder} directory and are keyed by their relative path, minus the extension.  So for example the key for `config/app.jin`{: .config} is simply `app`, while the key for `config/packages/velocity.jin`{: .config} would be `packages/velocity`.
 
 		You can query configurations by passing the key and path to the value you want using `getConfig()`{: .method} on Hiraeth's application instance:
 

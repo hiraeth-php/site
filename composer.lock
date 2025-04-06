@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0be6e7f6d1e32f01d88fd35f3ede4626",
+    "content-hash": "e3c81777cb17e6e701ea3f44510b93d2",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -1625,12 +1625,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/actions.git",
-                "reference": "a9d72759330756753cc917cb36595e59568d385f"
+                "reference": "b424c3e0e5ca7133d80ad66d10ba95d770d14f97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/a9d72759330756753cc917cb36595e59568d385f",
-                "reference": "a9d72759330756753cc917cb36595e59568d385f",
+                "url": "https://api.github.com/repos/hiraeth-php/actions/zipball/b424c3e0e5ca7133d80ad66d10ba95d770d14f97",
+                "reference": "b424c3e0e5ca7133d80ad66d10ba95d770d14f97",
                 "shasum": ""
             },
             "require": {
@@ -1675,7 +1675,7 @@
                 "issues": "https://github.com/hiraeth-php/actions/issues",
                 "source": "https://github.com/hiraeth-php/actions/tree/3.0-beta"
             },
-            "time": "2025-03-30T20:51:31+00:00"
+            "time": "2025-04-03T00:20:00+00:00"
         },
         {
             "name": "hiraeth/bootstrap",
@@ -2131,12 +2131,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/doctrine.git",
-                "reference": "67018a7da4e3603896dbd91d76999daa103bc613"
+                "reference": "417823d65bd7383309decf61ed2a10d67e862a89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/67018a7da4e3603896dbd91d76999daa103bc613",
-                "reference": "67018a7da4e3603896dbd91d76999daa103bc613",
+                "url": "https://api.github.com/repos/hiraeth-php/doctrine/zipball/417823d65bd7383309decf61ed2a10d67e862a89",
+                "reference": "417823d65bd7383309decf61ed2a10d67e862a89",
                 "shasum": ""
             },
             "require": {
@@ -2184,7 +2184,7 @@
                 "issues": "https://github.com/hiraeth-php/doctrine/issues",
                 "source": "https://github.com/hiraeth-php/doctrine/tree/3.0-beta"
             },
-            "time": "2024-11-20T12:53:15+00:00"
+            "time": "2025-04-03T01:18:30+00:00"
         },
         {
             "name": "hiraeth/events",
@@ -2246,12 +2246,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/fastroute.git",
-                "reference": "fbb9fe68c85c920867e2098315596cfe2ee36a1c"
+                "reference": "68efc9540eda4ef3610eed766a686527849768bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/fastroute/zipball/fbb9fe68c85c920867e2098315596cfe2ee36a1c",
-                "reference": "fbb9fe68c85c920867e2098315596cfe2ee36a1c",
+                "url": "https://api.github.com/repos/hiraeth-php/fastroute/zipball/68efc9540eda4ef3610eed766a686527849768bc",
+                "reference": "68efc9540eda4ef3610eed766a686527849768bc",
                 "shasum": ""
             },
             "require": {
@@ -2297,7 +2297,7 @@
                 "issues": "https://github.com/hiraeth-php/fastroute/issues",
                 "source": "https://github.com/hiraeth-php/fastroute/tree/3.0-beta"
             },
-            "time": "2025-03-22T16:32:59+00:00"
+            "time": "2025-04-03T01:17:41+00:00"
         },
         {
             "name": "hiraeth/harmony",
@@ -2415,64 +2415,6 @@
                 "source": "https://github.com/hiraeth-php/http/tree/3.0-beta"
             },
             "time": "2025-03-25T05:42:23+00:00"
-        },
-        {
-            "name": "hiraeth/hyfryd",
-            "version": "3.0-beta",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hiraeth-php/hyfryd.git",
-                "reference": "d2baaa5f9d8f2dd0ff07a3d5731b8e6ac8216783"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/hyfryd/zipball/d2baaa5f9d8f2dd0ff07a3d5731b8e6ac8216783",
-                "reference": "d2baaa5f9d8f2dd0ff07a3d5731b8e6ac8216783",
-                "shasum": ""
-            },
-            "require": {
-                "hiraeth/actions": "^3.0",
-                "hiraeth/app": "^3.0",
-                "hiraeth/diactoros": "^3.0",
-                "hiraeth/harmony": "^3.0",
-                "hiraeth/twig-tags": "^3.0"
-            },
-            "require-dev": {
-                "hiraeth/diactoros": "^3.0",
-                "hiraeth/harmony": "^3.0",
-                "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^10.0"
-            },
-            "type": "opus-package",
-            "extra": {
-                "opus": {
-                    "hiraeth/app": {
-                        "config": ""
-                    }
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthew J. Sahagian",
-                    "email": "matthew.sahagian@gmail.com",
-                    "role": "Lead Architect / Developer"
-                }
-            ],
-            "description": "A view-first component-based application framework",
-            "support": {
-                "issues": "https://github.com/hiraeth-php/hyfryd/issues",
-                "source": "https://github.com/hiraeth-php/hyfryd/tree/3.0-beta"
-            },
-            "time": "2025-04-02T02:01:50+00:00"
         },
         {
             "name": "hiraeth/inflector",
@@ -3016,12 +2958,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/runner.git",
-                "reference": "f7c244534edc183be63e6ebbc3a352ac55efdd74"
+                "reference": "414a8ad9ac0ca6cabf8c1cc0964f11079e2fe218"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/runner/zipball/f7c244534edc183be63e6ebbc3a352ac55efdd74",
-                "reference": "f7c244534edc183be63e6ebbc3a352ac55efdd74",
+                "url": "https://api.github.com/repos/hiraeth-php/runner/zipball/414a8ad9ac0ca6cabf8c1cc0964f11079e2fe218",
+                "reference": "414a8ad9ac0ca6cabf8c1cc0964f11079e2fe218",
                 "shasum": ""
             },
             "require": {
@@ -3035,7 +2977,7 @@
             "extra": {
                 "opus": {
                     "hiraeth/app": {
-                        "": "runner"
+                        "src": "runner"
                     }
                 }
             },
@@ -3055,7 +2997,7 @@
                 "issues": "https://github.com/hiraeth-php/runner/issues",
                 "source": "https://github.com/hiraeth-php/runner/tree/3.0-beta"
             },
-            "time": "2024-03-16T15:09:26+00:00"
+            "time": "2025-04-06T12:31:46+00:00"
         },
         {
             "name": "hiraeth/sentry",
@@ -3282,12 +3224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/templates.git",
-                "reference": "e91a40650b6e3eb20e06bfe1d7418b62c902b828"
+                "reference": "5a9c1aba512171bd3bef6d426d5e7847c786d97c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/e91a40650b6e3eb20e06bfe1d7418b62c902b828",
-                "reference": "e91a40650b6e3eb20e06bfe1d7418b62c902b828",
+                "url": "https://api.github.com/repos/hiraeth-php/templates/zipball/5a9c1aba512171bd3bef6d426d5e7847c786d97c",
+                "reference": "5a9c1aba512171bd3bef6d426d5e7847c786d97c",
                 "shasum": ""
             },
             "require": {
@@ -3330,7 +3272,7 @@
                 "issues": "https://github.com/hiraeth-php/templates/issues",
                 "source": "https://github.com/hiraeth-php/templates/tree/3.0-beta"
             },
-            "time": "2025-04-01T11:52:04+00:00"
+            "time": "2025-04-03T04:54:49+00:00"
         },
         {
             "name": "hiraeth/twig",
@@ -3499,6 +3441,64 @@
                 "source": "https://github.com/hiraeth-php/twig-tags/tree/3.0-beta"
             },
             "time": "2025-04-02T02:09:16+00:00"
+        },
+        {
+            "name": "hiraeth/velocity",
+            "version": "3.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hiraeth-php/velocity.git",
+                "reference": "816c57c994b95145719c4d0873f0b2a655441548"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hiraeth-php/velocity/zipball/816c57c994b95145719c4d0873f0b2a655441548",
+                "reference": "816c57c994b95145719c4d0873f0b2a655441548",
+                "shasum": ""
+            },
+            "require": {
+                "hiraeth/actions": "^3.0",
+                "hiraeth/app": "^3.0",
+                "hiraeth/diactoros": "^3.0",
+                "hiraeth/harmony": "^3.0",
+                "hiraeth/twig-tags": "^3.0"
+            },
+            "require-dev": {
+                "hiraeth/diactoros": "^3.0",
+                "hiraeth/harmony": "^3.0",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "opus-package",
+            "extra": {
+                "opus": {
+                    "hiraeth/app": {
+                        "config": ""
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew J. Sahagian",
+                    "email": "matthew.sahagian@gmail.com",
+                    "role": "Lead Architect / Developer"
+                }
+            ],
+            "description": "A view-first component-based application framework",
+            "support": {
+                "issues": "https://github.com/hiraeth-php/velocity/issues",
+                "source": "https://github.com/hiraeth-php/velocity/tree/3.0-beta"
+            },
+            "time": "2025-04-06T12:22:40+00:00"
         },
         {
             "name": "hiraeth/volumes",
@@ -7437,7 +7437,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "hiraeth/hyfryd": 10
+        "hiraeth/velocity": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,

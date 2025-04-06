@@ -24,7 +24,7 @@
         "hiraeth/twig-markdown": "^3.0",
         "hiraeth/twig-tags": "^3.0",
         "hiraeth/session": "^3.0",
-        "hiraeth/hyfryd": "^3.0@beta"
+        "hiraeth/velocity": "^3.0@beta"
     },
     "autoload": {
         "classmap": ["local/"],
