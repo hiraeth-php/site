@@ -4,23 +4,14 @@
 	function DocsNav() {
 		return {
 			button: null,
-			collapse: true,
-			selected: null,
-			setButton(node) {
-				this.button = node;
-			},
-			close(active) {
+			hidden: true,
+			opened: null,
+			active: null,
+			close() {
 				if (this.button && getComputedStyle(this.button).display == 'block') {
-					this.collapse = true;
+					this.hidden = true;
 				} else {
-					this.collapse = false;
-				}
-			},
-			select(group) {
-				if (this.selected == group) {
-					this.selected = null;
-				} else {
-					this.selected = group;
+					this.hidden = false;
 				}
 			}
 		}
@@ -28,48 +19,47 @@
 
 	function DocsNavItem() {
 		return {
-			active: false,
-			check(node) {
-				if (document.location.pathname == node.pathname) {
-					this.active = true;
-					this.select(this.group);
-				} else {
-					this.active = false;
+			id: null,
+			init() {
+				this.id = this.$id('nav-item');
+
+				if (document.location.pathname == this.$el.pathname) {
+					this.active = this.id;
+					this.opened = this.group;
 				}
 			}
 		}
 	}
 </script>
 
-<nav x-data="DocsNav">
+<nav x-data="DocsNav" x-effect="close(active)">
 	<button
-		x-init="setButton($el)";
-		x-on:click="collapse = !collapse"
+		x-init="button = $el";
+		x-on:click="hidden = !hidden"
 		class="block w-full text-center p-2 lg:hidden cursor-pointer"
 	>☰</button>
 
-	<ol class="list-none lg:block" x-bind:class="{ 'hidden': collapse }">
+	<ol class="list-none lg:block" x-bind:class="{ 'hidden': hidden }">
 		{% for group in items %}
 			<li x-data="{group: $id('nav-group')}">
-				<div x-on:click="select(group)" class="cursor-pointer px-4 py-2" href="{{ route(group.link|default('#')) }}">
+				<div x-on:click="opened = group" class="cursor-pointer px-4 py-2" href="{{ route(group.link|default('#')) }}">
 					{{ group.name|default('Uknown Name') }}
 					<button class="float-right inline-block w-4 text-center">
-						<span x-show="selected == group">-</span>
-						<span x-show="selected != group">+</span>
+						<span x-show="opened == group">-</span>
+						<span x-show="opened != group">+</span>
 					</button>
 				</div>
 				{% if group.list is defined %}
-					<ol x-show="selected == group" class="list-none bg-zinc-700 text-white py-2 relative">
+					<ol x-show="opened == group" class="list-none bg-zinc-700 text-white py-2">
 						{% for item in group.list ?? [] %}
-							<li>
+							<li class="relative">
 								<a
 									x-data="DocsNavItem"
-									x-on:load.window="check($el)"
-									x-on:htmx:after-swap.window="check($el)"
+									x-on:click="active = id"
 									class="block px-8 py-1"
 									href="{{ route(item.link|default('#')) }}"
 								>
-									<span class="absolute inline-block w-2 h-2 left-3 mt-3 text-transparent rounded-full bg-emerald-400" x-show="active" x-effect="close(active)">
+									<span class="absolute inline-block w-2 h-2 left-3 mt-3 text-transparent rounded-full bg-emerald-400" x-show="active == id">
 										( active )
 									</span>
 									{{ item.name|default('Uknown Name') }}

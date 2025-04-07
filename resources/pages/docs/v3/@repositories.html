@@ -1,0 +1,133 @@
+{% extends '@layouts/docs-3.0.html' | proxy(['header', 'content']) %}
+
+{% set title = "Repositories" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		## AbstractRepository
+
+		> _NOTE: The doctrine package will alias, by default, `Hiraeth\Doctrine\AbstractRepository` as `AbstractRepository`.  In order to take full advantage of the features below, you will need to make sure your repository class(es) extend it directly, or via the alias._
+
+		```
+		class People extends \AbstractRepository
+		{
+
+		}
+		```
+
+
+		### Setting the Entity Class
+
+		The first thing you want to do when you extend the `AbstractRepository` is to set the corresponding entity class:
+
+		```
+		protected static $entity = Person::class;
+		```
+
+		### Setting the Default Order
+
+		The second thing you want to do is set the default order:
+
+		```
+		protected static $order = [
+			'lastName'  => 'asc',
+			'firstName' => 'asc'
+		];
+		```
+
+		### Finding and Filters
+
+		Find all records:
+
+		```
+		$names = array();
+
+		foreach ($repository->findAll() as $person) {
+			$names[] = $person->getFullName();
+		}
+		```
+
+		Find a single record:
+
+		```
+		$name = $repository->find($id)->getFullName();
+		```
+
+		The `$id` parameter above can also ben an array to match other properties of the record.  So long as the result of the `find()` call is a single record this will work, so you can use unique columns or combinations of columns to alternatively identify a single record:
+
+		```
+		$name = $repository->find(['email' => $email])->getFullName();
+		```
+
+		Or `findOneBy` to find the first record.  Unlike `find` this will not throw an exception if more than one record matches, but will only return the first:
+
+		```
+		$name = $repository->findOneBy(['age' => 18])->getFullName();
+		```
+
+		You can use `findBy` to find all matching records:
+
+		```
+		$names = array();
+
+		foreach ($repository->findBy(['age' => 18]) as $person) {
+			$names[] = $person->getFullName();
+		}
+		```
+
+		### Queries and Builders
+
+		Doing complex queries will generally require you to use DQL or Doctrine's `QueryBuilder`.  We expose a simple mechanism for building queries for a given repository with the `query()` method.  Unlike `find` methods, the `query` method will return an instance of `Hiraeth\Doctrine\Collection` which contains support for some additional methods:
+
+		```
+		$adult_names = $repository->query(function($builder) {
+			return $builder->where('this.age >= 18');
+		})->map(function(Person $person) {
+			return $person->getFullName();
+		});
+		```
+
+		{: .note}
+		Before passing the `QueryBuilder` to the build method(s), the builder will be initialized to select the current repository's entity class aliases as `this`.
+
+		Alternatively to passing the `query()` method a callable, you can pass it a string corresponding to an existing `build*()` method.  For example, instead of the above we could add to our repository:
+
+		```
+		protected function buildAdults($builder)
+		{
+			return $builder->where('this.age >= 18');
+		}
+		```
+
+		Then do the following:
+
+		```
+		$adults = $repository->query('adults');
+		```
+
+		You can do more than one by passing an array:
+
+		```
+		$tall_adults = $repository->query(['tall', 'adults']);
+		```
+
+		As long as you have the corresponding build function:
+
+		```
+		protected function buildTall($builder)
+		{
+			return $builder->where('this.height >= 72');
+		}
+		```
+	{% endapply %}
+
+	{% include '@layouts/chat.html' %}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends '@layouts/docs-3.0.html' | proxy(['header', 'content']) %}
+
+{% set title = "Error Handling" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		Hiraeth provides robust error handling using [SlashTrace](https://github.com/dotink/slashtrace).
+
+		{: .note}
+		Hiraeth runs in production mode by default.  This means that until you've set up debugging, logging, or additional services in your `.env`{: .config}, you won't be seeing much detail if something is going wrong.  Make sure to read the below sections carefully and choose what makes the most sense for your environment.
+
+		## Debugging Mode {: #debugging}
+
+		To put the application in debugging mode, modify the environment file and make sure the following is set:
+
+		```toml
+		DEBUG = true
+		```
+
+		During runtime, you can check if the application is in debugging mode by performing the following:
+
+		```php
+		if ($app->isDebugging()) {
+			...
+		}
+		```
+
+		When the application is in debugging mode, you will see stacktrace and related context information presented as a web request's response in the event of an error:
+
+		![image](/images/slashtrace.png){: .w-full}
+
+		If you're running a CLI command, trace information will be presented as standard error output in the terminal.
+
+		## Logging {: #logging}
+
+		You can enable logging by installing `hiraeth/monolog`{: .package} and updating your `.env`{: .config} to set `LOGGING` to the approriate log level.  Logs of the requests level or higher will then be sent to the default file location under `storage/logs`{: .folder}.
+
+		```toml
+		LOGGING = error
+		```
+
+		Supported types map to [PSR-3 LogLevel constants](https://www.php-fig.org/psr/psr-3/#5-psrlogloglevel).
+
+		----
+
+		[Learn About Logging](./logging){: .action}
+	{% endapply %}
+
+	{% include '@layouts/chat.html' %}
+{% endblock %}

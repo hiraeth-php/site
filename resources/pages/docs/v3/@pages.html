@@ -1,0 +1,162 @@
+{% extends '@layouts/docs-3.0.html' | proxy(['header', 'content']) %}
+
+{% set title = "Pages" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		{: .note}
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/twig`{: .package} and both HTTP and middleware providers such as `hiraeth/diactoros`{: .package} and `hiraeth/harmony`{: .package}, respectively.
+
+		To add a page to your website or application in Hiraeth is as simple as adding a file to `resources/pages`{: .folder}.  For example, you can add your homepage, by simply create a file at `resources/pages/@index.html`{: .html} and paste in the following:
+
+		```html
+		<!doctype html>
+		<html>
+			<head>
+				<title>Fast Dictionary</title>
+			</head>
+			<body>
+				<h1>The Fastest Dictionary On the Web</h1>
+			</body>
+		</html>
+		```
+
+		Now reload [http://localhost:8080/](http://localhost:8080/) to see the result.
+
+		{: .note}
+		If you're having trouble seeing the page, it may be that you forgot to add the **`@`** symbol at the beginning of the filename.
+
+		Just because the example above is completely "static," however, doesn't mean you don't have the full power of Twig available to you.  A more common approach might be to add the "shell" of your page as a layout in `resources/layouts/main.html`{: .html}:
+
+		{% verbatim %}
+		```twig
+		<!doctype html>
+		<html>
+			<head>
+				<title>Fast Dictionary</title>
+			</head>
+			<body>
+				{% block body %}
+				{% endblock %}
+			</body>
+		</html>
+		```
+		{% endverbatim %}
+
+		Then update the `resources/pages/@index.html`{: .html} file accordingly:
+
+		{% verbatim %}
+		```twig
+		{% extends '@layouts/main.html' %}
+
+		{% block body %}
+			<h1>The Fastest Dictionary On the Web</h1>
+		{% endblock %}
+		```
+		{% endverbatim %}
+
+		Reference [twig documentation](https://twig.symfony.com/) to understand more about its features.
+
+		## Path Resolution {: #paths}
+
+		Additional pages can be added to `resources/pages`{: .folder} in the same manner as the `@index.html`{: .html} page above.  It is important to note, however, that when your URL ends in a `/` Hiraeth will begin looking for another `@index.html`{: .html} in the corresponding directory.  So for example, if you visit [http://localhost:8080/example/](http://localhost:8080/example/), Hiraeth will initially look for `resources/pages/example/@index.html`{: .html}.
+
+		If the URL's corresponding page cannot be found at the canonical location it will look for the alternative path.  For URLs that end in a slash, this means it will look in the parent directory for a file with the same name as the last segment of the path, e.g. `resources/pages/@example.html`{: .html} in the example above.  If the URL does not end in a slash, it will attempt to see if there is a directory by the same name and an `@index.html`{: .html} file within.
+
+		In the event an alternative path is found, an HTTP `301` status code will be returned automatically with the canonical URL location for the path.
+
+		### Partial Pages (Ajax/HTMX)
+
+		It's possible to provide partials that can be obtained with Ajax or HTMX requests in the same fashion.  The only difference is the name of the file.  While full pages are resolved with the filename starting with an `@`, if the request is being made with Ajax or HTMX, it will only look for pages files beginning with `%`.  The percent is used to indicate that it's a "partial" (or a percent) of a page.  You can, of course, use the same partial pages in an initial request for your full pages via include:
+
+		{% verbatim %}
+		```twig
+		{% include '@pages/%partial.html' %}
+		```
+		{% endverbatim %}
+
+		## Matchers {: #matchers}
+
+		Matchers provide a way for pages to be mapped to parameterized URL segments.  For example, let's say you're writing a simple dictionary application and you want to handle something like `/words/{word}`.
+
+		Create a file in the `words` folder such as`resources/pages/words/~matchers.jin`{: .config} with the following content:
+
+		```toml
+		[get]
+			pattern = (.+)
+			mapping = [
+				"word"
+			]
+		```
+
+		This tells the template middleware to use the `@get.html`{: .html} as specified in the section (`[get]`) if the defined `pattern` expression matches.  The pattern expression is a standard regex (implicitly delimited by `#`), and each captured group must correspond to an indexed parameter name in the `mapping` array.
+
+		{: .note}
+		The first section whose pattern matches will be selected.
+
+		You can then access the paramter in your Twig template via the `parameters` variable:
+
+		```twig{% verbatim %}
+		{% extends '@layouts/main.html' %}
+
+		{% block body %}
+			{% include [
+				'@pages/words/' ~ parameters.word ~ '.html',
+				'@pages/words/404.html'
+			] %}
+		{% endblock %}
+		{% endverbatim %}```
+
+		Matchers will be used to "replace" path segments along the entire request URI's path.  Accordingly it's possible, using the above matcher to also handle a url such as `/words/{word}/synonyms` by simply creating a new page template at `resources/pages/words/get/@synonyms.html`{: .html}.  The `parameters.word` will be available in this template as well.
+
+		### Selective Matching
+
+		It's possible to match only full page or partial requests separately by defining an `include` field in your `~matchers.jin`{: .config} file.  The following will only match for full page (non-ajaxy requests):
+
+		```toml
+		[get]
+			include = ["@"]
+			pattern = (.+)
+			mapping = [
+				"word"
+			]
+		```
+
+		### Consuming Trailing Segments
+
+		It's also possible to consume the remaining segments entirely, meaning effectively that no more additional segment / path processing will be performed.  The consumed URL segments are not part of the pattern matching, however, they are available as a `_consumed` attribute on the request.  If you need additional processing for the consumed segments, you'd need to parse this value separately.
+
+		```toml
+		[browse]
+			consume = true
+			pattern = (.*)
+			mapping = [
+				"volume"
+			]
+		```
+
+		The above located at `resources/pages/files/~matchers.jin`{: .config} would, for example, would allow for a url such as `/files/media/path/to/file.txt`, wherein the `volume` parameter would be `media` and the `_consumed` attribute would be `/path/to/file.txt`.  The page hit would be `resources/pages/files/browse.html`{: .html}.
+
+		{: .note}
+		Using consume doesn't allow for automatic @index.html resolution, because the question of whether or not the URL is a directory and need to try altenrative ending paths is part of what is consumed and is only relevant for the consumed path.  You can create `resources/pages/files/browse/~matchers.jin`{: .config}, however, and set the section explicitly to `[index]` to use an `@index.html` file in that directory.
+
+		## Actions {: #actions}
+
+		While Twig templating is extremely powerful and can be an elegant solution when paired with pages and matchers, inevitably you should not be relying on Twig to try and replace your control logic or accessing your service layer.  You're likly familiar with the concept of "controllers" from other frameworks.  Hiraeth's equivalent to this are called "actions" which, by contrast, act more like a single entry method on a controller.
+
+		----
+
+		[How Do I Use Actions?](./actions){: .action}
+
+	{% endapply %}
+
+	{% include '@layouts/chat.html' %}
+{% endblock %}

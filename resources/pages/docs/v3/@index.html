@@ -1,0 +1,38 @@
+{% extends '@layouts/docs-3.0.html' | proxy(['header', 'content']) %}
+
+{% set title = "Documentation" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		{: .note}
+		Documentation is a continual work in progress.  If there's something you would like to know in particular, please submit an issue on [the main application repo on GitHub](https://github.com/hiraeth-php/app).
+
+		Hiraeth is a nano framework for PHP 8.2+.  It combines a novel and flexible configuration system with robust dependency injection to increase the re-usability and modularity of code.  Version 3.0 focuses on a [view-first](./view-first) approach which aims to enable faster prototyping while still allowing you to gradually move towards production ready deployments.
+
+		## What is a Nano Framework? {: #nano-framework}
+
+		The phrase "nano framework" was chosen for Hiraeth due to the extremely limited scope of its core components and because effectively all behavior beyond that is a separate package.  At its core, Hiraeth is only concerned with three distinct responsibilities:
+
+		1. Basic Application Services
+		2. Dependency Injection
+		3. Configuration
+
+		Rather than re-writing or providing separately maintained libraries to perform the work of similar monolithic frameworks, Hiraeth was designed from the ground up to have existing libraries and utilities integrated with it.  Building a website or application?  There's packages for that.  Building a set of CLI commands only?  That too.
+
+		The result is dozens of well-known and best-in-class libraries with integration packages at your finger tips **and** the ability to create your own integrations with ease.
+
+		---
+
+		[Install Hiraeth](./installation){: .action} [Let's see the packages](./packages)
+
+	{% endapply %}
+	{% include '@layouts/chat.html' %}
+{% endblock %}

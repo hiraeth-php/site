@@ -1,0 +1,111 @@
+{% extends '@layouts/docs-3.0.html' | proxy(['header', 'content']) %}
+
+{% set title = "Config" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		While [understanding JIN](./jin) and how to write configurations is import, it's equally important to understand how to use those configurations.  A single instantiation of the JIN parser allows for collecting (by key) any number of files it parses.  Hiraeth shares a single parser instantiation for its entire application run, accordingly, all configuration files when parsed are collected and keyed for reference later.
+
+		Configuration files are found in the `config`{: .folder} directory and are keyed by their relative path, minus the extension.  So for example the key for `config/app.jin`{: .config} is simply `app`, while the key for `config/packages/velocity.jin`{: .config} would be `packages/velocity`.
+
+		You can query configurations by passing the key and path to the value you want using `getConfig()`{: .method} on Hiraeth's application instance:
+
+		```php
+		$app->getConfig('routes', 'routing.prefix')
+		```
+
+		Accordingly, since configurations can house many different native types, including scalars, strings, and arrays, the return value type will depend on the type in the configuration.  Similar to the `env()` function in Hiraeth's JIN implementation, however, you can and generally should pass a default value, from which the return value can be implicitly casted.
+
+		```php
+		$app->config('custom/config', 'fruit', []);
+		```
+
+		The above would allow `fruit` to be a string, but when querying, would be returned as an array with only the single string value.
+
+		For scalars and strings, the default value will always be returned if no value is set.  For associative arrays, the default value will fill in any missing keys.  You can see more of this below with wildcard queries.
+
+		### Wildcard Queries {: #wildcards}
+
+		In some cases you want to get a lot of similar configuration information across the entire set of collections.  To perform this, you can specify a `*` as the key and result will be an array of config values keyed by the collection path they're found in.
+
+		This is used to enable configuration information for a single "system" to be modularized and spread across multiple configuration files.  For example, Hiraeth's middleware implementations use a `[middleware]` section to identify the configuration of an individual middlware handler.  Each middleware handler, therefore has its own config with its own `[middleware]` section, but we need a simple way to get **all** middleware configurations:
+
+		```php
+		$middleware = $app->getConfig('*', 'middleware', [
+			'class'    => NULL,  /* Ensure NULL if missing */
+			'disabled' => FALSE,
+			'priority' => 50
+		])
+
+		uasort($middleware, function($a, $b) {
+			return $a['priority'] - $b['priority'];
+		});
+
+		foreach ($middleware as $path => $collection) {
+			if (!$middleware['class']) {
+				throw new RuntimeException(sprintf(
+					'Invalid middleware configured in path "%s", no class',
+					$path
+				))
+			}
+
+			if ($middleware['disabled']) {
+				continue;
+			}
+
+			...
+		}
+		```
+
+		{: .note}
+		Unlike when getting specific configuration information, querying information will only return values from collections where the key exists.  That is, the default value will _not_ be returned for collections which don't have the value at all.  The default, however, will still be used to infer data types and provide defaults in the case of objects within a retreived array.
+
+		## Getting Environment Variables {: #environment}
+
+		Hiraeth, like many other popular frameworks, provides a `.env`{: .config} file for setting environment specific data.  Unlike other popular frameworks, this file also contains JIN.  Although the source for the environment is JIN, because the environment cannot contain rich data types only simple key names and strings, the structure of the environment is flattened with the keys of nested information separated by an `_` (underscore).
+
+		{: .note}
+		The flattening to underscore separated names means that using arrays in the `.env`{: .config} file is not good practice, as they'll have names like `ITEMS_0`, `ITEMS_2`, etc.
+
+		To get an environment value, you can use the `$app->getEnvironment()`{: .method} method:
+
+		```php
+		$app->getEnvironment('SERVER_PORT', 8080)
+		```
+
+		{: .note}
+		When accessing environment variables through this method, Hiraeth will perform the same default value and inferred typing as [described above](#inferred-typing) and will be accessing the data in its original data types.
+
+		Due to the flattening, this allows your environment file to be written such as:
+
+		```toml
+		[SERVER]
+
+			PORT = 8080
+		```
+
+		Similarly, if you need to retain BASH or other compatibility to share this file with other systems, you can simply write it as:
+
+		```bash
+		SERVER_PORT=8080
+		```
+
+		You also access data using PHP's built-in `getenv()` and the `$_ENV` superglobal.  Though in the case of the former the data will only be available as a string and will not enable inferred types.
+
+		Once you've got the basics down, you'll probably want to modify your `.env`{: .config} and get some basic error handling in place.
+
+		----
+
+		[Learn About Error Handling](./error-handling){: .action}
+	{% endapply %}
+
+	{% include '@layouts/chat.html' %}
+{% endblock %}

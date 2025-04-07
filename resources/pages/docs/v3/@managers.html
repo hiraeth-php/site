@@ -1,0 +1,47 @@
+{% extends '@layouts/docs-3.0.html' | proxy(['header', 'content']) %}
+
+{% set title = "Entity Managers" %}
+
+{% block header %}
+	<x::title text="{{ title }}" />
+
+	<x:docs:header>
+		<h1>{{ title }}</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		{: .note}
+		This document assumes you've installed `hiraeth/bootstrap`{: .package} or `hiraeth/doctrine`{: .package} and `hiraeth/cache`{: .package}.  If you haven't your mileage may vary.  See the [installation docs](./installation) for more information.
+
+		Managers, or more fully "Entity Managers," are Doctrine's mechanism for working with model objects or "entities."  Minimally, a manager needs to know what [connection](./connections) it uses and where to find its entity classes.  The `default` manager will use the `default` connection and look for entities in `local/entities`{: .folder}.
+
+		To change these settings (and more) you can edit `config/managers/default.jin`{: .config}.  Due to the length of this configuration, it will not be included in full, however, the basic layout looks something like the following:
+
+		```toml
+		[manager]
+
+			connection = default
+			cache = default
+			paths = ["local/entities"]
+		```
+
+		Hiraeth's Doctrine integration supports mulitple managers out of the box, so the preferred way to obtain your manager is to inject the `Hiraeth\Doctrine\ManagerRegistry`{: .class}:
+
+		```php
+		use Hiraeth\Doctrine\ManagerRegistry;
+
+		class MyService
+		{
+			public function __construct(ManagerRegistry $registry)
+			{
+				$this->manager = $registry->getManager('default');
+			}
+		}
+		```
+
+	{% endapply %}
+
+	{% include '@layouts/chat.html' %}
+{% endblock %}
