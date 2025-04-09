@@ -1,0 +1,343 @@
+{% extends '@layouts/blog.html' %}
+
+{% block header %}
+	<x:docs:header>
+		<h1>Velocity Framework</h1>
+	</x:docs:header>
+{% endblock %}
+
+{% block content %}
+	{% apply markdown %}
+		The Velocity Framework is a new way to write Hiraeth applications which combines several improvements in Hiraeth features with three front-end libraries to enable no-build, lightweight, and dynamic experiences using server-side Twig components (available separately as `hiraeth/twig-tags`{: .package}).  It is meant to align with [Hiraeth 3.0's "view first" approach](/docs/latest/view-first) which encourages rapid prototyping by delaying the addition of traditional back-end code.
+
+		## Getting Started
+
+		To get started, we install Hiraeth and simply require the `hiraeth/velocity`{: .package} package.
+
+		```twig
+		mkdir <path>
+		cd <path>
+		composer create-project hiraeth/app:^3.0 ./ -s dev
+		composer require hiraeth/velocity
+		```
+
+		## Creating Pages
+
+		To get a better idea of what Velocity is doing, let's add a quick test landing page at `resources/pages/@index.html`{: .html}:
+
+		{% verbatim %}
+		```twig
+		{% extends '@layouts/velocity/main.html' | proxy(['body']) %}
+
+		{% block body %}
+			<header class="contain">
+				<h1>Hello World!</h1>
+			</header>
+			<main class="contain">
+				<x::button url="{{ route('/goodbye') }}">
+					Goodbye
+				</x::button>
+			</main>
+		{% endblock %}
+		```
+		{% endverbatim %}
+
+		Now we can add the corresponding linked page, `resources/pages/@goodbye.html`{: .html}:
+
+		{% verbatim %}
+		```twig
+		{% extends '@layouts/velocity/main.html' | proxy(['body']) %}
+
+		{% block body %}
+			<header class="contain">
+				<h1>Goodbye World!</h1>
+			</header>
+			<main class="contain">
+				<x::button url="{{ route('/') }}">
+					Hello Again!
+				</x::button>
+			</main>
+		{% endblock %}
+		```
+		{% endverbatim %}
+
+		Now run your server and visit http://localhost:8080:
+
+		```
+		php bin/server
+		```
+
+		{: .note}
+		If you need to change your server port, just add `SERVER_PORT = <number>` to your `.env`{: .config} file.
+
+		As a basic example, this doesn't look particularly interesting.  Clicking the button(s), as one might expect, jumps between our pages.  However a quick trip to the old network inspector will reveal that each request is only sending the internal body content, not rendering the entire page all over again.  This is the basic premise behind HTMX: server-side rendering for partial page replacement.
+
+		## Breaking It Down
+
+		In addition to demonstrating the basic principles behind HTMX and Velocity (albeit in a contrived way), the above example provides a starting point to talk about a number of features that are part of the extended Hireath / Velocity family.
+
+		### Pages
+
+		Using Hireath's existing [pages functionality](/docs/latest/pages), creating a new page is as simple as adding an `.html` file whose filename starts with an `@`.  This directs the template middleware to allow loading that page directly.  You can also create partials that are _only_ routable through non-boosted HTMX or AJAX requests by preceding them with a `%`, however, that's for another article.
+
+		As of Hiraeth 3.0, so long as the `HX-Boosted` header is sent page requests will correspond to the full page templates preceded with `@`.
+
+		#### Practically...
+
+		This means every page can operate as _both_ a full page, as well as an HTMX partial.  Ergo, when a direct (non-HTMX) request in our previous example is sent to `/goodbye`, the entire page and layout will be loaded.  When the request is made via a boosted HTMX request, only the `body` block will be returned.  This is achieved through a concept called "proxying."
+
+		### Proxying
+
+		Historically, a full page template would generally extend _some_ sort of layout template.  When the corresponding URL was requested, the whole page was rendered and the template it extended provided all the re-usable and persistent surrounding layout and elements.  Using Velocity's `proxy()` filter, this is no longer the case.  Let's zoom in on our opening example:
+
+		{% verbatim %}
+		```twig
+		{% extends '@layouts/velocity/main.html' | proxy(['body']) %}
+		```
+		{% endverbatim %}
+
+		You can think of the use of this filter as saying that the page extends a given layout template **or** it proxies the `body` block.  Whether or not proxying occurs depends wholly on the request conditions (various headers).  Generally speaking, however, proxying only occurs if:
+
+		1. The request was made with HTMX
+		2. The request was mad via the `hx-boost` functionality.
+
+		Because the main velocity layout uses the `body` block as the entire contents of the `<body>` tag, this example doesn't really demonstrate any particularly interesting behavior.  However, in most cases, you will want to create your own layout that extends the main velocity layout and includes re-usable page content like navigation and footers.
+
+		For example, in a `resources/layouts/main.html`{: .html} file, you might have:
+
+		{% verbatim %}
+		```twig
+		{% extends '@layouts/velocity/main.html' | proxy(['body'], true) %}
+
+		{% block body %}
+			<!-- Your common masthead/navigation/etc  -->
+			<main hx-target="this">
+				{% block canvas %}
+
+				{% endblock %}
+			</main>
+			<!-- Your common footer/etc -->
+		{% endblock %}
+		```
+		{% endverbatim %}
+
+		Now instead of extending Velocity's layout directly, you'd extend your custom layout and proxy the `canvas` block:
+
+		{% verbatim %}
+		```twig
+		{% extends '@layouts/main.html' | proxy(['canvas']) %}
+
+		{% block canvas %}
+			<!-- page specific content -->
+		{% endblock %}
+		```
+		{% endverbatim %}
+
+		Now your pages are no longer re-rendering or re-sending the entire navigation, footer, etc.  This works because the `proxy()` filter modifies the template path to use Velocity's proxy layout, which simply dumps the selected blocks specified in the first argument.  Keen observers, however, may have noted an additional argument in the previous layout example.
+
+		{% verbatim %}
+		```twig
+		{% extends '@layouts/velocity/main.html' | proxy(['body'], true) %}
+		```
+		{% endverbatim %}
+
+		While not strictly necessary, this argument is good practice and will come in handy if you have more than one body level layout.  For example, you might have a full-width layout as well as an internal page layout with a sidebar.  Pages that extend the internal layout will only want to proxy their main content (excluding sidebar content), however, when linking or requesting an internal page from a full-width page you want them to render the sidebar on that initial request.  To do this, you add the `vf-proxy="false"` attribute to the link (or parents to cover multiple links).
+
+		A practical example is the homepage for [hireath.dev](https://hiraeth.dev) or even this blog article which links the documentation.  Once in the documentation, the sidebar navigation persists and articles proxy only their content, but when linking to an article from a different layout, we want the sidebar navigation to be rendered on that initial request.  Accordingly, you can inspect the `<main>` element on this page and see the attribute which forces all links in this article to re-render at their top level.
+
+		{: .note}
+		Setting `vf-proxy` to false will _not_ result in the whole page being re-rendered.  It is not equivalent to setting `hx-boost` to false.  When proxying is false the page will only render the extended layout(s) up until the first layout that specifies `true` as the second `proxy()` filter argument.
+
+		#### The `proxy()` Function
+
+		In additon to the `proxy()` filter, there is also a `proxy()` function that simply returns `true` or `false` depending on whether or not proxying is being performed in the current request.  This can be used to wrap what might otherwise be HX "out of bounds" replacements which, when not proxying are **not** out of bounds.  Again, using the Hireath documentation pages as an example, the `<header>` is an "out of bounds" swap that occurs when navigating to a new article.  If the full layout were rendered with this attribute HTMX would not know where to swap the header as "out of bounds" would now be outside the body.
+
+		Accordingly, the header component looks like this:
+
+		{% verbatim %}
+		```twig
+		<header
+			id="header"
+			class="contain text-slate-800 text-center"
+			{% if proxy() %}
+				hx-swap-oob="true"
+			{% endif %}
+		>
+			{{ children|raw }}
+
+			<hr class="text-stone-300 mt-8 mb-0" />
+		</header>
+		```
+		{% endverbatim %}
+
+		Using the `proxy()` filter and function allow for quickly and easily modifying how a template renders in the context of specific HTMX requests, eliminating the need for complex and often inconsistent controller logic.
+
+		### Components
+
+		Velocity aims to provide a full and robust set of ready-made components.  Although that work is still in development, we can use some of them as quick examples of how to build your own custom components.  Let's start with the basics though.
+
+		To create a component, simply add a new file to `resource/tags`{: .folder}.  For example, `resources/tags/message.html`{: .html}:
+
+		{% verbatim %}
+		```twig
+		<div class="text-blue-800 text-lg font-bold">
+			{{ children|raw }}
+		</div>
+		```
+		{% endverbatim %}
+
+		Component use an XML style tag, e.g. `<x::message>` for the above component.  The `x` is variable and does not matter.  You can use different "prefixes" of this sort as a matter of convention to signify and distinguish certain types of tags.  Each `:` represents a directory separate, with `::` collapsing to the relative root directory `resources/tags`.  So a file located in in `resources/tags/a/b/c.html`{: .html} can be used with a tag such as `<tag:a:b:c>`.
+
+		Using the above tag:
+
+		```twig
+		<x::message>
+			<p>
+				This will be a large, blue, bold message.
+			</p>
+		</x::message>
+		```
+
+		#### Properties
+
+		You can add properties to a component as attributes which will then be available in the component code's scope.  If we change our previous component to the following, for example:
+
+		{% verbatim %}
+		```twig
+		<div class="text-blue-800 text-lg font-bold">
+			{% if text|default(null) %}
+				<p>
+					{{ text }}
+				</p>
+			{% else %}
+				{{ children|raw }}
+			{% endif %}}
+		</div>
+		```
+		{% endverbatim %}
+
+		Now we can use our component like so instead:
+
+		```twig
+		<x::message text="This is my message to you!" />
+		```
+
+		All properties passed in this way constitute strings.  However, it may be the case that you want to pass an actual variable into the child scope.  For this you use the `v` (value) twig tag:
+
+		{% verbatim %}
+		```twig
+		<x::message text={% v: stringableObject %}>
+		```
+		{% endverbatim %}
+
+		A more complex example might be if we create a `resources/tags/list.html`{: .html} component:
+
+		{% verbatim %}
+		```twig
+		<ul>
+			{% for item in items|default([]) %}
+				<li>{{ item }}</li>
+			{% endfor %}
+		</ul>
+		```
+		{% endverbatim %}
+
+		Now use it:
+
+		{% verbatim %}
+		```twig
+		<x::list items={% v: [
+			'Item 1',
+			'Item 2',
+			'Item 3'
+		] %}>
+		```
+		{% endverbatim %}
+
+		#### Merged Attributes
+
+		You can merge attributes onto the top-level tags represented by a component by ending the attribute with an `:`.  To add underline to the above, for example:
+
+		```twig
+		<x::message class:="underline">
+			<p>
+				This will be a large, blue, bold, underlined message.
+			</p>
+		</x::message>
+		```
+
+		{: .note}
+		Merged properties will only be added to the highest level elements in a component and it will be added to all of them.  If you need to pass attributes to nested children within the component, you will likely want to use a property and pass it along.
+
+
+		This will add the `underline` class to the `class` attribute on the `div`.  If the attribute already exists, it will be appended (separated by a space).  If it doesn't it will be added.  Let's git a better understanding of this behavior by taking a look at fragments.
+
+		#### Fragments
+
+		Fragments are pseudo elements that allow you add certain properties or attributes to their children.  Fragments are created using the `<x::>` tag (again the `x` is arbitrary).  For example:
+
+		```twig
+		<x:: class:="text-lg">
+			<p>
+				This will be large text.
+			</p>
+			<p>
+				This will also be large text.
+			</p>
+		</x::>
+		```
+
+		In the above example, each child `<p>` will have the `class="text-lg"` attribute merged onto it.  This is useful when you don't want/need a wrapping element, but want certain attributes or context available to the children.  Another common example might be to add properties to any number of sub-components.  We can `ghost` all our buttons, and separate them with margin:
+
+		{% verbatim %}
+		```twig
+		<x:: ghost class:="mr-4 last:mr-0">
+			<x::button url="{{ route('/ex1') }}">
+				Example 1
+			</x::button>
+			<x::button url="{{ route('/ex2') }}">
+				Example 2
+			</x::button>
+			<x::button url="{{ route('/ex3') }}">
+				Example 3
+			</x::button>
+		</x::>
+		```
+		{% endverbatim %}
+
+		#### Scripts (AlpineJS)
+
+		Components can add their own scripts to the page.  When a component is loaded any scripts it adds are hashed and checked against scripts already added.  All scripts are hoisted into the `<head>` of the HTML document.  When rendered for partial inclusion via an HTMX request, they are extracted by an HTMX event listener.  Scripts can be usful for adding any arbitrary JS, but they are most useful for complex AlpineJS-based components.  A contrived example `resources/tags/toggle.html`{: .html}:
+
+		{% verbatim %}
+		```twig
+		<script>
+			function MyToggle() {
+				return {
+					on: false,
+					toggle() {
+						this.on = !this.on;
+					}
+				}
+			}
+		</script>
+
+		<div
+			x-data="MyToggle"
+			x-text="on ? 'On' : 'Off'"
+			x-on:click="toggle()"
+			class="cursor-pointer"
+		></div>
+		```
+		{% endverbatim %}
+
+		{: .note}
+		Using short-hand attributes like `@click` is not supported in Velocity due to some limitations of PHP's DOM parsing.  Additionally, it's good practice to namespace things.  We also recommend using basic functions for `x-data` over the `Alpine.data()` method, however, both should be supported.
+
+		## Conclusion
+
+		The Velocity Framework represents a light-weight (and optionally no-build) way of achieving fast, dynamic, websites and applications.  Combined with the view-first approach, developers can rapidly prototype complex user interfaces, mock data, and gradually introduce back-end systems and services.  Using a combination of best-in-class libraries, it also provides a stable and feature-rich base for production deployments.  When and if you want, replace the core components with fully bundled JS and CSS or keep using the CDN sources for what is already lightning fast page loads.
+
+		As Hiraeth 3.0 approaches a solid release candidate, we'll be shipping additional features to make your sites, application, and developer experience even faster, including cached component script minification and a host of pre-built components.  Happy hacking.
+	{% endapply %}
+{% endblock %}

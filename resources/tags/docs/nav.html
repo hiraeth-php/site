@@ -7,6 +7,13 @@
 			hidden: true,
 			opened: null,
 			active: null,
+			toggle(group) {
+				if (this.opened == this.group) {
+					this.opened = null;
+				} else {
+					this.opened = group;
+				}
+			},
 			close() {
 				if (this.button && getComputedStyle(this.button).display == 'block') {
 					this.hidden = true;
@@ -42,7 +49,7 @@
 	<ol class="list-none lg:block" x-bind:class="{ 'hidden': hidden }">
 		{% for group in items %}
 			<li x-data="{group: $id('nav-group')}">
-				<div x-on:click="opened = group" class="cursor-pointer px-4 py-2" href="{{ route(group.link|default('#')) }}">
+				<div x-on:click="toggle(group)" class="cursor-pointer px-4 py-2" href="{{ route(group.link|default('#')) }}">
 					{{ group.name|default('Uknown Name') }}
 					<button class="float-right inline-block w-4 text-center">
 						<span x-show="opened == group">-</span>

@@ -1,25 +1,13 @@
-{% extends '@layouts/master.html' %}
+{% extends '@layouts/main.html' | proxy(['canvas']) %}
 
-{% set pageClasses = ['internal'] %}
+{% block canvas %}
+	{% block header %}
 
-{% block primary %}
-	<header>
-		<h1>{{ title }}</h1>
-	</header>
-	<main>
-		<section>
-			{% block content %}
-			{% endblock %}
-		</section>
-		<section>
-			<script src="https://utteranc.es/client.js"
-				repo="hiraeth-php/site"
-				issue-term="pathname"
-				label="comment"
-				theme="github-light"
-				crossorigin="anonymous"
-				async>
-			</script>
-		</section>
+	{% endblock %}
+
+	<main class="contain" vf-proxy="false">
+		{% block content %}
+		{% endblock %}
+		{% include '@layouts/chat.html' %}
 	</main>
 {% endblock %}
