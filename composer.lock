@@ -3451,12 +3451,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hiraeth-php/velocity.git",
-                "reference": "e14a59a0e2cd524d730a59290bbf3e03d2cd2ad7"
+                "reference": "26992cda6e678c298b2f201c923769f0254525f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hiraeth-php/velocity/zipball/e14a59a0e2cd524d730a59290bbf3e03d2cd2ad7",
-                "reference": "e14a59a0e2cd524d730a59290bbf3e03d2cd2ad7",
+                "url": "https://api.github.com/repos/hiraeth-php/velocity/zipball/26992cda6e678c298b2f201c923769f0254525f4",
+                "reference": "26992cda6e678c298b2f201c923769f0254525f4",
                 "shasum": ""
             },
             "require": {
@@ -3501,7 +3501,7 @@
                 "issues": "https://github.com/hiraeth-php/velocity/issues",
                 "source": "https://github.com/hiraeth-php/velocity/tree/3.0-beta"
             },
-            "time": "2025-04-08T13:56:54+00:00"
+            "time": "2025-04-09T03:40:02+00:00"
         },
         {
             "name": "hiraeth/volumes",
