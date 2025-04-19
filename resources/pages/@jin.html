@@ -105,7 +105,7 @@
 
 			<div class="contain">
 				<div class="relative">
-					<pre class="mb-0 p-4 w-full drop-shadow-none rounded-none"><code data-nocopy data-code class="language-toml !p-0"></code></pre>
+					<pre class="mb-0 p-4 w-full drop-shadow-none rounded-none leading-6"><code data-nocopy data-code class="language-toml !p-0"></code></pre>
 					<textarea
 						data-editor
 						contenteditable
@@ -116,7 +116,7 @@
 						autocapitalize="off"
 						spellcheck="false"
 						wrap="hard"
-						class="absolute top-4 left-4 right-4 bottom-0 font-mono text-transparent caret-amber-400 overflow-hidden resize-none whitespace-pre"
+						class="absolute top-4 left-4 right-4 bottom-0 font-mono text-transparent caret-amber-400 overflow-hidden resize-none whitespace-pre leading-6"
 					>{{
 						request.parsedBody.body|default(app.getFile('resources/example.jin')|content)|default('')
 					}}</textarea>
