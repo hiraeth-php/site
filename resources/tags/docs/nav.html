@@ -28,7 +28,9 @@
 		return {
 			id: null,
 			init() {
-				this.id = this.$id('nav-item');
+				if (!this.id) {
+					this.id = this.$id('nav-item');
+				}
 
 				if (document.location.pathname == this.$el.pathname) {
 					this.active = this.id;
@@ -63,6 +65,7 @@
 								<a
 									x-data="DocsNavItem"
 									x-on:click="active = id"
+									x-on:htmx:after-settle.window="init()"
 									class="block px-8 py-1"
 									href="{{ route(item.link|default('#')) }}"
 								>
