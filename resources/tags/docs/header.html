@@ -1,7 +1,7 @@
 <header
 	id="header"
 	class="contain text-slate-800 text-center"
-	{% if proxy('header') %}
+	{% if not proxy('header') %}
 		hx-swap-oob="true"
 	{% endif %}
 >
