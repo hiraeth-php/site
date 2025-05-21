@@ -1,11 +1,11 @@
-{% extends '@layouts/main.html' | proxy(['canvas']) %}
+{% extends '@layouts/main.html' | proxy('canvas') %}
 
 {% block canvas %}
 	{% block header %}
 
 	{% endblock %}
 
-	<main class="contain" vf-proxy="false">
+	<main class="contain">
 		{% block content %}
 		{% endblock %}
 		{% include '@layouts/chat.html' %}

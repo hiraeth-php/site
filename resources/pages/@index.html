@@ -1,4 +1,4 @@
-{% extends '@layouts/main.html' | proxy(['canvas']) %}
+{% extends '@layouts/main.html' | proxy('canvas') %}
 
 {% block canvas %}
 	<x::title full text="Welcome to Hiraeth" />
@@ -18,7 +18,7 @@
 	</header>
 	<main>
 		<section class="contain bg-slate-700 py-8">
-			<nav class="text-center" vf-proxy="false">
+			<nav class="text-center">
 				<x::button ghost class:="!text-flip" url="{{ route('/docs/latest/') }}">
 					Documentation
 				</x::button>

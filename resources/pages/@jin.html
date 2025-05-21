@@ -1,4 +1,4 @@
-{% extends '@layouts/main.html' | proxy(['canvas']) %}
+{% extends '@layouts/main.html' | proxy('canvas') %}
 
 {% block canvas %}
 	<title>Online JIN Playground</title>
@@ -93,7 +93,7 @@
 		</script>
 
 		<div x-data="CodeEditor">
-			<form method="post" hx-swap="outerHTML scroll:top" vf-proxy="false" class="fixed bottom-0 z-12 bg-zinc-800 w-full p-4 text-center">
+			<form method="post" hx-swap="outerHTML scroll:top" class="fixed bottom-0 z-12 bg-zinc-800 w-full p-4 text-center">
 				{% if session is defined %}
 					<input type="hidden" name="csrf::token" value="{{ session.csrfToken.value }}" />
 				{% endif %}

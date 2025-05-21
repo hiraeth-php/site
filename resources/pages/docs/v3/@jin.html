@@ -1,4 +1,4 @@
-{% extends '@layouts/docs-3.0.html' | proxy(['header', 'content']) %}
+{% extends '@layouts/docs-3.0.html' | proxy('header', 'content') %}
 
 {% set title = "Introduction to JIN" %}
 
@@ -26,7 +26,7 @@
 
 		Want to test some JIN?  You can use our simple online JIN playground to check for errors, play with the language, and see what it looks like converted to JSON.
 
-		[Try JIN](/jin){: .action hx-target=body vf-proxy=false}
+		[Try JIN](/jin){: .action hx-target=#body }
 
 		## Basic Structures
 
